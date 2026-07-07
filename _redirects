@@ -1,19 +1,15 @@
-/srplantao    /srplantao/index.html    200
-# Dev.Lobbo — Cloudflare Pages Redirects
-# Arquivo: _redirects
-# Coloque este arquivo na raiz junto com o index.html
+/srplantao              /srplantao/index.html                           200
 
-/apps/gestfacil         https://gestfacil-b3422.web.app                301
-/apps/gestfacil/        https://gestfacil-b3422.web.app                301
+/gestfacil              https://gestfacil-b3422.web.app                 301
+/gestfacil/*            https://gestfacil-b3422.web.app/:splat          301
+
+/apps/gestfacil         https://gestfacil-b3422.web.app                 301
+/apps/gestfacil/        https://gestfacil-b3422.web.app                 301
 /apps/gestfacil/*       https://gestfacil-b3422.web.app/:splat          301
 
-/apps/srplantao         https://srplantao-app.netlify.app              301
-/apps/srplantao/        https://srplantao-app.netlify.app              301
-/apps/srplantao/*       https://srplantao-app.netlify.app/:splat        301
+/apps/srplantao         https://srplantao.devlobbo.com                  301
+/apps/srplantao/        https://srplantao.devlobbo.com                  301
 
-/apps/pontojustificado        https://644568a8.pontojustificado.pages.dev   301
-/apps/pontojustificado/       https://644568a8.pontojustificado.pages.dev   301
-/apps/pontojustificado/*      https://644568a8.pontojustificado.pages.dev/:splat  301
+/apps/pontojustificado  https://644568a8.pontojustificado.pages.dev     301
 
-# Fallback
 /*      /index.html     200
