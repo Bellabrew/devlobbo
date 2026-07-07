@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GestFácil - Gestão completa para o seu negócio. Controle clientes, fornecedores, estoque, vendas e relatórios em um só lugar.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="GestFácil - Gestão completa para o seu negócio">
+  <meta property="og:description" content="Controle clientes, fornecedores, estoque, vendas e relatórios em um só lugar. Acesse pelo navegador ou instale no celular.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://gestfacil-b3422.web.app/icons/Icon-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+
+  <title>GestFácil - Gestão completa para o seu negócio</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7614768764999229"
+       crossorigin="anonymous"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #333;
+      background: #fff;
+    }
+
+    /* AdSense topo - oculto enquanto anúncios estão desativados */
+    .ad-top {
+      display: none;
+    }
+
+    .ad-top.ativo {
+      background: #f5f5f5;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 90px;
+      padding: 8px;
+    }
+
+    /* Header */
+    header {
+      background: #1565C0;
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    .logo h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-acessar {
+      background: white;
+      color: #1565C0;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 24px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-acessar:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #1565C0 0%, #1976D2 60%, #42A5F5 100%);
+      color: white;
+      text-align: center;
+      padding: 24px 24px 28px;
+    }
+
+    .hero h2 {
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 16px;
+      opacity: 0.92;
+      max-width: 600px;
+      margin: 0 auto 20px;
+      line-height: 1.5;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #1565C0;
+      padding: 14px 32px;
+      border-radius: 28px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 28px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.7);
+      transition: background 0.15s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .badge-plataformas {
+      margin-top: 16px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    /* Seções */
+    section {
+      padding: 60px 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    section h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1565C0;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    /* Grade de funcionalidades */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: #f8f9ff;
+      border: 1px solid #e3e8ff;
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(21,101,192,0.12);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1565C0;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Vantagens */
+    .vantagens-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .vantagens-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .check {
+      color: #1565C0;
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Vídeo */
+    .video-section {
+      background: #f0f4ff;
+      border-radius: 16px;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .video-placeholder {
+      background: #dde6ff;
+      border: 2px dashed #90aee0;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 720px;
+      aspect-ratio: 16/9;
+      margin: 24px auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #5580bb;
+      gap: 8px;
+    }
+
+    .video-placeholder .play-icon {
+      font-size: 48px;
+    }
+
+    .video-placeholder p {
+      font-size: 15px;
+    }
+
+    /* App showcase: ícone + descrição */
+    .app-showcase {
+      background: #f8f9ff;
+      border-bottom: 1px solid #e3e8ff;
+    }
+
+    .app-showcase section {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      padding: 36px 24px;
+    }
+
+    .app-showcase-icon {
+      flex-shrink: 0;
+      text-align: center;
+    }
+
+    .app-showcase-icon img {
+      width: 220px;
+      height: 220px;
+      border-radius: 40px;
+      box-shadow: 0 8px 32px rgba(21,101,192,0.25);
+    }
+
+    .app-showcase-text { flex: 1; min-width: 240px; }
+
+    .app-showcase-text h3 {
+      text-align: left;
+      margin-bottom: 12px;
+      font-size: 26px;
+    }
+
+    .app-showcase-text p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    /* Plataformas */
+    .plataformas {
+      background: #1565C0;
+      color: white;
+    }
+
+    .plataformas section {
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .plataformas h3 {
+      color: white;
+    }
+
+    .plataformas .section-sub {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .plataforma-cards {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .plataforma-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 16px;
+      padding: 20px 28px;
+      min-width: 200px;
+      text-align: center;
+    }
+
+    .plataforma-card .p-icon { font-size: 36px; margin-bottom: 10px; }
+    .plataforma-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .plataforma-card p { font-size: 13px; opacity: 0.85; }
+
+    /* CTA final */
+    .cta-final {
+      text-align: center;
+      padding: 70px 24px;
+      background: #f8f9ff;
+    }
+
+    .cta-final h3 {
+      font-size: 30px;
+      font-weight: 800;
+      color: #1565C0;
+      margin-bottom: 12px;
+    }
+
+    .cta-final p {
+      font-size: 17px;
+      color: #555;
+      margin-bottom: 32px;
+    }
+
+    /* AdSense rodapé */
+    .ad-bottom {
+      background: #f5f5f5;
+      border-top: 1px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 90px;
+      padding: 8px;
+    }
+
+    /* Footer */
+    footer {
+      background: #0d47a1;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+    }
+
+    footer a { color: rgba(255,255,255,0.9); text-decoration: none; }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid #eee;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 600px) {
+      .hero h2 { font-size: 26px; }
+      .hero p { font-size: 15px; }
+      header { padding: 12px 16px; }
+      .logo h1 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AdSense Topo -->
+  <div class="ad-top">
+    <!-- ATIVAR APÓS APROVAÇÃO: substituir pelo bloco ins do AdSense -->
+    <!--
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7614768764999229"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="icons/Icon-192.png" alt="GestFácil">
+      <h1>GestFácil</h1>
+    </div>
+    <a href="/app" class="btn-acessar">Acessar o App</a>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h2>Gestão completa para<br>o seu negócio</h2>
+    <p>Controle clientes, fornecedores, estoque, vendas e relatórios — tudo em um só lugar, direto do navegador ou pelo celular.</p>
+    <div class="hero-buttons">
+      <a href="/app" class="btn-primary">Começar agora — é grátis</a>
+      <a href="#funcionalidades" class="btn-secondary">Conheça as funcionalidades</a>
+    </div>
+    <p class="badge-plataformas">Disponível no navegador e na Google Play Store</p>
+  </div>
+
+  <!-- App Showcase: ícone + descrição -->
+  <div class="app-showcase">
+    <section>
+      <div class="app-showcase-icon">
+        <img src="icons/Icon-512.png" alt="GestFácil">
+      </div>
+      <div class="app-showcase-text">
+        <h3>O que é o GestFácil?</h3>
+        <p>O <strong>GestFácil</strong> é um sistema de gestão completo desenvolvido para facilitar o dia a dia de qualquer negócio — do pequeno empreendedor ao gestor de grandes operações.</p>
+        <p>Com ele você centraliza o controle de clientes, fornecedores, estoque e vendas em um único lugar, acessível pelo computador ou celular, sem precisar instalar nada.</p>
+        <p>Tudo sincronizado em tempo real na nuvem, com segurança e praticidade para você focar no que realmente importa: <strong>o crescimento do seu negócio.</strong></p>
+      </div>
+    </section>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Funcionalidades -->
+  <section id="funcionalidades">
+    <h3>Tudo que você precisa para gerir seu negócio</h3>
+    <p class="section-sub">Funcionalidades pensadas para simplificar o dia a dia de qualquer empresa</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h4>Gestão de Clientes</h4>
+        <p>Cadastre e gerencie todos os seus clientes. Acesse o histórico de compras, contate pelo WhatsApp ou e-mail com um toque e mantenha tudo organizado.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏭</div>
+        <h4>Controle de Fornecedores</h4>
+        <p>Registre fornecedores com contatos completos. Entre em contato direto pelo WhatsApp ou e-mail diretamente pelo app sem precisar sair.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h4>Estoque Inteligente</h4>
+        <p>Acompanhe entradas e saídas em tempo real. Histórico completo de movimentações, alertas de estoque baixo e controle total do inventário.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🛍️</div>
+        <h4>Registro de Vendas</h4>
+        <p>Lance vendas rapidamente, associe clientes, acompanhe o fluxo de caixa e tenha sempre em mãos o desempenho das suas vendas.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h4>Relatórios Detalhados</h4>
+        <p>Gere relatórios completos de vendas, estoque e clientes. Exporte em PDF e compartilhe pelo WhatsApp com apenas um toque.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🧾</div>
+        <h4>Geração de PDF</h4>
+        <p>Crie documentos profissionais em PDF para relatórios, notas e resumos. Compartilhe pelo WhatsApp, e-mail ou imprima diretamente.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h4>Notificações</h4>
+        <p>Receba alertas importantes sobre o seu negócio — estoque baixo, compromissos e atualizações — para nunca perder nada relevante.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <h4>Acesso Seguro</h4>
+        <p>Entre com sua conta do Google ou crie um acesso com e-mail e senha. Seus dados ficam protegidos e sincronizados em todos os dispositivos.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h4>Manual do Usuário</h4>
+        <p>Manual completo dentro do próprio app explicando todas as funcionalidades, passo a passo, para facilitar o uso desde o primeiro dia.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Vantagens -->
+  <section id="vantagens">
+    <h3>Por que escolher o GestFácil?</h3>
+    <p class="section-sub">Desenvolvido para ser simples, rápido e eficiente</p>
+
+    <ul class="vantagens-list">
+      <li><span class="check">✔</span> <span><strong>Sem instalação no computador</strong> — acesse direto pelo navegador, de qualquer lugar</span></li>
+      <li><span class="check">✔</span> <span><strong>Dados em nuvem</strong> — suas informações salvas com segurança e disponíveis em todos os dispositivos</span></li>
+      <li><span class="check">✔</span> <span><strong>Disponível no celular</strong> — baixe o app na Google Play Store e gerencie na palma da mão</span></li>
+      <li><span class="check">✔</span> <span><strong>Relatórios em PDF</strong> — gere e compartilhe relatórios profissionais em segundos</span></li>
+      <li><span class="check">✔</span> <span><strong>Integração com WhatsApp</strong> — contate clientes e fornecedores direto do app</span></li>
+      <li><span class="check">✔</span> <span><strong>Interface intuitiva</strong> — fácil de usar, sem necessidade de treinamento</span></li>
+      <li><span class="check">✔</span> <span><strong>Histórico completo</strong> — acompanhe toda a movimentação do seu estoque e vendas</span></li>
+      <li><span class="check">✔</span> <span><strong>Multiusuário</strong> — acesse com diferentes contas para equipes de trabalho</span></li>
+    </ul>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Vídeo -->
+  <section id="video">
+    <div class="video-section">
+      <h3>Veja o GestFácil em ação</h3>
+      <p class="section-sub">Assista ao vídeo e conheça todas as funcionalidades na prática</p>
+      <div class="video-placeholder">
+        <span class="play-icon">▶</span>
+        <p>Vídeo de demonstração em breve</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Plataformas -->
+  <div class="plataformas">
+    <section>
+      <h3>Disponível em todas as plataformas</h3>
+      <p class="section-sub">Use no computador pelo navegador ou baixe no seu celular Android</p>
+      <div class="plataforma-cards">
+        <div class="plataforma-card">
+          <div class="p-icon">🌐</div>
+          <h4>Navegador Web</h4>
+          <p>Chrome, Edge, Firefox e outros. Sem instalação, acesse agora mesmo.</p>
+        </div>
+        <div class="plataforma-card">
+          <div class="p-icon">📱</div>
+          <h4>Android</h4>
+          <p>Disponível na Google Play Store. Instale e use onde estiver.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CTA Final -->
+  <div class="cta-final">
+    <h3>Comece a usar agora mesmo</h3>
+    <p>Crie sua conta gratuitamente e transforme a gestão do seu negócio</p>
+    <a href="/app" class="btn-primary" style="font-size:17px; padding:16px 40px;">Acessar o GestFácil</a>
+  </div>
+
+  <!-- AdSense Rodapé -->
+  <div class="ad-bottom">
+    <!-- ATIVAR APÓS APROVAÇÃO: substituir pelo bloco ins do AdSense -->
+    <!--
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7614768764999229"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 GestFácil. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
