@@ -916,6 +916,89 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
   .hero-inner { padding: 0 24px; }
   .hero-title { font-size: 28px; }
 }
+
+/* ── TEAM SECTION ── */
+#team { background: var(--clr-surface); }
+.team-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 32px; margin-top: 56px;
+}
+.team-card {
+  background: var(--clr-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  padding: 40px 36px;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  transition: all var(--transition); position: relative; overflow: hidden;
+}
+.team-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: var(--grad-neon);
+}
+.team-card:hover {
+  border-color: rgba(0,207,255,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.team-avatar {
+  width: 100px; height: 100px; border-radius: 50%;
+  background: var(--grad-neon);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 32px; font-weight: 800;
+  color: #000; margin-bottom: 24px;
+  box-shadow: 0 0 30px rgba(0,207,255,0.3);
+  position: relative;
+}
+.team-avatar-badge {
+  position: absolute; bottom: 4px; right: 4px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: #22c55e; border: 2px solid var(--clr-bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+}
+.team-name {
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  margin-bottom: 6px; color: var(--clr-text);
+}
+.team-role {
+  font-size: 13px; font-weight: 600; color: var(--clr-neon-blue);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
+}
+.team-bio {
+  font-size: 14px; color: var(--clr-muted2); line-height: 1.7;
+  margin-bottom: 24px;
+}
+.team-skills {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  margin-bottom: 24px;
+}
+.skill-tag {
+  padding: 4px 12px; border-radius: 100px; font-size: 11px; font-weight: 600;
+  background: rgba(0,207,255,0.08); border: 1px solid rgba(0,207,255,0.2);
+  color: var(--clr-neon-blue); transition: all var(--transition);
+}
+.skill-tag:hover { background: rgba(0,207,255,0.15); }
+.skill-tag.purple {
+  background: rgba(182,0,255,0.08); border-color: rgba(182,0,255,0.2);
+  color: var(--clr-neon-purple);
+}
+.team-edu {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: 10px;
+  background: rgba(255,255,255,0.03); border: 1px solid var(--clr-border);
+  font-size: 12px; color: var(--clr-muted2); width: 100%;
+  justify-content: center;
+}
+.team-edu-icon { font-size: 16px; }
+.team-photo-placeholder {
+  margin-top: 16px; font-size: 11px; color: var(--clr-muted);
+  font-style: italic;
+}
+@media(max-width:768px){
+  .team-grid { grid-template-columns: 1fr; }
+}
+
 </style>
 <body>
 
@@ -934,6 +1017,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
       <li><a href="#blog" role="menuitem">Blog</a></li>
       <li><a href="#blog" role="menuitem">Tutoriais</a></li>
       <li><a href="#about" role="menuitem">Sobre</a></li>
+      <li><a href="#team" role="menuitem">Equipe</a></li>
       <li><a href="#contact" role="menuitem">Contato</a></li>
     </ul>
 
