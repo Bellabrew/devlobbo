@@ -1,14 +1,12 @@
 /srplantao              /srplantao/index.html                           200
 
-/gestfacil              https://gestfacil-b3422.web.app                 301
-/gestfacil/*            https://gestfacil-b3422.web.app/:splat          301
+/gestfacil              /gestfacil/index.html                           200
+/gestfacil/*            /gestfacil/:splat                               200
 
-/apps/gestfacil         https://gestfacil-b3422.web.app                 301
-/apps/gestfacil/        https://gestfacil-b3422.web.app                 301
-/apps/gestfacil/*       https://gestfacil-b3422.web.app/:splat          301
+/apps/gestfacil         /gestfacil/index.html                           200
+/apps/gestfacil/*       /gestfacil/:splat                               200
 
 /apps/srplantao         https://srplantao.devlobbo.com                  301
-/apps/srplantao/        https://srplantao.devlobbo.com                  301
 
 /apps/pontojustificado  https://644568a8.pontojustificado.pages.dev     301
 
