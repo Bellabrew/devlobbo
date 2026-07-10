@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <base href="/srplantao/">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sr. Plantão — Escalas Inteligentes</title>
+    <meta name="description" content="Gerenciamento completo de escalas e plantões para médicos, enfermeiros, policiais e bombeiros.">
+    <meta name="theme-color" content="#00CFFF">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sr. Plantão">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./icon-192.png">
+    <script type="module" crossorigin src="./assets/index-D21gWcl-.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-nqMpL4T3.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(r => console.log('SW registered'))
+      .catch(e => console.log('SW error:', e));
+  });
+}
+</script>
+</body>
+</html>
