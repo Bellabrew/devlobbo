@@ -3,177 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidade | Dev.Lobbo</title>
+<meta name="description" content="Política de Privacidade da Dev.Lobbo: como coletamos, usamos e protegemos seus dados, em conformidade com a LGPD.">
 <meta name="google-adsense-account" content="ca-pub-7614768764999229">
-<title>Política de Privacidade — Dev.Lobbo</title>
-<meta name="description" content="Política de Privacidade da Dev.Lobbo. Saiba como coletamos, usamos e protegemos seus dados.">
+<link rel="canonical" href="https://devlobbo.com/privacidade.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#050508;color:#e8e8f0;line-height:1.7}
-a{color:#00CFFF;text-decoration:none}
-a:hover{text-decoration:underline}
-
-nav{background:rgba(5,5,8,0.95);border-bottom:1px solid rgba(255,255,255,0.07);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:18px}
-.logo-icon{width:32px;height:32px;background:linear-gradient(90deg,#00CFFF,#B600FF);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#000}
-.logo span{color:#00CFFF}
-.nav-back{font-size:13px;color:rgba(200,200,220,0.7);display:flex;align-items:center;gap:6px}
-.nav-back:hover{color:#00CFFF}
-
-.hero{background:linear-gradient(135deg,#050508,#0a0a14,#0d0820);padding:60px 0 40px;border-bottom:1px solid rgba(255,255,255,0.07)}
-.hero-inner{max-width:800px;margin:0 auto;padding:0 40px}
-.breadcrumb{font-size:12px;color:rgba(150,150,170,0.6);margin-bottom:16px}
-.breadcrumb a{color:#00CFFF}
-.hero h1{font-size:36px;font-weight:700;margin-bottom:10px;letter-spacing:-0.5px}
-.hero p{font-size:14px;color:rgba(150,150,170,0.7)}
-
-.content{max-width:800px;margin:0 auto;padding:48px 40px 80px}
-
-h2{font-size:20px;font-weight:600;color:#fff;margin:40px 0 12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.07)}
-h2:first-child{margin-top:0}
-h3{font-size:16px;font-weight:600;color:#e8e8f0;margin:24px 0 8px}
-p{font-size:15px;color:rgba(200,200,220,0.8);margin-bottom:14px}
-ul{margin:0 0 16px 20px}
-li{font-size:15px;color:rgba(200,200,220,0.8);margin-bottom:6px}
-li::marker{color:#00CFFF}
-
-.highlight{background:rgba(0,207,255,0.05);border:1px solid rgba(0,207,255,0.15);border-left:3px solid #00CFFF;border-radius:0 10px 10px 0;padding:16px 20px;margin:20px 0}
-.highlight p{margin:0;font-size:14px}
-
-.update-date{display:inline-block;padding:4px 12px;border-radius:100px;background:rgba(182,0,255,0.08);border:1px solid rgba(182,0,255,0.2);color:#B600FF;font-size:12px;font-weight:600;margin-bottom:32px}
-
-footer{background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.07);padding:28px 40px;text-align:center;font-size:13px;color:rgba(150,150,170,0.5)}
-footer a{color:#00CFFF}
+:root {
+  --clr-bg: #050508; --clr-surface: #0d0d14;
+  --clr-border: rgba(255,255,255,0.07); --clr-border2: rgba(0,207,255,0.15);
+  --clr-neon-blue: #00CFFF; --clr-neon-purple: #B600FF;
+  --clr-text: #e8e8f0; --clr-muted: #6b6b80; --clr-muted2: #9090a8; --clr-white:#ffffff;
+  --grad-neon: linear-gradient(90deg, var(--clr-neon-blue), var(--clr-neon-purple));
+  --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: var(--font-body); background: var(--clr-bg); color: var(--clr-text); line-height:1.7; }
+a { color: var(--clr-neon-blue); text-decoration:none; }
+.container { max-width: 820px; margin:0 auto; padding: 0 24px; }
+header.site-nav { position: sticky; top:0; z-index:50; background: rgba(5,5,8,0.85); backdrop-filter: blur(12px); border-bottom:1px solid var(--clr-border); }
+.nav-inner { max-width:1200px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+.nav-logo { display:flex; align-items:center; gap:10px; }
+.nav-logo-icon { width:34px; height:34px; border-radius:10px; background: var(--grad-neon); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:800; color:#000; font-size:14px; }
+.nav-logo-text { font-family: var(--font-display); font-weight:700; font-size:18px; color:var(--clr-white); }
+.nav-logo-text span { background: var(--grad-neon); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.back-link { font-size:14px; color:var(--clr-muted2); }
+.back-link:hover { color:var(--clr-neon-blue); }
+main { padding: 48px 0 80px; }
+h1 { font-family:var(--font-display); font-size: clamp(28px,4vw,42px); font-weight:800; margin-bottom:8px; color:var(--clr-white); }
+.updated { font-size:13px; color:var(--clr-muted); margin-bottom:40px; }
+h2 { font-family:var(--font-display); font-size:22px; font-weight:700; color:var(--clr-white); margin:40px 0 14px; }
+p { margin-bottom:16px; color:var(--clr-muted2); font-size:16px; }
+ul { margin: 0 0 16px 22px; color:var(--clr-muted2); font-size:16px; }
+li { margin-bottom:8px; }
+strong { color: var(--clr-text); }
+table { width:100%; border-collapse:collapse; margin:20px 0 32px; font-size:14px; }
+th, td { text-align:left; padding:10px 14px; border:1px solid var(--clr-border); color:var(--clr-muted2); }
+th { color:var(--clr-white); background:var(--clr-surface); }
+footer { border-top:1px solid var(--clr-border); padding:32px 0; text-align:center; font-size:13px; color:var(--clr-muted); }
+footer a { color:var(--clr-muted2); margin:0 8px; }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="/" class="logo">
-    <div class="logo-icon">dL</div>
-    Dev<span>.Lobbo</span>
-  </a>
-  <a href="/" class="nav-back">← Voltar ao site</a>
-</nav>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Dev.Lobbo">
+      <div class="nav-logo-icon">dL</div>
+      <span class="nav-logo-text">Dev<span>.Lobbo</span></span>
+    </a>
+    <a href="/" class="back-link">← Voltar ao início</a>
+  </div>
+</header>
 
-<div class="hero">
-  <div class="hero-inner">
-    <div class="breadcrumb"><a href="/">Início</a> › Política de Privacidade</div>
+<main>
+  <div class="container">
     <h1>Política de Privacidade</h1>
-    <p>Última atualização: julho de 2025</p>
+    <p class="updated">Última atualização: 10 de julho de 2026</p>
+
+    <p>A Dev.Lobbo ("nós", "nosso" ou "empresa") desenvolve e opera aplicativos web, incluindo o <strong>GestFácil</strong>, o <strong>Sr. Plantão</strong> e o <strong>Ponto Justificado</strong>, além do site institucional devlobbo.com. Esta Política de Privacidade explica como coletamos, usamos, armazenamos e protegemos os dados pessoais de quem visita nosso site ou utiliza nossos aplicativos, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 — LGPD).</p>
+
+    <h2>1. Quais dados coletamos</h2>
+    <p>Dependendo de como você interage com nosso site e aplicativos, podemos coletar:</p>
+    <ul>
+      <li><strong>Dados de cadastro:</strong> nome, e-mail e empresa, quando você cria uma conta em um de nossos sistemas.</li>
+      <li><strong>Dados de uso:</strong> registros de ponto, escalas, informações financeiras e demais dados inseridos voluntariamente por você ou sua empresa dentro dos sistemas GestFácil, Sr. Plantão e Ponto Justificado.</li>
+      <li><strong>Dados de navegação:</strong> endereço IP, tipo de navegador, páginas visitadas e tempo de permanência no site, coletados automaticamente por meio de cookies e ferramentas de análise.</li>
+      <li><strong>Informações de contato:</strong> quando você entra em contato conosco por e-mail, armazenamos o conteúdo dessa comunicação para fins de suporte.</li>
+    </ul>
+
+    <h2>2. Como usamos seus dados</h2>
+    <ul>
+      <li>Para viabilizar o funcionamento dos aplicativos (por exemplo, calcular banco de horas ou gerar escalas).</li>
+      <li>Para melhorar a experiência de navegação no site e nos sistemas.</li>
+      <li>Para enviar comunicações relacionadas ao suporte técnico solicitado.</li>
+      <li>Para exibir publicidade relevante por meio do Google AdSense (veja a seção 4).</li>
+      <li>Para cumprir obrigações legais e regulatórias aplicáveis, quando exigido.</li>
+    </ul>
+
+    <h2>3. Compartilhamento de dados</h2>
+    <p>Não vendemos dados pessoais a terceiros. Podemos compartilhar informações limitadas com prestadores de serviço que nos auxiliam a operar nossos sistemas (como provedores de hospedagem e banco de dados — por exemplo, Cloudflare e Google Firebase), sempre sob obrigação contratual de confidencialidade e proteção adequada dos dados.</p>
+
+    <h2>4. Cookies e publicidade (Google AdSense)</h2>
+    <p>Este site utiliza cookies próprios e de terceiros para funcionamento básico, análise de tráfego e exibição de anúncios por meio do Google AdSense. O Google e seus parceiros podem usar cookies para veicular anúncios com base em visitas anteriores do usuário a este e a outros sites.</p>
+    <ul>
+      <li>Você pode desativar a personalização de anúncios visitando as <a href="https://adssettings.google.com" target="_blank" rel="noopener">Configurações de Anúncios do Google</a>.</li>
+      <li>Você pode também gerenciar preferências de cookies de publicidade de terceiros em <a href="https://www.aboutads.info" target="_blank" rel="noopener">www.aboutads.info</a>.</li>
+      <li>A maioria dos navegadores permite bloquear ou apagar cookies nas configurações de privacidade.</li>
+    </ul>
+
+    <h2>5. Armazenamento e segurança</h2>
+    <p>Os dados inseridos em nossos sistemas são armazenados em provedores de nuvem reconhecidos (como Google Firebase), com criptografia em trânsito (HTTPS) e controles de acesso baseados em autenticação. Embora adotemos medidas técnicas e organizacionais razoáveis de segurança, nenhum sistema é totalmente livre de risco — caso identifique qualquer vulnerabilidade, pedimos que entre em contato imediatamente pelo e-mail abaixo.</p>
+
+    <h2>6. Seus direitos como titular de dados</h2>
+    <p>Conforme a LGPD, você tem direito a:</p>
+    <ul>
+      <li>Confirmar a existência de tratamento de seus dados;</li>
+      <li>Acessar os dados que temos sobre você;</li>
+      <li>Corrigir dados incompletos, inexatos ou desatualizados;</li>
+      <li>Solicitar a exclusão de dados pessoais tratados com seu consentimento;</li>
+      <li>Revogar o consentimento a qualquer momento;</li>
+      <li>Solicitar a portabilidade dos dados a outro fornecedor de serviço.</li>
+    </ul>
+    <p>Para exercer qualquer um desses direitos, entre em contato pelo e-mail <a href="mailto:contato@devlobbo.com">contato@devlobbo.com</a>.</p>
+
+    <h2>7. Retenção de dados</h2>
+    <p>Mantemos os dados pessoais pelo tempo necessário para cumprir as finalidades descritas nesta política, ou conforme exigido por obrigações legais (por exemplo, registros de ponto podem precisar ser mantidos pelo prazo exigido pela legislação trabalhista aplicável à empresa que utiliza nossos sistemas).</p>
+
+    <h2>8. Alterações nesta política</h2>
+    <p>Podemos atualizar esta Política de Privacidade periodicamente para refletir mudanças em nossas práticas ou por exigência legal. A data da última atualização estará sempre indicada no topo desta página.</p>
+
+    <h2>9. Contato</h2>
+    <p>Em caso de dúvidas sobre esta Política de Privacidade ou sobre o tratamento dos seus dados pessoais, entre em contato: <a href="mailto:contato@devlobbo.com">contato@devlobbo.com</a>.</p>
   </div>
-</div>
-
-<div class="content">
-  <span class="update-date">Atualizado em julho de 2025</span>
-
-  <div class="highlight">
-    <p>Esta Política de Privacidade descreve como a <strong>Dev.Lobbo</strong> coleta, usa e protege suas informações ao utilizar nosso site e aplicativos. Ao usar nossos serviços, você concorda com as práticas descritas neste documento.</p>
-  </div>
-
-  <h2>1. Informações que Coletamos</h2>
-  <h3>1.1 Informações fornecidas por você</h3>
-  <p>Ao entrar em contato conosco ou usar nossos aplicativos, podemos coletar:</p>
-  <ul>
-    <li>Nome e endereço de e-mail (formulário de contato)</li>
-    <li>Informações de uso dos aplicativos GestFácil, Sr. Plantão e Ponto Justificado</li>
-    <li>Endereço de e-mail para newsletter (mediante consentimento)</li>
-  </ul>
-
-  <h3>1.2 Informações coletadas automaticamente</h3>
-  <p>Ao visitar nosso site, coletamos automaticamente:</p>
-  <ul>
-    <li>Endereço IP e dados de localização aproximada</li>
-    <li>Tipo de navegador e sistema operacional</li>
-    <li>Páginas visitadas e tempo de permanência</li>
-    <li>Fonte de tráfego (como você chegou ao site)</li>
-    <li>Dados de cookies e tecnologias similares</li>
-  </ul>
-
-  <h2>2. Como Usamos suas Informações</h2>
-  <p>Utilizamos as informações coletadas para:</p>
-  <ul>
-    <li>Fornecer, operar e melhorar nossos serviços e aplicativos</li>
-    <li>Responder às suas mensagens e solicitações de suporte</li>
-    <li>Enviar atualizações e novidades (apenas com seu consentimento)</li>
-    <li>Analisar o uso do site para melhorar a experiência do usuário</li>
-    <li>Exibir anúncios relevantes através do Google AdSense</li>
-    <li>Cumprir obrigações legais quando necessário</li>
-  </ul>
-
-  <h2>3. Google AdSense e Publicidade</h2>
-  <p>Nosso site utiliza o <strong>Google AdSense</strong> para exibir anúncios. O Google pode usar cookies para exibir anúncios baseados nas suas visitas anteriores ao nosso site e a outros sites na internet.</p>
-  <p>O uso de cookies de publicidade pelo Google permite que ele e seus parceiros exibam anúncios com base na sua visita a nossos sites e/ou outros sites na internet.</p>
-  <ul>
-    <li>Você pode desativar o uso de cookies personalizados acessando <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Configurações de anúncios do Google</a></li>
-    <li>Você pode optar por não usar cookies de terceiros acessando <a href="https://www.aboutads.info" target="_blank" rel="noopener">aboutads.info</a></li>
-  </ul>
-
-  <h2>4. Cookies</h2>
-  <p>Utilizamos cookies para melhorar sua experiência em nosso site. Os tipos de cookies que usamos incluem:</p>
-  <ul>
-    <li><strong>Cookies essenciais:</strong> necessários para o funcionamento básico do site</li>
-    <li><strong>Cookies de preferências:</strong> lembram suas configurações (como tema escuro/claro e idioma)</li>
-    <li><strong>Cookies analíticos:</strong> nos ajudam a entender como os visitantes usam o site</li>
-    <li><strong>Cookies de publicidade:</strong> usados pelo Google AdSense para exibir anúncios relevantes</li>
-  </ul>
-  <p>Você pode controlar e/ou excluir cookies nas configurações do seu navegador. Saiba mais em <a href="https://www.aboutcookies.org" target="_blank" rel="noopener">aboutcookies.org</a>.</p>
-
-  <h2>5. Compartilhamento de Informações</h2>
-  <p>Não vendemos, alugamos ou compartilhamos suas informações pessoais com terceiros, exceto:</p>
-  <ul>
-    <li><strong>Prestadores de serviços:</strong> empresas que nos ajudam a operar o site (Google Analytics, Google AdSense, Cloudflare)</li>
-    <li><strong>Cumprimento legal:</strong> quando exigido por lei ou ordem judicial</li>
-    <li><strong>Proteção de direitos:</strong> para proteger os direitos, propriedade ou segurança da Dev.Lobbo ou de terceiros</li>
-  </ul>
-
-  <h2>6. Armazenamento de Dados</h2>
-  <p>Os dados dos nossos aplicativos (GestFácil, Sr. Plantão, Ponto Justificado) são armazenados localmente no seu dispositivo através do <strong>localStorage</strong> do navegador. Isso significa que:</p>
-  <ul>
-    <li>Seus dados ficam no seu próprio dispositivo</li>
-    <li>Não temos acesso aos dados que você insere nos aplicativos</li>
-    <li>Os dados podem ser perdidos se você limpar o cache do navegador</li>
-  </ul>
-
-  <h2>7. Segurança</h2>
-  <p>Adotamos medidas técnicas e organizacionais para proteger suas informações contra acesso não autorizado, alteração, divulgação ou destruição. Nosso site usa <strong>HTTPS</strong> com certificado SSL para criptografar todas as comunicações.</p>
-  <p>No entanto, nenhum método de transmissão pela internet é 100% seguro. Não podemos garantir segurança absoluta das informações transmitidas.</p>
-
-  <h2>8. Seus Direitos (LGPD)</h2>
-  <p>De acordo com a <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>, você tem direito a:</p>
-  <ul>
-    <li>Confirmar a existência de tratamento de seus dados pessoais</li>
-    <li>Acessar seus dados pessoais</li>
-    <li>Corrigir dados incompletos, inexatos ou desatualizados</li>
-    <li>Solicitar a anonimização, bloqueio ou eliminação de dados desnecessários</li>
-    <li>Revogar seu consentimento a qualquer momento</li>
-    <li>Solicitar a portabilidade dos dados</li>
-  </ul>
-  <p>Para exercer esses direitos, entre em contato pelo e-mail: <a href="mailto:contato@devlobbo.com">contato@devlobbo.com</a></p>
-
-  <h2>9. Links para Sites Externos</h2>
-  <p>Nosso site pode conter links para sites externos. Não somos responsáveis pelas práticas de privacidade desses sites. Recomendamos que você leia as políticas de privacidade de qualquer site que visitar.</p>
-
-  <h2>10. Menores de Idade</h2>
-  <p>Nossos serviços não são direcionados a menores de 13 anos. Não coletamos intencionalmente informações pessoais de crianças. Se você acredita que coletamos informações de uma criança, entre em contato conosco imediatamente.</p>
-
-  <h2>11. Alterações nesta Política</h2>
-  <p>Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos sobre mudanças significativas publicando a nova política nesta página com a data de atualização. Recomendamos verificar esta página regularmente.</p>
-
-  <h2>12. Contato</h2>
-  <p>Se tiver dúvidas sobre esta Política de Privacidade ou sobre como tratamos seus dados, entre em contato:</p>
-  <ul>
-    <li><strong>E-mail:</strong> <a href="mailto:contato@devlobbo.com">contato@devlobbo.com</a></li>
-    <li><strong>Site:</strong> <a href="https://devlobbo.com">devlobbo.com</a></li>
-  </ul>
-</div>
+</main>
 
 <footer>
-  © 2025 Dev.Lobbo. Todos os direitos reservados.
-  &nbsp;·&nbsp; <a href="/">Início</a>
-  &nbsp;·&nbsp; <a href="/termos.html">Termos de Uso</a>
-  &nbsp;·&nbsp; <a href="mailto:contato@devlobbo.com">Contato</a>
+  <div class="container">
+    <p>© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
+    <div style="margin-top:8px;">
+      <a href="/privacidade.html">Privacidade</a>
+      <a href="/termos.html">Termos de Uso</a>
+      <a href="/#contact">Contato</a>
+    </div>
+  </div>
 </footer>
 
 </body>
