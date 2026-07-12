@@ -1760,17 +1760,17 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
   <div class="container">
     <div class="about-grid">
       <div class="about-text fade-in">
-        <div class="about-tag">Sobre a Empresa</div>
+        <div class="about-tag" data-i18n="about_tag">Sobre a Empresa</div>
         <h2 class="section-title" id="about-title">
           <span data-i18n="about_title">Tecnologia pensada<br>para <em class="text-gradient">quem trabalha</em></span>
         </h2>
-        <p>A Dev.Lobbo nasceu da observação de um problema simples: profissionais e empresas perdem horas preciosas com ferramentas inadequadas para gestão de tempo, ponto e escala.</p>
-        <p>Desenvolvemos softwares modernos voltados para produtividade, organização e gestão — aplicativos que qualquer pessoa consegue usar no primeiro acesso, sem treinamento.</p>
-        <p>Nossa stack é enxuta e poderosa: HTML, CSS e JavaScript puro no frontend, Firebase como backend em tempo real, e Cloudflare para entrega global com latência mínima.</p>
-        <p>Cada aplicativo é construído como um PWA de verdade — instalável, funcional offline, e responsivo em qualquer dispositivo.</p>
+        <p data-i18n="about_p1">A Dev.Lobbo nasceu da observação de um problema simples: profissionais e empresas perdem horas preciosas com ferramentas inadequadas para gestão de tempo, ponto e escala.</p>
+        <p data-i18n="about_p2">Desenvolvemos softwares modernos voltados para produtividade, organização e gestão — aplicativos que qualquer pessoa consegue usar no primeiro acesso, sem treinamento.</p>
+        <p data-i18n="about_p3">Nossa stack é enxuta e poderosa: HTML, CSS e JavaScript puro no frontend, Firebase como backend em tempo real, e Cloudflare para entrega global com latência mínima.</p>
+        <p data-i18n="about_p4">Cada aplicativo é construído como um PWA de verdade — instalável e responsivo em qualquer dispositivo.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
-          <a href="#apps" class="btn btn-primary">Ver Aplicativos</a>
-          <a href="#contact" class="btn btn-secondary">Falar com a Equipe</a>
+          <a href="#apps" class="btn btn-primary" data-i18n="about_btn1">Ver Aplicativos</a>
+          <a href="#contact" class="btn btn-secondary" data-i18n="about_btn2">Falar com a Equipe</a>
         </div>
       </div>
       <div class="about-visual fade-in" aria-hidden="true">
@@ -2269,6 +2269,13 @@ const TRANSLATIONS = {
     newsletter_title: 'Receba conteúdo de tecnologia<br><em class="text-gradient">direto no seu e-mail</em>',
     newsletter_sub: 'Artigos novos, atualizações dos aplicativos e dicas práticas. Sem spam, descadastre quando quiser.',
     about_title: 'Tecnologia pensada<br>para <em class="text-gradient">quem trabalha</em>',
+    about_tag: 'Sobre a Empresa',
+    about_p1: 'A Dev.Lobbo nasceu da observação de um problema simples: profissionais e empresas perdem horas preciosas com ferramentas inadequadas para gestão de tempo, ponto e escala.',
+    about_p2: 'Desenvolvemos softwares modernos voltados para produtividade, organização e gestão — aplicativos que qualquer pessoa consegue usar no primeiro acesso, sem treinamento.',
+    about_p3: 'Nossa stack é enxuta e poderosa: HTML, CSS e JavaScript puro no frontend, Firebase como backend em tempo real, e Cloudflare para entrega global com latência mínima.',
+    about_p4: 'Cada aplicativo é construído como um PWA de verdade — instalável e responsivo em qualquer dispositivo.',
+    about_btn1: 'Ver Aplicativos',
+    about_btn2: 'Falar com a Equipe',
     contact_title: 'Vamos conversar?',
     team_title: 'As pessoas por trás da Dev.Lobbo',
     team_sub: 'Duas desenvolvedoras full stack apaixonadas por tecnologia.',
@@ -2289,6 +2296,13 @@ const TRANSLATIONS = {
     newsletter_title: 'Get tech content<br><em class="text-gradient">straight to your inbox</em>',
     newsletter_sub: 'New articles, app updates and practical tips. No spam, unsubscribe anytime.',
     about_title: 'Technology built<br>for <em class="text-gradient">people who work</em>',
+    about_tag: 'About the Company',
+    about_p1: 'Dev.Lobbo was born from a simple observation: professionals and businesses lose precious hours to tools that are poorly suited for time, attendance, and shift management.',
+    about_p2: 'We build modern software focused on productivity, organization, and management — apps anyone can use from the very first visit, with no training required.',
+    about_p3: 'Our stack is lean and powerful: pure HTML, CSS, and JavaScript on the frontend, Firebase as a real-time backend, and Cloudflare for global delivery with minimal latency.',
+    about_p4: 'Every app is built as a true PWA — installable and responsive on any device.',
+    about_btn1: 'Explore Apps',
+    about_btn2: 'Talk to the Team',
     contact_title: "Let's talk?",
     team_title: 'The people behind Dev.Lobbo',
     team_sub: 'Two full stack developers passionate about technology.',
@@ -2309,6 +2323,13 @@ const TRANSLATIONS = {
     newsletter_title: 'Recibe contenido de tecnología<br><em class="text-gradient">directo en tu correo</em>',
     newsletter_sub: 'Artículos nuevos, actualizaciones y consejos prácticos. Sin spam, cancela cuando quieras.',
     about_title: 'Tecnología pensada<br>para <em class="text-gradient">quienes trabajan</em>',
+    about_tag: 'Sobre la Empresa',
+    about_p1: 'Dev.Lobbo nació al observar un problema simple: profesionales y empresas pierden horas valiosas con herramientas poco adecuadas para la gestión de tiempo, asistencia y turnos.',
+    about_p2: 'Desarrollamos software moderno enfocado en productividad, organización y gestión — aplicaciones que cualquier persona puede usar desde el primer acceso, sin capacitación.',
+    about_p3: 'Nuestra stack es ligera y potente: HTML, CSS y JavaScript puro en el frontend, Firebase como backend en tiempo real, y Cloudflare para entrega global con latencia mínima.',
+    about_p4: 'Cada aplicación se construye como una PWA de verdad — instalable y responsiva en cualquier dispositivo.',
+    about_btn1: 'Ver Aplicaciones',
+    about_btn2: 'Hablar con el Equipo',
     contact_title: '¿Hablamos?',
     team_title: 'Las personas detrás de Dev.Lobbo',
     team_sub: 'Dos desarrolladoras full stack apasionadas por la tecnología.',
@@ -2329,6 +2350,13 @@ const TRANSLATIONS = {
     newsletter_title: 'Recevez du contenu tech<br><em class="text-gradient">directement par e-mail</em>',
     newsletter_sub: "Nouveaux articles, mises à jour et conseils pratiques. Pas de spam, désabonnez-vous à tout moment.",
     about_title: 'Technologie pensée<br>pour <em class="text-gradient">ceux qui travaillent</em>',
+    about_tag: "À propos de l'Entreprise",
+    about_p1: "Dev.Lobbo est né d'un constat simple : les professionnels et les entreprises perdent un temps précieux avec des outils mal adaptés à la gestion du temps, de la présence et des plannings.",
+    about_p2: "Nous développons des logiciels modernes axés sur la productivité, l'organisation et la gestion — des applications que n'importe qui peut utiliser dès le premier accès, sans formation.",
+    about_p3: "Notre stack est légère et puissante : HTML, CSS et JavaScript pur en frontend, Firebase comme backend en temps réel, et Cloudflare pour une diffusion mondiale à latence minimale.",
+    about_p4: "Chaque application est conçue comme une véritable PWA — installable et responsive sur tout appareil.",
+    about_btn1: 'Voir les Apps',
+    about_btn2: "Parler à l'Équipe",
     contact_title: 'Parlons-en ?',
     team_title: "Les personnes derrière Dev.Lobbo",
     team_sub: 'Deux développeuses full stack passionnées par la technologie.',
@@ -2349,6 +2377,13 @@ const TRANSLATIONS = {
     newsletter_title: 'Tech-Inhalte<br><em class="text-gradient">direkt in Ihr Postfach</em>',
     newsletter_sub: 'Neue Artikel, App-Updates und praktische Tipps. Kein Spam, jederzeit abmelden.',
     about_title: 'Technologie für<br><em class="text-gradient">Menschen, die arbeiten</em>',
+    about_tag: 'Über das Unternehmen',
+    about_p1: 'Dev.Lobbo entstand aus einer einfachen Beobachtung: Fachleute und Unternehmen verlieren wertvolle Zeit mit Tools, die für Zeit-, Anwesenheits- und Schichtverwaltung schlecht geeignet sind.',
+    about_p2: 'Wir entwickeln moderne Software für Produktivität, Organisation und Verwaltung — Apps, die jeder von Anfang an ohne Schulung nutzen kann.',
+    about_p3: 'Unser Stack ist schlank und leistungsstark: reines HTML, CSS und JavaScript im Frontend, Firebase als Echtzeit-Backend und Cloudflare für globale Auslieferung mit minimaler Latenz.',
+    about_p4: 'Jede App wird als echte PWA gebaut — installierbar und responsiv auf jedem Gerät.',
+    about_btn1: 'Apps entdecken',
+    about_btn2: 'Team kontaktieren',
     contact_title: 'Sprechen wir?',
     team_title: 'Die Menschen hinter Dev.Lobbo',
     team_sub: 'Zwei Full-Stack-Entwicklerinnen mit Leidenschaft für Technologie.',
