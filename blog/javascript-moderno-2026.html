@@ -39,7 +39,7 @@ main { padding: 48px 0 80px; }
 .article-category { display:inline-block; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--clr-neon-blue); margin-bottom:16px; }
 .article-title { font-family:var(--font-display); font-size: clamp(26px,4vw,40px); font-weight:800; line-height:1.15; margin-bottom:20px; color:var(--clr-white); }
 .article-meta { display:flex; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--clr-muted); margin-bottom:32px; padding-bottom:32px; border-bottom:1px solid var(--clr-border); }
-.article-cover { width:100%; height:220px; border-radius:var(--radius-lg); background:linear-gradient(135deg, rgba(0,207,255,0.08), rgba(182,0,255,0.08)); border:1px solid var(--clr-border); display:flex; align-items:center; justify-content:center; font-size:72px; margin-bottom:40px; }
+.article-cover { width:100%; height:220px; border-radius:var(--radius-lg); border:1px solid var(--clr-border); object-fit:cover; display:block; margin-bottom:40px; }
 .article-body h2 { font-family:var(--font-display); font-size:24px; font-weight:700; color:var(--clr-white); margin:40px 0 16px; }
 .article-body p { margin-bottom:20px; color:var(--clr-muted2); font-size:16px; }
 .article-body ul, .article-body ol { margin: 0 0 20px 22px; color:var(--clr-muted2); font-size:16px; }
@@ -85,7 +85,7 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
       <span>✍️ Equipe Dev.Lobbo</span>
     </div>
 
-    <div class="article-cover" aria-hidden="true">⚡</div>
+    <img class="article-cover" src="/blog/img/javascript-moderno-2026.jpg" alt="" loading="lazy">
 
     <div class="article-body">
 
