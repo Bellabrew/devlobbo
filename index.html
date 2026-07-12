@@ -1303,7 +1303,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
         <div class="preview-card" style="opacity:0.5;cursor:default;pointer-events:none;" title="Em breve">
           <div class="preview-img" style="padding:8px;overflow:hidden;"><img src="/img/pontojustificado-preview.jpg" alt="Ponto Justificado" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;border-radius:6px;" loading="lazy"></div>
           <div class="preview-name">Ponto Justificado</div>
-          <div class="preview-desc" style="color:var(--clr-neon-purple)">⏳ Em breve</div>
+          <div class="preview-desc" style="color:var(--clr-neon-purple)"><span data-i18n="soon_label">⏳ Em breve</span></div>
         </div>
       </div>
     </div>
@@ -1325,7 +1325,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
 <!-- ══ APPS ══════════════════════════════════════════════════════════ -->
 <section id="apps" class="section" aria-labelledby="apps-title">
   <div class="container">
-    <div class="section-eyebrow fade-in">Aplicativos</div>
+    <div class="section-eyebrow fade-in" data-i18n="apps_eyebrow">Aplicativos</div>
     <h2 class="section-title fade-in" id="apps-title">
       <span data-i18n="apps_title">Produtos prontos para usar<br><em class="text-gradient">no seu dia a dia</em></span>
     </h2>
@@ -1339,24 +1339,24 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
       <article class="app-card fade-in" aria-label="GestFácil — Sistema de gestão empresarial">
         <div class="app-visual" style="padding:24px;overflow:hidden;"><img src="/img/gestfacil-preview.jpg" alt="GestFácil" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;border-radius:12px;" loading="lazy"></div>
         <div class="app-info">
-          <div class="app-category">Gestão Empresarial Completa</div>
+          <div class="app-category" data-i18n="app1_cat">Gestão Empresarial Completa</div>
           <h3 class="app-title">GestFácil</h3>
-          <p class="app-desc">Sistema completo de gestão empresarial. Controle financeiro, clientes, vendas, estoque e relatórios em um só lugar.</p>
+          <p class="app-desc" data-i18n="app1_desc">Sistema completo de gestão empresarial. Controle financeiro, clientes, vendas, estoque e relatórios em um só lugar.</p>
           <div class="app-features" aria-label="Recursos">
-            <div class="app-feature">Financeiro</div>
-            <div class="app-feature">Clientes</div>
-            <div class="app-feature">Vendas</div>
-            <div class="app-feature">Estoque</div>
-            <div class="app-feature">Relatórios</div>
-            <div class="app-feature">Dashboard</div>
+            <div class="app-feature" data-i18n="app1_f1">Financeiro</div>
+            <div class="app-feature" data-i18n="app1_f2">Clientes</div>
+            <div class="app-feature" data-i18n="app1_f3">Vendas</div>
+            <div class="app-feature" data-i18n="app1_f4">Estoque</div>
+            <div class="app-feature" data-i18n="app1_f5">Relatórios</div>
+            <div class="app-feature" data-i18n="app1_f6">Dashboard</div>
           </div>
           <div class="app-actions">
             <a href="https://gestfacil-b3422.web.app" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Abrir GestFácil">
               <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-              Abrir Sistema
+              <span data-i18n="btn_open_system">Abrir Sistema</span>
             </a>
             <button class="btn btn-secondary btn-sm" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">
-              Saiba Mais
+              <span data-i18n="btn_learn_more">Saiba Mais</span>
             </button>
           </div>
         </div>
@@ -1365,24 +1365,24 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
       <!-- ── Sr. Plantão ── -->
       <article class="app-card reverse fade-in" aria-label="Sr. Plantão — Gerenciamento de escalas">
         <div class="app-info">
-          <div class="app-category">Escalas e Plantões Inteligentes</div>
+          <div class="app-category" data-i18n="app2_cat">Escalas e Plantões Inteligentes</div>
           <h3 class="app-title">Sr. Plantão</h3>
-          <p class="app-desc">Gerenciamento completo de escalas e plantões para médicos, enfermeiros, policiais, vigilantes, bombeiros e socorristas.</p>
+          <p class="app-desc" data-i18n="app2_desc">Gerenciamento completo de escalas e plantões para médicos, enfermeiros, policiais, vigilantes, bombeiros e socorristas.</p>
           <div class="app-features" aria-label="Recursos">
-            <div class="app-feature">Escalas dinâmicas</div>
-            <div class="app-feature">Troca de plantão</div>
-            <div class="app-feature">Notificações</div>
-            <div class="app-feature">Relatórios mensais</div>
-            <div class="app-feature">Multi-equipe</div>
-            <div class="app-feature">Banco de horas</div>
+            <div class="app-feature" data-i18n="app2_f1">Escalas dinâmicas</div>
+            <div class="app-feature" data-i18n="app2_f2">Troca de plantão</div>
+            <div class="app-feature" data-i18n="app2_f3">Notificações</div>
+            <div class="app-feature" data-i18n="app2_f4">Relatórios mensais</div>
+            <div class="app-feature" data-i18n="app2_f5">Multi-equipe</div>
+            <div class="app-feature" data-i18n="app2_f6">Banco de horas</div>
           </div>
           <div class="app-actions">
             <a href="https://devlobbo.com/srplantao" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Abrir Sr. Plantão">
               <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-              Abrir Sistema
+              <span data-i18n="btn_open_system">Abrir Sistema</span>
             </a>
             <button class="btn btn-secondary btn-sm" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">
-              Saiba Mais
+              <span data-i18n="btn_learn_more">Saiba Mais</span>
             </button>
           </div>
         </div>
@@ -1393,23 +1393,23 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
       <article class="app-card fade-in" aria-label="Ponto Justificado — Controle de ponto digital">
         <div class="app-visual" style="padding:24px;overflow:hidden;"><img src="/img/pontojustificado-preview.jpg" alt="Ponto Justificado" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;border-radius:12px;" loading="lazy"></div>
         <div class="app-info">
-          <div class="app-category">Controle de Ponto Digital</div>
+          <div class="app-category" data-i18n="app3_cat">Controle de Ponto Digital</div>
           <h3 class="app-title">Ponto Justificado</h3>
-          <p class="app-desc">Sistema inteligente de controle de ponto com banco de horas, intervalos, relatórios e justificativas eletrônicas.</p>
+          <p class="app-desc" data-i18n="app3_desc">Sistema inteligente de controle de ponto com banco de horas, intervalos, relatórios e justificativas eletrônicas.</p>
           <div class="app-features" aria-label="Recursos">
-            <div class="app-feature">Banco de horas</div>
-            <div class="app-feature">Intervalos</div>
-            <div class="app-feature">Justificativas</div>
-            <div class="app-feature">Relatórios PDF</div>
-            <div class="app-feature">Multi-usuário</div>
-            <div class="app-feature">Exportação</div>
+            <div class="app-feature" data-i18n="app3_f1">Banco de horas</div>
+            <div class="app-feature" data-i18n="app3_f2">Intervalos</div>
+            <div class="app-feature" data-i18n="app3_f3">Justificativas</div>
+            <div class="app-feature" data-i18n="app3_f4">Relatórios PDF</div>
+            <div class="app-feature" data-i18n="app3_f5">Multi-usuário</div>
+            <div class="app-feature" data-i18n="app3_f6">Exportação</div>
           </div>
           <div class="app-actions">
             <button class="btn btn-secondary" disabled style="opacity:0.5;cursor:not-allowed;pointer-events:none;">
-              ⏳ Em breve
+              <span data-i18n="soon_label">⏳ Em breve</span>
             </button>
             <button class="btn btn-secondary btn-sm" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">
-              Saiba Mais
+              <span data-i18n="btn_learn_more">Saiba Mais</span>
             </button>
           </div>
         </div>
@@ -1427,7 +1427,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
       <h2 class="section-title fade-in" id="features-title">
         <span data-i18n="features_title">Construídos com <em class="text-gradient">obsessão</em><br>por detalhe</span>
       </h2>
-      <p class="section-desc fade-in">
+      <p class="section-desc fade-in" data-i18n="features_sub">
         Cada app da Dev.Lobbo segue o mesmo padrão de qualidade — do código à experiência do usuário.
       </p>
     </div>
@@ -1435,43 +1435,43 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
     <div class="features-grid">
       <div class="feature-card fade-in">
         <div class="feature-icon" aria-hidden="true">🎨</div>
-        <div class="feature-title">Interface Moderna</div>
-        <p class="feature-desc">Design pensado em detalhes, com tipografia, motion e tema dark/claro.</p>
+        <div class="feature-title" data-i18n="feat1_t">Interface Moderna</div>
+        <p class="feature-desc" data-i18n="feat1_d">Design pensado em detalhes, com tipografia, motion e tema dark/claro.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon" aria-hidden="true">⚡</div>
-        <div class="feature-title">Alta Performance</div>
-        <p class="feature-desc">Carregamento fulminante, mesmo em conexões limitadas. Tudo otimizado para Lighthouse.</p>
+        <div class="feature-title" data-i18n="feat2_t">Alta Performance</div>
+        <p class="feature-desc" data-i18n="feat2_d">Carregamento fulminante, mesmo em conexões limitadas. Tudo otimizado para Lighthouse.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon" aria-hidden="true">📱</div>
-        <div class="feature-title">Responsivo</div>
-        <p class="feature-desc">Experiência consistente do desktop ao celular, com toque e teclado.</p>
+        <div class="feature-title" data-i18n="feat3_t">Responsivo</div>
+        <p class="feature-desc" data-i18n="feat3_d">Experiência consistente do desktop ao celular, com toque e teclado.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon" aria-hidden="true">📦</div>
-        <div class="feature-title">PWA</div>
-        <p class="feature-desc">Instale no celular como um app nativo, com ícone na tela inicial.</p>
+        <div class="feature-title" data-i18n="feat4_t">PWA</div>
+        <p class="feature-desc" data-i18n="feat4_d">Instale no celular como um app nativo, com ícone na tela inicial.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon" aria-hidden="true">☁️</div>
-        <div class="feature-title">Backup em Nuvem</div>
-        <p class="feature-desc">Seus dados salvos com segurança e sincronizados entre dispositivos.</p>
+        <div class="feature-title" data-i18n="feat5_t">Backup em Nuvem</div>
+        <p class="feature-desc" data-i18n="feat5_d">Seus dados salvos com segurança e sincronizados entre dispositivos.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon" aria-hidden="true">🔄</div>
-        <div class="feature-title">Atualizações Frequentes</div>
-        <p class="feature-desc">Novidades publicadas em ciclos curtos, sem dor de cabeça.</p>
+        <div class="feature-title" data-i18n="feat6_t">Atualizações Frequentes</div>
+        <p class="feature-desc" data-i18n="feat6_d">Novidades publicadas em ciclos curtos, sem dor de cabeça.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon" aria-hidden="true">🔒</div>
-        <div class="feature-title">Segurança</div>
-        <p class="feature-desc">Boas práticas de autenticação, criptografia em trânsito e em repouso.</p>
+        <div class="feature-title" data-i18n="feat7_t">Segurança</div>
+        <p class="feature-desc" data-i18n="feat7_d">Boas práticas de autenticação, criptografia em trânsito e em repouso.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon" aria-hidden="true">🚀</div>
-        <div class="feature-title">Fácil Utilização</div>
-        <p class="feature-desc">Curva de aprendizado curta, com fluxos pensados para quem real.</p>
+        <div class="feature-title" data-i18n="feat8_t">Fácil Utilização</div>
+        <p class="feature-desc" data-i18n="feat8_d">Curva de aprendizado curta, com fluxos pensados para quem real.</p>
       </div>
     </div>
   </div>
@@ -1799,32 +1799,32 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
   <div class="container">
     <div class="about-grid">
       <div class="about-text fade-in">
-        <div class="about-tag">Sobre a Empresa</div>
+        <div class="about-tag" data-i18n="about_tag">Sobre a Empresa</div>
         <h2 class="section-title" id="about-title">
           <span data-i18n="about_title">Tecnologia pensada<br>para <em class="text-gradient">quem trabalha</em></span>
         </h2>
-        <p>A Dev.Lobbo nasceu da observação de um problema simples: profissionais e empresas perdem horas preciosas com ferramentas inadequadas para gestão de tempo, ponto e escala.</p>
-        <p>Desenvolvemos softwares modernos voltados para produtividade, organização e gestão — aplicativos que qualquer pessoa consegue usar no primeiro acesso, sem treinamento.</p>
-        <p>Nossa stack é enxuta e poderosa: HTML, CSS e JavaScript puro no frontend, Firebase como backend em tempo real, e Cloudflare para entrega global com latência mínima.</p>
-        <p>Cada aplicativo é construído como um PWA de verdade — instalável, funcional offline, e responsivo em qualquer dispositivo.</p>
+        <p data-i18n="about_p1">A Dev.Lobbo nasceu da observação de um problema simples: profissionais e empresas perdem horas preciosas com ferramentas inadequadas para gestão de tempo, ponto e escala.</p>
+        <p data-i18n="about_p2">Desenvolvemos softwares modernos voltados para produtividade, organização e gestão — aplicativos que qualquer pessoa consegue usar no primeiro acesso, sem treinamento.</p>
+        <p data-i18n="about_p3">Nossa stack é enxuta e poderosa: HTML, CSS e JavaScript puro no frontend, Firebase como backend em tempo real, e Cloudflare para entrega global com latência mínima.</p>
+        <p data-i18n="about_p4">Cada aplicativo é construído como um PWA de verdade — instalável, funcional offline, e responsivo em qualquer dispositivo.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
-          <a href="#apps" class="btn btn-primary">Ver Aplicativos</a>
-          <a href="#contact" class="btn btn-secondary">Falar com a Equipe</a>
+          <a href="#apps" class="btn btn-primary" data-i18n="about_btn1">Ver Aplicativos</a>
+          <a href="#contact" class="btn btn-secondary" data-i18n="about_btn2">Falar com a Equipe</a>
         </div>
       </div>
       <div class="about-visual fade-in" aria-hidden="true">
         <div class="about-card-stack">
           <div class="about-card-item">
             <div style="font-size:20px;margin-bottom:8px;">⚡</div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:4px;">Performance First</div>
-            <div style="font-size:11px;color:var(--clr-muted);">Lighthouse 95+ em todos os apps</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:4px;" data-i18n="about_card1_t">Performance First</div>
+            <div style="font-size:11px;color:var(--clr-muted);" data-i18n="about_card1_d">Lighthouse 95+ em todos os apps</div>
           </div>
           <div class="about-card-item">
             <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;">
               <div style="font-size:20px;">🚀</div>
               <div style="font-size:14px;font-weight:700;">Dev.Lobbo</div>
             </div>
-            <div style="font-size:12px;color:var(--clr-muted);line-height:1.5;">Softwares inteligentes para facilitar o seu trabalho.</div>
+            <div style="font-size:12px;color:var(--clr-muted);line-height:1.5;" data-i18n="about_card2_d">Softwares inteligentes para facilitar o seu trabalho.</div>
             <div style="margin-top:12px;display:flex;gap:6px;">
               <div style="padding:3px 10px;border-radius:100px;background:rgba(0,207,255,0.1);border:1px solid rgba(0,207,255,0.2);font-size:10px;color:var(--clr-neon-blue);">PWA</div>
               <div style="padding:3px 10px;border-radius:100px;background:rgba(182,0,255,0.1);border:1px solid rgba(182,0,255,0.2);font-size:10px;color:var(--clr-neon-purple);">Firebase</div>
@@ -1832,8 +1832,8 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           </div>
           <div class="about-card-item">
             <div style="font-size:18px;margin-bottom:6px;">🛡️</div>
-            <div style="font-size:12px;font-weight:600;margin-bottom:3px;">Seguro & Confiável</div>
-            <div style="font-size:11px;color:var(--clr-muted);">HTTPS · Auth segura · Backups</div>
+            <div style="font-size:12px;font-weight:600;margin-bottom:3px;" data-i18n="about_card3_t">Seguro &amp; Confiável</div>
+            <div style="font-size:11px;color:var(--clr-muted);" data-i18n="about_card3_d">HTTPS · Auth segura · Backups</div>
           </div>
         </div>
       </div>
@@ -1898,10 +1898,10 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
 
 <section id="contact" class="section" aria-labelledby="contact-title">
   <div class="container">
-    <div class="section-eyebrow fade-in">Contato</div>
+    <div class="section-eyebrow fade-in" data-i18n="contact_eyebrow">Contato</div>
     <h2 class="section-title fade-in" id="contact-title"><span data-i18n="contact_title">Vamos conversar?</span></h2>
     <div style="text-align:center;max-width:600px;margin:0 auto;">
-        <p class="section-desc fade-in" style="margin:0 auto 40px;">
+        <p class="section-desc fade-in" style="margin:0 auto 40px;" data-i18n="contact_sub">
           Tem uma dúvida, quer sugerir um recurso ou está interessado em uma parceria? Entre em contato com a equipe Dev.Lobbo.
         </p>
         <a href="mailto:contato@devlobbo.com" class="fade-in" style="display:inline-flex;align-items:center;gap:16px;padding:20px 32px;border-radius:16px;background:rgba(0,207,255,0.05);border:1px solid rgba(0,207,255,0.2);transition:all 0.25s;text-decoration:none;" onmouseover="this.style.background='rgba(0,207,255,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(0,207,255,0.05)';this.style.transform='translateY(0)'">
@@ -1938,10 +1938,10 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <div class="nav-logo-icon">dL</div>
           <span class="nav-logo-text">Dev<span>.Lobbo</span></span>
         </a>
-        <p>Desenvolvemos softwares modernos, rápidos e intuitivos para empresas e profissionais que valorizam qualidade e produtividade.</p>
+        <p data-i18n="footer_tagline">Desenvolvemos softwares modernos, rápidos e intuitivos para empresas e profissionais que valorizam qualidade e produtividade.</p>
       </div>
       <div class="footer-col">
-        <h4>Aplicativos</h4>
+        <h4 data-i18n="footer_col_apps">Aplicativos</h4>
         <ul>
           <li><a href="https://gestfacil-b3422.web.app" target="_blank" rel="noopener">GestFácil</a></li>
           <li><a href="https://devlobbo.com/srplantao" target="_blank" rel="noopener">Sr. Plantão</a></li>
@@ -1949,18 +1949,18 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Conteúdo</h4>
+        <h4 data-i18n="footer_col_content">Conteúdo</h4>
         <ul>
-          <li><a href="#blog">Tutoriais</a></li>
-          <li><a href="#features">Diferenciais</a></li>
-          <li><a href="#tech">Tecnologias</a></li>
+          <li><a href="#blog" data-i18n="footer_link_tutorials">Tutoriais</a></li>
+          <li><a href="#features" data-i18n="footer_link_features">Diferenciais</a></li>
+          <li><a href="#tech" data-i18n="footer_link_tech">Tecnologias</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Empresa</h4>
+        <h4 data-i18n="footer_col_company">Empresa</h4>
         <ul>
-          <li><a href="#about">Sobre</a></li>
-          <li><a href="#contact">Contato</a></li>
+          <li><a href="#about" data-i18n="footer_link_about">Sobre</a></li>
+          <li><a href="#contact" data-i18n="footer_link_contact">Contato</a></li>
         </ul>
       </div>
     </div>
@@ -1978,11 +1978,11 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
     </div>
 
     <div class="footer-bottom">
-      <p class="footer-copy">© 2025 Dev.Lobbo. Todos os direitos reservados.</p>
+      <p class="footer-copy"><span data-i18n="footer_copy">© 2026 Dev.Lobbo. Todos os direitos reservados.</span></p>
       <div class="footer-links">
-        <a href="/privacidade.html">Privacidade</a>
-        <a href="/termos.html">Termos de Uso</a>
-        <a href="#">Cookies</a>
+        <a href="/privacidade.html" data-i18n="footer_privacy">Privacidade</a>
+        <a href="/termos.html" data-i18n="footer_terms">Termos de Uso</a>
+        <a href="#" data-i18n="footer_cookies">Cookies</a>
       </div>
     </div>
   </div>
@@ -2311,6 +2311,39 @@ const TRANSLATIONS = {
     newsletter_sub: 'Artigos novos, atualizações dos aplicativos e dicas práticas. Sem spam, descadastre quando quiser.',
     about_title: 'Tecnologia pensada<br>para <em class="text-gradient">quem trabalha</em>',
     contact_title: 'Vamos conversar?',
+    app1_cat: 'Gestão Empresarial Completa', app1_desc: 'Sistema completo de gestão empresarial. Controle financeiro, clientes, vendas, estoque e relatórios em um só lugar.',
+    app1_f1: 'Financeiro', app1_f2: 'Clientes', app1_f3: 'Vendas', app1_f4: 'Estoque', app1_f5: 'Relatórios', app1_f6: 'Dashboard',
+    app2_cat: 'Escalas e Plantões Inteligentes', app2_desc: 'Gerenciamento completo de escalas e plantões para médicos, enfermeiros, policiais, vigilantes, bombeiros e socorristas.',
+    app2_f1: 'Escalas dinâmicas', app2_f2: 'Troca de plantão', app2_f3: 'Notificações', app2_f4: 'Relatórios mensais', app2_f5: 'Multi-equipe', app2_f6: 'Banco de horas',
+    app3_cat: 'Controle de Ponto Digital', app3_desc: 'Sistema inteligente de controle de ponto com banco de horas, intervalos, relatórios e justificativas eletrônicas.',
+    app3_f1: 'Banco de horas', app3_f2: 'Intervalos', app3_f3: 'Justificativas', app3_f4: 'Relatórios PDF', app3_f5: 'Multi-usuário', app3_f6: 'Exportação',
+    btn_open_system: 'Abrir Sistema', btn_learn_more: 'Saiba Mais', soon_label: '⏳ Em breve',
+    features_sub: 'Cada app da Dev.Lobbo segue o mesmo padrão de qualidade — do código à experiência do usuário.',
+    feat1_t: 'Interface Moderna', feat1_d: 'Design pensado em detalhes, com tipografia, motion e tema dark/claro.',
+    feat2_t: 'Alta Performance', feat2_d: 'Carregamento fulminante, mesmo em conexões limitadas. Tudo otimizado para Lighthouse.',
+    feat3_t: 'Responsivo', feat3_d: 'Experiência consistente do desktop ao celular, com toque e teclado.',
+    feat4_t: 'PWA', feat4_d: 'Instale no celular como um app nativo, com ícone na tela inicial.',
+    feat5_t: 'Backup em Nuvem', feat5_d: 'Seus dados salvos com segurança e sincronizados entre dispositivos.',
+    feat6_t: 'Atualizações Frequentes', feat6_d: 'Novidades publicadas em ciclos curtos, sem dor de cabeça.',
+    feat7_t: 'Segurança', feat7_d: 'Boas práticas de autenticação, criptografia em trânsito e em repouso.',
+    feat8_t: 'Fácil Utilização', feat8_d: 'Curva de aprendizado curta, com fluxos pensados para quem real.',
+    about_tag: 'Sobre a Empresa',
+    about_p1: 'A Dev.Lobbo nasceu da observação de um problema simples: profissionais e empresas perdem horas preciosas com ferramentas inadequadas para gestão de tempo, ponto e escala.',
+    about_p2: 'Desenvolvemos softwares modernos voltados para produtividade, organização e gestão — aplicativos que qualquer pessoa consegue usar no primeiro acesso, sem treinamento.',
+    about_p3: 'Nossa stack é enxuta e poderosa: HTML, CSS e JavaScript puro no frontend, Firebase como backend em tempo real, e Cloudflare para entrega global com latência mínima.',
+    about_p4: 'Cada aplicativo é construído como um PWA de verdade — instalável, funcional offline, e responsivo em qualquer dispositivo.',
+    about_btn1: 'Ver Aplicativos', about_btn2: 'Falar com a Equipe',
+    about_card1_t: 'Performance First', about_card1_d: 'Lighthouse 95+ em todos os apps',
+    about_card2_d: 'Softwares inteligentes para facilitar o seu trabalho.',
+    about_card3_t: 'Seguro & Confiável', about_card3_d: 'HTTPS · Auth segura · Backups',
+    contact_eyebrow: 'Contato', contact_sub: 'Tem uma dúvida, quer sugerir um recurso ou está interessado em uma parceria? Entre em contato com a equipe Dev.Lobbo.',
+    apps_eyebrow: 'Aplicativos',
+    footer_tagline: 'Desenvolvemos softwares modernos, rápidos e intuitivos para empresas e profissionais que valorizam qualidade e produtividade.',
+    footer_col_apps: 'Aplicativos', footer_col_content: 'Conteúdo', footer_col_company: 'Empresa',
+    footer_link_tutorials: 'Tutoriais', footer_link_features: 'Diferenciais', footer_link_tech: 'Tecnologias',
+    footer_link_about: 'Sobre', footer_link_contact: 'Contato',
+    footer_copy: '© 2026 Dev.Lobbo. Todos os direitos reservados.',
+    footer_privacy: 'Privacidade', footer_terms: 'Termos de Uso', footer_cookies: 'Cookies',
   },
   en: {
     lang: 'en-US',
@@ -2329,6 +2362,39 @@ const TRANSLATIONS = {
     newsletter_sub: 'New articles, app updates and practical tips. No spam, unsubscribe anytime.',
     about_title: 'Technology built<br>for <em class="text-gradient">people who work</em>',
     contact_title: "Let's talk?",
+    app1_cat: 'Complete Business Management', app1_desc: 'Full business management system. Financials, clients, sales, inventory and reports all in one place.',
+    app1_f1: 'Financials', app1_f2: 'Clients', app1_f3: 'Sales', app1_f4: 'Inventory', app1_f5: 'Reports', app1_f6: 'Dashboard',
+    app2_cat: 'Smart Shift Scheduling', app2_desc: 'Complete shift and on-call management for doctors, nurses, police officers, security guards, firefighters and paramedics.',
+    app2_f1: 'Dynamic schedules', app2_f2: 'Shift swaps', app2_f3: 'Notifications', app2_f4: 'Monthly reports', app2_f5: 'Multi-team', app2_f6: 'Overtime bank',
+    app3_cat: 'Digital Time Tracking', app3_desc: 'Smart time-tracking system with overtime bank, breaks, reports and electronic justifications.',
+    app3_f1: 'Overtime bank', app3_f2: 'Breaks', app3_f3: 'Justifications', app3_f4: 'PDF reports', app3_f5: 'Multi-user', app3_f6: 'Export',
+    btn_open_system: 'Open App', btn_learn_more: 'Learn More', soon_label: '⏳ Coming soon',
+    features_sub: 'Every Dev.Lobbo app follows the same quality standard — from the code to the user experience.',
+    feat1_t: 'Modern Interface', feat1_d: 'Detail-oriented design, with typography, motion and dark/light theme.',
+    feat2_t: 'High Performance', feat2_d: 'Lightning-fast loading, even on limited connections. Fully optimized for Lighthouse.',
+    feat3_t: 'Responsive', feat3_d: 'Consistent experience from desktop to mobile, with touch and keyboard.',
+    feat4_t: 'PWA', feat4_d: 'Install on your phone like a native app, with a home screen icon.',
+    feat5_t: 'Cloud Backup', feat5_d: 'Your data safely stored and synced across devices.',
+    feat6_t: 'Frequent Updates', feat6_d: 'New features shipped in short cycles, hassle-free.',
+    feat7_t: 'Security', feat7_d: 'Solid authentication practices, encryption in transit and at rest.',
+    feat8_t: 'Easy to Use', feat8_d: 'Short learning curve, with flows designed for real people.',
+    about_tag: 'About the Company',
+    about_p1: 'Dev.Lobbo was born from a simple observation: professionals and businesses lose precious hours to inadequate tools for time, attendance and schedule management.',
+    about_p2: 'We build modern software focused on productivity, organization and management — apps anyone can use from the first login, no training required.',
+    about_p3: 'Our stack is lean and powerful: plain HTML, CSS and JavaScript on the frontend, Firebase as a real-time backend, and Cloudflare for global delivery with minimal latency.',
+    about_p4: 'Every app is built as a true PWA — installable, works offline, and responsive on any device.',
+    about_btn1: 'View Apps', about_btn2: 'Talk to the Team',
+    about_card1_t: 'Performance First', about_card1_d: 'Lighthouse 95+ across all apps',
+    about_card2_d: 'Intelligent software to make your work easier.',
+    about_card3_t: 'Safe & Reliable', about_card3_d: 'HTTPS · Secure Auth · Backups',
+    contact_eyebrow: 'Contact', contact_sub: 'Have a question, a feature suggestion, or interested in a partnership? Get in touch with the Dev.Lobbo team.',
+    apps_eyebrow: 'Apps',
+    footer_tagline: 'We build modern, fast and intuitive software for businesses and professionals who value quality and productivity.',
+    footer_col_apps: 'Apps', footer_col_content: 'Content', footer_col_company: 'Company',
+    footer_link_tutorials: 'Tutorials', footer_link_features: 'Features', footer_link_tech: 'Technologies',
+    footer_link_about: 'About', footer_link_contact: 'Contact',
+    footer_copy: '© 2026 Dev.Lobbo. All rights reserved.',
+    footer_privacy: 'Privacy', footer_terms: 'Terms of Use', footer_cookies: 'Cookies',
   },
   es: {
     lang: 'es-ES',
@@ -2347,6 +2413,39 @@ const TRANSLATIONS = {
     newsletter_sub: 'Artículos nuevos, actualizaciones y consejos prácticos. Sin spam, cancela cuando quieras.',
     about_title: 'Tecnología pensada<br>para <em class="text-gradient">quienes trabajan</em>',
     contact_title: '¿Hablamos?',
+    app1_cat: 'Gestión Empresarial Completa', app1_desc: 'Sistema completo de gestión empresarial. Control financiero, clientes, ventas, inventario e informes en un solo lugar.',
+    app1_f1: 'Finanzas', app1_f2: 'Clientes', app1_f3: 'Ventas', app1_f4: 'Inventario', app1_f5: 'Informes', app1_f6: 'Panel',
+    app2_cat: 'Turnos y Guardias Inteligentes', app2_desc: 'Gestión completa de turnos y guardias para médicos, enfermeros, policías, vigilantes, bomberos y paramédicos.',
+    app2_f1: 'Turnos dinámicos', app2_f2: 'Cambio de turno', app2_f3: 'Notificaciones', app2_f4: 'Informes mensuales', app2_f5: 'Multi-equipo', app2_f6: 'Banco de horas',
+    app3_cat: 'Control de Asistencia Digital', app3_desc: 'Sistema inteligente de control de asistencia con banco de horas, descansos, informes y justificaciones electrónicas.',
+    app3_f1: 'Banco de horas', app3_f2: 'Descansos', app3_f3: 'Justificaciones', app3_f4: 'Informes PDF', app3_f5: 'Multiusuario', app3_f6: 'Exportación',
+    btn_open_system: 'Abrir Sistema', btn_learn_more: 'Saber Más', soon_label: '⏳ Próximamente',
+    features_sub: 'Cada app de Dev.Lobbo sigue el mismo estándar de calidad — desde el código hasta la experiencia de usuario.',
+    feat1_t: 'Interfaz Moderna', feat1_d: 'Diseño detallado, con tipografía, movimiento y tema oscuro/claro.',
+    feat2_t: 'Alto Rendimiento', feat2_d: 'Carga ultrarrápida, incluso en conexiones limitadas. Todo optimizado para Lighthouse.',
+    feat3_t: 'Responsivo', feat3_d: 'Experiencia consistente de escritorio a móvil, con toque y teclado.',
+    feat4_t: 'PWA', feat4_d: 'Instala en tu móvil como una app nativa, con icono en la pantalla de inicio.',
+    feat5_t: 'Copia en la Nube', feat5_d: 'Tus datos guardados con seguridad y sincronizados entre dispositivos.',
+    feat6_t: 'Actualizaciones Frecuentes', feat6_d: 'Novedades publicadas en ciclos cortos, sin complicaciones.',
+    feat7_t: 'Seguridad', feat7_d: 'Buenas prácticas de autenticación, cifrado en tránsito y en reposo.',
+    feat8_t: 'Fácil de Usar', feat8_d: 'Curva de aprendizaje corta, con flujos pensados para personas reales.',
+    about_tag: 'Sobre la Empresa',
+    about_p1: 'Dev.Lobbo nació de una observación simple: profesionales y empresas pierden horas valiosas con herramientas inadecuadas para gestión de tiempo, asistencia y turnos.',
+    about_p2: 'Desarrollamos software moderno enfocado en productividad, organización y gestión — apps que cualquier persona puede usar desde el primer acceso, sin capacitación.',
+    about_p3: 'Nuestra base tecnológica es simple y potente: HTML, CSS y JavaScript puro en el frontend, Firebase como backend en tiempo real, y Cloudflare para entrega global con latencia mínima.',
+    about_p4: 'Cada aplicación está construida como un PWA de verdad — instalable, funcional sin conexión, y responsiva en cualquier dispositivo.',
+    about_btn1: 'Ver Aplicaciones', about_btn2: 'Hablar con el Equipo',
+    about_card1_t: 'Rendimiento Primero', about_card1_d: 'Lighthouse 95+ en todas las apps',
+    about_card2_d: 'Software inteligente para facilitar tu trabajo.',
+    about_card3_t: 'Seguro y Confiable', about_card3_d: 'HTTPS · Auth segura · Copias de seguridad',
+    contact_eyebrow: 'Contacto', contact_sub: '¿Tienes una duda, quieres sugerir una función o te interesa una asociación? Ponte en contacto con el equipo de Dev.Lobbo.',
+    apps_eyebrow: 'Aplicaciones',
+    footer_tagline: 'Desarrollamos software moderno, rápido e intuitivo para empresas y profesionales que valoran la calidad y la productividad.',
+    footer_col_apps: 'Aplicaciones', footer_col_content: 'Contenido', footer_col_company: 'Empresa',
+    footer_link_tutorials: 'Tutoriales', footer_link_features: 'Diferenciales', footer_link_tech: 'Tecnologías',
+    footer_link_about: 'Sobre', footer_link_contact: 'Contacto',
+    footer_copy: '© 2026 Dev.Lobbo. Todos los derechos reservados.',
+    footer_privacy: 'Privacidad', footer_terms: 'Términos de Uso', footer_cookies: 'Cookies',
   },
   fr: {
     lang: 'fr-FR',
@@ -2365,6 +2464,39 @@ const TRANSLATIONS = {
     newsletter_sub: "Nouveaux articles, mises à jour et conseils pratiques. Pas de spam, désabonnez-vous à tout moment.",
     about_title: 'Technologie pensée<br>pour <em class="text-gradient">ceux qui travaillent</em>',
     contact_title: 'Parlons-en ?',
+    app1_cat: 'Gestion d\'Entreprise Complète', app1_desc: 'Système complet de gestion d\'entreprise. Finances, clients, ventes, stock et rapports en un seul endroit.',
+    app1_f1: 'Finances', app1_f2: 'Clients', app1_f3: 'Ventes', app1_f4: 'Stock', app1_f5: 'Rapports', app1_f6: 'Tableau de bord',
+    app2_cat: 'Plannings de Garde Intelligents', app2_desc: 'Gestion complète des plannings et gardes pour médecins, infirmiers, policiers, agents de sécurité, pompiers et secouristes.',
+    app2_f1: 'Plannings dynamiques', app2_f2: 'Échange de garde', app2_f3: 'Notifications', app2_f4: 'Rapports mensuels', app2_f5: 'Multi-équipe', app2_f6: 'Heures supplémentaires',
+    app3_cat: 'Pointage Numérique', app3_desc: 'Système intelligent de pointage avec banque d\'heures, pauses, rapports et justificatifs électroniques.',
+    app3_f1: 'Banque d\'heures', app3_f2: 'Pauses', app3_f3: 'Justificatifs', app3_f4: 'Rapports PDF', app3_f5: 'Multi-utilisateur', app3_f6: 'Export',
+    btn_open_system: 'Ouvrir l\'App', btn_learn_more: 'En Savoir Plus', soon_label: '⏳ Bientôt disponible',
+    features_sub: 'Chaque application Dev.Lobbo suit le même niveau d\'exigence — du code à l\'expérience utilisateur.',
+    feat1_t: 'Interface Moderne', feat1_d: 'Design soigné, avec typographie, animations et thème sombre/clair.',
+    feat2_t: 'Haute Performance', feat2_d: 'Chargement ultra-rapide, même sur connexions limitées. Optimisé pour Lighthouse.',
+    feat3_t: 'Responsive', feat3_d: 'Expérience cohérente du bureau au mobile, tactile et clavier.',
+    feat4_t: 'PWA', feat4_d: 'Installez sur votre mobile comme une app native, avec icône sur l\'écran d\'accueil.',
+    feat5_t: 'Sauvegarde Cloud', feat5_d: 'Vos données stockées en sécurité et synchronisées entre appareils.',
+    feat6_t: 'Mises à Jour Fréquentes', feat6_d: 'Nouveautés publiées par cycles courts, sans tracas.',
+    feat7_t: 'Sécurité', feat7_d: 'Bonnes pratiques d\'authentification, chiffrement en transit et au repos.',
+    feat8_t: 'Facile à Utiliser', feat8_d: 'Courbe d\'apprentissage courte, avec des parcours pensés pour de vrais utilisateurs.',
+    about_tag: 'À propos de l\'entreprise',
+    about_p1: 'Dev.Lobbo est né d\'un constat simple : professionnels et entreprises perdent un temps précieux avec des outils inadaptés pour la gestion du temps, du pointage et des plannings.',
+    about_p2: 'Nous développons des logiciels modernes axés sur la productivité, l\'organisation et la gestion — des applications que tout le monde peut utiliser dès la première connexion, sans formation.',
+    about_p3: 'Notre stack technique est simple et puissante : HTML, CSS et JavaScript pur en frontend, Firebase comme backend temps réel, et Cloudflare pour une diffusion mondiale à latence minimale.',
+    about_p4: 'Chaque application est conçue comme une véritable PWA — installable, fonctionnelle hors ligne, et responsive sur tout appareil.',
+    about_btn1: 'Voir les Applications', about_btn2: 'Contacter l\'Équipe',
+    about_card1_t: 'La Performance d\'Abord', about_card1_d: 'Lighthouse 95+ sur toutes les apps',
+    about_card2_d: 'Des logiciels intelligents pour faciliter votre travail.',
+    about_card3_t: 'Sûr et Fiable', about_card3_d: 'HTTPS · Authentification sécurisée · Sauvegardes',
+    contact_eyebrow: 'Contact', contact_sub: 'Une question, une suggestion de fonctionnalité, ou un intérêt pour un partenariat ? Contactez l\'équipe Dev.Lobbo.',
+    apps_eyebrow: 'Applications',
+    footer_tagline: 'Nous développons des logiciels modernes, rapides et intuitifs pour les entreprises et professionnels exigeants en qualité et productivité.',
+    footer_col_apps: 'Applications', footer_col_content: 'Contenu', footer_col_company: 'Entreprise',
+    footer_link_tutorials: 'Tutoriels', footer_link_features: 'Points Forts', footer_link_tech: 'Technologies',
+    footer_link_about: 'À propos', footer_link_contact: 'Contact',
+    footer_copy: '© 2026 Dev.Lobbo. Tous droits réservés.',
+    footer_privacy: 'Confidentialité', footer_terms: 'Conditions d\'Utilisation', footer_cookies: 'Cookies',
   },
   de: {
     lang: 'de-DE',
@@ -2383,6 +2515,39 @@ const TRANSLATIONS = {
     newsletter_sub: 'Neue Artikel, App-Updates und praktische Tipps. Kein Spam, jederzeit abmelden.',
     about_title: 'Technologie für<br><em class="text-gradient">Menschen, die arbeiten</em>',
     contact_title: 'Sprechen wir?',
+    app1_cat: 'Komplette Unternehmensverwaltung', app1_desc: 'Vollständiges Unternehmensverwaltungssystem. Finanzen, Kunden, Verkäufe, Lager und Berichte an einem Ort.',
+    app1_f1: 'Finanzen', app1_f2: 'Kunden', app1_f3: 'Verkäufe', app1_f4: 'Lager', app1_f5: 'Berichte', app1_f6: 'Dashboard',
+    app2_cat: 'Intelligente Dienstplanung', app2_desc: 'Vollständige Verwaltung von Schichten und Bereitschaftsdiensten für Ärzte, Pflegekräfte, Polizisten, Sicherheitskräfte, Feuerwehrleute und Sanitäter.',
+    app2_f1: 'Dynamische Dienstpläne', app2_f2: 'Schichttausch', app2_f3: 'Benachrichtigungen', app2_f4: 'Monatliche Berichte', app2_f5: 'Mehrere Teams', app2_f6: 'Überstundenkonto',
+    app3_cat: 'Digitale Zeiterfassung', app3_desc: 'Intelligentes Zeiterfassungssystem mit Überstundenkonto, Pausen, Berichten und elektronischen Begründungen.',
+    app3_f1: 'Überstundenkonto', app3_f2: 'Pausen', app3_f3: 'Begründungen', app3_f4: 'PDF-Berichte', app3_f5: 'Mehrbenutzer', app3_f6: 'Export',
+    btn_open_system: 'App Öffnen', btn_learn_more: 'Mehr Erfahren', soon_label: '⏳ Demnächst',
+    features_sub: 'Jede Dev.Lobbo-App folgt demselben Qualitätsstandard — vom Code bis zur Nutzererfahrung.',
+    feat1_t: 'Moderne Oberfläche', feat1_d: 'Detailverliebtes Design mit Typografie, Animationen und Dark-/Light-Modus.',
+    feat2_t: 'Hohe Leistung', feat2_d: 'Blitzschnelles Laden, selbst bei begrenzter Verbindung. Voll für Lighthouse optimiert.',
+    feat3_t: 'Responsiv', feat3_d: 'Einheitliches Erlebnis vom Desktop bis zum Smartphone, mit Touch und Tastatur.',
+    feat4_t: 'PWA', feat4_d: 'Wie eine native App auf dem Smartphone installieren, mit Symbol auf dem Startbildschirm.',
+    feat5_t: 'Cloud-Backup', feat5_d: 'Ihre Daten sicher gespeichert und geräteübergreifend synchronisiert.',
+    feat6_t: 'Häufige Updates', feat6_d: 'Neuigkeiten in kurzen Zyklen veröffentlicht, ohne Kopfschmerzen.',
+    feat7_t: 'Sicherheit', feat7_d: 'Bewährte Authentifizierungspraktiken, Verschlüsselung während der Übertragung und im Ruhezustand.',
+    feat8_t: 'Einfache Bedienung', feat8_d: 'Kurze Lernkurve, mit Abläufen für echte Nutzer konzipiert.',
+    about_tag: 'Über das Unternehmen',
+    about_p1: 'Dev.Lobbo entstand aus einer einfachen Beobachtung: Fachkräfte und Unternehmen verlieren wertvolle Stunden mit ungeeigneten Werkzeugen für Zeit-, Anwesenheits- und Dienstplanverwaltung.',
+    about_p2: 'Wir entwickeln moderne Software für Produktivität, Organisation und Verwaltung — Apps, die jeder ab dem ersten Zugriff ohne Schulung nutzen kann.',
+    about_p3: 'Unser Stack ist schlank und leistungsstark: reines HTML, CSS und JavaScript im Frontend, Firebase als Echtzeit-Backend und Cloudflare für globale Auslieferung mit minimaler Latenz.',
+    about_p4: 'Jede App ist als echte PWA gebaut — installierbar, offline funktionsfähig und auf jedem Gerät responsiv.',
+    about_btn1: 'Apps Ansehen', about_btn2: 'Team Kontaktieren',
+    about_card1_t: 'Performance zuerst', about_card1_d: 'Lighthouse 95+ bei allen Apps',
+    about_card2_d: 'Intelligente Software, die Ihre Arbeit erleichtert.',
+    about_card3_t: 'Sicher & Zuverlässig', about_card3_d: 'HTTPS · Sichere Authentifizierung · Backups',
+    contact_eyebrow: 'Kontakt', contact_sub: 'Haben Sie eine Frage, einen Funktionsvorschlag oder Interesse an einer Partnerschaft? Kontaktieren Sie das Dev.Lobbo-Team.',
+    apps_eyebrow: 'Apps',
+    footer_tagline: 'Wir entwickeln moderne, schnelle und intuitive Software für Unternehmen und Fachkräfte, die Wert auf Qualität und Produktivität legen.',
+    footer_col_apps: 'Apps', footer_col_content: 'Inhalt', footer_col_company: 'Unternehmen',
+    footer_link_tutorials: 'Tutorials', footer_link_features: 'Highlights', footer_link_tech: 'Technologien',
+    footer_link_about: 'Über uns', footer_link_contact: 'Kontakt',
+    footer_copy: '© 2026 Dev.Lobbo. Alle Rechte vorbehalten.',
+    footer_privacy: 'Datenschutz', footer_terms: 'Nutzungsbedingungen', footer_cookies: 'Cookies',
   }
 };
 
