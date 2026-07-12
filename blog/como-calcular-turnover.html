@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como calcular o turnover da sua empresa (com fórmula prática) | Blog Dev.Lobbo</title>
+<meta name="description" content="Aprenda a calcular a taxa de rotatividade da sua equipe passo a passo, e entenda o que os números realmente significam.">
+<meta name="google-adsense-account" content="ca-pub-7614768764999229">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7614768764999229" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://devlobbo.com/blog/como-calcular-turnover.html">
+<style>
+:root {
+  --clr-bg: #050508; --clr-surface: #0d0d14; --clr-surface2: #12121c;
+  --clr-border: rgba(255,255,255,0.07); --clr-border2: rgba(0,207,255,0.15);
+  --clr-neon-blue: #00CFFF; --clr-neon-purple: #B600FF;
+  --clr-text: #e8e8f0; --clr-muted: #6b6b80; --clr-muted2: #9090a8; --clr-white:#ffffff;
+  --grad-neon: linear-gradient(90deg, var(--clr-neon-blue), var(--clr-neon-purple));
+  --radius-md: 14px; --radius-lg: 20px;
+  --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: var(--font-body); background: var(--clr-bg); color: var(--clr-text); line-height:1.7; }
+a { color: var(--clr-neon-blue); text-decoration:none; }
+.container { max-width: 820px; margin:0 auto; padding: 0 24px; }
+header.site-nav { position: sticky; top:0; z-index:50; background: rgba(5,5,8,0.85); backdrop-filter: blur(12px); border-bottom:1px solid var(--clr-border); }
+.nav-inner { max-width:1200px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+.nav-logo { display:flex; align-items:center; gap:10px; }
+.nav-logo-icon { width:34px; height:34px; border-radius:10px; background: var(--grad-neon); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:800; color:#000; font-size:14px; }
+.nav-logo-text { font-family: var(--font-display); font-weight:700; font-size:18px; color:var(--clr-white); }
+.nav-logo-text span { background: var(--grad-neon); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.back-link { font-size:14px; color:var(--clr-muted2); display:flex; align-items:center; gap:6px; }
+.back-link:hover { color:var(--clr-neon-blue); }
+main { padding: 48px 0 80px; }
+.breadcrumb { font-size:13px; color:var(--clr-muted); margin-bottom:24px; }
+.breadcrumb a { color:var(--clr-muted2); }
+.article-category { display:inline-block; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--clr-neon-blue); margin-bottom:16px; }
+.article-title { font-family:var(--font-display); font-size: clamp(26px,4vw,40px); font-weight:800; line-height:1.15; margin-bottom:20px; color:var(--clr-white); }
+.article-meta { display:flex; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--clr-muted); margin-bottom:32px; padding-bottom:32px; border-bottom:1px solid var(--clr-border); }
+.article-cover { width:100%; height:220px; border-radius:var(--radius-lg); background:linear-gradient(135deg, rgba(0,207,255,0.08), rgba(182,0,255,0.08)); border:1px solid var(--clr-border); display:flex; align-items:center; justify-content:center; font-size:72px; margin-bottom:40px; }
+.article-body h2 { font-family:var(--font-display); font-size:24px; font-weight:700; color:var(--clr-white); margin:40px 0 16px; }
+.article-body p { margin-bottom:20px; color:var(--clr-muted2); font-size:16px; }
+.article-body ul, .article-body ol { margin: 0 0 20px 22px; color:var(--clr-muted2); font-size:16px; }
+.article-body li { margin-bottom:8px; }
+.article-body strong { color: var(--clr-text); }
+.callout { background: rgba(0,207,255,0.05); border:1px solid var(--clr-border2); border-radius:var(--radius-md); padding:20px 24px; margin:32px 0; font-size:15px; color:var(--clr-muted2); }
+.article-cta { margin-top:48px; padding:32px; border-radius:var(--radius-lg); background: var(--grad-neon); text-align:center; }
+.article-cta h3 { font-family:var(--font-display); color:#000; font-size:20px; margin-bottom:8px; }
+.article-cta p { color:rgba(0,0,0,0.75); margin-bottom:16px; font-size:14px; }
+.article-cta a { display:inline-block; background:#000; color:#fff; padding:12px 28px; border-radius:100px; font-weight:600; font-size:14px; }
+.related { margin-top:56px; padding-top:40px; border-top:1px solid var(--clr-border); }
+.related h3 { font-family:var(--font-display); font-size:18px; margin-bottom:20px; color:var(--clr-white); }
+.related-list { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.related-list a { display:block; padding:16px; border:1px solid var(--clr-border); border-radius:var(--radius-md); font-size:14px; color:var(--clr-text); transition: all var(--transition); }
+.related-list a:hover { border-color: var(--clr-border2); background: rgba(0,207,255,0.03); }
+@media (max-width:600px){ .related-list { grid-template-columns:1fr; } }
+footer { border-top:1px solid var(--clr-border); padding:32px 0; text-align:center; font-size:13px; color:var(--clr-muted); }
+footer a { color:var(--clr-muted2); margin:0 8px; }
+.adslot { margin:40px 0; text-align:center; }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Dev.Lobbo">
+      <div class="nav-logo-icon">dL</div>
+      <span class="nav-logo-text">Dev<span>.Lobbo</span></span>
+    </a>
+    <a href="/#blog" class="back-link">← Voltar para Tutoriais</a>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="breadcrumb"><a href="/">Início</a> › <a href="/#blog">Tutoriais</a> › Como calcular o turnover da sua empresa (com fórmula prática)</div>
+
+    <div class="article-category">Gestão de Pessoas</div>
+    <h1 class="article-title">Como calcular o turnover da sua empresa (com fórmula prática)</h1>
+    <div class="article-meta">
+      <span>📅 14 de abril de 2026</span>
+      <span>⏱️ 6 min de leitura</span>
+      <span>✍️ Equipe Dev.Lobbo</span>
+    </div>
+
+    <div class="article-cover" aria-hidden="true">🔄</div>
+
+    <div class="article-body">
+
+<p>Turnover é a taxa de rotatividade de colaboradores em uma empresa — quantas pessoas saem (ou são desligadas) em relação ao total do quadro, em um período determinado. É um dos indicadores mais citados em gestão de pessoas, mas também um dos mais mal calculados na prática.</p>
+
+<h2>A fórmula básica</h2>
+<p>A forma mais simples de calcular o turnover mensal é:</p>
+<div class="callout">
+<strong>Turnover (%) = [(Admissões + Desligamentos) ÷ 2] ÷ Número total de colaboradores × 100</strong>
+</div>
+<p>Por exemplo: uma empresa com 100 colaboradores que teve 4 admissões e 6 desligamentos em um mês faria o cálculo assim: (4 + 6) ÷ 2 = 5. Depois, 5 ÷ 100 × 100 = <strong>5% de turnover</strong> naquele mês.</p>
+
+<h2>Por que dividir por dois</h2>
+<p>Essa divisão evita distorcer o número em meses de expansão ou reestruturação: se uma empresa contratou 20 pessoas e desligou 2 no mesmo mês (crescimento acelerado), somar os dois sem dividir infla artificialmente a taxa, dando a impressão errada de instabilidade quando, na verdade, é crescimento.</p>
+
+<h2>Turnover voluntário vs. involuntário</h2>
+<p>O número geral de turnover conta uma parte da história, mas o mais importante é segmentar:</p>
+<ul>
+<li><strong>Turnover voluntário:</strong> colaboradores que pedem demissão por conta própria. Um índice alto aqui costuma indicar problemas de clima, remuneração ou falta de perspectiva de carreira.</li>
+<li><strong>Turnover involuntário:</strong> desligamentos feitos pela empresa. Pode refletir tanto ajuste de performance quanto reestruturação de equipe — o contexto importa mais do que o número isolado.</li>
+</ul>
+<p>Separar os dois evita a armadilha de tratar "saída de colaborador" como um problema único — as causas (e as soluções) são bem diferentes em cada caso.</p>
+
+<h2>O que é considerado um turnover "alto"</h2>
+<p>Não existe um número mágico universal — varia bastante por setor. Setores com alta rotatividade natural, como varejo e atendimento ao cliente, costumam ter taxas mensais de 3% a 5% consideradas normais. Já em áreas técnicas ou de gestão, um turnover mensal acima de 1-2% já costuma acender um alerta. O mais útil é comparar a taxa da sua empresa com a média do seu próprio setor, e acompanhar a tendência ao longo do tempo — turnover subindo mês a mês é mais preocupante do que um número pontualmente alto em um mês isolado.</p>
+
+<div class="callout">💡 Vale calcular o turnover por setor ou equipe, não só na média geral da empresa. Um departamento específico com rotatividade muito acima da média geral costuma apontar exatamente onde o problema está concentrado.</div>
+
+<h2>Do número à ação</h2>
+<p>Calcular o turnover é só o primeiro passo — o valor real está em cruzar esse dado com outros indicadores (motivo de saída, tempo de casa dos que saem, resultado de pesquisas de clima) para entender a causa raiz. Um turnover alto entre colaboradores com pouco tempo de empresa, por exemplo, aponta para problema no processo de onboarding — bem diferente de um turnover alto entre veteranos, que geralmente sinaliza estagnação de carreira ou remuneração defasada.</p>
+
+    </div>
+
+    <div class="article-cta">
+      <h3>Acompanhe indicadores de gestão em um só lugar</h3>
+      <p>O GestFácil reúne dados de equipe, financeiro e relatórios para decisões mais rápidas.</p>
+      <a href="/#apps">Conhecer Aplicativos</a>
+    </div>
+
+    <div class="related">
+      <h3>Continue lendo</h3>
+      <div class="related-list">
+        <a href="/blog/gestao-empresarial-pequenas-empresas.html">KPIs de RH que toda empresa deveria acompanhar</a>
+        <a href="/blog/reduzir-absenteismo-equipe.html">Reduzir absenteísmo sem aumentar a pressão sobre a equipe</a>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
+    <div style="margin-top:8px;">
+      <a href="/privacidade.html">Privacidade</a>
+      <a href="/termos.html">Termos de Uso</a>
+      <a href="/#contact">Contato</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
