@@ -1157,12 +1157,12 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
     </a>
 
     <ul class="nav-links" role="menubar">
-      <li><a href="#hero" class="active" role="menuitem">Início</a></li>
-      <li><a href="#apps" role="menuitem">Aplicativos</a></li>
-      <li><a href="#blog" role="menuitem">Tutoriais</a></li>
-      <li><a href="#about" role="menuitem">Sobre</a></li>
-      <li><a href="#team" role="menuitem">Equipe</a></li>
-      <li><a href="#contact" role="menuitem">Contato</a></li>
+      <li><a href="#hero" class="active" role="menuitem" data-i18n="nav_home">Início</a></li>
+      <li><a href="#apps" role="menuitem" data-i18n="apps_eyebrow">Aplicativos</a></li>
+      <li><a href="#blog" role="menuitem" data-i18n="footer_link_tutorials">Tutoriais</a></li>
+      <li><a href="#about" role="menuitem" data-i18n="footer_link_about">Sobre</a></li>
+      <li><a href="#team" role="menuitem" data-i18n="nav_team">Equipe</a></li>
+      <li><a href="#contact" role="menuitem" data-i18n="footer_link_contact">Contato</a></li>
     </ul>
 
     <div class="nav-actions">
@@ -1216,13 +1216,13 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
 <!-- ══ MOBILE MENU ══════════════════════════════════════════════════ -->
 <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu mobile">
   <button class="mobile-close" id="mobile-close" aria-label="Fechar menu">✕</button>
-  <a href="#hero">Início</a>
-  <a href="#apps">Aplicativos</a>
-  <a href="#blog">Blog</a>
-  <a href="#features">Diferenciais</a>
-  <a href="#about">Sobre</a>
-  <a href="#contact">Contato</a>
-  <a href="#apps" class="btn btn-primary" style="margin-top:8px;">Abrir Aplicativos</a>
+  <a href="#hero" data-i18n="nav_home">Início</a>
+  <a href="#apps" data-i18n="apps_eyebrow">Aplicativos</a>
+  <a href="#blog" data-i18n="footer_link_tutorials">Tutoriais</a>
+  <a href="#about" data-i18n="footer_link_about">Sobre</a>
+  <a href="#team" data-i18n="nav_team">Equipe</a>
+  <a href="#contact" data-i18n="footer_link_contact">Contato</a>
+  <a href="#apps" class="btn btn-primary" style="margin-top:8px;" data-i18n="nav_cta">Abrir Aplicativos</a>
 </div>
 
 <!-- ══ HERO ═════════════════════════════════════════════════════════ -->
@@ -1509,7 +1509,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
 
     <div class="blog-header">
       <div>
-        <div class="section-eyebrow fade-in">Tutoriais</div>
+        <div class="section-eyebrow fade-in" data-i18n="footer_link_tutorials">Tutoriais</div>
         <h2 class="section-title fade-in" id="blog-title">
           <span data-i18n="blog_title">Conteúdo útil sobre<br><em class="text-gradient">tecnologia e gestão</em></span>
         </h2>
@@ -1850,15 +1850,15 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
     <h2 class="section-title fade-in" id="team-title">
       As pessoas por trás<br>da <em class="text-gradient">Dev.Lobbo</em>
     </h2>
-    <p class="section-desc fade-in">
+    <p class="section-desc fade-in" data-i18n="team_sub">
       Duas desenvolvedoras full stack apaixonadas por tecnologia e por criar soluções que fazem diferença no dia a dia das pessoas.
     </p>
     <div class="team-grid">
       <div class="team-card fade-in">
         <div class="team-avatar">LB<div class="team-avatar-badge">✓</div></div>
         <div class="team-name">Lorrainy Bombonatto</div>
-        <div class="team-role">Co-fundadora & Desenvolvedora Full Stack</div>
-        <p class="team-bio">Cursando o último período de Ciência da Computação, Lorrainy é desenvolvedora full stack com experiência em desenvolvimento mobile e web. Tem extensão em Python e domina tanto o front quanto o back end.</p>
+        <div class="team-role" data-i18n="team_role">Co-fundadora &amp; Desenvolvedora Full Stack</div>
+        <p class="team-bio" data-i18n="team1_bio">Cursando o último período de Ciência da Computação, Lorrainy é desenvolvedora full stack com experiência em desenvolvimento mobile e web. Tem extensão em Python e domina tanto o front quanto o back end.</p>
         <div class="team-skills">
           <span class="skill-tag">Flutter</span>
           <span class="skill-tag">React</span>
@@ -1870,14 +1870,14 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <span class="skill-tag">Front End</span>
           <span class="skill-tag purple">Back End</span>
         </div>
-        <div class="team-edu"><span>🎓</span> Ciência da Computação — Último período</div>
-        <div class="team-photo-placeholder">📸 Foto em breve</div>
+        <div class="team-edu"><span>🎓</span> <span data-i18n="team_edu">Ciência da Computação — Último período</span></div>
+        <div class="team-photo-placeholder">📸 <span data-i18n="team_photo_soon">Foto em breve</span></div>
       </div>
       <div class="team-card fade-in">
         <div class="team-avatar" style="background:linear-gradient(135deg,#B600FF,#7000cc);">CD<div class="team-avatar-badge">✓</div></div>
         <div class="team-name">Cibeli Defreyn</div>
-        <div class="team-role">Co-fundadora & Desenvolvedora Full Stack</div>
-        <p class="team-bio">Cursando o último período de Ciência da Computação, Cibeli é desenvolvedora full stack com foco em aplicações mobile e sistemas robustos. Combina habilidades de front e back end para entregar produtos completos.</p>
+        <div class="team-role" data-i18n="team_role">Co-fundadora &amp; Desenvolvedora Full Stack</div>
+        <p class="team-bio" data-i18n="team2_bio">Cursando o último período de Ciência da Computação, Cibeli é desenvolvedora full stack com foco em aplicações mobile e sistemas robustos. Combina habilidades de front e back end para entregar produtos completos.</p>
         <div class="team-skills">
           <span class="skill-tag">Flutter</span>
           <span class="skill-tag">React</span>
@@ -1889,8 +1889,8 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <span class="skill-tag">Front End</span>
           <span class="skill-tag purple">Back End</span>
         </div>
-        <div class="team-edu"><span>🎓</span> Ciência da Computação — Último período</div>
-        <div class="team-photo-placeholder">📸 Foto em breve</div>
+        <div class="team-edu"><span>🎓</span> <span data-i18n="team_edu">Ciência da Computação — Último período</span></div>
+        <div class="team-photo-placeholder">📸 <span data-i18n="team_photo_soon">Foto em breve</span></div>
       </div>
     </div>
   </div>
@@ -2345,6 +2345,12 @@ const TRANSLATIONS = {
     footer_copy: '© 2026 Dev.Lobbo. Todos os direitos reservados.',
     footer_privacy: 'Privacidade', footer_terms: 'Termos de Uso', footer_cookies: 'Cookies',
     preview1_desc: 'Gestão empresarial completa', preview2_desc: 'Escalas inteligentes', stat_ready: 'prontos',
+    nav_home: 'Início', nav_team: 'Equipe',
+    team_sub: 'Duas desenvolvedoras full stack apaixonadas por tecnologia e por criar soluções que fazem diferença no dia a dia das pessoas.',
+    team_role: 'Co-fundadora & Desenvolvedora Full Stack',
+    team1_bio: 'Cursando o último período de Ciência da Computação, Lorrainy é desenvolvedora full stack com experiência em desenvolvimento mobile e web. Tem extensão em Python e domina tanto o front quanto o back end.',
+    team2_bio: 'Cursando o último período de Ciência da Computação, Cibeli é desenvolvedora full stack com foco em aplicações mobile e sistemas robustos. Combina habilidades de front e back end para entregar produtos completos.',
+    team_edu: 'Ciência da Computação — Último período', team_photo_soon: 'Foto em breve',
   },
   en: {
     lang: 'en-US',
@@ -2397,6 +2403,12 @@ const TRANSLATIONS = {
     footer_copy: '© 2026 Dev.Lobbo. All rights reserved.',
     footer_privacy: 'Privacy', footer_terms: 'Terms of Use', footer_cookies: 'Cookies',
     preview1_desc: 'Complete business management', preview2_desc: 'Smart scheduling', stat_ready: 'ready',
+    nav_home: 'Home', nav_team: 'Team',
+    team_sub: 'Two full stack developers passionate about technology and building solutions that make a real difference in people\'s daily lives.',
+    team_role: 'Co-founder & Full Stack Developer',
+    team1_bio: 'Currently in her final semester of Computer Science, Lorrainy is a full stack developer with experience in mobile and web development. She has an extension in Python and masters both front and back end.',
+    team2_bio: 'Currently in her final semester of Computer Science, Cibeli is a full stack developer focused on mobile applications and robust systems. She combines front and back end skills to deliver complete products.',
+    team_edu: 'Computer Science — Final semester', team_photo_soon: 'Photo coming soon',
   },
   es: {
     lang: 'es-ES',
@@ -2449,6 +2461,12 @@ const TRANSLATIONS = {
     footer_copy: '© 2026 Dev.Lobbo. Todos los derechos reservados.',
     footer_privacy: 'Privacidad', footer_terms: 'Términos de Uso', footer_cookies: 'Cookies',
     preview1_desc: 'Gestión empresarial completa', preview2_desc: 'Turnos inteligentes', stat_ready: 'listos',
+    nav_home: 'Inicio', nav_team: 'Equipo',
+    team_sub: 'Dos desarrolladoras full stack apasionadas por la tecnología y por crear soluciones que marcan la diferencia en el día a día de las personas.',
+    team_role: 'Cofundadora y Desarrolladora Full Stack',
+    team1_bio: 'Cursando el último semestre de Ciencias de la Computación, Lorrainy es desarrolladora full stack con experiencia en desarrollo móvil y web. Tiene una extensión en Python y domina tanto el front como el back end.',
+    team2_bio: 'Cursando el último semestre de Ciencias de la Computación, Cibeli es desarrolladora full stack enfocada en aplicaciones móviles y sistemas robustos. Combina habilidades de front y back end para entregar productos completos.',
+    team_edu: 'Ciencias de la Computación — Último semestre', team_photo_soon: 'Foto próximamente',
   },
   fr: {
     lang: 'fr-FR',
@@ -2501,6 +2519,12 @@ const TRANSLATIONS = {
     footer_copy: '© 2026 Dev.Lobbo. Tous droits réservés.',
     footer_privacy: 'Confidentialité', footer_terms: 'Conditions d\'Utilisation', footer_cookies: 'Cookies',
     preview1_desc: 'Gestion d\'entreprise complète', preview2_desc: 'Plannings intelligents', stat_ready: 'prêts',
+    nav_home: 'Accueil', nav_team: 'Équipe',
+    team_sub: 'Deux développeuses full stack passionnées de technologie et de création de solutions qui font une vraie différence au quotidien.',
+    team_role: 'Cofondatrice & Développeuse Full Stack',
+    team1_bio: 'En dernière année de licence en Informatique, Lorrainy est développeuse full stack avec de l\'expérience en développement mobile et web. Elle a une spécialisation en Python et maîtrise le front-end comme le back-end.',
+    team2_bio: 'En dernière année de licence en Informatique, Cibeli est développeuse full stack spécialisée dans les applications mobiles et les systèmes robustes. Elle combine des compétences front-end et back-end pour livrer des produits complets.',
+    team_edu: 'Informatique — Dernière année', team_photo_soon: 'Photo bientôt disponible',
   },
   de: {
     lang: 'de-DE',
@@ -2553,6 +2577,12 @@ const TRANSLATIONS = {
     footer_copy: '© 2026 Dev.Lobbo. Alle Rechte vorbehalten.',
     footer_privacy: 'Datenschutz', footer_terms: 'Nutzungsbedingungen', footer_cookies: 'Cookies',
     preview1_desc: 'Komplette Unternehmensverwaltung', preview2_desc: 'Intelligente Dienstpläne', stat_ready: 'bereit',
+    nav_home: 'Start', nav_team: 'Team',
+    team_sub: 'Zwei Full-Stack-Entwicklerinnen mit Leidenschaft für Technologie und dafür, Lösungen zu schaffen, die im Alltag der Menschen wirklich etwas bewirken.',
+    team_role: 'Mitgründerin & Full-Stack-Entwicklerin',
+    team1_bio: 'Im letzten Semester ihres Informatikstudiums ist Lorrainy Full-Stack-Entwicklerin mit Erfahrung in mobiler und Web-Entwicklung. Sie hat eine Zusatzausbildung in Python und beherrscht sowohl Frontend als auch Backend.',
+    team2_bio: 'Im letzten Semester ihres Informatikstudiums ist Cibeli Full-Stack-Entwicklerin mit Fokus auf mobile Anwendungen und robuste Systeme. Sie kombiniert Frontend- und Backend-Fähigkeiten, um vollständige Produkte zu liefern.',
+    team_edu: 'Informatik — Letztes Semester', team_photo_soon: 'Foto folgt in Kürze',
   }
 };
 
