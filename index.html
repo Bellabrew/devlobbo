@@ -394,8 +394,6 @@ body.light-mode #navbar.scrolled {
   transform: translateY(-3px);
   box-shadow: var(--shadow-neon);
 }
-.app-card.reverse { direction: rtl; }
-.app-card.reverse > * { direction: ltr; }
 
 .app-visual {
   background: linear-gradient(135deg, #0a1628, #140a28);
@@ -783,7 +781,6 @@ footer {
   .blog-card.featured { flex-direction: column; }
   .blog-card.featured .blog-card-img { width: 100%; height: 200px; }
   .app-card { grid-template-columns: 1fr; }
-  .app-card.reverse { direction: ltr; }
   .app-visual { min-height: 280px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .about-grid { grid-template-columns: 1fr; }
@@ -1065,9 +1062,6 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
   .app-card {
     grid-template-columns: 1fr !important;
   }
-  .app-card.reverse {
-    direction: ltr !important;
-  }
   .app-info {
     padding: 24px 20px !important;
   }
@@ -1317,7 +1311,8 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
       </article>
 
       <!-- ── Sr. Plantão ── -->
-      <article class="app-card reverse fade-in" aria-label="Sr. Plantão — Gerenciamento de escalas">
+      <article class="app-card fade-in" aria-label="Sr. Plantão — Gerenciamento de escalas">
+        <div class="app-visual" style="padding:16px;overflow:hidden;"><img src="/img/srplantao-preview.jpg" alt="Sr. Plantão" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;" loading="lazy"></div>
         <div class="app-info">
           <div class="app-category" data-i18n="app2_category">Escalas e Plantões Inteligentes</div>
           <h3 class="app-title">Sr. Plantão</h3>
@@ -1344,7 +1339,6 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
             </button>
           </div>
         </div>
-        <div class="app-visual" style="padding:16px;overflow:hidden;"><img src="/img/srplantao-preview.jpg" alt="Sr. Plantão" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;" loading="lazy"></div>
       </article>
 
       <!-- ── Ponto Justificado ── -->
@@ -1375,8 +1369,8 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
       </article>
 
       <!-- ── DocViewer-PDF (app externo, divulgação apenas) ── -->
-      <article class="app-card reverse fade-in" aria-label="DocViewer-PDF — Leitor de PDF">
-        <div class="app-visual" style="padding:16px;overflow:hidden;"><img src="/img/docviewer-pdf-preview.png" alt="DocViewer-PDF" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;" loading="lazy"></div>
+      <article class="app-card fade-in" aria-label="DocViewer-PDF — Leitor de PDF">
+        <div class="app-visual" style="padding:16px;overflow:hidden;"><img src="/img/docviewer-pdf-preview.jpg" alt="DocViewer-PDF" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;" loading="lazy"></div>
         <div class="app-info">
           <div class="app-category" data-i18n="app4_category">Leitor de PDF</div>
           <h3 class="app-title">DocViewer-PDF</h3>
