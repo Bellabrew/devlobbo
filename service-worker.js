@@ -15,17 +15,12 @@ self.addEventListener('activate', (event) => {
       const cacheNames = await caches.keys();
       await Promise.all(cacheNames.map((name) => caches.delete(name)));
 
-      // Assume o controle de todas as abas abertas imediatamente
-      await self.clients.claim();
-
       // Desinstala este próprio service worker — a partir de agora,
       // o site passa a funcionar normalmente, sempre buscando da rede.
+      // IMPORTANTE: não força reload da página (isso causava um loop
+      // infinito de recarregamento, já que a página tenta registrar
+      // este mesmo arquivo novamente a cada load).
       await self.registration.unregister();
-
-      // Força um reload das páginas abertas para que carreguem a versão
-      // atual do site diretamente da rede, sem qualquer service worker.
-      const clientsList = await self.clients.matchAll({ type: 'window' });
-      clientsList.forEach((client) => client.navigate(client.url));
     })()
   );
 });
