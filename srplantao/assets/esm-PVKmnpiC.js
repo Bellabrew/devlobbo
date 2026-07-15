@@ -1,2 +1,0 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./web-CDnryMgn.js","./dist-BqG9tZro.js"])))=>i.map(i=>d[i]);
-import{t as e}from"./index-r2piombm.js";import{r as t}from"./dist-BqG9tZro.js";var n=t(`Preferences`,{web:()=>e(()=>import(`./web-CDnryMgn.js`).then(e=>new e.PreferencesWeb),__vite__mapDeps([0,1]),import.meta.url)});export{n as Preferences};
