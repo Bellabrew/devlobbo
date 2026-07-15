@@ -59,6 +59,22 @@ main { padding: 48px 0 80px; }
 footer { border-top:1px solid var(--clr-border); padding:32px 0; text-align:center; font-size:13px; color:var(--clr-muted); }
 footer a { color:var(--clr-muted2); margin:0 8px; }
 .adslot { margin:40px 0; text-align:center; }
+.lang-switcher { position: relative; }
+.lang-btn { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 9px; background: rgba(255,255,255,0.06); border: 1px solid var(--clr-border); color: var(--clr-muted2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }
+.lang-btn:hover { background: rgba(255,255,255,0.1); color: var(--clr-text); }
+.lang-flag { font-size: 16px; }
+.lang-code { font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
+.lang-arrow { font-size: 10px; color: var(--clr-muted); transition: transform var(--transition); }
+.lang-switcher.open .lang-arrow { transform: rotate(180deg); }
+.lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-md); padding: 6px; min-width: 160px; z-index: 200; box-shadow: 0 8px 32px rgba(0,0,0,0.4); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all var(--transition); }
+.lang-switcher.open .lang-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.lang-option { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--clr-muted2); cursor: pointer; transition: all var(--transition); border: none; background: none; width: 100%; text-align: left; font-family: var(--font-body); }
+.lang-option:hover { background: rgba(0,207,255,0.07); color: var(--clr-text); }
+.lang-option.active { color: var(--clr-neon-blue); background: rgba(0,207,255,0.07); }
+.lang-option .lang-flag { font-size: 18px; }
+.lang-option-name { flex: 1; }
+.lang-option-check { color: var(--clr-neon-blue); font-size: 12px; }
+@media (max-width:480px){ .lang-code{display:none;} .lang-btn{padding:6px 8px;} }
 </style>
 </head>
 <body>
@@ -69,62 +85,75 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
       <div class="nav-logo-icon">dL</div>
       <span class="nav-logo-text">Dev<span>.Lobbo</span></span>
     </a>
-    <a href="/#blog" class="back-link">← Voltar para Tutoriais</a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="/#blog" class="back-link" data-i18n="back_link">← Voltar para Tutoriais</a>
+      <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn" aria-label="Idioma" aria-haspopup="true">
+          <span class="lang-flag" id="lang-flag">🇧🇷</span>
+          <span class="lang-code" id="lang-code">PT</span>
+          <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="menu">
+          <button class="lang-option active" data-lang="pt" role="menuitem"><span class="lang-flag">🇧🇷</span><span class="lang-option-name">Português</span><span class="lang-option-check" id="check-pt">✓</span></button>
+          <button class="lang-option" data-lang="en" role="menuitem"><span class="lang-flag">🇺🇸</span><span class="lang-option-name">English</span><span class="lang-option-check" id="check-en" style="display:none">✓</span></button>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <main>
   <div class="container">
-    <div class="breadcrumb"><a href="/">Início</a> › <a href="/#blog">Tutoriais</a> › Como a Inteligência Artificial está transformando a gestão de equipes</div>
+    <div class="breadcrumb"><a href="/" data-i18n="nav_home">Início</a> › <a href="/#blog" data-i18n="nav_tutorials">Tutoriais</a> › <span data-i18n="art_title_bc">Como a Inteligência Artificial está transformando a gestão de equipes</span></div>
 
-    <div class="article-category">Tendências</div>
-    <h1 class="article-title">Como a Inteligência Artificial está transformando a gestão de equipes</h1>
+    <div class="article-category" data-i18n="art_category">Tendências</div>
+    <h1 class="article-title" data-i18n="art_title">Como a Inteligência Artificial está transformando a gestão de equipes</h1>
     <div class="article-meta">
-      <span>📅 24 de fevereiro de 2026</span>
-      <span>⏱️ 7 min de leitura</span>
-      <span>✍️ Equipe Dev.Lobbo</span>
+      <span data-i18n="art_date">📅 24 de fevereiro de 2026</span>
+      <span data-i18n="art_read">⏱️ 7 min de leitura</span>
+      <span data-i18n="art_author">✍️ Equipe Dev.Lobbo</span>
     </div>
 
     <img class="article-cover" src="/blog/img/inteligencia-artificial-trabalho-2026.jpg" alt="" loading="lazy">
 
     <div class="article-body">
 
-<p>A inteligência artificial deixou de ser um recurso experimental e passou a fazer parte do dia a dia de sistemas de gestão de pessoas. Não se trata de substituir gestores por algoritmos, mas de dar a eles ferramentas capazes de identificar padrões que seriam difíceis — ou demorados demais — de perceber manualmente.</p>
+<p data-i18n="p1">A inteligência artificial deixou de ser um recurso experimental e passou a fazer parte do dia a dia de sistemas de gestão de pessoas. Não se trata de substituir gestores por algoritmos, mas de dar a eles ferramentas capazes de identificar padrões que seriam difíceis — ou demorados demais — de perceber manualmente.</p>
 
-<h2>Onde a IA já ajuda na prática</h2>
+<h2 data-i18n="h2_1">Onde a IA já ajuda na prática</h2>
 <ul>
-<li><strong>Sugestão de escalas otimizadas:</strong> algoritmos analisam histórico de faltas, preferências de horário e carga de trabalho para propor escalas mais equilibradas, reduzindo conflitos antes mesmo de acontecerem.</li>
-<li><strong>Previsão de ausências:</strong> ao identificar padrões (por exemplo, aumento de faltas em determinados dias da semana ou períodos do ano), um sistema pode alertar o gestor para se antecipar com reforço de equipe.</li>
-<li><strong>Detecção de sobrecarga:</strong> monitorar banco de horas e horas extras de forma constante permite identificar colaboradores em risco de esgotamento antes que isso vire um problema de saúde ou produtividade.</li>
-<li><strong>Automação de relatórios:</strong> em vez de o RH compilar manualmente indicadores todo mês, a IA já entrega os números prontos, com destaque para anomalias.</li>
+<li data-i18n="li1"><strong>Sugestão de escalas otimizadas:</strong> algoritmos analisam histórico de faltas, preferências de horário e carga de trabalho para propor escalas mais equilibradas, reduzindo conflitos antes mesmo de acontecerem.</li>
+<li data-i18n="li2"><strong>Previsão de ausências:</strong> ao identificar padrões (por exemplo, aumento de faltas em determinados dias da semana ou períodos do ano), um sistema pode alertar o gestor para se antecipar com reforço de equipe.</li>
+<li data-i18n="li3"><strong>Detecção de sobrecarga:</strong> monitorar banco de horas e horas extras de forma constante permite identificar colaboradores em risco de esgotamento antes que isso vire um problema de saúde ou produtividade.</li>
+<li data-i18n="li4"><strong>Automação de relatórios:</strong> em vez de o RH compilar manualmente indicadores todo mês, a IA já entrega os números prontos, com destaque para anomalias.</li>
 </ul>
 
-<h2>Um exemplo de aplicação real</h2>
-<p>Imagine uma equipe de plantonistas de saúde com 60 pessoas, distribuídas em turnos 12x36. Um sistema com componentes de IA pode analisar o histórico de trocas de plantão dos últimos meses e sugerir, na hora de montar a próxima escala, distribuições que minimizem pedidos de troca — por exemplo, evitando colocar a mesma pessoa em plantões de fim de semana consecutivos, com base no padrão observado de insatisfação.</p>
+<h2 data-i18n="h2_2">Um exemplo de aplicação real</h2>
+<p data-i18n="p2">Imagine uma equipe de plantonistas de saúde com 60 pessoas, distribuídas em turnos 12x36. Um sistema com componentes de IA pode analisar o histórico de trocas de plantão dos últimos meses e sugerir, na hora de montar a próxima escala, distribuições que minimizem pedidos de troca — por exemplo, evitando colocar a mesma pessoa em plantões de fim de semana consecutivos, com base no padrão observado de insatisfação.</p>
 
-<div class="callout">💡 O maior ganho da IA aplicada à gestão de equipes não é "prever o futuro com certeza", e sim reduzir o tempo que gestores gastam identificando problemas que já estavam nos dados — só que dispersos demais para enxergar manualmente.</div>
+<div class="callout" data-i18n="callout">💡 O maior ganho da IA aplicada à gestão de equipes não é "prever o futuro com certeza", e sim reduzir o tempo que gestores gastam identificando problemas que já estavam nos dados — só que dispersos demais para enxergar manualmente.</div>
 
-<h2>Cuidados na adoção</h2>
-<p>Vale lembrar que qualquer sistema baseado em dados históricos carrega os vieses desses dados. Se uma equipe historicamente sobrecarregou um grupo específico de colaboradores, um algoritmo mal calibrado pode reforçar esse padrão em vez de corrigi-lo. Por isso, ferramentas de IA para gestão de pessoas funcionam melhor como apoio à decisão do gestor — não como decisão automática e definitiva.</p>
+<h2 data-i18n="h2_3">Cuidados na adoção</h2>
+<p data-i18n="p3">Vale lembrar que qualquer sistema baseado em dados históricos carrega os vieses desses dados. Se uma equipe historicamente sobrecarregou um grupo específico de colaboradores, um algoritmo mal calibrado pode reforçar esse padrão em vez de corrigi-lo. Por isso, ferramentas de IA para gestão de pessoas funcionam melhor como apoio à decisão do gestor — não como decisão automática e definitiva.</p>
 
-<h2>O que esperar dos próximos anos</h2>
-<p>A tendência é que sistemas de gestão de escalas, ponto e RH incorporem cada vez mais esses recursos de forma nativa, sem exigir conhecimento técnico do usuário final. O gestor simplesmente recebe sugestões e alertas dentro da própria ferramenta que já usa no dia a dia — sem precisar aprender uma nova plataforma de análise de dados separada.</p>
+<h2 data-i18n="h2_4">O que esperar dos próximos anos</h2>
+<p data-i18n="p4">A tendência é que sistemas de gestão de escalas, ponto e RH incorporem cada vez mais esses recursos de forma nativa, sem exigir conhecimento técnico do usuário final. O gestor simplesmente recebe sugestões e alertas dentro da própria ferramenta que já usa no dia a dia — sem precisar aprender uma nova plataforma de análise de dados separada.</p>
 
-<p>Empresas que começarem a se familiarizar com esses recursos agora, mesmo que de forma gradual, tendem a estar em vantagem quando esse tipo de automação se tornar padrão de mercado.</p>
+<p data-i18n="p5">Empresas que começarem a se familiarizar com esses recursos agora, mesmo que de forma gradual, tendem a estar em vantagem quando esse tipo de automação se tornar padrão de mercado.</p>
 
     </div>
 
     <div class="article-cta">
-      <h3>O futuro da gestão de equipes já começou</h3>
-      <p>Estamos incorporando recursos inteligentes aos nossos sistemas de gestão e escalas.</p>
-      <a href="/#apps">Conhecer Aplicativos</a>
+      <h3 data-i18n="cta_title">O futuro da gestão de equipes já começou</h3>
+      <p data-i18n="cta_desc">Estamos incorporando recursos inteligentes aos nossos sistemas de gestão e escalas.</p>
+      <a href="/#apps" data-i18n="cta_btn">Conhecer Aplicativos</a>
     </div>
 
     <div class="related">
-      <h3>Continue lendo</h3>
+      <h3 data-i18n="related_title">Continue lendo</h3>
       <div class="related-list">
-        <a href="/blog/escalas-de-plantao-organizacao.html">Como organizar escalas de plantão: policiais, bombeiros, médicos e enfermeiros</a>
-        <a href="/blog/automacao-tarefas-produtividade.html">Automação de tarefas repetitivas: por onde começar</a>
+        <a href="/blog/escalas-de-plantao-organizacao.html" data-i18n="related1">Como organizar escalas de plantão: policiais, bombeiros, médicos e enfermeiros</a>
+        <a href="/blog/automacao-tarefas-produtividade.html" data-i18n="related2">Automação de tarefas repetitivas: por onde começar</a>
 
       </div>
     </div>
@@ -133,14 +162,132 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
 
 <footer>
   <div class="container">
-    <p>© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
+    <p data-i18n="footer_copy">© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
     <div style="margin-top:8px;">
-      <a href="/privacidade.html">Privacidade</a>
-      <a href="/termos.html">Termos de Uso</a>
-      <a href="/#contact">Contato</a>
+      <a href="/privacidade.html" data-i18n="footer_privacy">Privacidade</a>
+      <a href="/termos.html" data-i18n="footer_terms">Termos de Uso</a>
+      <a href="/#contact" data-i18n="footer_contact">Contato</a>
     </div>
   </div>
 </footer>
+
+<script>
+const TRANSLATIONS = {
+  pt: {
+    lang:'pt-BR', flag:'🇧🇷', code:'PT',
+    back_link: '← Voltar para Tutoriais',
+    nav_home: 'Início',
+    nav_tutorials: 'Tutoriais',
+    art_title_bc: 'Como a Inteligência Artificial está transformando a gestão de equipes',
+    art_category: 'Tendências',
+    art_title: 'Como a Inteligência Artificial está transformando a gestão de equipes',
+    art_date: '📅 24 de fevereiro de 2026',
+    art_read: '⏱️ 7 min de leitura',
+    art_author: '✍️ Equipe Dev.Lobbo',
+    p1: 'A inteligência artificial deixou de ser um recurso experimental e passou a fazer parte do dia a dia de sistemas de gestão de pessoas. Não se trata de substituir gestores por algoritmos, mas de dar a eles ferramentas capazes de identificar padrões que seriam difíceis — ou demorados demais — de perceber manualmente.',
+    p2: 'Imagine uma equipe de plantonistas de saúde com 60 pessoas, distribuídas em turnos 12x36. Um sistema com componentes de IA pode analisar o histórico de trocas de plantão dos últimos meses e sugerir, na hora de montar a próxima escala, distribuições que minimizem pedidos de troca — por exemplo, evitando colocar a mesma pessoa em plantões de fim de semana consecutivos, com base no padrão observado de insatisfação.',
+    p3: 'Vale lembrar que qualquer sistema baseado em dados históricos carrega os vieses desses dados. Se uma equipe historicamente sobrecarregou um grupo específico de colaboradores, um algoritmo mal calibrado pode reforçar esse padrão em vez de corrigi-lo. Por isso, ferramentas de IA para gestão de pessoas funcionam melhor como apoio à decisão do gestor — não como decisão automática e definitiva.',
+    p4: 'A tendência é que sistemas de gestão de escalas, ponto e RH incorporem cada vez mais esses recursos de forma nativa, sem exigir conhecimento técnico do usuário final. O gestor simplesmente recebe sugestões e alertas dentro da própria ferramenta que já usa no dia a dia — sem precisar aprender uma nova plataforma de análise de dados separada.',
+    p5: 'Empresas que começarem a se familiarizar com esses recursos agora, mesmo que de forma gradual, tendem a estar em vantagem quando esse tipo de automação se tornar padrão de mercado.',
+    h2_1: 'Onde a IA já ajuda na prática',
+    h2_2: 'Um exemplo de aplicação real',
+    h2_3: 'Cuidados na adoção',
+    h2_4: 'O que esperar dos próximos anos',
+    li1: '<strong>Sugestão de escalas otimizadas:</strong> algoritmos analisam histórico de faltas, preferências de horário e carga de trabalho para propor escalas mais equilibradas, reduzindo conflitos antes mesmo de acontecerem.',
+    li2: '<strong>Previsão de ausências:</strong> ao identificar padrões (por exemplo, aumento de faltas em determinados dias da semana ou períodos do ano), um sistema pode alertar o gestor para se antecipar com reforço de equipe.',
+    li3: '<strong>Detecção de sobrecarga:</strong> monitorar banco de horas e horas extras de forma constante permite identificar colaboradores em risco de esgotamento antes que isso vire um problema de saúde ou produtividade.',
+    li4: '<strong>Automação de relatórios:</strong> em vez de o RH compilar manualmente indicadores todo mês, a IA já entrega os números prontos, com destaque para anomalias.',
+    callout: '💡 O maior ganho da IA aplicada à gestão de equipes não é "prever o futuro com certeza", e sim reduzir o tempo que gestores gastam identificando problemas que já estavam nos dados — só que dispersos demais para enxergar manualmente.',
+    cta_title: 'O futuro da gestão de equipes já começou',
+    cta_desc: 'Estamos incorporando recursos inteligentes aos nossos sistemas de gestão e escalas.',
+    cta_btn: 'Conhecer Aplicativos',
+    related_title: 'Continue lendo',
+    related1: 'Como organizar escalas de plantão: policiais, bombeiros, médicos e enfermeiros',
+    related2: 'Automação de tarefas repetitivas: por onde começar',
+    footer_copy: '© 2026 Dev.Lobbo. Todos os direitos reservados.',
+    footer_privacy: 'Privacidade',
+    footer_terms: 'Termos de Uso',
+    footer_contact: 'Contato',
+    page_title: 'Como a Inteligência Artificial está transformando a gestão de equipes | Blog Dev.Lobbo',
+  },
+  en: {
+    lang:'en', flag:'🇺🇸', code:'EN',
+    art_title_bc: 'How Artificial Intelligence is transforming team management',
+    art_category: 'Trends',
+    art_title: 'How Artificial Intelligence is transforming team management',
+    art_date: '📅 February 24, 2026',
+    art_read: '⏱️ 7 min read',
+    art_author: '✍️ Dev.Lobbo Team',
+    p1: 'Artificial intelligence has stopped being an experimental feature and become part of the everyday routine of people-management systems. It\'s not about replacing managers with algorithms, but about giving them tools capable of spotting patterns that would be hard — or too time-consuming — to notice manually.',
+    h2_1: 'Where AI is already helping in practice',
+    li1: '<strong>Optimized schedule suggestions:</strong> algorithms analyze absence history, time preferences and workload to propose more balanced schedules, reducing conflicts before they even happen.',
+    li2: '<strong>Absence forecasting:</strong> by spotting patterns (for example, more absences on certain days of the week or times of year), a system can alert the manager to plan ahead with extra staffing.',
+    li3: '<strong>Overload detection:</strong> constantly monitoring overtime bank and extra hours makes it possible to identify employees at risk of burnout before it becomes a health or productivity problem.',
+    li4: '<strong>Report automation:</strong> instead of HR manually compiling metrics every month, AI already delivers the numbers ready to go, with anomalies flagged.',
+    h2_2: 'A real-world example',
+    p2: 'Imagine a healthcare on-call team of 60 people, spread across 12x36 shifts. A system with AI components can analyze recent months\' shift-swap history and, when building the next schedule, suggest distributions that minimize swap requests — for example, avoiding placing the same person on consecutive weekend shifts, based on the observed pattern of dissatisfaction.',
+    callout: '💡 The biggest gain from AI applied to team management isn\'t "predicting the future with certainty," but reducing the time managers spend spotting problems that were already in the data — just too scattered to see manually.',
+    h2_3: 'Precautions when adopting it',
+    p3: 'It\'s worth remembering that any system based on historical data carries the biases of that data. If a team has historically overloaded a specific group of employees, a poorly calibrated algorithm can reinforce that pattern instead of correcting it. That\'s why AI tools for people management work best as decision support for the manager — not as an automatic, final decision.',
+    h2_4: 'What to expect in the coming years',
+    p4: 'The trend is for scheduling, time-tracking and HR systems to increasingly build in these features natively, without requiring technical knowledge from the end user. The manager simply receives suggestions and alerts inside the same tool they already use every day — without needing to learn a separate data-analysis platform.',
+    p5: 'Companies that start getting familiar with these features now, even gradually, tend to have an advantage once this kind of automation becomes the market standard.',
+    cta_title: 'The future of team management has already begun',
+    cta_desc: 'We\'re building smart features into our scheduling and management systems.',
+    cta_btn: 'Explore Apps',
+    related_title: 'Keep reading',
+    related1: 'How to organize on-call shifts: police officers, firefighters, doctors and nurses',
+    related2: 'Automating repetitive tasks: where to start',
+    footer_copy: '© 2026 Dev.Lobbo. All rights reserved.',
+    page_title: 'How Artificial Intelligence is transforming team management | Dev.Lobbo Blog',
+    nav_home: 'Home',
+    nav_tutorials: 'Tutorials',
+    back_link: '← Back to Tutorials',
+    footer_privacy: 'Privacy',
+    footer_terms: 'Terms of Use',
+    footer_contact: 'Contact',
+  }
+};
+
+function detectLang() {
+  const saved = localStorage.getItem('dl-lang');
+  if (saved && TRANSLATIONS[saved]) return saved;
+  const browserLang = navigator.language || navigator.userLanguage || 'pt';
+  const code = browserLang.toLowerCase().slice(0, 2);
+  const map = { pt: 'pt', en: 'en' };
+  return map[code] || 'pt';
+}
+
+function applyLang(langCode) {
+  const t = TRANSLATIONS[langCode];
+  if (!t) return;
+  document.documentElement.setAttribute('lang', t.lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.getElementById('lang-flag').textContent = t.flag;
+  document.getElementById('lang-code').textContent = t.code;
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    const isActive = opt.dataset.lang === langCode;
+    opt.classList.toggle('active', isActive);
+    const check = opt.querySelector('.lang-option-check');
+    if (check) check.style.display = isActive ? '' : 'none';
+  });
+  localStorage.setItem('dl-lang', langCode);
+  if (t.page_title) document.title = t.page_title;
+}
+
+const langSwitcher = document.getElementById('lang-switcher');
+const langBtnEl = document.getElementById('lang-btn');
+langBtnEl.addEventListener('click', (e) => { e.stopPropagation(); langSwitcher.classList.toggle('open'); });
+document.addEventListener('click', () => langSwitcher.classList.remove('open'));
+document.querySelectorAll('.lang-option').forEach(opt => {
+  opt.addEventListener('click', (e) => { e.stopPropagation(); applyLang(opt.dataset.lang); langSwitcher.classList.remove('open'); });
+});
+
+(function() { applyLang(detectLang()); })();
+</script>
 
 </body>
 </html>

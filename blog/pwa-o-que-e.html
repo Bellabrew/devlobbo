@@ -59,6 +59,22 @@ main { padding: 48px 0 80px; }
 footer { border-top:1px solid var(--clr-border); padding:32px 0; text-align:center; font-size:13px; color:var(--clr-muted); }
 footer a { color:var(--clr-muted2); margin:0 8px; }
 .adslot { margin:40px 0; text-align:center; }
+.lang-switcher { position: relative; }
+.lang-btn { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 9px; background: rgba(255,255,255,0.06); border: 1px solid var(--clr-border); color: var(--clr-muted2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }
+.lang-btn:hover { background: rgba(255,255,255,0.1); color: var(--clr-text); }
+.lang-flag { font-size: 16px; }
+.lang-code { font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
+.lang-arrow { font-size: 10px; color: var(--clr-muted); transition: transform var(--transition); }
+.lang-switcher.open .lang-arrow { transform: rotate(180deg); }
+.lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-md); padding: 6px; min-width: 160px; z-index: 200; box-shadow: 0 8px 32px rgba(0,0,0,0.4); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all var(--transition); }
+.lang-switcher.open .lang-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.lang-option { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--clr-muted2); cursor: pointer; transition: all var(--transition); border: none; background: none; width: 100%; text-align: left; font-family: var(--font-body); }
+.lang-option:hover { background: rgba(0,207,255,0.07); color: var(--clr-text); }
+.lang-option.active { color: var(--clr-neon-blue); background: rgba(0,207,255,0.07); }
+.lang-option .lang-flag { font-size: 18px; }
+.lang-option-name { flex: 1; }
+.lang-option-check { color: var(--clr-neon-blue); font-size: 12px; }
+@media (max-width:480px){ .lang-code{display:none;} .lang-btn{padding:6px 8px;} }
 </style>
 </head>
 <body>
@@ -69,68 +85,81 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
       <div class="nav-logo-icon">dL</div>
       <span class="nav-logo-text">Dev<span>.Lobbo</span></span>
     </a>
-    <a href="/#blog" class="back-link">← Voltar para Tutoriais</a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="/#blog" class="back-link" data-i18n="back_link">← Voltar para Tutoriais</a>
+      <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn" aria-label="Idioma" aria-haspopup="true">
+          <span class="lang-flag" id="lang-flag">🇧🇷</span>
+          <span class="lang-code" id="lang-code">PT</span>
+          <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="menu">
+          <button class="lang-option active" data-lang="pt" role="menuitem"><span class="lang-flag">🇧🇷</span><span class="lang-option-name">Português</span><span class="lang-option-check" id="check-pt">✓</span></button>
+          <button class="lang-option" data-lang="en" role="menuitem"><span class="lang-flag">🇺🇸</span><span class="lang-option-name">English</span><span class="lang-option-check" id="check-en" style="display:none">✓</span></button>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <main>
   <div class="container">
-    <div class="breadcrumb"><a href="/">Início</a> › <a href="/#blog">Tutoriais</a> › O que é um PWA e por que seu app deveria ser um</div>
+    <div class="breadcrumb"><a href="/" data-i18n="nav_home">Início</a> › <a href="/#blog" data-i18n="nav_tutorials">Tutoriais</a> › <span data-i18n="art_title_bc">O que é um PWA e por que seu app deveria ser um</span></div>
 
-    <div class="article-category">Tecnologia</div>
-    <h1 class="article-title">O que é um PWA e por que seu app deveria ser um</h1>
+    <div class="article-category" data-i18n="art_category">Tecnologia</div>
+    <h1 class="article-title" data-i18n="art_title">O que é um PWA e por que seu app deveria ser um</h1>
     <div class="article-meta">
-      <span>📅 3 de fevereiro de 2026</span>
-      <span>⏱️ 6 min de leitura</span>
-      <span>✍️ Equipe Dev.Lobbo</span>
+      <span data-i18n="art_date">📅 3 de fevereiro de 2026</span>
+      <span data-i18n="art_read">⏱️ 6 min de leitura</span>
+      <span data-i18n="art_author">✍️ Equipe Dev.Lobbo</span>
     </div>
 
     <img class="article-cover" src="/blog/img/pwa-o-que-e.jpg" alt="" loading="lazy">
 
     <div class="article-body">
 
-<p>Um Progressive Web App (PWA) é, na essência, um site construído com tecnologias web comuns — HTML, CSS e JavaScript — que se comporta como um aplicativo instalado no celular ou computador. Ele pode funcionar offline, enviar notificações, ganhar um ícone na tela inicial e abrir em tela cheia, sem passar pelas lojas de aplicativos tradicionais.</p>
+<p data-i18n="p1">Um Progressive Web App (PWA) é, na essência, um site construído com tecnologias web comuns — HTML, CSS e JavaScript — que se comporta como um aplicativo instalado no celular ou computador. Ele pode funcionar offline, enviar notificações, ganhar um ícone na tela inicial e abrir em tela cheia, sem passar pelas lojas de aplicativos tradicionais.</p>
 
-<h2>O que torna um site um PWA</h2>
-<p>Três elementos técnicos definem essa categoria:</p>
+<h2 data-i18n="h2_1">O que torna um site um PWA</h2>
+<p data-i18n="p2">Três elementos técnicos definem essa categoria:</p>
 <ul>
-<li><strong>Service Worker:</strong> um script que roda em segundo plano e intercepta requisições de rede, permitindo cache inteligente e funcionamento offline.</li>
-<li><strong>Web App Manifest:</strong> um arquivo de configuração que descreve nome, ícone, cores e comportamento do app quando instalado.</li>
-<li><strong>HTTPS obrigatório:</strong> por questões de segurança, PWAs só funcionam plenamente em conexões criptografadas.</li>
+<li data-i18n="li1"><strong>Service Worker:</strong> um script que roda em segundo plano e intercepta requisições de rede, permitindo cache inteligente e funcionamento offline.</li>
+<li data-i18n="li2"><strong>Web App Manifest:</strong> um arquivo de configuração que descreve nome, ícone, cores e comportamento do app quando instalado.</li>
+<li data-i18n="li3"><strong>HTTPS obrigatório:</strong> por questões de segurança, PWAs só funcionam plenamente em conexões criptografadas.</li>
 </ul>
 
-<h2>As vantagens práticas</h2>
-<p>Para uma empresa que está decidindo entre construir um aplicativo nativo (Android/iOS) ou um PWA, algumas diferenças pesam bastante na balança:</p>
+<h2 data-i18n="h2_2">As vantagens práticas</h2>
+<p data-i18n="p3">Para uma empresa que está decidindo entre construir um aplicativo nativo (Android/iOS) ou um PWA, algumas diferenças pesam bastante na balança:</p>
 <ul>
-<li><strong>Sem lojas de aplicativo:</strong> o usuário instala direto do navegador, sem processo de aprovação de terceiros.</li>
-<li><strong>Um único código para todas as plataformas:</strong> o mesmo PWA roda em Android, iOS (com limitações) e desktop.</li>
-<li><strong>Atualizações instantâneas:</strong> como não depende de aprovação de loja, uma correção de bug chega ao usuário assim que é publicada.</li>
-<li><strong>Menor custo de manutenção:</strong> não é necessário manter equipes separadas para cada plataforma nativa.</li>
+<li data-i18n="li4"><strong>Sem lojas de aplicativo:</strong> o usuário instala direto do navegador, sem processo de aprovação de terceiros.</li>
+<li data-i18n="li5"><strong>Um único código para todas as plataformas:</strong> o mesmo PWA roda em Android, iOS (com limitações) e desktop.</li>
+<li data-i18n="li6"><strong>Atualizações instantâneas:</strong> como não depende de aprovação de loja, uma correção de bug chega ao usuário assim que é publicada.</li>
+<li data-i18n="li7"><strong>Menor custo de manutenção:</strong> não é necessário manter equipes separadas para cada plataforma nativa.</li>
 </ul>
 
-<h2>Quando um PWA faz sentido</h2>
-<p>PWAs são especialmente adequados para sistemas de gestão, ferramentas internas, aplicativos de produtividade e serviços que precisam alcançar o maior número de dispositivos possível com o menor custo. Casos que dependem intensamente de recursos muito específicos do sistema operacional — como integração profunda com hardware do celular — ainda se beneficiam mais de um app nativo.</p>
+<h2 data-i18n="h2_3">Quando um PWA faz sentido</h2>
+<p data-i18n="p4">PWAs são especialmente adequados para sistemas de gestão, ferramentas internas, aplicativos de produtividade e serviços que precisam alcançar o maior número de dispositivos possível com o menor custo. Casos que dependem intensamente de recursos muito específicos do sistema operacional — como integração profunda com hardware do celular — ainda se beneficiam mais de um app nativo.</p>
 
-<div class="callout">💡 A instalação de um PWA aparece como um simples botão "Adicionar à tela inicial" no navegador — muitos usuários nem percebem que estão usando um site, e não um app baixado de loja.</div>
+<div class="callout" data-i18n="callout">💡 A instalação de um PWA aparece como um simples botão "Adicionar à tela inicial" no navegador — muitos usuários nem percebem que estão usando um site, e não um app baixado de loja.</div>
 
-<h2>Funcionamento offline: o diferencial mais subestimado</h2>
-<p>Um dos maiores ganhos de um PWA bem construído é continuar funcionando mesmo sem internet — útil, por exemplo, para um profissional de campo registrando informações em uma área sem sinal, que sincronizam automaticamente assim que a conexão volta. Essa característica muda completamente a experiência em cenários de conectividade instável, comuns em boa parte do Brasil.</p>
+<h2 data-i18n="h2_4">Funcionamento offline: o diferencial mais subestimado</h2>
+<p data-i18n="p5">Um dos maiores ganhos de um PWA bem construído é continuar funcionando mesmo sem internet — útil, por exemplo, para um profissional de campo registrando informações em uma área sem sinal, que sincronizam automaticamente assim que a conexão volta. Essa característica muda completamente a experiência em cenários de conectividade instável, comuns em boa parte do Brasil.</p>
 
-<p>Se você está construindo ou modernizando um sistema de gestão, vale considerar o formato PWA desde o início do projeto — a diferença de esforço de desenvolvimento costuma compensar bastante o ganho em alcance e economia de manutenção.</p>
+<p data-i18n="p6">Se você está construindo ou modernizando um sistema de gestão, vale considerar o formato PWA desde o início do projeto — a diferença de esforço de desenvolvimento costuma compensar bastante o ganho em alcance e economia de manutenção.</p>
 
     </div>
 
     <div class="article-cta">
-      <h3>Nossos apps já são PWA</h3>
-      <p>GestFácil, Sr. Plantão e Ponto Justificado funcionam offline e podem ser instalados direto do navegador.</p>
-      <a href="/#apps">Conhecer Aplicativos</a>
+      <h3 data-i18n="cta_title">Nossos apps já são PWA</h3>
+      <p data-i18n="cta_desc">GestFácil, Sr. Plantão e Ponto Justificado funcionam offline e podem ser instalados direto do navegador.</p>
+      <a href="/#apps" data-i18n="cta_btn">Conhecer Aplicativos</a>
     </div>
 
     <div class="related">
-      <h3>Continue lendo</h3>
+      <h3 data-i18n="related_title">Continue lendo</h3>
       <div class="related-list">
-        <a href="/blog/firebase-para-iniciantes.html">Firebase Firestore vs Realtime Database: qual escolher?</a>
-        <a href="/blog/cloudflare-pages-hospedagem-gratuita.html">Hospede seu app grátis com Cloudflare Pages</a>
+        <a href="/blog/firebase-para-iniciantes.html" data-i18n="related1">Firebase Firestore vs Realtime Database: qual escolher?</a>
+        <a href="/blog/cloudflare-pages-hospedagem-gratuita.html" data-i18n="related2">Hospede seu app grátis com Cloudflare Pages</a>
 
       </div>
     </div>
@@ -139,14 +168,140 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
 
 <footer>
   <div class="container">
-    <p>© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
+    <p data-i18n="footer_copy">© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
     <div style="margin-top:8px;">
-      <a href="/privacidade.html">Privacidade</a>
-      <a href="/termos.html">Termos de Uso</a>
-      <a href="/#contact">Contato</a>
+      <a href="/privacidade.html" data-i18n="footer_privacy">Privacidade</a>
+      <a href="/termos.html" data-i18n="footer_terms">Termos de Uso</a>
+      <a href="/#contact" data-i18n="footer_contact">Contato</a>
     </div>
   </div>
 </footer>
+
+<script>
+const TRANSLATIONS = {
+  pt: {
+    lang:'pt-BR', flag:'🇧🇷', code:'PT',
+    back_link: '← Voltar para Tutoriais',
+    nav_home: 'Início',
+    nav_tutorials: 'Tutoriais',
+    art_title_bc: 'O que é um PWA e por que seu app deveria ser um',
+    art_category: 'Tecnologia',
+    art_title: 'O que é um PWA e por que seu app deveria ser um',
+    art_date: '📅 3 de fevereiro de 2026',
+    art_read: '⏱️ 6 min de leitura',
+    art_author: '✍️ Equipe Dev.Lobbo',
+    p1: 'Um Progressive Web App (PWA) é, na essência, um site construído com tecnologias web comuns — HTML, CSS e JavaScript — que se comporta como um aplicativo instalado no celular ou computador. Ele pode funcionar offline, enviar notificações, ganhar um ícone na tela inicial e abrir em tela cheia, sem passar pelas lojas de aplicativos tradicionais.',
+    p2: 'Três elementos técnicos definem essa categoria:',
+    p3: 'Para uma empresa que está decidindo entre construir um aplicativo nativo (Android/iOS) ou um PWA, algumas diferenças pesam bastante na balança:',
+    p4: 'PWAs são especialmente adequados para sistemas de gestão, ferramentas internas, aplicativos de produtividade e serviços que precisam alcançar o maior número de dispositivos possível com o menor custo. Casos que dependem intensamente de recursos muito específicos do sistema operacional — como integração profunda com hardware do celular — ainda se beneficiam mais de um app nativo.',
+    p5: 'Um dos maiores ganhos de um PWA bem construído é continuar funcionando mesmo sem internet — útil, por exemplo, para um profissional de campo registrando informações em uma área sem sinal, que sincronizam automaticamente assim que a conexão volta. Essa característica muda completamente a experiência em cenários de conectividade instável, comuns em boa parte do Brasil.',
+    p6: 'Se você está construindo ou modernizando um sistema de gestão, vale considerar o formato PWA desde o início do projeto — a diferença de esforço de desenvolvimento costuma compensar bastante o ganho em alcance e economia de manutenção.',
+    h2_1: 'O que torna um site um PWA',
+    h2_2: 'As vantagens práticas',
+    h2_3: 'Quando um PWA faz sentido',
+    h2_4: 'Funcionamento offline: o diferencial mais subestimado',
+    li1: '<strong>Service Worker:</strong> um script que roda em segundo plano e intercepta requisições de rede, permitindo cache inteligente e funcionamento offline.',
+    li2: '<strong>Web App Manifest:</strong> um arquivo de configuração que descreve nome, ícone, cores e comportamento do app quando instalado.',
+    li3: '<strong>HTTPS obrigatório:</strong> por questões de segurança, PWAs só funcionam plenamente em conexões criptografadas.',
+    li4: '<strong>Sem lojas de aplicativo:</strong> o usuário instala direto do navegador, sem processo de aprovação de terceiros.',
+    li5: '<strong>Um único código para todas as plataformas:</strong> o mesmo PWA roda em Android, iOS (com limitações) e desktop.',
+    li6: '<strong>Atualizações instantâneas:</strong> como não depende de aprovação de loja, uma correção de bug chega ao usuário assim que é publicada.',
+    li7: '<strong>Menor custo de manutenção:</strong> não é necessário manter equipes separadas para cada plataforma nativa.',
+    callout: '💡 A instalação de um PWA aparece como um simples botão "Adicionar à tela inicial" no navegador — muitos usuários nem percebem que estão usando um site, e não um app baixado de loja.',
+    cta_title: 'Nossos apps já são PWA',
+    cta_desc: 'GestFácil, Sr. Plantão e Ponto Justificado funcionam offline e podem ser instalados direto do navegador.',
+    cta_btn: 'Conhecer Aplicativos',
+    related_title: 'Continue lendo',
+    related1: 'Firebase Firestore vs Realtime Database: qual escolher?',
+    related2: 'Hospede seu app grátis com Cloudflare Pages',
+    footer_copy: '© 2026 Dev.Lobbo. Todos os direitos reservados.',
+    footer_privacy: 'Privacidade',
+    footer_terms: 'Termos de Uso',
+    footer_contact: 'Contato',
+    page_title: 'O que é um PWA e por que seu app deveria ser um | Blog Dev.Lobbo',
+  },
+  en: {
+    lang:'en', flag:'🇺🇸', code:'EN',
+    art_title_bc: 'What a PWA is and why your app should be one',
+    art_category: 'Technology',
+    art_title: 'What a PWA is and why your app should be one',
+    art_date: '📅 February 3, 2026',
+    art_read: '⏱️ 6 min read',
+    art_author: '✍️ Dev.Lobbo Team',
+    p1: 'A Progressive Web App (PWA) is, at its core, a site built with common web technologies — HTML, CSS and JavaScript — that behaves like an app installed on a phone or computer. It can work offline, send notifications, get an icon on the home screen, and open in full screen, without going through traditional app stores.',
+    h2_1: 'What makes a site a PWA',
+    p2: 'Three technical elements define this category:',
+    li1: '<strong>Service Worker:</strong> a script that runs in the background and intercepts network requests, enabling smart caching and offline functionality.',
+    li2: '<strong>Web App Manifest:</strong> a configuration file that describes the app\'s name, icon, colors and behavior once installed.',
+    li3: '<strong>Mandatory HTTPS:</strong> for security reasons, PWAs only work fully over encrypted connections.',
+    h2_2: 'The practical advantages',
+    p3: 'For a company deciding between building a native app (Android/iOS) or a PWA, a few differences carry a lot of weight:',
+    li4: '<strong>No app stores:</strong> the user installs directly from the browser, with no third-party approval process.',
+    li5: '<strong>A single codebase for every platform:</strong> the same PWA runs on Android, iOS (with limitations) and desktop.',
+    li6: '<strong>Instant updates:</strong> since it doesn\'t depend on store approval, a bug fix reaches the user as soon as it\'s published.',
+    li7: '<strong>Lower maintenance cost:</strong> there\'s no need to keep separate teams for each native platform.',
+    h2_3: 'When a PWA makes sense',
+    p4: 'PWAs are especially well suited for management systems, internal tools, productivity apps and services that need to reach the largest possible number of devices at the lowest cost. Cases that heavily depend on very specific operating-system features — like deep integration with phone hardware — still benefit more from a native app.',
+    callout: '💡 Installing a PWA shows up as a simple "Add to Home Screen" button in the browser — many users don\'t even realize they\'re using a website rather than an app downloaded from a store.',
+    h2_4: 'Offline functionality: the most underrated advantage',
+    p5: 'One of the biggest gains of a well-built PWA is that it keeps working even without internet — useful, for example, for a field worker logging information in an area with no signal, which syncs automatically as soon as the connection comes back. This trait completely changes the experience in scenarios of unstable connectivity, common across much of Brazil.',
+    p6: 'If you\'re building or modernizing a management system, it\'s worth considering the PWA format from the start of the project — the extra development effort usually pays off well in reach and maintenance savings.',
+    cta_title: 'Our apps are already PWAs',
+    cta_desc: 'GestFácil, Sr. Plantão and Ponto Justificado work offline and can be installed directly from the browser.',
+    cta_btn: 'Explore Apps',
+    related_title: 'Keep reading',
+    related1: 'Firebase Firestore vs Realtime Database: which one to choose?',
+    related2: 'Host your app for free with Cloudflare Pages',
+    footer_copy: '© 2026 Dev.Lobbo. All rights reserved.',
+    page_title: 'What a PWA is and why your app should be one | Dev.Lobbo Blog',
+    nav_home: 'Home',
+    nav_tutorials: 'Tutorials',
+    back_link: '← Back to Tutorials',
+    footer_privacy: 'Privacy',
+    footer_terms: 'Terms of Use',
+    footer_contact: 'Contact',
+  }
+};
+
+function detectLang() {
+  const saved = localStorage.getItem('dl-lang');
+  if (saved && TRANSLATIONS[saved]) return saved;
+  const browserLang = navigator.language || navigator.userLanguage || 'pt';
+  const code = browserLang.toLowerCase().slice(0, 2);
+  const map = { pt: 'pt', en: 'en' };
+  return map[code] || 'pt';
+}
+
+function applyLang(langCode) {
+  const t = TRANSLATIONS[langCode];
+  if (!t) return;
+  document.documentElement.setAttribute('lang', t.lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.getElementById('lang-flag').textContent = t.flag;
+  document.getElementById('lang-code').textContent = t.code;
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    const isActive = opt.dataset.lang === langCode;
+    opt.classList.toggle('active', isActive);
+    const check = opt.querySelector('.lang-option-check');
+    if (check) check.style.display = isActive ? '' : 'none';
+  });
+  localStorage.setItem('dl-lang', langCode);
+  if (t.page_title) document.title = t.page_title;
+}
+
+const langSwitcher = document.getElementById('lang-switcher');
+const langBtnEl = document.getElementById('lang-btn');
+langBtnEl.addEventListener('click', (e) => { e.stopPropagation(); langSwitcher.classList.toggle('open'); });
+document.addEventListener('click', () => langSwitcher.classList.remove('open'));
+document.querySelectorAll('.lang-option').forEach(opt => {
+  opt.addEventListener('click', (e) => { e.stopPropagation(); applyLang(opt.dataset.lang); langSwitcher.classList.remove('open'); });
+});
+
+(function() { applyLang(detectLang()); })();
+</script>
 
 </body>
 </html>

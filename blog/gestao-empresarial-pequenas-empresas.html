@@ -59,6 +59,22 @@ main { padding: 48px 0 80px; }
 footer { border-top:1px solid var(--clr-border); padding:32px 0; text-align:center; font-size:13px; color:var(--clr-muted); }
 footer a { color:var(--clr-muted2); margin:0 8px; }
 .adslot { margin:40px 0; text-align:center; }
+.lang-switcher { position: relative; }
+.lang-btn { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 9px; background: rgba(255,255,255,0.06); border: 1px solid var(--clr-border); color: var(--clr-muted2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }
+.lang-btn:hover { background: rgba(255,255,255,0.1); color: var(--clr-text); }
+.lang-flag { font-size: 16px; }
+.lang-code { font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
+.lang-arrow { font-size: 10px; color: var(--clr-muted); transition: transform var(--transition); }
+.lang-switcher.open .lang-arrow { transform: rotate(180deg); }
+.lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-md); padding: 6px; min-width: 160px; z-index: 200; box-shadow: 0 8px 32px rgba(0,0,0,0.4); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all var(--transition); }
+.lang-switcher.open .lang-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.lang-option { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--clr-muted2); cursor: pointer; transition: all var(--transition); border: none; background: none; width: 100%; text-align: left; font-family: var(--font-body); }
+.lang-option:hover { background: rgba(0,207,255,0.07); color: var(--clr-text); }
+.lang-option.active { color: var(--clr-neon-blue); background: rgba(0,207,255,0.07); }
+.lang-option .lang-flag { font-size: 18px; }
+.lang-option-name { flex: 1; }
+.lang-option-check { color: var(--clr-neon-blue); font-size: 12px; }
+@media (max-width:480px){ .lang-code{display:none;} .lang-btn{padding:6px 8px;} }
 </style>
 </head>
 <body>
@@ -69,60 +85,73 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
       <div class="nav-logo-icon">dL</div>
       <span class="nav-logo-text">Dev<span>.Lobbo</span></span>
     </a>
-    <a href="/#blog" class="back-link">← Voltar para Tutoriais</a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="/#blog" class="back-link" data-i18n="back_link">← Voltar para Tutoriais</a>
+      <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn" aria-label="Idioma" aria-haspopup="true">
+          <span class="lang-flag" id="lang-flag">🇧🇷</span>
+          <span class="lang-code" id="lang-code">PT</span>
+          <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="menu">
+          <button class="lang-option active" data-lang="pt" role="menuitem"><span class="lang-flag">🇧🇷</span><span class="lang-option-name">Português</span><span class="lang-option-check" id="check-pt">✓</span></button>
+          <button class="lang-option" data-lang="en" role="menuitem"><span class="lang-flag">🇺🇸</span><span class="lang-option-name">English</span><span class="lang-option-check" id="check-en" style="display:none">✓</span></button>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <main>
   <div class="container">
-    <div class="breadcrumb"><a href="/">Início</a> › <a href="/#blog">Tutoriais</a> › KPIs de RH que toda empresa deveria acompanhar</div>
+    <div class="breadcrumb"><a href="/" data-i18n="nav_home">Início</a> › <a href="/#blog" data-i18n="nav_tutorials">Tutoriais</a> › <span data-i18n="art_title_bc">KPIs de RH que toda empresa deveria acompanhar</span></div>
 
-    <div class="article-category">Gestão Empresarial</div>
-    <h1 class="article-title">KPIs de RH que toda empresa deveria acompanhar</h1>
+    <div class="article-category" data-i18n="art_category">Gestão Empresarial</div>
+    <h1 class="article-title" data-i18n="art_title">KPIs de RH que toda empresa deveria acompanhar</h1>
     <div class="article-meta">
-      <span>📅 10 de março de 2026</span>
-      <span>⏱️ 7 min de leitura</span>
-      <span>✍️ Equipe Dev.Lobbo</span>
+      <span data-i18n="art_date">📅 10 de março de 2026</span>
+      <span data-i18n="art_read">⏱️ 7 min de leitura</span>
+      <span data-i18n="art_author">✍️ Equipe Dev.Lobbo</span>
     </div>
 
     <img class="article-cover" src="/blog/img/gestao-empresarial-pequenas-empresas.jpg" alt="" loading="lazy">
 
     <div class="article-body">
 
-<p>Toda empresa fala em "cuidar das pessoas", mas poucas realmente medem se estão fazendo isso bem. Indicadores de RH (KPIs) transformam a percepção subjetiva de "clima ruim" ou "time desmotivado" em números concretos, que permitem identificar problemas antes que eles se tornem uma crise de retenção de talentos.</p>
+<p data-i18n="p1">Toda empresa fala em "cuidar das pessoas", mas poucas realmente medem se estão fazendo isso bem. Indicadores de RH (KPIs) transformam a percepção subjetiva de "clima ruim" ou "time desmotivado" em números concretos, que permitem identificar problemas antes que eles se tornem uma crise de retenção de talentos.</p>
 
-<h2>Turnover: a rotatividade da equipe</h2>
-<p>O turnover mede a proporção de colaboradores que deixam a empresa em um período, geralmente calculado mensalmente ou anualmente. Um turnover alto — especialmente entre os colaboradores mais experientes — costuma sinalizar problemas de clima, remuneração fora do mercado ou falta de perspectiva de crescimento. Vale sempre olhar não só o número total, mas separar saídas voluntárias de involuntárias: dizem histórias bem diferentes.</p>
+<h2 data-i18n="h2_1">Turnover: a rotatividade da equipe</h2>
+<p data-i18n="p2">O turnover mede a proporção de colaboradores que deixam a empresa em um período, geralmente calculado mensalmente ou anualmente. Um turnover alto — especialmente entre os colaboradores mais experientes — costuma sinalizar problemas de clima, remuneração fora do mercado ou falta de perspectiva de crescimento. Vale sempre olhar não só o número total, mas separar saídas voluntárias de involuntárias: dizem histórias bem diferentes.</p>
 
-<h2>Absenteísmo: faltas e atrasos</h2>
-<p>Mede a frequência de ausências não planejadas. Um índice de absenteísmo crescente costuma ser sintoma de esgotamento da equipe, escalas mal distribuídas ou insatisfação com a gestão direta. Acompanhar esse indicador por setor (não só na média geral da empresa) ajuda a identificar exatamente onde o problema está concentrado.</p>
+<h2 data-i18n="h2_2">Absenteísmo: faltas e atrasos</h2>
+<p data-i18n="p3">Mede a frequência de ausências não planejadas. Um índice de absenteísmo crescente costuma ser sintoma de esgotamento da equipe, escalas mal distribuídas ou insatisfação com a gestão direta. Acompanhar esse indicador por setor (não só na média geral da empresa) ajuda a identificar exatamente onde o problema está concentrado.</p>
 
-<h2>Horas extras e banco de horas</h2>
-<p>Um volume consistentemente alto de horas extras não é sinal de produtividade — geralmente indica dimensionamento de equipe insuficiente ou processos ineficientes que exigem esforço extra para compensar. Acompanhar esse indicador junto ao absenteísmo costuma revelar a relação de causa e efeito entre os dois.</p>
+<h2 data-i18n="h2_3">Horas extras e banco de horas</h2>
+<p data-i18n="p4">Um volume consistentemente alto de horas extras não é sinal de produtividade — geralmente indica dimensionamento de equipe insuficiente ou processos ineficientes que exigem esforço extra para compensar. Acompanhar esse indicador junto ao absenteísmo costuma revelar a relação de causa e efeito entre os dois.</p>
 
-<h2>NPS de funcionários (eNPS)</h2>
-<p>Adaptação do Net Promoter Score tradicionalmente usado com clientes, o eNPS pergunta diretamente aos colaboradores: "em uma escala de 0 a 10, o quanto você recomendaria esta empresa como um bom lugar para trabalhar?". É uma métrica simples de aplicar (uma pesquisa trimestral já é suficiente) e funciona como termômetro direto de satisfação, sem depender de interpretação indireta de outros números.</p>
+<h2 data-i18n="h2_4">NPS de funcionários (eNPS)</h2>
+<p data-i18n="p5">Adaptação do Net Promoter Score tradicionalmente usado com clientes, o eNPS pergunta diretamente aos colaboradores: "em uma escala de 0 a 10, o quanto você recomendaria esta empresa como um bom lugar para trabalhar?". É uma métrica simples de aplicar (uma pesquisa trimestral já é suficiente) e funciona como termômetro direto de satisfação, sem depender de interpretação indireta de outros números.</p>
 
-<div class="callout">💡 Nenhum desses indicadores deve ser lido isoladamente. Turnover alto + absenteísmo alto + eNPS baixo, no mesmo setor, formam um padrão muito mais confiável do que qualquer métrica isolada.</div>
+<div class="callout" data-i18n="callout">💡 Nenhum desses indicadores deve ser lido isoladamente. Turnover alto + absenteísmo alto + eNPS baixo, no mesmo setor, formam um padrão muito mais confiável do que qualquer métrica isolada.</div>
 
-<h2>Como começar a medir, sem complicar</h2>
-<p>Não é necessário implementar os quatro indicadores de uma vez com ferramentas sofisticadas. O caminho mais realista é: primeiro, garantir que o registro de ponto e faltas seja digital e confiável — sem isso, absenteísmo e horas extras seguem sendo estimativas, não dados reais. Depois, aplicar uma pesquisa simples de eNPS a cada trimestre. Turnover é o mais fácil de calcular, já que depende apenas do histórico de admissões e desligamentos que a empresa já tem.</p>
+<h2 data-i18n="h2_5">Como começar a medir, sem complicar</h2>
+<p data-i18n="p6">Não é necessário implementar os quatro indicadores de uma vez com ferramentas sofisticadas. O caminho mais realista é: primeiro, garantir que o registro de ponto e faltas seja digital e confiável — sem isso, absenteísmo e horas extras seguem sendo estimativas, não dados reais. Depois, aplicar uma pesquisa simples de eNPS a cada trimestre. Turnover é o mais fácil de calcular, já que depende apenas do histórico de admissões e desligamentos que a empresa já tem.</p>
 
-<p>Com esses quatro números acompanhados de forma consistente, mês a mês, a gestão de pessoas deixa de ser uma percepção subjetiva e passa a ser uma área orientada por dados — o que facilita tanto identificar problemas cedo quanto justificar investimentos em melhorias para a diretoria.</p>
+<p data-i18n="p7">Com esses quatro números acompanhados de forma consistente, mês a mês, a gestão de pessoas deixa de ser uma percepção subjetiva e passa a ser uma área orientada por dados — o que facilita tanto identificar problemas cedo quanto justificar investimentos em melhorias para a diretoria.</p>
 
     </div>
 
     <div class="article-cta">
-      <h3>Centralize seus indicadores de gestão</h3>
-      <p>O GestFácil reúne financeiro, equipe e relatórios em um único painel de controle.</p>
-      <a href="/#apps">Conhecer Aplicativos</a>
+      <h3 data-i18n="cta_title">Centralize seus indicadores de gestão</h3>
+      <p data-i18n="cta_desc">O GestFácil reúne financeiro, equipe e relatórios em um único painel de controle.</p>
+      <a href="/#apps" data-i18n="cta_btn">Conhecer Aplicativos</a>
     </div>
 
     <div class="related">
-      <h3>Continue lendo</h3>
+      <h3 data-i18n="related_title">Continue lendo</h3>
       <div class="related-list">
-        <a href="/blog/como-controlar-banco-de-horas.html">Como controlar o banco de horas da sua equipe sem dor de cabeça</a>
-        <a href="/blog/automacao-tarefas-produtividade.html">Automação de tarefas repetitivas: por onde começar</a>
+        <a href="/blog/como-controlar-banco-de-horas.html" data-i18n="related1">Como controlar o banco de horas da sua equipe sem dor de cabeça</a>
+        <a href="/blog/automacao-tarefas-produtividade.html" data-i18n="related2">Automação de tarefas repetitivas: por onde começar</a>
 
       </div>
     </div>
@@ -131,14 +160,130 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
 
 <footer>
   <div class="container">
-    <p>© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
+    <p data-i18n="footer_copy">© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
     <div style="margin-top:8px;">
-      <a href="/privacidade.html">Privacidade</a>
-      <a href="/termos.html">Termos de Uso</a>
-      <a href="/#contact">Contato</a>
+      <a href="/privacidade.html" data-i18n="footer_privacy">Privacidade</a>
+      <a href="/termos.html" data-i18n="footer_terms">Termos de Uso</a>
+      <a href="/#contact" data-i18n="footer_contact">Contato</a>
     </div>
   </div>
 </footer>
+
+<script>
+const TRANSLATIONS = {
+  pt: {
+    lang:'pt-BR', flag:'🇧🇷', code:'PT',
+    back_link: '← Voltar para Tutoriais',
+    nav_home: 'Início',
+    nav_tutorials: 'Tutoriais',
+    art_title_bc: 'KPIs de RH que toda empresa deveria acompanhar',
+    art_category: 'Gestão Empresarial',
+    art_title: 'KPIs de RH que toda empresa deveria acompanhar',
+    art_date: '📅 10 de março de 2026',
+    art_read: '⏱️ 7 min de leitura',
+    art_author: '✍️ Equipe Dev.Lobbo',
+    p1: 'Toda empresa fala em "cuidar das pessoas", mas poucas realmente medem se estão fazendo isso bem. Indicadores de RH (KPIs) transformam a percepção subjetiva de "clima ruim" ou "time desmotivado" em números concretos, que permitem identificar problemas antes que eles se tornem uma crise de retenção de talentos.',
+    p2: 'O turnover mede a proporção de colaboradores que deixam a empresa em um período, geralmente calculado mensalmente ou anualmente. Um turnover alto — especialmente entre os colaboradores mais experientes — costuma sinalizar problemas de clima, remuneração fora do mercado ou falta de perspectiva de crescimento. Vale sempre olhar não só o número total, mas separar saídas voluntárias de involuntárias: dizem histórias bem diferentes.',
+    p3: 'Mede a frequência de ausências não planejadas. Um índice de absenteísmo crescente costuma ser sintoma de esgotamento da equipe, escalas mal distribuídas ou insatisfação com a gestão direta. Acompanhar esse indicador por setor (não só na média geral da empresa) ajuda a identificar exatamente onde o problema está concentrado.',
+    p4: 'Um volume consistentemente alto de horas extras não é sinal de produtividade — geralmente indica dimensionamento de equipe insuficiente ou processos ineficientes que exigem esforço extra para compensar. Acompanhar esse indicador junto ao absenteísmo costuma revelar a relação de causa e efeito entre os dois.',
+    p5: 'Adaptação do Net Promoter Score tradicionalmente usado com clientes, o eNPS pergunta diretamente aos colaboradores: "em uma escala de 0 a 10, o quanto você recomendaria esta empresa como um bom lugar para trabalhar?". É uma métrica simples de aplicar (uma pesquisa trimestral já é suficiente) e funciona como termômetro direto de satisfação, sem depender de interpretação indireta de outros números.',
+    p6: 'Não é necessário implementar os quatro indicadores de uma vez com ferramentas sofisticadas. O caminho mais realista é: primeiro, garantir que o registro de ponto e faltas seja digital e confiável — sem isso, absenteísmo e horas extras seguem sendo estimativas, não dados reais. Depois, aplicar uma pesquisa simples de eNPS a cada trimestre. Turnover é o mais fácil de calcular, já que depende apenas do histórico de admissões e desligamentos que a empresa já tem.',
+    p7: 'Com esses quatro números acompanhados de forma consistente, mês a mês, a gestão de pessoas deixa de ser uma percepção subjetiva e passa a ser uma área orientada por dados — o que facilita tanto identificar problemas cedo quanto justificar investimentos em melhorias para a diretoria.',
+    h2_1: 'Turnover: a rotatividade da equipe',
+    h2_2: 'Absenteísmo: faltas e atrasos',
+    h2_3: 'Horas extras e banco de horas',
+    h2_4: 'NPS de funcionários (eNPS)',
+    h2_5: 'Como começar a medir, sem complicar',
+    callout: '💡 Nenhum desses indicadores deve ser lido isoladamente. Turnover alto + absenteísmo alto + eNPS baixo, no mesmo setor, formam um padrão muito mais confiável do que qualquer métrica isolada.',
+    cta_title: 'Centralize seus indicadores de gestão',
+    cta_desc: 'O GestFácil reúne financeiro, equipe e relatórios em um único painel de controle.',
+    cta_btn: 'Conhecer Aplicativos',
+    related_title: 'Continue lendo',
+    related1: 'Como controlar o banco de horas da sua equipe sem dor de cabeça',
+    related2: 'Automação de tarefas repetitivas: por onde começar',
+    footer_copy: '© 2026 Dev.Lobbo. Todos os direitos reservados.',
+    footer_privacy: 'Privacidade',
+    footer_terms: 'Termos de Uso',
+    footer_contact: 'Contato',
+    page_title: 'KPIs de RH que toda empresa deveria acompanhar | Blog Dev.Lobbo',
+  },
+  en: {
+    lang:'en', flag:'🇺🇸', code:'EN',
+    art_title_bc: 'HR KPIs every company should track',
+    art_category: 'Business Management',
+    art_title: 'HR KPIs every company should track',
+    art_date: '📅 March 10, 2026',
+    art_read: '⏱️ 7 min read',
+    art_author: '✍️ Dev.Lobbo Team',
+    p1: '"Every company talks about "taking care of people," but few actually measure whether they\'re doing it well. HR indicators (KPIs) turn the subjective feeling of "bad morale" or "unmotivated team" into concrete numbers, letting you spot problems before they become a talent-retention crisis.',
+    h2_1: 'Turnover: team rotation',
+    p2: 'Turnover measures the proportion of employees who leave the company over a period, usually calculated monthly or annually. High turnover — especially among more experienced employees — often signals morale problems, below-market pay, or a lack of growth prospects. It\'s always worth looking not just at the total number, but separating voluntary from involuntary departures: they tell very different stories.',
+    h2_2: 'Absenteeism: absences and lateness',
+    p3: 'This measures the frequency of unplanned absences. A rising absenteeism rate is often a symptom of team burnout, poorly distributed schedules, or dissatisfaction with direct management. Tracking this indicator by department (not just the company-wide average) helps pinpoint exactly where the problem is concentrated.',
+    h2_3: 'Overtime and overtime bank',
+    p4: 'A consistently high volume of overtime isn\'t a sign of productivity — it usually indicates understaffing or inefficient processes that require extra effort to compensate. Tracking this indicator alongside absenteeism often reveals the cause-and-effect relationship between the two.',
+    h2_4: 'Employee NPS (eNPS)',
+    p5: 'An adaptation of the Net Promoter Score traditionally used with customers, eNPS asks employees directly: "on a scale of 0 to 10, how likely are you to recommend this company as a good place to work?" It\'s a simple metric to apply (a quarterly survey is enough) and works as a direct satisfaction thermometer, without relying on indirect interpretation of other numbers.',
+    callout: '💡 None of these indicators should be read in isolation. High turnover + high absenteeism + low eNPS, in the same department, form a far more reliable pattern than any single metric.',
+    h2_5: 'How to start measuring without overcomplicating it',
+    p6: 'You don\'t need to implement all four indicators at once with sophisticated tools. The most realistic path is: first, make sure time and absence tracking is digital and reliable — without that, absenteeism and overtime remain estimates, not real data. Then, run a simple eNPS survey every quarter. Turnover is the easiest to calculate, since it only depends on the hiring and departure history the company already has.',
+    p7: 'With these four numbers tracked consistently, month after month, people management stops being a subjective perception and becomes a data-driven area — which makes it easier both to catch problems early and to justify improvement investments to leadership.',
+    cta_title: 'Centralize your management metrics',
+    cta_desc: 'GestFácil brings together finance, team and reports in a single dashboard.',
+    cta_btn: 'Explore Apps',
+    related_title: 'Keep reading',
+    related1: 'How to control your team\'s overtime bank without the headache',
+    related2: 'Automating repetitive tasks: where to start',
+    footer_copy: '© 2026 Dev.Lobbo. All rights reserved.',
+    page_title: 'HR KPIs every company should track | Dev.Lobbo Blog',
+    nav_home: 'Home',
+    nav_tutorials: 'Tutorials',
+    back_link: '← Back to Tutorials',
+    footer_privacy: 'Privacy',
+    footer_terms: 'Terms of Use',
+    footer_contact: 'Contact',
+  }
+};
+
+function detectLang() {
+  const saved = localStorage.getItem('dl-lang');
+  if (saved && TRANSLATIONS[saved]) return saved;
+  const browserLang = navigator.language || navigator.userLanguage || 'pt';
+  const code = browserLang.toLowerCase().slice(0, 2);
+  const map = { pt: 'pt', en: 'en' };
+  return map[code] || 'pt';
+}
+
+function applyLang(langCode) {
+  const t = TRANSLATIONS[langCode];
+  if (!t) return;
+  document.documentElement.setAttribute('lang', t.lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.getElementById('lang-flag').textContent = t.flag;
+  document.getElementById('lang-code').textContent = t.code;
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    const isActive = opt.dataset.lang === langCode;
+    opt.classList.toggle('active', isActive);
+    const check = opt.querySelector('.lang-option-check');
+    if (check) check.style.display = isActive ? '' : 'none';
+  });
+  localStorage.setItem('dl-lang', langCode);
+  if (t.page_title) document.title = t.page_title;
+}
+
+const langSwitcher = document.getElementById('lang-switcher');
+const langBtnEl = document.getElementById('lang-btn');
+langBtnEl.addEventListener('click', (e) => { e.stopPropagation(); langSwitcher.classList.toggle('open'); });
+document.addEventListener('click', () => langSwitcher.classList.remove('open'));
+document.querySelectorAll('.lang-option').forEach(opt => {
+  opt.addEventListener('click', (e) => { e.stopPropagation(); applyLang(opt.dataset.lang); langSwitcher.classList.remove('open'); });
+});
+
+(function() { applyLang(detectLang()); })();
+</script>
 
 </body>
 </html>

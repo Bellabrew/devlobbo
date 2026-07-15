@@ -59,6 +59,22 @@ main { padding: 48px 0 80px; }
 footer { border-top:1px solid var(--clr-border); padding:32px 0; text-align:center; font-size:13px; color:var(--clr-muted); }
 footer a { color:var(--clr-muted2); margin:0 8px; }
 .adslot { margin:40px 0; text-align:center; }
+.lang-switcher { position: relative; }
+.lang-btn { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 9px; background: rgba(255,255,255,0.06); border: 1px solid var(--clr-border); color: var(--clr-muted2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }
+.lang-btn:hover { background: rgba(255,255,255,0.1); color: var(--clr-text); }
+.lang-flag { font-size: 16px; }
+.lang-code { font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
+.lang-arrow { font-size: 10px; color: var(--clr-muted); transition: transform var(--transition); }
+.lang-switcher.open .lang-arrow { transform: rotate(180deg); }
+.lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-md); padding: 6px; min-width: 160px; z-index: 200; box-shadow: 0 8px 32px rgba(0,0,0,0.4); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all var(--transition); }
+.lang-switcher.open .lang-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.lang-option { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--clr-muted2); cursor: pointer; transition: all var(--transition); border: none; background: none; width: 100%; text-align: left; font-family: var(--font-body); }
+.lang-option:hover { background: rgba(0,207,255,0.07); color: var(--clr-text); }
+.lang-option.active { color: var(--clr-neon-blue); background: rgba(0,207,255,0.07); }
+.lang-option .lang-flag { font-size: 18px; }
+.lang-option-name { flex: 1; }
+.lang-option-check { color: var(--clr-neon-blue); font-size: 12px; }
+@media (max-width:480px){ .lang-code{display:none;} .lang-btn{padding:6px 8px;} }
 </style>
 </head>
 <body>
@@ -69,68 +85,81 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
       <div class="nav-logo-icon">dL</div>
       <span class="nav-logo-text">Dev<span>.Lobbo</span></span>
     </a>
-    <a href="/#blog" class="back-link">← Voltar para Tutoriais</a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="/#blog" class="back-link" data-i18n="back_link">← Voltar para Tutoriais</a>
+      <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn" aria-label="Idioma" aria-haspopup="true">
+          <span class="lang-flag" id="lang-flag">🇧🇷</span>
+          <span class="lang-code" id="lang-code">PT</span>
+          <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="menu">
+          <button class="lang-option active" data-lang="pt" role="menuitem"><span class="lang-flag">🇧🇷</span><span class="lang-option-name">Português</span><span class="lang-option-check" id="check-pt">✓</span></button>
+          <button class="lang-option" data-lang="en" role="menuitem"><span class="lang-flag">🇺🇸</span><span class="lang-option-name">English</span><span class="lang-option-check" id="check-en" style="display:none">✓</span></button>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <main>
   <div class="container">
-    <div class="breadcrumb"><a href="/">Início</a> › <a href="/#blog">Tutoriais</a> › Escala 12x36: o que a lei permite e o que não permite</div>
+    <div class="breadcrumb"><a href="/" data-i18n="nav_home">Início</a> › <a href="/#blog" data-i18n="nav_tutorials">Tutoriais</a> › <span data-i18n="art_title_bc">Escala 12x36: o que a lei permite e o que não permite</span></div>
 
-    <div class="article-category">Legislação Trabalhista</div>
-    <h1 class="article-title">Escala 12x36: o que a lei permite e o que não permite</h1>
+    <div class="article-category" data-i18n="art_category">Legislação Trabalhista</div>
+    <h1 class="article-title" data-i18n="art_title">Escala 12x36: o que a lei permite e o que não permite</h1>
     <div class="article-meta">
-      <span>📅 7 de abril de 2026</span>
-      <span>⏱️ 7 min de leitura</span>
-      <span>✍️ Equipe Dev.Lobbo</span>
+      <span data-i18n="art_date">📅 7 de abril de 2026</span>
+      <span data-i18n="art_read">⏱️ 7 min de leitura</span>
+      <span data-i18n="art_author">✍️ Equipe Dev.Lobbo</span>
     </div>
 
     <img class="article-cover" src="/blog/img/escala-12x36-o-que-diz-a-lei.jpg" alt="" loading="lazy">
 
     <div class="article-body">
 
-<p>A escala 12x36 — 12 horas trabalhadas por 36 horas de descanso — é extremamente comum entre profissionais de saúde, segurança e outros serviços que exigem cobertura contínua. Desde a reforma trabalhista de 2017, esse regime ganhou previsão expressa em lei, mas isso não significa que qualquer configuração de 12x36 seja automaticamente válida.</p>
+<p data-i18n="p1">A escala 12x36 — 12 horas trabalhadas por 36 horas de descanso — é extremamente comum entre profissionais de saúde, segurança e outros serviços que exigem cobertura contínua. Desde a reforma trabalhista de 2017, esse regime ganhou previsão expressa em lei, mas isso não significa que qualquer configuração de 12x36 seja automaticamente válida.</p>
 
-<h2>O que a lei exige para a escala 12x36 ser válida</h2>
+<h2 data-i18n="h2_1">O que a lei exige para a escala 12x36 ser válida</h2>
 <ul>
-<li><strong>Acordo formal:</strong> a escala 12x36 precisa estar prevista em acordo individual escrito ou em convenção/acordo coletivo de trabalho — não pode ser apenas uma prática informal da empresa.</li>
-<li><strong>Compensação já embutida:</strong> a remuneração mensal desse regime já compensa os descansos semanais e feriados trabalhados, conforme previsto em lei — não gera direito a pagamento em dobro do feriado, desde que o acordo preveja isso expressamente.</li>
-<li><strong>Intervalo intrajornada:</strong> mesmo em plantões de 12 horas, o intervalo para descanso e alimentação deve ser respeitado, salvo disposição diferente prevista em convenção coletiva da categoria.</li>
+<li data-i18n="li1"><strong>Acordo formal:</strong> a escala 12x36 precisa estar prevista em acordo individual escrito ou em convenção/acordo coletivo de trabalho — não pode ser apenas uma prática informal da empresa.</li>
+<li data-i18n="li2"><strong>Compensação já embutida:</strong> a remuneração mensal desse regime já compensa os descansos semanais e feriados trabalhados, conforme previsto em lei — não gera direito a pagamento em dobro do feriado, desde que o acordo preveja isso expressamente.</li>
+<li data-i18n="li3"><strong>Intervalo intrajornada:</strong> mesmo em plantões de 12 horas, o intervalo para descanso e alimentação deve ser respeitado, salvo disposição diferente prevista em convenção coletiva da categoria.</li>
 </ul>
 
-<h2>O que a lei NÃO permite nesse regime</h2>
+<h2 data-i18n="h2_2">O que a lei NÃO permite nesse regime</h2>
 <ul>
-<li>Emendar plantões sem respeitar o intervalo mínimo de descanso entre uma jornada e outra.</li>
-<li>Somar hora extra sobre um plantão de 12x36 sem o devido pagamento ou compensação — o regime já é uma jornada diferenciada, mas isso não elimina o direito a hora extra se o plantão ultrapassar as 12 horas previstas.</li>
-<li>Aplicar a escala sem o acordo formal mencionado acima — nesse caso, a Justiça do Trabalho pode descaracterizar o regime e determinar o pagamento das horas trabalhadas acima de 8h diárias como extras, mesmo que a empresa já tenha operado assim por anos.</li>
+<li data-i18n="li4">Emendar plantões sem respeitar o intervalo mínimo de descanso entre uma jornada e outra.</li>
+<li data-i18n="li5">Somar hora extra sobre um plantão de 12x36 sem o devido pagamento ou compensação — o regime já é uma jornada diferenciada, mas isso não elimina o direito a hora extra se o plantão ultrapassar as 12 horas previstas.</li>
+<li data-i18n="li6">Aplicar a escala sem o acordo formal mencionado acima — nesse caso, a Justiça do Trabalho pode descaracterizar o regime e determinar o pagamento das horas trabalhadas acima de 8h diárias como extras, mesmo que a empresa já tenha operado assim por anos.</li>
 </ul>
 
-<div class="callout">💡 Setores como enfermagem e segurança privada costumam ter regras específicas em convenção coletiva da categoria — sempre vale checar o que a convenção do seu setor prevê além da regra geral da CLT.</div>
+<div class="callout" data-i18n="callout">💡 Setores como enfermagem e segurança privada costumam ter regras específicas em convenção coletiva da categoria — sempre vale checar o que a convenção do seu setor prevê além da regra geral da CLT.</div>
 
-<h2>Cuidados práticos na hora de montar a escala</h2>
-<p>Além da conformidade legal, alguns cuidados operacionais evitam desgaste com a equipe:</p>
+<h2 data-i18n="h2_3">Cuidados práticos na hora de montar a escala</h2>
+<p data-i18n="p2">Além da conformidade legal, alguns cuidados operacionais evitam desgaste com a equipe:</p>
 <ul>
-<li>Distribuir plantões noturnos e de fim de semana de forma rotativa entre a equipe.</li>
-<li>Garantir que o intervalo de 36 horas entre plantões seja, de fato, tempo livre — sem convocações ou plantões de sobreaviso não remunerados dentro desse período.</li>
-<li>Documentar qualquer troca de plantão entre colaboradores, com aprovação formal do responsável pela escala.</li>
+<li data-i18n="li7">Distribuir plantões noturnos e de fim de semana de forma rotativa entre a equipe.</li>
+<li data-i18n="li8">Garantir que o intervalo de 36 horas entre plantões seja, de fato, tempo livre — sem convocações ou plantões de sobreaviso não remunerados dentro desse período.</li>
+<li data-i18n="li9">Documentar qualquer troca de plantão entre colaboradores, com aprovação formal do responsável pela escala.</li>
 </ul>
 
-<h2>Por que vale documentar tudo digitalmente</h2>
-<p>Em uma eventual fiscalização ou disputa trabalhista, ter o histórico completo de escalas, trocas e horários efetivamente cumpridos — registrado digitalmente, com data e hora — é a melhor defesa que uma empresa pode ter. Planilhas soltas ou escalas combinadas por mensagem de texto são frágeis nesse cenário; um sistema de gestão de escalas com trilha de auditoria automática resolve esse ponto sem esforço manual adicional.</p>
+<h2 data-i18n="h2_4">Por que vale documentar tudo digitalmente</h2>
+<p data-i18n="p3">Em uma eventual fiscalização ou disputa trabalhista, ter o histórico completo de escalas, trocas e horários efetivamente cumpridos — registrado digitalmente, com data e hora — é a melhor defesa que uma empresa pode ter. Planilhas soltas ou escalas combinadas por mensagem de texto são frágeis nesse cenário; um sistema de gestão de escalas com trilha de auditoria automática resolve esse ponto sem esforço manual adicional.</p>
 
     </div>
 
     <div class="article-cta">
-      <h3>Organize escalas 12x36 sem complicação</h3>
-      <p>O Sr. Plantão já calcula automaticamente os intervalos e o adicional noturno da sua equipe.</p>
-      <a href="/#apps">Conhecer Aplicativos</a>
+      <h3 data-i18n="cta_title">Organize escalas 12x36 sem complicação</h3>
+      <p data-i18n="cta_desc">O Sr. Plantão já calcula automaticamente os intervalos e o adicional noturno da sua equipe.</p>
+      <a href="/#apps" data-i18n="cta_btn">Conhecer Aplicativos</a>
     </div>
 
     <div class="related">
-      <h3>Continue lendo</h3>
+      <h3 data-i18n="related_title">Continue lendo</h3>
       <div class="related-list">
-        <a href="/blog/escalas-de-plantao-organizacao.html">Como organizar escalas de plantão</a>
-        <a href="/blog/hora-extra-quando-pagar.html">Hora extra: quando é obrigatório pagar e quando pode virar banco de horas</a>
+        <a href="/blog/escalas-de-plantao-organizacao.html" data-i18n="related1">Como organizar escalas de plantão</a>
+        <a href="/blog/hora-extra-quando-pagar.html" data-i18n="related2">Hora extra: quando é obrigatório pagar e quando pode virar banco de horas</a>
 
       </div>
     </div>
@@ -139,14 +168,138 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
 
 <footer>
   <div class="container">
-    <p>© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
+    <p data-i18n="footer_copy">© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
     <div style="margin-top:8px;">
-      <a href="/privacidade.html">Privacidade</a>
-      <a href="/termos.html">Termos de Uso</a>
-      <a href="/#contact">Contato</a>
+      <a href="/privacidade.html" data-i18n="footer_privacy">Privacidade</a>
+      <a href="/termos.html" data-i18n="footer_terms">Termos de Uso</a>
+      <a href="/#contact" data-i18n="footer_contact">Contato</a>
     </div>
   </div>
 </footer>
+
+<script>
+const TRANSLATIONS = {
+  pt: {
+    lang:'pt-BR', flag:'🇧🇷', code:'PT',
+    back_link: '← Voltar para Tutoriais',
+    nav_home: 'Início',
+    nav_tutorials: 'Tutoriais',
+    art_title_bc: 'Escala 12x36: o que a lei permite e o que não permite',
+    art_category: 'Legislação Trabalhista',
+    art_title: 'Escala 12x36: o que a lei permite e o que não permite',
+    art_date: '📅 7 de abril de 2026',
+    art_read: '⏱️ 7 min de leitura',
+    art_author: '✍️ Equipe Dev.Lobbo',
+    p1: 'A escala 12x36 — 12 horas trabalhadas por 36 horas de descanso — é extremamente comum entre profissionais de saúde, segurança e outros serviços que exigem cobertura contínua. Desde a reforma trabalhista de 2017, esse regime ganhou previsão expressa em lei, mas isso não significa que qualquer configuração de 12x36 seja automaticamente válida.',
+    p2: 'Além da conformidade legal, alguns cuidados operacionais evitam desgaste com a equipe:',
+    p3: 'Em uma eventual fiscalização ou disputa trabalhista, ter o histórico completo de escalas, trocas e horários efetivamente cumpridos — registrado digitalmente, com data e hora — é a melhor defesa que uma empresa pode ter. Planilhas soltas ou escalas combinadas por mensagem de texto são frágeis nesse cenário; um sistema de gestão de escalas com trilha de auditoria automática resolve esse ponto sem esforço manual adicional.',
+    h2_1: 'O que a lei exige para a escala 12x36 ser válida',
+    h2_2: 'O que a lei NÃO permite nesse regime',
+    h2_3: 'Cuidados práticos na hora de montar a escala',
+    h2_4: 'Por que vale documentar tudo digitalmente',
+    li1: '<strong>Acordo formal:</strong> a escala 12x36 precisa estar prevista em acordo individual escrito ou em convenção/acordo coletivo de trabalho — não pode ser apenas uma prática informal da empresa.',
+    li2: '<strong>Compensação já embutida:</strong> a remuneração mensal desse regime já compensa os descansos semanais e feriados trabalhados, conforme previsto em lei — não gera direito a pagamento em dobro do feriado, desde que o acordo preveja isso expressamente.',
+    li3: '<strong>Intervalo intrajornada:</strong> mesmo em plantões de 12 horas, o intervalo para descanso e alimentação deve ser respeitado, salvo disposição diferente prevista em convenção coletiva da categoria.',
+    li4: 'Emendar plantões sem respeitar o intervalo mínimo de descanso entre uma jornada e outra.',
+    li5: 'Somar hora extra sobre um plantão de 12x36 sem o devido pagamento ou compensação — o regime já é uma jornada diferenciada, mas isso não elimina o direito a hora extra se o plantão ultrapassar as 12 horas previstas.',
+    li6: 'Aplicar a escala sem o acordo formal mencionado acima — nesse caso, a Justiça do Trabalho pode descaracterizar o regime e determinar o pagamento das horas trabalhadas acima de 8h diárias como extras, mesmo que a empresa já tenha operado assim por anos.',
+    li7: 'Distribuir plantões noturnos e de fim de semana de forma rotativa entre a equipe.',
+    li8: 'Garantir que o intervalo de 36 horas entre plantões seja, de fato, tempo livre — sem convocações ou plantões de sobreaviso não remunerados dentro desse período.',
+    li9: 'Documentar qualquer troca de plantão entre colaboradores, com aprovação formal do responsável pela escala.',
+    callout: '💡 Setores como enfermagem e segurança privada costumam ter regras específicas em convenção coletiva da categoria — sempre vale checar o que a convenção do seu setor prevê além da regra geral da CLT.',
+    cta_title: 'Organize escalas 12x36 sem complicação',
+    cta_desc: 'O Sr. Plantão já calcula automaticamente os intervalos e o adicional noturno da sua equipe.',
+    cta_btn: 'Conhecer Aplicativos',
+    related_title: 'Continue lendo',
+    related1: 'Como organizar escalas de plantão',
+    related2: 'Hora extra: quando é obrigatório pagar e quando pode virar banco de horas',
+    footer_copy: '© 2026 Dev.Lobbo. Todos os direitos reservados.',
+    footer_privacy: 'Privacidade',
+    footer_terms: 'Termos de Uso',
+    footer_contact: 'Contato',
+    page_title: 'Escala 12x36: o que a lei permite e o que não permite | Blog Dev.Lobbo',
+  },
+  en: {
+    lang:'en', flag:'🇺🇸', code:'EN',
+    art_title_bc: '12x36 shift: what the law allows and what it doesn\'t',
+    art_category: 'Labor Law',
+    art_title: '12x36 shift: what the law allows and what it doesn\'t',
+    art_date: '📅 April 7, 2026',
+    art_read: '⏱️ 7 min read',
+    art_author: '✍️ Dev.Lobbo Team',
+    p1: 'The 12x36 shift — 12 hours worked followed by 36 hours off — is extremely common among healthcare, security and other professionals in roles that require continuous coverage. Since the 2017 labor reform, this arrangement has had explicit legal backing, but that doesn\'t mean any 12x36 setup is automatically valid.',
+    h2_1: 'What the law requires for a 12x36 shift to be valid',
+    li1: '<strong>Formal agreement:</strong> the 12x36 shift needs to be set out in a written individual agreement or in a collective bargaining agreement — it can\'t just be an informal company practice.',
+    li2: '<strong>Compensation already built in:</strong> the monthly pay for this arrangement already compensates for weekly rest days and holidays worked, as provided by law — it doesn\'t entitle the employee to double pay for a holiday, as long as the agreement states this explicitly.',
+    li3: '<strong>Meal and rest break:</strong> even in 12-hour shifts, the break for rest and meals must be respected, unless a collective agreement for the category states otherwise.',
+    h2_2: 'What the law does NOT allow in this arrangement',
+    li4: 'Stringing shifts together without respecting the minimum rest period between one workday and the next.',
+    li5: 'Adding overtime on top of a 12x36 shift without proper payment or compensation — the arrangement is already a differentiated schedule, but that doesn\'t eliminate the right to overtime if the shift goes beyond the 12 hours agreed.',
+    li6: 'Applying the schedule without the formal agreement mentioned above — in that case, the Labor Court can invalidate the arrangement and order payment of hours worked beyond 8 per day as overtime, even if the company has operated this way for years.',
+    callout: '💡 Sectors like nursing and private security often have specific rules in their category\'s collective agreement — it\'s always worth checking what your sector\'s agreement provides for beyond the general CLT rule.',
+    h2_3: 'Practical care when building the schedule',
+    p2: 'Beyond legal compliance, a few operational precautions avoid friction with the team:',
+    li7: 'Distribute night and weekend shifts on a rotating basis across the team.',
+    li8: 'Make sure the 36-hour gap between shifts is genuinely free time — no call-ins or unpaid on-call duty within that period.',
+    li9: 'Document any shift swap between employees, with formal approval from whoever is responsible for the schedule.',
+    h2_4: 'Why it\'s worth documenting everything digitally',
+    p3: 'In the event of an inspection or labor dispute, having a complete history of schedules, swaps and hours actually worked — recorded digitally, with date and time — is the best defense a company can have. Loose spreadsheets or shifts arranged over text message are fragile in this scenario; a schedule-management system with an automatic audit trail handles this without extra manual effort.',
+    cta_title: 'Organize 12x36 shifts without the hassle',
+    cta_desc: 'Sr. Plantão already automatically calculates your team\'s rest periods and night-shift pay.',
+    cta_btn: 'Explore Apps',
+    related_title: 'Keep reading',
+    related1: 'How to organize on-call shifts',
+    related2: 'Overtime: when it must be paid and when it can become an overtime bank',
+    footer_copy: '© 2026 Dev.Lobbo. All rights reserved.',
+    page_title: '12x36 shift: what the law allows and what it doesn\'t | Dev.Lobbo Blog',
+    nav_home: 'Home',
+    nav_tutorials: 'Tutorials',
+    back_link: '← Back to Tutorials',
+    footer_privacy: 'Privacy',
+    footer_terms: 'Terms of Use',
+    footer_contact: 'Contact',
+  }
+};
+
+function detectLang() {
+  const saved = localStorage.getItem('dl-lang');
+  if (saved && TRANSLATIONS[saved]) return saved;
+  const browserLang = navigator.language || navigator.userLanguage || 'pt';
+  const code = browserLang.toLowerCase().slice(0, 2);
+  const map = { pt: 'pt', en: 'en' };
+  return map[code] || 'pt';
+}
+
+function applyLang(langCode) {
+  const t = TRANSLATIONS[langCode];
+  if (!t) return;
+  document.documentElement.setAttribute('lang', t.lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.getElementById('lang-flag').textContent = t.flag;
+  document.getElementById('lang-code').textContent = t.code;
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    const isActive = opt.dataset.lang === langCode;
+    opt.classList.toggle('active', isActive);
+    const check = opt.querySelector('.lang-option-check');
+    if (check) check.style.display = isActive ? '' : 'none';
+  });
+  localStorage.setItem('dl-lang', langCode);
+  if (t.page_title) document.title = t.page_title;
+}
+
+const langSwitcher = document.getElementById('lang-switcher');
+const langBtnEl = document.getElementById('lang-btn');
+langBtnEl.addEventListener('click', (e) => { e.stopPropagation(); langSwitcher.classList.toggle('open'); });
+document.addEventListener('click', () => langSwitcher.classList.remove('open'));
+document.querySelectorAll('.lang-option').forEach(opt => {
+  opt.addEventListener('click', (e) => { e.stopPropagation(); applyLang(opt.dataset.lang); langSwitcher.classList.remove('open'); });
+});
+
+(function() { applyLang(detectLang()); })();
+</script>
 
 </body>
 </html>

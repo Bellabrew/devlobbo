@@ -59,6 +59,22 @@ main { padding: 48px 0 80px; }
 footer { border-top:1px solid var(--clr-border); padding:32px 0; text-align:center; font-size:13px; color:var(--clr-muted); }
 footer a { color:var(--clr-muted2); margin:0 8px; }
 .adslot { margin:40px 0; text-align:center; }
+.lang-switcher { position: relative; }
+.lang-btn { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 9px; background: rgba(255,255,255,0.06); border: 1px solid var(--clr-border); color: var(--clr-muted2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }
+.lang-btn:hover { background: rgba(255,255,255,0.1); color: var(--clr-text); }
+.lang-flag { font-size: 16px; }
+.lang-code { font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
+.lang-arrow { font-size: 10px; color: var(--clr-muted); transition: transform var(--transition); }
+.lang-switcher.open .lang-arrow { transform: rotate(180deg); }
+.lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-md); padding: 6px; min-width: 160px; z-index: 200; box-shadow: 0 8px 32px rgba(0,0,0,0.4); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all var(--transition); }
+.lang-switcher.open .lang-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.lang-option { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--clr-muted2); cursor: pointer; transition: all var(--transition); border: none; background: none; width: 100%; text-align: left; font-family: var(--font-body); }
+.lang-option:hover { background: rgba(0,207,255,0.07); color: var(--clr-text); }
+.lang-option.active { color: var(--clr-neon-blue); background: rgba(0,207,255,0.07); }
+.lang-option .lang-flag { font-size: 18px; }
+.lang-option-name { flex: 1; }
+.lang-option-check { color: var(--clr-neon-blue); font-size: 12px; }
+@media (max-width:480px){ .lang-code{display:none;} .lang-btn{padding:6px 8px;} }
 </style>
 </head>
 <body>
@@ -69,69 +85,82 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
       <div class="nav-logo-icon">dL</div>
       <span class="nav-logo-text">Dev<span>.Lobbo</span></span>
     </a>
-    <a href="/#blog" class="back-link">← Voltar para Tutoriais</a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="/#blog" class="back-link" data-i18n="back_link">← Voltar para Tutoriais</a>
+      <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn" aria-label="Idioma" aria-haspopup="true">
+          <span class="lang-flag" id="lang-flag">🇧🇷</span>
+          <span class="lang-code" id="lang-code">PT</span>
+          <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="menu">
+          <button class="lang-option active" data-lang="pt" role="menuitem"><span class="lang-flag">🇧🇷</span><span class="lang-option-name">Português</span><span class="lang-option-check" id="check-pt">✓</span></button>
+          <button class="lang-option" data-lang="en" role="menuitem"><span class="lang-flag">🇺🇸</span><span class="lang-option-name">English</span><span class="lang-option-check" id="check-en" style="display:none">✓</span></button>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <main>
   <div class="container">
-    <div class="breadcrumb"><a href="/">Início</a> › <a href="/#blog">Tutoriais</a> › Controle de ponto digital: o que muda com a portaria 671</div>
+    <div class="breadcrumb"><a href="/" data-i18n="nav_home">Início</a> › <a href="/#blog" data-i18n="nav_tutorials">Tutoriais</a> › <span data-i18n="art_title_bc">Controle de ponto digital: o que muda com a portaria 671</span></div>
 
-    <div class="article-category">Legislação Trabalhista</div>
-    <h1 class="article-title">Controle de ponto digital: o que muda com a portaria 671</h1>
+    <div class="article-category" data-i18n="art_category">Legislação Trabalhista</div>
+    <h1 class="article-title" data-i18n="art_title">Controle de ponto digital: o que muda com a portaria 671</h1>
     <div class="article-meta">
-      <span>📅 29 de janeiro de 2026</span>
-      <span>⏱️ 6 min de leitura</span>
-      <span>✍️ Equipe Dev.Lobbo</span>
+      <span data-i18n="art_date">📅 29 de janeiro de 2026</span>
+      <span data-i18n="art_read">⏱️ 6 min de leitura</span>
+      <span data-i18n="art_author">✍️ Equipe Dev.Lobbo</span>
     </div>
 
     <img class="article-cover" src="/blog/img/controle-de-ponto-digital.jpg" alt="" loading="lazy">
 
     <div class="article-body">
 
-<p>A Portaria 671 do Ministério do Trabalho reorganizou as regras para o registro eletrônico de ponto no Brasil, ampliando as opções tecnológicas disponíveis para as empresas e trazendo mais clareza sobre o que é exigido de cada modalidade. Se sua empresa ainda usa cartão de ponto de papel ou registro manual, entender essas mudanças é o primeiro passo para planejar a migração.</p>
+<p data-i18n="p1">A Portaria 671 do Ministério do Trabalho reorganizou as regras para o registro eletrônico de ponto no Brasil, ampliando as opções tecnológicas disponíveis para as empresas e trazendo mais clareza sobre o que é exigido de cada modalidade. Se sua empresa ainda usa cartão de ponto de papel ou registro manual, entender essas mudanças é o primeiro passo para planejar a migração.</p>
 
-<h2>As três modalidades de registro eletrônico</h2>
-<p>A portaria organiza o registro eletrônico de ponto em três categorias principais:</p>
+<h2 data-i18n="h2_1">As três modalidades de registro eletrônico</h2>
+<p data-i18n="p2">A portaria organiza o registro eletrônico de ponto em três categorias principais:</p>
 <ul>
-<li><strong>REP-A:</strong> o relógio de ponto convencional, com impressão de comprovante em papel a cada marcação.</li>
-<li><strong>REP-P:</strong> o registro feito por meio de programa instalado em computador ou dispositivo, sem exigência de impressão a cada marcação.</li>
-<li><strong>REP-C:</strong> o mais recente e flexível, feito por aplicativo em smartphone, tablet ou navegador, com validação por geolocalização ou outros mecanismos de segurança.</li>
+<li data-i18n="li1"><strong>REP-A:</strong> o relógio de ponto convencional, com impressão de comprovante em papel a cada marcação.</li>
+<li data-i18n="li2"><strong>REP-P:</strong> o registro feito por meio de programa instalado em computador ou dispositivo, sem exigência de impressão a cada marcação.</li>
+<li data-i18n="li3"><strong>REP-C:</strong> o mais recente e flexível, feito por aplicativo em smartphone, tablet ou navegador, com validação por geolocalização ou outros mecanismos de segurança.</li>
 </ul>
 
-<p>Essa terceira modalidade é a que mais abriu espaço para empresas com equipes externas, plantonistas e trabalho híbrido, já que dispensa um equipamento físico fixo em um único local.</p>
+<p data-i18n="p3">Essa terceira modalidade é a que mais abriu espaço para empresas com equipes externas, plantonistas e trabalho híbrido, já que dispensa um equipamento físico fixo em um único local.</p>
 
-<h2>O que sua empresa precisa garantir</h2>
-<p>Independente da modalidade escolhida, alguns princípios seguem valendo para qualquer sistema de ponto eletrônico:</p>
+<h2 data-i18n="h2_2">O que sua empresa precisa garantir</h2>
+<p data-i18n="p4">Independente da modalidade escolhida, alguns princípios seguem valendo para qualquer sistema de ponto eletrônico:</p>
 <ul>
-<li>O colaborador precisa conseguir visualizar seus próprios registros de forma simples e acessível.</li>
-<li>O sistema não pode permitir alteração ou exclusão de marcações já realizadas sem trilha de auditoria.</li>
-<li>É necessário manter os registros disponíveis para fiscalização pelo prazo exigido em lei.</li>
+<li data-i18n="li4">O colaborador precisa conseguir visualizar seus próprios registros de forma simples e acessível.</li>
+<li data-i18n="li5">O sistema não pode permitir alteração ou exclusão de marcações já realizadas sem trilha de auditoria.</li>
+<li data-i18n="li6">É necessário manter os registros disponíveis para fiscalização pelo prazo exigido em lei.</li>
 </ul>
 
-<h2>Papel vs. digital: por que migrar vale a pena</h2>
-<p>Além da conformidade legal, o registro digital elimina boa parte do trabalho manual de conferência que o RH faz todo mês: soma de horas, cálculo de banco de horas, identificação de atrasos e faltas. Um sistema bem configurado gera esses relatórios automaticamente, liberando tempo do time de gestão de pessoas para questões mais estratégicas.</p>
+<h2 data-i18n="h2_3">Papel vs. digital: por que migrar vale a pena</h2>
+<p data-i18n="p5">Além da conformidade legal, o registro digital elimina boa parte do trabalho manual de conferência que o RH faz todo mês: soma de horas, cálculo de banco de horas, identificação de atrasos e faltas. Um sistema bem configurado gera esses relatórios automaticamente, liberando tempo do time de gestão de pessoas para questões mais estratégicas.</p>
 
-<div class="callout">💡 A modalidade REP-C, por rodar em aplicativo, costuma ser a mais econômica para pequenas e médias empresas, já que dispensa a compra de equipamento físico dedicado.</div>
+<div class="callout" data-i18n="callout">💡 A modalidade REP-C, por rodar em aplicativo, costuma ser a mais econômica para pequenas e médias empresas, já que dispensa a compra de equipamento físico dedicado.</div>
 
-<h2>Como planejar a transição</h2>
-<p>A migração não precisa ser feita de uma vez. Um caminho comum é: mapear como o ponto é registrado hoje, escolher a modalidade mais adequada ao perfil da equipe (fixa, externa, plantonista), testar com um grupo piloto por um mês, e só então expandir para toda a empresa — comunicando claramente aos colaboradores como o novo processo funciona.</p>
+<h2 data-i18n="h2_4">Como planejar a transição</h2>
+<p data-i18n="p6">A migração não precisa ser feita de uma vez. Um caminho comum é: mapear como o ponto é registrado hoje, escolher a modalidade mais adequada ao perfil da equipe (fixa, externa, plantonista), testar com um grupo piloto por um mês, e só então expandir para toda a empresa — comunicando claramente aos colaboradores como o novo processo funciona.</p>
 
-<p>Empresas que adiam essa modernização tendem a acumular retrabalho manual e ficam mais expostas a inconsistências no controle de jornada. Migrar para o digital, feito com planejamento, tende a ser mais simples do que parece.</p>
+<p data-i18n="p7">Empresas que adiam essa modernização tendem a acumular retrabalho manual e ficam mais expostas a inconsistências no controle de jornada. Migrar para o digital, feito com planejamento, tende a ser mais simples do que parece.</p>
 
     </div>
 
     <div class="article-cta">
-      <h3>Migre para o ponto digital sem dor de cabeça</h3>
-      <p>O Ponto Justificado ajuda sua empresa a se adequar às novas regras de controle de jornada.</p>
-      <a href="/#apps">Conhecer Aplicativos</a>
+      <h3 data-i18n="cta_title">Migre para o ponto digital sem dor de cabeça</h3>
+      <p data-i18n="cta_desc">O Ponto Justificado ajuda sua empresa a se adequar às novas regras de controle de jornada.</p>
+      <a href="/#apps" data-i18n="cta_btn">Conhecer Aplicativos</a>
     </div>
 
     <div class="related">
-      <h3>Continue lendo</h3>
+      <h3 data-i18n="related_title">Continue lendo</h3>
       <div class="related-list">
-        <a href="/blog/como-controlar-banco-de-horas.html">Como controlar o banco de horas da sua equipe sem dor de cabeça</a>
-        <a href="/blog/seguranca-digital-empresas.html">Autenticação segura em apps web: guia completo</a>
+        <a href="/blog/como-controlar-banco-de-horas.html" data-i18n="related1">Como controlar o banco de horas da sua equipe sem dor de cabeça</a>
+        <a href="/blog/seguranca-digital-empresas.html" data-i18n="related2">Autenticação segura em apps web: guia completo</a>
 
       </div>
     </div>
@@ -140,14 +169,128 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
 
 <footer>
   <div class="container">
-    <p>© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
+    <p data-i18n="footer_copy">© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
     <div style="margin-top:8px;">
-      <a href="/privacidade.html">Privacidade</a>
-      <a href="/termos.html">Termos de Uso</a>
-      <a href="/#contact">Contato</a>
+      <a href="/privacidade.html" data-i18n="footer_privacy">Privacidade</a>
+      <a href="/termos.html" data-i18n="footer_terms">Termos de Uso</a>
+      <a href="/#contact" data-i18n="footer_contact">Contato</a>
     </div>
   </div>
 </footer>
+
+<script>
+const TRANSLATIONS = {
+  pt: {
+    lang:'pt-BR', flag:'🇧🇷', code:'PT',
+    back_link:'← Voltar para Tutoriais', nav_home:'Início', nav_tutorials:'Tutoriais',
+    art_title_bc:'Controle de ponto digital: o que muda com a portaria 671',
+    art_category:'Legislação Trabalhista',
+    art_title:'Controle de ponto digital: o que muda com a portaria 671',
+    art_date:'📅 29 de janeiro de 2026', art_read:'⏱️ 6 min de leitura', art_author:'✍️ Equipe Dev.Lobbo',
+    p1:'A Portaria 671 do Ministério do Trabalho reorganizou as regras para o registro eletrônico de ponto no Brasil, ampliando as opções tecnológicas disponíveis para as empresas e trazendo mais clareza sobre o que é exigido de cada modalidade. Se sua empresa ainda usa cartão de ponto de papel ou registro manual, entender essas mudanças é o primeiro passo para planejar a migração.',
+    h2_1:'As três modalidades de registro eletrônico',
+    p2:'A portaria organiza o registro eletrônico de ponto em três categorias principais:',
+    li1:'<strong>REP-A:</strong> o relógio de ponto convencional, com impressão de comprovante em papel a cada marcação.',
+    li2:'<strong>REP-P:</strong> o registro feito por meio de programa instalado em computador ou dispositivo, sem exigência de impressão a cada marcação.',
+    li3:'<strong>REP-C:</strong> o mais recente e flexível, feito por aplicativo em smartphone, tablet ou navegador, com validação por geolocalização ou outros mecanismos de segurança.',
+    p3:'Essa terceira modalidade é a que mais abriu espaço para empresas com equipes externas, plantonistas e trabalho híbrido, já que dispensa um equipamento físico fixo em um único local.',
+    h2_2:'O que sua empresa precisa garantir',
+    p4:'Independente da modalidade escolhida, alguns princípios seguem valendo para qualquer sistema de ponto eletrônico:',
+    li4:'O colaborador precisa conseguir visualizar seus próprios registros de forma simples e acessível.',
+    li5:'O sistema não pode permitir alteração ou exclusão de marcações já realizadas sem trilha de auditoria.',
+    li6:'É necessário manter os registros disponíveis para fiscalização pelo prazo exigido em lei.',
+    h2_3:'Papel vs. digital: por que migrar vale a pena',
+    p5:'Além da conformidade legal, o registro digital elimina boa parte do trabalho manual de conferência que o RH faz todo mês: soma de horas, cálculo de banco de horas, identificação de atrasos e faltas. Um sistema bem configurado gera esses relatórios automaticamente, liberando tempo do time de gestão de pessoas para questões mais estratégicas.',
+    callout:'💡 A modalidade REP-C, por rodar em aplicativo, costuma ser a mais econômica para pequenas e médias empresas, já que dispensa a compra de equipamento físico dedicado.',
+    h2_4:'Como planejar a transição',
+    p6:'A migração não precisa ser feita de uma vez. Um caminho comum é: mapear como o ponto é registrado hoje, escolher a modalidade mais adequada ao perfil da equipe (fixa, externa, plantonista), testar com um grupo piloto por um mês, e só então expandir para toda a empresa — comunicando claramente aos colaboradores como o novo processo funciona.',
+    p7:'Empresas que adiam essa modernização tendem a acumular retrabalho manual e ficam mais expostas a inconsistências no controle de jornada. Migrar para o digital, feito com planejamento, tende a ser mais simples do que parece.',
+    cta_title:'Migre para o ponto digital sem dor de cabeça',
+    cta_desc:'O Ponto Justificado ajuda sua empresa a se adequar às novas regras de controle de jornada.',
+    cta_btn:'Conhecer Aplicativos',
+    related_title:'Continue lendo',
+    related1:'Como controlar o banco de horas da sua equipe sem dor de cabeça',
+    related2:'Autenticação segura em apps web: guia completo',
+    footer_copy:'© 2026 Dev.Lobbo. Todos os direitos reservados.',
+    footer_privacy:'Privacidade', footer_terms:'Termos de Uso', footer_contact:'Contato',
+    page_title:'Controle de ponto digital: o que muda com a portaria 671 | Blog Dev.Lobbo',
+  },
+  en: {
+    lang:'en', flag:'🇺🇸', code:'EN',
+    back_link:'← Back to Tutorials', nav_home:'Home', nav_tutorials:'Tutorials',
+    art_title_bc:'Digital time tracking: what changes with Ordinance 671',
+    art_category:'Labor Law',
+    art_title:'Digital time tracking: what changes with Ordinance 671',
+    art_date:'📅 January 29, 2026', art_read:'⏱️ 6 min read', art_author:'✍️ Dev.Lobbo Team',
+    p1:"Brazil's Ministry of Labor Ordinance 671 reorganized the rules for electronic time tracking, expanding the technology options available to companies and bringing more clarity on what's required for each type. If your company still uses paper timesheets or manual logging, understanding these changes is the first step toward planning your migration.",
+    h2_1:'The three types of electronic time tracking',
+    p2:'The ordinance organizes electronic time tracking into three main categories:',
+    li1:'<strong>REP-A:</strong> the conventional time clock, printing a paper receipt for each entry.',
+    li2:'<strong>REP-P:</strong> tracking done through software installed on a computer or device, with no requirement to print each entry.',
+    li3:'<strong>REP-C:</strong> the newest and most flexible option, done via a smartphone, tablet or browser app, validated by geolocation or other security mechanisms.',
+    p3:'This third type is the one that has opened the most doors for companies with field teams, on-call staff and hybrid work, since it removes the need for a fixed physical device in a single location.',
+    h2_2:'What your company needs to guarantee',
+    p4:'Regardless of the type chosen, some principles still apply to any electronic time-tracking system:',
+    li4:'Employees need to be able to view their own records easily and simply.',
+    li5:'The system cannot allow existing entries to be changed or deleted without an audit trail.',
+    li6:'Records must remain available for inspection for the period required by law.',
+    h2_3:'Paper vs. digital: why migrating is worth it',
+    p5:"Beyond legal compliance, digital tracking eliminates much of the manual checking that HR does every month: adding up hours, calculating overtime balances, spotting lateness and absences. A well-configured system generates these reports automatically, freeing up the people-management team's time for more strategic matters.",
+    callout:'💡 The REP-C type, since it runs as an app, tends to be the most cost-effective option for small and medium businesses, as it requires no dedicated physical equipment.',
+    h2_4:'How to plan the transition',
+    p6:"The migration doesn't have to happen all at once. A common path is: map out how time is currently tracked, choose the type that best fits your team's profile (fixed, field-based, on-call), test it with a pilot group for a month, and only then roll it out to the whole company — clearly communicating to employees how the new process works.",
+    p7:'Companies that put off this modernization tend to accumulate manual rework and are more exposed to inconsistencies in time management. Migrating to digital, done with planning, tends to be simpler than it looks.',
+    cta_title:'Move to digital time tracking without the headache',
+    cta_desc:'Ponto Justificado helps your company adapt to the new time-tracking rules.',
+    cta_btn:'Explore Apps',
+    related_title:'Keep reading',
+    related1:"How to control your team's overtime bank without the headache",
+    related2:'Secure authentication in web apps: complete guide',
+    footer_copy:'© 2026 Dev.Lobbo. All rights reserved.',
+    footer_privacy:'Privacy', footer_terms:'Terms of Use', footer_contact:'Contact',
+    page_title:'Digital time tracking: what changes with Ordinance 671 | Dev.Lobbo Blog',
+  },
+};
+
+function detectLang() {
+  const saved = localStorage.getItem('dl-lang');
+  if (saved && TRANSLATIONS[saved]) return saved;
+  const browserLang = navigator.language || navigator.userLanguage || 'pt';
+  const code = browserLang.toLowerCase().slice(0, 2);
+  const map = { pt: 'pt', en: 'en' };
+  return map[code] || 'pt';
+}
+
+function applyLang(langCode) {
+  const t = TRANSLATIONS[langCode];
+  if (!t) return;
+  document.documentElement.setAttribute('lang', t.lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.getElementById('lang-flag').textContent = t.flag;
+  document.getElementById('lang-code').textContent = t.code;
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    const isActive = opt.dataset.lang === langCode;
+    opt.classList.toggle('active', isActive);
+    const check = opt.querySelector('.lang-option-check');
+    if (check) check.style.display = isActive ? '' : 'none';
+  });
+  localStorage.setItem('dl-lang', langCode);
+  document.title = t.page_title;
+}
+
+const langSwitcher = document.getElementById('lang-switcher');
+const langBtnEl = document.getElementById('lang-btn');
+langBtnEl.addEventListener('click', (e) => { e.stopPropagation(); langSwitcher.classList.toggle('open'); });
+document.addEventListener('click', () => langSwitcher.classList.remove('open'));
+document.querySelectorAll('.lang-option').forEach(opt => {
+  opt.addEventListener('click', (e) => { e.stopPropagation(); applyLang(opt.dataset.lang); langSwitcher.classList.remove('open'); });
+});
+
+(function() { applyLang(detectLang()); })();
+</script>
 
 </body>
 </html>

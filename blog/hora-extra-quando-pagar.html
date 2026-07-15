@@ -59,6 +59,22 @@ main { padding: 48px 0 80px; }
 footer { border-top:1px solid var(--clr-border); padding:32px 0; text-align:center; font-size:13px; color:var(--clr-muted); }
 footer a { color:var(--clr-muted2); margin:0 8px; }
 .adslot { margin:40px 0; text-align:center; }
+.lang-switcher { position: relative; }
+.lang-btn { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 9px; background: rgba(255,255,255,0.06); border: 1px solid var(--clr-border); color: var(--clr-muted2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }
+.lang-btn:hover { background: rgba(255,255,255,0.1); color: var(--clr-text); }
+.lang-flag { font-size: 16px; }
+.lang-code { font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
+.lang-arrow { font-size: 10px; color: var(--clr-muted); transition: transform var(--transition); }
+.lang-switcher.open .lang-arrow { transform: rotate(180deg); }
+.lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-md); padding: 6px; min-width: 160px; z-index: 200; box-shadow: 0 8px 32px rgba(0,0,0,0.4); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all var(--transition); }
+.lang-switcher.open .lang-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.lang-option { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--clr-muted2); cursor: pointer; transition: all var(--transition); border: none; background: none; width: 100%; text-align: left; font-family: var(--font-body); }
+.lang-option:hover { background: rgba(0,207,255,0.07); color: var(--clr-text); }
+.lang-option.active { color: var(--clr-neon-blue); background: rgba(0,207,255,0.07); }
+.lang-option .lang-flag { font-size: 18px; }
+.lang-option-name { flex: 1; }
+.lang-option-check { color: var(--clr-neon-blue); font-size: 12px; }
+@media (max-width:480px){ .lang-code{display:none;} .lang-btn{padding:6px 8px;} }
 </style>
 </head>
 <body>
@@ -69,67 +85,80 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
       <div class="nav-logo-icon">dL</div>
       <span class="nav-logo-text">Dev<span>.Lobbo</span></span>
     </a>
-    <a href="/#blog" class="back-link">← Voltar para Tutoriais</a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="/#blog" class="back-link" data-i18n="back_link">← Voltar para Tutoriais</a>
+      <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn" aria-label="Idioma" aria-haspopup="true">
+          <span class="lang-flag" id="lang-flag">🇧🇷</span>
+          <span class="lang-code" id="lang-code">PT</span>
+          <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="menu">
+          <button class="lang-option active" data-lang="pt" role="menuitem"><span class="lang-flag">🇧🇷</span><span class="lang-option-name">Português</span><span class="lang-option-check" id="check-pt">✓</span></button>
+          <button class="lang-option" data-lang="en" role="menuitem"><span class="lang-flag">🇺🇸</span><span class="lang-option-name">English</span><span class="lang-option-check" id="check-en" style="display:none">✓</span></button>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <main>
   <div class="container">
-    <div class="breadcrumb"><a href="/">Início</a> › <a href="/#blog">Tutoriais</a> › Hora extra: quando é obrigatório pagar e quando pode virar banco de horas</div>
+    <div class="breadcrumb"><a href="/" data-i18n="nav_home">Início</a> › <a href="/#blog" data-i18n="nav_tutorials">Tutoriais</a> › <span data-i18n="art_title_bc">Hora extra: quando é obrigatório pagar e quando pode virar banco de horas</span></div>
 
-    <div class="article-category">Legislação Trabalhista</div>
-    <h1 class="article-title">Hora extra: quando é obrigatório pagar e quando pode virar banco de horas</h1>
+    <div class="article-category" data-i18n="art_category">Legislação Trabalhista</div>
+    <h1 class="article-title" data-i18n="art_title">Hora extra: quando é obrigatório pagar e quando pode virar banco de horas</h1>
     <div class="article-meta">
-      <span>📅 31 de março de 2026</span>
-      <span>⏱️ 7 min de leitura</span>
-      <span>✍️ Equipe Dev.Lobbo</span>
+      <span data-i18n="art_date">📅 31 de março de 2026</span>
+      <span data-i18n="art_read">⏱️ 7 min de leitura</span>
+      <span data-i18n="art_author">✍️ Equipe Dev.Lobbo</span>
     </div>
 
     <img class="article-cover" src="/blog/img/hora-extra-quando-pagar.jpg" alt="" loading="lazy">
 
     <div class="article-body">
 
-<p>Uma das dúvidas mais recorrentes de quem gerencia equipes é: essa hora extra precisa ser paga em dinheiro, ou pode simplesmente entrar no banco de horas? A resposta depende de alguns fatores — e errar nessa conta é uma das causas mais comuns de reclamação trabalhista no Brasil.</p>
+<p data-i18n="p1">Uma das dúvidas mais recorrentes de quem gerencia equipes é: essa hora extra precisa ser paga em dinheiro, ou pode simplesmente entrar no banco de horas? A resposta depende de alguns fatores — e errar nessa conta é uma das causas mais comuns de reclamação trabalhista no Brasil.</p>
 
-<h2>A regra geral: hora extra é paga, banco de horas é exceção</h2>
-<p>Por padrão, toda hora trabalhada além da jornada contratual deve ser remunerada com um adicional mínimo de 50% sobre o valor da hora normal (podendo ser maior, conforme convenção coletiva da categoria). O banco de horas é uma <strong>exceção</strong> a essa regra — só é válido quando existe um acordo formal, individual ou coletivo, autorizando a compensação em vez do pagamento.</p>
+<h2 data-i18n="h2_1">A regra geral: hora extra é paga, banco de horas é exceção</h2>
+<p data-i18n="p2">Por padrão, toda hora trabalhada além da jornada contratual deve ser remunerada com um adicional mínimo de 50% sobre o valor da hora normal (podendo ser maior, conforme convenção coletiva da categoria). O banco de horas é uma <strong>exceção</strong> a essa regra — só é válido quando existe um acordo formal, individual ou coletivo, autorizando a compensação em vez do pagamento.</p>
 
-<h2>Quando o banco de horas é permitido</h2>
+<h2 data-i18n="h2_2">Quando o banco de horas é permitido</h2>
 <ul>
-<li>Quando existe acordo individual escrito entre empregado e empregador (permitido desde a reforma trabalhista de 2017), ou acordo/convenção coletiva.</li>
-<li>Quando o prazo de compensação é respeitado — geralmente até 6 meses no acordo individual, podendo ser maior em acordo coletivo, conforme o que for negociado.</li>
-<li>Quando o limite diário de horas trabalhadas (normalmente até 10 horas por dia, incluindo as extras) não é ultrapassado.</li>
+<li data-i18n="li1">Quando existe acordo individual escrito entre empregado e empregador (permitido desde a reforma trabalhista de 2017), ou acordo/convenção coletiva.</li>
+<li data-i18n="li2">Quando o prazo de compensação é respeitado — geralmente até 6 meses no acordo individual, podendo ser maior em acordo coletivo, conforme o que for negociado.</li>
+<li data-i18n="li3">Quando o limite diário de horas trabalhadas (normalmente até 10 horas por dia, incluindo as extras) não é ultrapassado.</li>
 </ul>
 
-<h2>Quando a hora extra tem que ser paga, sem exceção</h2>
-<p>Mesmo com banco de horas configurado, existem situações em que o pagamento em dinheiro é obrigatório:</p>
+<h2 data-i18n="h2_3">Quando a hora extra tem que ser paga, sem exceção</h2>
+<p data-i18n="p3">Mesmo com banco de horas configurado, existem situações em que o pagamento em dinheiro é obrigatório:</p>
 <ul>
-<li><strong>Se o prazo de compensação vencer</strong> sem que a hora tenha sido compensada com folga — nesse caso, a empresa é obrigada a pagar como hora extra, com o adicional legal.</li>
-<li><strong>Em caso de rescisão do contrato</strong>, qualquer saldo positivo de banco de horas ainda não compensado deve ser pago no acerto final, com o adicional correspondente.</li>
-<li><strong>Se não existir acordo formal</strong> autorizando o banco de horas — nesse caso, todo o tempo excedente deve ser remunerado, não importa o que tenha sido combinado verbalmente.</li>
+<li data-i18n="li4"><strong>Se o prazo de compensação vencer</strong> sem que a hora tenha sido compensada com folga — nesse caso, a empresa é obrigada a pagar como hora extra, com o adicional legal.</li>
+<li data-i18n="li5"><strong>Em caso de rescisão do contrato</strong>, qualquer saldo positivo de banco de horas ainda não compensado deve ser pago no acerto final, com o adicional correspondente.</li>
+<li data-i18n="li6"><strong>Se não existir acordo formal</strong> autorizando o banco de horas — nesse caso, todo o tempo excedente deve ser remunerado, não importa o que tenha sido combinado verbalmente.</li>
 </ul>
 
-<div class="callout">💡 Um erro comum: empresas que "empurram" hora extra para o banco de horas sem nenhum acordo assinado. Juridicamente, isso não vale — e a Justiça do Trabalho tende a determinar o pagamento retroativo de tudo, com os devidos acréscimos.</div>
+<div class="callout" data-i18n="callout">💡 Um erro comum: empresas que "empurram" hora extra para o banco de horas sem nenhum acordo assinado. Juridicamente, isso não vale — e a Justiça do Trabalho tende a determinar o pagamento retroativo de tudo, com os devidos acréscimos.</div>
 
-<h2>Como decidir entre pagar ou compensar</h2>
-<p>Na prática, a decisão costuma depender do momento da empresa. Compensar com banco de horas faz sentido quando há picos e vales previsíveis de demanda — por exemplo, um período de fechamento fiscal seguido de um período mais tranquilo. Já em empresas com hora extra constante, sem variação de demanda, isso é sinal de que a equipe está subdimensionada — e empurrar isso para o banco de horas apenas adia um problema estrutural, sem resolvê-lo.</p>
+<h2 data-i18n="h2_4">Como decidir entre pagar ou compensar</h2>
+<p data-i18n="p4">Na prática, a decisão costuma depender do momento da empresa. Compensar com banco de horas faz sentido quando há picos e vales previsíveis de demanda — por exemplo, um período de fechamento fiscal seguido de um período mais tranquilo. Já em empresas com hora extra constante, sem variação de demanda, isso é sinal de que a equipe está subdimensionada — e empurrar isso para o banco de horas apenas adia um problema estrutural, sem resolvê-lo.</p>
 
-<h2>O papel do controle digital nessa decisão</h2>
-<p>Ter um sistema de ponto digital que calcula automaticamente o saldo de banco de horas — e alerta quando um prazo de compensação está perto de vencer — evita o cenário mais caro para qualquer empresa: descobrir, meses depois, que acumulou um passivo de horas que deveriam ter sido pagas. Esse tipo de controle automático também dá transparência ao colaborador, que sabe exatamente quanto tem a receber ou compensar, reduzindo o risco de disputa.</p>
+<h2 data-i18n="h2_5">O papel do controle digital nessa decisão</h2>
+<p data-i18n="p5">Ter um sistema de ponto digital que calcula automaticamente o saldo de banco de horas — e alerta quando um prazo de compensação está perto de vencer — evita o cenário mais caro para qualquer empresa: descobrir, meses depois, que acumulou um passivo de horas que deveriam ter sido pagas. Esse tipo de controle automático também dá transparência ao colaborador, que sabe exatamente quanto tem a receber ou compensar, reduzindo o risco de disputa.</p>
 
     </div>
 
     <div class="article-cta">
-      <h3>Controle horas extras sem erro</h3>
-      <p>O Ponto Justificado calcula automaticamente o que deve ser pago e o que pode ser compensado.</p>
-      <a href="/#apps">Conhecer Aplicativos</a>
+      <h3 data-i18n="cta_title">Controle horas extras sem erro</h3>
+      <p data-i18n="cta_desc">O Ponto Justificado calcula automaticamente o que deve ser pago e o que pode ser compensado.</p>
+      <a href="/#apps" data-i18n="cta_btn">Conhecer Aplicativos</a>
     </div>
 
     <div class="related">
-      <h3>Continue lendo</h3>
+      <h3 data-i18n="related_title">Continue lendo</h3>
       <div class="related-list">
-        <a href="/blog/como-controlar-banco-de-horas.html">Como controlar o banco de horas da sua equipe sem dor de cabeça</a>
-        <a href="/blog/escala-12x36-o-que-diz-a-lei.html">Escala 12x36: o que a lei permite e o que não permite</a>
+        <a href="/blog/como-controlar-banco-de-horas.html" data-i18n="related1">Como controlar o banco de horas da sua equipe sem dor de cabeça</a>
+        <a href="/blog/escala-12x36-o-que-diz-a-lei.html" data-i18n="related2">Escala 12x36: o que a lei permite e o que não permite</a>
 
       </div>
     </div>
@@ -138,14 +167,138 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
 
 <footer>
   <div class="container">
-    <p>© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
+    <p data-i18n="footer_copy">© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
     <div style="margin-top:8px;">
-      <a href="/privacidade.html">Privacidade</a>
-      <a href="/termos.html">Termos de Uso</a>
-      <a href="/#contact">Contato</a>
+      <a href="/privacidade.html" data-i18n="footer_privacy">Privacidade</a>
+      <a href="/termos.html" data-i18n="footer_terms">Termos de Uso</a>
+      <a href="/#contact" data-i18n="footer_contact">Contato</a>
     </div>
   </div>
 </footer>
+
+<script>
+const TRANSLATIONS = {
+  pt: {
+    lang:'pt-BR', flag:'🇧🇷', code:'PT',
+    back_link: '← Voltar para Tutoriais',
+    nav_home: 'Início',
+    nav_tutorials: 'Tutoriais',
+    art_title_bc: 'Hora extra: quando é obrigatório pagar e quando pode virar banco de horas',
+    art_category: 'Legislação Trabalhista',
+    art_title: 'Hora extra: quando é obrigatório pagar e quando pode virar banco de horas',
+    art_date: '📅 31 de março de 2026',
+    art_read: '⏱️ 7 min de leitura',
+    art_author: '✍️ Equipe Dev.Lobbo',
+    p1: 'Uma das dúvidas mais recorrentes de quem gerencia equipes é: essa hora extra precisa ser paga em dinheiro, ou pode simplesmente entrar no banco de horas? A resposta depende de alguns fatores — e errar nessa conta é uma das causas mais comuns de reclamação trabalhista no Brasil.',
+    p2: 'Por padrão, toda hora trabalhada além da jornada contratual deve ser remunerada com um adicional mínimo de 50% sobre o valor da hora normal (podendo ser maior, conforme convenção coletiva da categoria). O banco de horas é uma <strong>exceção</strong> a essa regra — só é válido quando existe um acordo formal, individual ou coletivo, autorizando a compensação em vez do pagamento.',
+    p3: 'Mesmo com banco de horas configurado, existem situações em que o pagamento em dinheiro é obrigatório:',
+    p4: 'Na prática, a decisão costuma depender do momento da empresa. Compensar com banco de horas faz sentido quando há picos e vales previsíveis de demanda — por exemplo, um período de fechamento fiscal seguido de um período mais tranquilo. Já em empresas com hora extra constante, sem variação de demanda, isso é sinal de que a equipe está subdimensionada — e empurrar isso para o banco de horas apenas adia um problema estrutural, sem resolvê-lo.',
+    p5: 'Ter um sistema de ponto digital que calcula automaticamente o saldo de banco de horas — e alerta quando um prazo de compensação está perto de vencer — evita o cenário mais caro para qualquer empresa: descobrir, meses depois, que acumulou um passivo de horas que deveriam ter sido pagas. Esse tipo de controle automático também dá transparência ao colaborador, que sabe exatamente quanto tem a receber ou compensar, reduzindo o risco de disputa.',
+    h2_1: 'A regra geral: hora extra é paga, banco de horas é exceção',
+    h2_2: 'Quando o banco de horas é permitido',
+    h2_3: 'Quando a hora extra tem que ser paga, sem exceção',
+    h2_4: 'Como decidir entre pagar ou compensar',
+    h2_5: 'O papel do controle digital nessa decisão',
+    li1: 'Quando existe acordo individual escrito entre empregado e empregador (permitido desde a reforma trabalhista de 2017), ou acordo/convenção coletiva.',
+    li2: 'Quando o prazo de compensação é respeitado — geralmente até 6 meses no acordo individual, podendo ser maior em acordo coletivo, conforme o que for negociado.',
+    li3: 'Quando o limite diário de horas trabalhadas (normalmente até 10 horas por dia, incluindo as extras) não é ultrapassado.',
+    li4: '<strong>Se o prazo de compensação vencer</strong> sem que a hora tenha sido compensada com folga — nesse caso, a empresa é obrigada a pagar como hora extra, com o adicional legal.',
+    li5: '<strong>Em caso de rescisão do contrato</strong>, qualquer saldo positivo de banco de horas ainda não compensado deve ser pago no acerto final, com o adicional correspondente.',
+    li6: '<strong>Se não existir acordo formal</strong> autorizando o banco de horas — nesse caso, todo o tempo excedente deve ser remunerado, não importa o que tenha sido combinado verbalmente.',
+    callout: '💡 Um erro comum: empresas que "empurram" hora extra para o banco de horas sem nenhum acordo assinado. Juridicamente, isso não vale — e a Justiça do Trabalho tende a determinar o pagamento retroativo de tudo, com os devidos acréscimos.',
+    cta_title: 'Controle horas extras sem erro',
+    cta_desc: 'O Ponto Justificado calcula automaticamente o que deve ser pago e o que pode ser compensado.',
+    cta_btn: 'Conhecer Aplicativos',
+    related_title: 'Continue lendo',
+    related1: 'Como controlar o banco de horas da sua equipe sem dor de cabeça',
+    related2: 'Escala 12x36: o que a lei permite e o que não permite',
+    footer_copy: '© 2026 Dev.Lobbo. Todos os direitos reservados.',
+    footer_privacy: 'Privacidade',
+    footer_terms: 'Termos de Uso',
+    footer_contact: 'Contato',
+    page_title: 'Hora extra: quando é obrigatório pagar e quando pode virar banco de horas | Blog Dev.Lobbo',
+  },
+  en: {
+    lang:'en', flag:'🇺🇸', code:'EN',
+    art_title_bc: 'Overtime: when it must be paid and when it can become an overtime bank',
+    art_category: 'Labor Law',
+    art_title: 'Overtime: when it must be paid and when it can become an overtime bank',
+    art_date: '📅 March 31, 2026',
+    art_read: '⏱️ 7 min read',
+    art_author: '✍️ Dev.Lobbo Team',
+    p1: 'One of the most common questions for anyone managing teams is: does this overtime need to be paid in cash, or can it simply go into the overtime bank? The answer depends on a few factors — and getting this wrong is one of the most common causes of labor claims in Brazil.',
+    h2_1: 'The general rule: overtime is paid, the overtime bank is the exception',
+    p2: 'By default, every hour worked beyond the contracted schedule must be paid with a minimum 50% premium over the regular hourly rate (which can be higher, depending on the category\'s collective agreement). The overtime bank is an <strong>exception</strong> to this rule — it\'s only valid when there\'s a formal agreement, individual or collective, authorizing compensation instead of payment.',
+    h2_2: 'When the overtime bank is allowed',
+    li1: 'When there is a written individual agreement between employee and employer (allowed since the 2017 labor reform), or a collective agreement.',
+    li2: 'When the compensation deadline is respected — generally up to 6 months for an individual agreement, which can be longer under a collective agreement, depending on what was negotiated.',
+    li3: 'When the daily limit of hours worked (usually up to 10 hours a day, including overtime) is not exceeded.',
+    h2_3: 'When overtime must be paid, no exceptions',
+    p3: 'Even with an overtime bank set up, there are situations where cash payment is mandatory:',
+    li4: '<strong>If the compensation deadline expires</strong> without the hours being compensated with time off — in that case, the company must pay it as overtime, with the legal premium.',
+    li5: '<strong>In case of contract termination</strong>, any positive overtime-bank balance not yet compensated must be paid out in the final settlement, with the corresponding premium.',
+    li6: '<strong>If there is no formal agreement</strong> authorizing the overtime bank — in that case, all excess time must be paid, no matter what was verbally agreed.',
+    callout: '💡 A common mistake: companies that "push" overtime into the bank without any signed agreement. Legally, this doesn\'t hold up — and the Labor Court tends to order retroactive payment of everything, with the corresponding premiums.',
+    h2_4: 'How to decide between paying or compensating',
+    p4: 'In practice, the decision usually depends on where the company is at. Compensating with an overtime bank makes sense when there are predictable peaks and valleys in demand — for example, a fiscal closing period followed by a calmer stretch. In companies with constant overtime, with no variation in demand, that\'s a sign the team is understaffed — and pushing it into the overtime bank just postpones a structural problem instead of solving it.',
+    h2_5: 'The role of digital tracking in this decision',
+    p5: 'Having a digital time-tracking system that automatically calculates the overtime-bank balance — and alerts when a compensation deadline is about to expire — avoids the most expensive scenario for any company: discovering, months later, that it has built up a liability of hours that should have been paid. This kind of automatic tracking also gives employees transparency, since they know exactly how much they\'re owed or need to compensate, reducing the risk of disputes.',
+    cta_title: 'Track overtime without errors',
+    cta_desc: 'Ponto Justificado automatically calculates what must be paid and what can be compensated.',
+    cta_btn: 'Explore Apps',
+    related_title: 'Keep reading',
+    related1: 'How to control your team\'s overtime bank without the headache',
+    related2: '12x36 shift: what the law allows and what it doesn\'t',
+    footer_copy: '© 2026 Dev.Lobbo. All rights reserved.',
+    page_title: 'Overtime: when it must be paid and when it can become an overtime bank | Dev.Lobbo Blog',
+    nav_home: 'Home',
+    nav_tutorials: 'Tutorials',
+    back_link: '← Back to Tutorials',
+    footer_privacy: 'Privacy',
+    footer_terms: 'Terms of Use',
+    footer_contact: 'Contact',
+  }
+};
+
+function detectLang() {
+  const saved = localStorage.getItem('dl-lang');
+  if (saved && TRANSLATIONS[saved]) return saved;
+  const browserLang = navigator.language || navigator.userLanguage || 'pt';
+  const code = browserLang.toLowerCase().slice(0, 2);
+  const map = { pt: 'pt', en: 'en' };
+  return map[code] || 'pt';
+}
+
+function applyLang(langCode) {
+  const t = TRANSLATIONS[langCode];
+  if (!t) return;
+  document.documentElement.setAttribute('lang', t.lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.getElementById('lang-flag').textContent = t.flag;
+  document.getElementById('lang-code').textContent = t.code;
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    const isActive = opt.dataset.lang === langCode;
+    opt.classList.toggle('active', isActive);
+    const check = opt.querySelector('.lang-option-check');
+    if (check) check.style.display = isActive ? '' : 'none';
+  });
+  localStorage.setItem('dl-lang', langCode);
+  if (t.page_title) document.title = t.page_title;
+}
+
+const langSwitcher = document.getElementById('lang-switcher');
+const langBtnEl = document.getElementById('lang-btn');
+langBtnEl.addEventListener('click', (e) => { e.stopPropagation(); langSwitcher.classList.toggle('open'); });
+document.addEventListener('click', () => langSwitcher.classList.remove('open'));
+document.querySelectorAll('.lang-option').forEach(opt => {
+  opt.addEventListener('click', (e) => { e.stopPropagation(); applyLang(opt.dataset.lang); langSwitcher.classList.remove('open'); });
+});
+
+(function() { applyLang(detectLang()); })();
+</script>
 
 </body>
 </html>

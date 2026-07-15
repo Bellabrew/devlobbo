@@ -59,6 +59,22 @@ main { padding: 48px 0 80px; }
 footer { border-top:1px solid var(--clr-border); padding:32px 0; text-align:center; font-size:13px; color:var(--clr-muted); }
 footer a { color:var(--clr-muted2); margin:0 8px; }
 .adslot { margin:40px 0; text-align:center; }
+.lang-switcher { position: relative; }
+.lang-btn { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 9px; background: rgba(255,255,255,0.06); border: 1px solid var(--clr-border); color: var(--clr-muted2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }
+.lang-btn:hover { background: rgba(255,255,255,0.1); color: var(--clr-text); }
+.lang-flag { font-size: 16px; }
+.lang-code { font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
+.lang-arrow { font-size: 10px; color: var(--clr-muted); transition: transform var(--transition); }
+.lang-switcher.open .lang-arrow { transform: rotate(180deg); }
+.lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-md); padding: 6px; min-width: 160px; z-index: 200; box-shadow: 0 8px 32px rgba(0,0,0,0.4); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all var(--transition); }
+.lang-switcher.open .lang-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.lang-option { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--clr-muted2); cursor: pointer; transition: all var(--transition); border: none; background: none; width: 100%; text-align: left; font-family: var(--font-body); }
+.lang-option:hover { background: rgba(0,207,255,0.07); color: var(--clr-text); }
+.lang-option.active { color: var(--clr-neon-blue); background: rgba(0,207,255,0.07); }
+.lang-option .lang-flag { font-size: 18px; }
+.lang-option-name { flex: 1; }
+.lang-option-check { color: var(--clr-neon-blue); font-size: 12px; }
+@media (max-width:480px){ .lang-code{display:none;} .lang-btn{padding:6px 8px;} }
 </style>
 </head>
 <body>
@@ -69,65 +85,78 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
       <div class="nav-logo-icon">dL</div>
       <span class="nav-logo-text">Dev<span>.Lobbo</span></span>
     </a>
-    <a href="/#blog" class="back-link">← Voltar para Tutoriais</a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="/#blog" class="back-link" data-i18n="back_link">← Voltar para Tutoriais</a>
+      <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn" aria-label="Idioma" aria-haspopup="true">
+          <span class="lang-flag" id="lang-flag">🇧🇷</span>
+          <span class="lang-code" id="lang-code">PT</span>
+          <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="menu">
+          <button class="lang-option active" data-lang="pt" role="menuitem"><span class="lang-flag">🇧🇷</span><span class="lang-option-name">Português</span><span class="lang-option-check" id="check-pt">✓</span></button>
+          <button class="lang-option" data-lang="en" role="menuitem"><span class="lang-flag">🇺🇸</span><span class="lang-option-name">English</span><span class="lang-option-check" id="check-en" style="display:none">✓</span></button>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <main>
   <div class="container">
-    <div class="breadcrumb"><a href="/">Início</a> › <a href="/#blog">Tutoriais</a> › Autenticação segura em apps web: guia completo</div>
+    <div class="breadcrumb"><a href="/" data-i18n="nav_home">Início</a> › <a href="/#blog" data-i18n="nav_tutorials">Tutoriais</a> › <span data-i18n="art_title_bc">Autenticação segura em apps web: guia completo</span></div>
 
-    <div class="article-category">Segurança</div>
-    <h1 class="article-title">Autenticação segura em apps web: guia completo</h1>
+    <div class="article-category" data-i18n="art_category">Segurança</div>
+    <h1 class="article-title" data-i18n="art_title">Autenticação segura em apps web: guia completo</h1>
     <div class="article-meta">
-      <span>📅 24 de março de 2026</span>
-      <span>⏱️ 7 min de leitura</span>
-      <span>✍️ Equipe Dev.Lobbo</span>
+      <span data-i18n="art_date">📅 24 de março de 2026</span>
+      <span data-i18n="art_read">⏱️ 7 min de leitura</span>
+      <span data-i18n="art_author">✍️ Equipe Dev.Lobbo</span>
     </div>
 
     <img class="article-cover" src="/blog/img/seguranca-digital-empresas.jpg" alt="" loading="lazy">
 
     <div class="article-body">
 
-<p>Autenticação — o processo de confirmar que um usuário é realmente quem diz ser — é um dos pontos mais sensíveis de qualquer sistema web. Um sistema de gestão empresarial, por exemplo, lida com dados financeiros e informações de colaboradores, o que torna a segurança desse processo ainda mais crítica.</p>
+<p data-i18n="p1">Autenticação — o processo de confirmar que um usuário é realmente quem diz ser — é um dos pontos mais sensíveis de qualquer sistema web. Um sistema de gestão empresarial, por exemplo, lida com dados financeiros e informações de colaboradores, o que torna a segurança desse processo ainda mais crítica.</p>
 
-<h2>Senhas: o básico que ainda falha</h2>
-<p>Mesmo em 2026, boa parte dos incidentes de segurança ainda envolve senhas fracas ou reutilizadas entre serviços diferentes. Armazenar senhas com hash forte (nunca em texto puro) e exigir um comprimento mínimo razoável continuam sendo a base de qualquer sistema de autenticação — mas, sozinhos, já não são suficientes.</p>
+<h2 data-i18n="h2_1">Senhas: o básico que ainda falha</h2>
+<p data-i18n="p2">Mesmo em 2026, boa parte dos incidentes de segurança ainda envolve senhas fracas ou reutilizadas entre serviços diferentes. Armazenar senhas com hash forte (nunca em texto puro) e exigir um comprimento mínimo razoável continuam sendo a base de qualquer sistema de autenticação — mas, sozinhos, já não são suficientes.</p>
 
-<h2>OAuth: autenticação delegada</h2>
-<p>O OAuth permite que um usuário entre em um sistema usando uma conta que já possui em outro serviço (Google, Microsoft, entre outros), sem precisar criar e lembrar mais uma senha. Isso reduz a fricção no cadastro e transfere parte da responsabilidade de segurança para provedores que já investem pesado em proteção de conta — mas exige que o sistema que usa OAuth implemente corretamente o fluxo de autorização, evitando falhas comuns como validação incompleta do token recebido.</p>
+<h2 data-i18n="h2_2">OAuth: autenticação delegada</h2>
+<p data-i18n="p3">O OAuth permite que um usuário entre em um sistema usando uma conta que já possui em outro serviço (Google, Microsoft, entre outros), sem precisar criar e lembrar mais uma senha. Isso reduz a fricção no cadastro e transfere parte da responsabilidade de segurança para provedores que já investem pesado em proteção de conta — mas exige que o sistema que usa OAuth implemente corretamente o fluxo de autorização, evitando falhas comuns como validação incompleta do token recebido.</p>
 
-<h2>Autenticação em dois fatores (2FA)</h2>
-<p>O 2FA adiciona uma segunda camada de verificação além da senha — um código enviado por SMS, um aplicativo autenticador, ou uma chave física. Mesmo que uma senha vaze, o invasor ainda precisaria desse segundo fator para acessar a conta. Para sistemas que lidam com dados sensíveis, oferecer (e idealmente incentivar) o 2FA é hoje considerado padrão mínimo de segurança, não um recurso opcional.</p>
+<h2 data-i18n="h2_3">Autenticação em dois fatores (2FA)</h2>
+<p data-i18n="p4">O 2FA adiciona uma segunda camada de verificação além da senha — um código enviado por SMS, um aplicativo autenticador, ou uma chave física. Mesmo que uma senha vaze, o invasor ainda precisaria desse segundo fator para acessar a conta. Para sistemas que lidam com dados sensíveis, oferecer (e idealmente incentivar) o 2FA é hoje considerado padrão mínimo de segurança, não um recurso opcional.</p>
 
-<div class="callout">💡 Entre as opções de 2FA, aplicativos autenticadores (que geram códigos temporários) são geralmente mais seguros do que SMS, que pode ser interceptado por ataques de troca de chip (SIM swap).</div>
+<div class="callout" data-i18n="callout">💡 Entre as opções de 2FA, aplicativos autenticadores (que geram códigos temporários) são geralmente mais seguros do que SMS, que pode ser interceptado por ataques de troca de chip (SIM swap).</div>
 
-<h2>Tokens e sessões: cuidado com o tempo de vida</h2>
-<p>Depois que o usuário se autentica, o sistema geralmente emite um token de sessão para não exigir login a cada ação. É importante que esse token tenha um tempo de expiração razoável, seja invalidado no logout, e — em sistemas mais sensíveis — seja revogável remotamente (por exemplo, se um dispositivo for perdido ou roubado).</p>
+<h2 data-i18n="h2_4">Tokens e sessões: cuidado com o tempo de vida</h2>
+<p data-i18n="p5">Depois que o usuário se autentica, o sistema geralmente emite um token de sessão para não exigir login a cada ação. É importante que esse token tenha um tempo de expiração razoável, seja invalidado no logout, e — em sistemas mais sensíveis — seja revogável remotamente (por exemplo, se um dispositivo for perdido ou roubado).</p>
 
-<h2>Boas práticas que toda empresa deveria exigir do seu sistema</h2>
+<h2 data-i18n="h2_5">Boas práticas que toda empresa deveria exigir do seu sistema</h2>
 <ul>
-<li>Conexão sempre criptografada (HTTPS), sem exceção, mesmo em telas de login.</li>
-<li>Bloqueio temporário após múltiplas tentativas de login malsucedidas, para dificultar ataques de força bruta.</li>
-<li>Registro de log de acessos, permitindo auditoria em caso de incidente.</li>
-<li>Permissões por perfil de usuário (colaborador, gestor, administrador), para que cada pessoa acesse só o que precisa.</li>
+<li data-i18n="li1">Conexão sempre criptografada (HTTPS), sem exceção, mesmo em telas de login.</li>
+<li data-i18n="li2">Bloqueio temporário após múltiplas tentativas de login malsucedidas, para dificultar ataques de força bruta.</li>
+<li data-i18n="li3">Registro de log de acessos, permitindo auditoria em caso de incidente.</li>
+<li data-i18n="li4">Permissões por perfil de usuário (colaborador, gestor, administrador), para que cada pessoa acesse só o que precisa.</li>
 </ul>
 
-<p>Segurança de autenticação não é um recurso que se adiciona depois — ela precisa ser parte do desenho do sistema desde o início. Empresas que avaliam fornecedores de software de gestão deveriam sempre perguntar, diretamente, como a autenticação é implementada antes de confiar dados sensíveis a qualquer plataforma.</p>
+<p data-i18n="p6">Segurança de autenticação não é um recurso que se adiciona depois — ela precisa ser parte do desenho do sistema desde o início. Empresas que avaliam fornecedores de software de gestão deveriam sempre perguntar, diretamente, como a autenticação é implementada antes de confiar dados sensíveis a qualquer plataforma.</p>
 
     </div>
 
     <div class="article-cta">
-      <h3>Segurança em primeiro lugar</h3>
-      <p>Nossos sistemas seguem boas práticas de autenticação para proteger os dados da sua empresa e da sua equipe.</p>
-      <a href="/#apps">Conhecer Aplicativos</a>
+      <h3 data-i18n="cta_title">Segurança em primeiro lugar</h3>
+      <p data-i18n="cta_desc">Nossos sistemas seguem boas práticas de autenticação para proteger os dados da sua empresa e da sua equipe.</p>
+      <a href="/#apps" data-i18n="cta_btn">Conhecer Aplicativos</a>
     </div>
 
     <div class="related">
-      <h3>Continue lendo</h3>
+      <h3 data-i18n="related_title">Continue lendo</h3>
       <div class="related-list">
-        <a href="/blog/javascript-moderno-2026.html">JavaScript moderno: features essenciais que você precisa dominar em 2026</a>
-        <a href="/blog/cloudflare-pages-hospedagem-gratuita.html">Hospede seu app grátis com Cloudflare Pages</a>
+        <a href="/blog/javascript-moderno-2026.html" data-i18n="related1">JavaScript moderno: features essenciais que você precisa dominar em 2026</a>
+        <a href="/blog/cloudflare-pages-hospedagem-gratuita.html" data-i18n="related2">Hospede seu app grátis com Cloudflare Pages</a>
 
       </div>
     </div>
@@ -136,14 +165,136 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
 
 <footer>
   <div class="container">
-    <p>© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
+    <p data-i18n="footer_copy">© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
     <div style="margin-top:8px;">
-      <a href="/privacidade.html">Privacidade</a>
-      <a href="/termos.html">Termos de Uso</a>
-      <a href="/#contact">Contato</a>
+      <a href="/privacidade.html" data-i18n="footer_privacy">Privacidade</a>
+      <a href="/termos.html" data-i18n="footer_terms">Termos de Uso</a>
+      <a href="/#contact" data-i18n="footer_contact">Contato</a>
     </div>
   </div>
 </footer>
+
+<script>
+const TRANSLATIONS = {
+  pt: {
+    lang:'pt-BR', flag:'🇧🇷', code:'PT',
+    back_link: '← Voltar para Tutoriais',
+    nav_home: 'Início',
+    nav_tutorials: 'Tutoriais',
+    art_title_bc: 'Autenticação segura em apps web: guia completo',
+    art_category: 'Segurança',
+    art_title: 'Autenticação segura em apps web: guia completo',
+    art_date: '📅 24 de março de 2026',
+    art_read: '⏱️ 7 min de leitura',
+    art_author: '✍️ Equipe Dev.Lobbo',
+    p1: 'Autenticação — o processo de confirmar que um usuário é realmente quem diz ser — é um dos pontos mais sensíveis de qualquer sistema web. Um sistema de gestão empresarial, por exemplo, lida com dados financeiros e informações de colaboradores, o que torna a segurança desse processo ainda mais crítica.',
+    p2: 'Mesmo em 2026, boa parte dos incidentes de segurança ainda envolve senhas fracas ou reutilizadas entre serviços diferentes. Armazenar senhas com hash forte (nunca em texto puro) e exigir um comprimento mínimo razoável continuam sendo a base de qualquer sistema de autenticação — mas, sozinhos, já não são suficientes.',
+    p3: 'O OAuth permite que um usuário entre em um sistema usando uma conta que já possui em outro serviço (Google, Microsoft, entre outros), sem precisar criar e lembrar mais uma senha. Isso reduz a fricção no cadastro e transfere parte da responsabilidade de segurança para provedores que já investem pesado em proteção de conta — mas exige que o sistema que usa OAuth implemente corretamente o fluxo de autorização, evitando falhas comuns como validação incompleta do token recebido.',
+    p4: 'O 2FA adiciona uma segunda camada de verificação além da senha — um código enviado por SMS, um aplicativo autenticador, ou uma chave física. Mesmo que uma senha vaze, o invasor ainda precisaria desse segundo fator para acessar a conta. Para sistemas que lidam com dados sensíveis, oferecer (e idealmente incentivar) o 2FA é hoje considerado padrão mínimo de segurança, não um recurso opcional.',
+    p5: 'Depois que o usuário se autentica, o sistema geralmente emite um token de sessão para não exigir login a cada ação. É importante que esse token tenha um tempo de expiração razoável, seja invalidado no logout, e — em sistemas mais sensíveis — seja revogável remotamente (por exemplo, se um dispositivo for perdido ou roubado).',
+    p6: 'Segurança de autenticação não é um recurso que se adiciona depois — ela precisa ser parte do desenho do sistema desde o início. Empresas que avaliam fornecedores de software de gestão deveriam sempre perguntar, diretamente, como a autenticação é implementada antes de confiar dados sensíveis a qualquer plataforma.',
+    h2_1: 'Senhas: o básico que ainda falha',
+    h2_2: 'OAuth: autenticação delegada',
+    h2_3: 'Autenticação em dois fatores (2FA)',
+    h2_4: 'Tokens e sessões: cuidado com o tempo de vida',
+    h2_5: 'Boas práticas que toda empresa deveria exigir do seu sistema',
+    li1: 'Conexão sempre criptografada (HTTPS), sem exceção, mesmo em telas de login.',
+    li2: 'Bloqueio temporário após múltiplas tentativas de login malsucedidas, para dificultar ataques de força bruta.',
+    li3: 'Registro de log de acessos, permitindo auditoria em caso de incidente.',
+    li4: 'Permissões por perfil de usuário (colaborador, gestor, administrador), para que cada pessoa acesse só o que precisa.',
+    callout: '💡 Entre as opções de 2FA, aplicativos autenticadores (que geram códigos temporários) são geralmente mais seguros do que SMS, que pode ser interceptado por ataques de troca de chip (SIM swap).',
+    cta_title: 'Segurança em primeiro lugar',
+    cta_desc: 'Nossos sistemas seguem boas práticas de autenticação para proteger os dados da sua empresa e da sua equipe.',
+    cta_btn: 'Conhecer Aplicativos',
+    related_title: 'Continue lendo',
+    related1: 'JavaScript moderno: features essenciais que você precisa dominar em 2026',
+    related2: 'Hospede seu app grátis com Cloudflare Pages',
+    footer_copy: '© 2026 Dev.Lobbo. Todos os direitos reservados.',
+    footer_privacy: 'Privacidade',
+    footer_terms: 'Termos de Uso',
+    footer_contact: 'Contato',
+    page_title: 'Autenticação segura em apps web: guia completo | Blog Dev.Lobbo',
+  },
+  en: {
+    lang:'en', flag:'🇺🇸', code:'EN',
+    art_title_bc: 'Secure authentication in web apps: complete guide',
+    art_category: 'Security',
+    art_title: 'Secure authentication in web apps: complete guide',
+    art_date: '📅 March 24, 2026',
+    art_read: '⏱️ 7 min read',
+    art_author: '✍️ Dev.Lobbo Team',
+    p1: 'Authentication — the process of confirming a user really is who they claim to be — is one of the most sensitive points of any web system. A business management system, for example, handles financial data and employee information, which makes the security of this process even more critical.',
+    h2_1: 'Passwords: the basics that still fail',
+    p2: 'Even in 2026, a large share of security incidents still involve weak passwords or ones reused across different services. Storing passwords with strong hashing (never in plain text) and requiring a reasonable minimum length are still the foundation of any authentication system — but on their own, they\'re no longer enough.',
+    h2_2: 'OAuth: delegated authentication',
+    p3: 'OAuth lets a user sign in to a system using an account they already have on another service (Google, Microsoft, among others), without needing to create and remember yet another password. This reduces friction during sign-up and shifts part of the security responsibility to providers that already invest heavily in account protection — but it requires the system using OAuth to correctly implement the authorization flow, avoiding common flaws like incomplete validation of the received token.',
+    h2_3: 'Two-factor authentication (2FA)',
+    p4: '2FA adds a second layer of verification beyond the password — a code sent by SMS, an authenticator app, or a physical key. Even if a password leaks, an attacker would still need this second factor to access the account. For systems handling sensitive data, offering (and ideally encouraging) 2FA is now considered a minimum security standard, not an optional feature.',
+    callout: '💡 Among 2FA options, authenticator apps (which generate temporary codes) are generally safer than SMS, which can be intercepted through SIM-swap attacks.',
+    h2_4: 'Tokens and sessions: watch the lifetime',
+    p5: 'After a user authenticates, the system usually issues a session token so it doesn\'t need to require login for every action. It\'s important that this token has a reasonable expiration time, is invalidated on logout, and — in more sensitive systems — can be revoked remotely (for example, if a device is lost or stolen).',
+    h2_5: 'Best practices every company should demand from its system',
+    li1: 'Always-encrypted connection (HTTPS), no exceptions, even on login screens.',
+    li2: 'Temporary lockout after multiple failed login attempts, to make brute-force attacks harder.',
+    li3: 'Access logging, allowing an audit trail in case of an incident.',
+    li4: 'Permissions by user role (employee, manager, administrator), so each person only accesses what they need.',
+    p6: 'Authentication security isn\'t a feature you add later — it needs to be part of the system\'s design from the start. Companies evaluating management-software vendors should always ask, directly, how authentication is implemented before trusting sensitive data to any platform.',
+    cta_title: 'Security first',
+    cta_desc: 'Our systems follow authentication best practices to protect your company\'s and your team\'s data.',
+    cta_btn: 'Explore Apps',
+    related_title: 'Keep reading',
+    related1: 'Modern JavaScript: essential features you need to master in 2026',
+    related2: 'Host your app for free with Cloudflare Pages',
+    footer_copy: '© 2026 Dev.Lobbo. All rights reserved.',
+    page_title: 'Secure authentication in web apps: complete guide | Dev.Lobbo Blog',
+    nav_home: 'Home',
+    nav_tutorials: 'Tutorials',
+    back_link: '← Back to Tutorials',
+    footer_privacy: 'Privacy',
+    footer_terms: 'Terms of Use',
+    footer_contact: 'Contact',
+  }
+};
+
+function detectLang() {
+  const saved = localStorage.getItem('dl-lang');
+  if (saved && TRANSLATIONS[saved]) return saved;
+  const browserLang = navigator.language || navigator.userLanguage || 'pt';
+  const code = browserLang.toLowerCase().slice(0, 2);
+  const map = { pt: 'pt', en: 'en' };
+  return map[code] || 'pt';
+}
+
+function applyLang(langCode) {
+  const t = TRANSLATIONS[langCode];
+  if (!t) return;
+  document.documentElement.setAttribute('lang', t.lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.getElementById('lang-flag').textContent = t.flag;
+  document.getElementById('lang-code').textContent = t.code;
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    const isActive = opt.dataset.lang === langCode;
+    opt.classList.toggle('active', isActive);
+    const check = opt.querySelector('.lang-option-check');
+    if (check) check.style.display = isActive ? '' : 'none';
+  });
+  localStorage.setItem('dl-lang', langCode);
+  if (t.page_title) document.title = t.page_title;
+}
+
+const langSwitcher = document.getElementById('lang-switcher');
+const langBtnEl = document.getElementById('lang-btn');
+langBtnEl.addEventListener('click', (e) => { e.stopPropagation(); langSwitcher.classList.toggle('open'); });
+document.addEventListener('click', () => langSwitcher.classList.remove('open'));
+document.querySelectorAll('.lang-option').forEach(opt => {
+  opt.addEventListener('click', (e) => { e.stopPropagation(); applyLang(opt.dataset.lang); langSwitcher.classList.remove('open'); });
+});
+
+(function() { applyLang(detectLang()); })();
+</script>
 
 </body>
 </html>

@@ -59,6 +59,22 @@ main { padding: 48px 0 80px; }
 footer { border-top:1px solid var(--clr-border); padding:32px 0; text-align:center; font-size:13px; color:var(--clr-muted); }
 footer a { color:var(--clr-muted2); margin:0 8px; }
 .adslot { margin:40px 0; text-align:center; }
+.lang-switcher { position: relative; }
+.lang-btn { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 9px; background: rgba(255,255,255,0.06); border: 1px solid var(--clr-border); color: var(--clr-muted2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }
+.lang-btn:hover { background: rgba(255,255,255,0.1); color: var(--clr-text); }
+.lang-flag { font-size: 16px; }
+.lang-code { font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
+.lang-arrow { font-size: 10px; color: var(--clr-muted); transition: transform var(--transition); }
+.lang-switcher.open .lang-arrow { transform: rotate(180deg); }
+.lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-md); padding: 6px; min-width: 160px; z-index: 200; box-shadow: 0 8px 32px rgba(0,0,0,0.4); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all var(--transition); }
+.lang-switcher.open .lang-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.lang-option { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--clr-muted2); cursor: pointer; transition: all var(--transition); border: none; background: none; width: 100%; text-align: left; font-family: var(--font-body); }
+.lang-option:hover { background: rgba(0,207,255,0.07); color: var(--clr-text); }
+.lang-option.active { color: var(--clr-neon-blue); background: rgba(0,207,255,0.07); }
+.lang-option .lang-flag { font-size: 18px; }
+.lang-option-name { flex: 1; }
+.lang-option-check { color: var(--clr-neon-blue); font-size: 12px; }
+@media (max-width:480px){ .lang-code{display:none;} .lang-btn{padding:6px 8px;} }
 </style>
 </head>
 <body>
@@ -69,66 +85,79 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
       <div class="nav-logo-icon">dL</div>
       <span class="nav-logo-text">Dev<span>.Lobbo</span></span>
     </a>
-    <a href="/#blog" class="back-link">← Voltar para Tutoriais</a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="/#blog" class="back-link" data-i18n="back_link">← Voltar para Tutoriais</a>
+      <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn" aria-label="Idioma" aria-haspopup="true">
+          <span class="lang-flag" id="lang-flag">🇧🇷</span>
+          <span class="lang-code" id="lang-code">PT</span>
+          <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="menu">
+          <button class="lang-option active" data-lang="pt" role="menuitem"><span class="lang-flag">🇧🇷</span><span class="lang-option-name">Português</span><span class="lang-option-check" id="check-pt">✓</span></button>
+          <button class="lang-option" data-lang="en" role="menuitem"><span class="lang-flag">🇺🇸</span><span class="lang-option-name">English</span><span class="lang-option-check" id="check-en" style="display:none">✓</span></button>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <main>
   <div class="container">
-    <div class="breadcrumb"><a href="/">Início</a> › <a href="/#blog">Tutoriais</a> › Reduzir absenteísmo sem aumentar a pressão sobre a equipe</div>
+    <div class="breadcrumb"><a href="/" data-i18n="nav_home">Início</a> › <a href="/#blog" data-i18n="nav_tutorials">Tutoriais</a> › <span data-i18n="art_title_bc">Reduzir absenteísmo sem aumentar a pressão sobre a equipe</span></div>
 
-    <div class="article-category">Gestão de Pessoas</div>
-    <h1 class="article-title">Reduzir absenteísmo sem aumentar a pressão sobre a equipe</h1>
+    <div class="article-category" data-i18n="art_category">Gestão de Pessoas</div>
+    <h1 class="article-title" data-i18n="art_title">Reduzir absenteísmo sem aumentar a pressão sobre a equipe</h1>
     <div class="article-meta">
-      <span>📅 21 de abril de 2026</span>
-      <span>⏱️ 7 min de leitura</span>
-      <span>✍️ Equipe Dev.Lobbo</span>
+      <span data-i18n="art_date">📅 21 de abril de 2026</span>
+      <span data-i18n="art_read">⏱️ 7 min de leitura</span>
+      <span data-i18n="art_author">✍️ Equipe Dev.Lobbo</span>
     </div>
 
     <img class="article-cover" src="/blog/img/reduzir-absenteismo-equipe.jpg" alt="" loading="lazy">
 
     <div class="article-body">
 
-<p>Absenteísmo — faltas e atrasos não planejados — costuma ser tratado como problema de disciplina individual. Mas na maior parte dos casos, quando o índice está persistentemente alto em uma equipe inteira, a causa raiz é estrutural: sobrecarga, escala mal distribuída, ou falta de reconhecimento. Tratar isso só com cobrança tende a piorar o quadro, não melhorar.</p>
+<p data-i18n="p1">Absenteísmo — faltas e atrasos não planejados — costuma ser tratado como problema de disciplina individual. Mas na maior parte dos casos, quando o índice está persistentemente alto em uma equipe inteira, a causa raiz é estrutural: sobrecarga, escala mal distribuída, ou falta de reconhecimento. Tratar isso só com cobrança tende a piorar o quadro, não melhorar.</p>
 
-<h2>Primeiro passo: medir antes de agir</h2>
-<p>Antes de qualquer ação, é preciso ter o dado correto — quantas faltas e atrasos aconteceram, em quais dias da semana, em quais setores, e se há concentração em colaboradores específicos ou se é um padrão distribuído por toda a equipe. Sem esse mapeamento, qualquer intervenção vira tentativa e erro.</p>
+<h2 data-i18n="h2_1">Primeiro passo: medir antes de agir</h2>
+<p data-i18n="p2">Antes de qualquer ação, é preciso ter o dado correto — quantas faltas e atrasos aconteceram, em quais dias da semana, em quais setores, e se há concentração em colaboradores específicos ou se é um padrão distribuído por toda a equipe. Sem esse mapeamento, qualquer intervenção vira tentativa e erro.</p>
 
-<h2>Os padrões mais comuns e o que eles revelam</h2>
+<h2 data-i18n="h2_2">Os padrões mais comuns e o que eles revelam</h2>
 <ul>
-<li><strong>Faltas concentradas às segundas-feiras ou após feriados:</strong> pode indicar desgaste acumulado, sugerindo necessidade de revisar a distribuição de folgas.</li>
-<li><strong>Absenteísmo concentrado em um único setor:</strong> geralmente aponta para problema de liderança direta ou sobrecarga específica daquela equipe, não da empresa como um todo.</li>
-<li><strong>Aumento gradual ao longo dos meses:</strong> costuma indicar esgotamento acumulado (burnout), especialmente em equipes de plantão ou alta demanda.</li>
+<li data-i18n="li1"><strong>Faltas concentradas às segundas-feiras ou após feriados:</strong> pode indicar desgaste acumulado, sugerindo necessidade de revisar a distribuição de folgas.</li>
+<li data-i18n="li2"><strong>Absenteísmo concentrado em um único setor:</strong> geralmente aponta para problema de liderança direta ou sobrecarga específica daquela equipe, não da empresa como um todo.</li>
+<li data-i18n="li3"><strong>Aumento gradual ao longo dos meses:</strong> costuma indicar esgotamento acumulado (burnout), especialmente em equipes de plantão ou alta demanda.</li>
 </ul>
 
-<h2>Estratégias que funcionam melhor do que punição</h2>
+<h2 data-i18n="h2_3">Estratégias que funcionam melhor do que punição</h2>
 <ul>
-<li><strong>Escalas mais previsíveis:</strong> quando o colaborador sabe com antecedência sua escala e consegue planejar a vida pessoal em torno dela, faltas por conflito de agenda tendem a cair.</li>
-<li><strong>Canal simples para avisar ausência com antecedência:</strong> muita falta "não avisada" na verdade é falta de um canal fácil de comunicar — um aplicativo onde o colaborador solicita troca ou avisa ausência facilita esse processo e reduz o improviso.</li>
-<li><strong>Conversas individuais, não coletivas:</strong> em vez de um comunicado geral cobrando toda a equipe por causa de poucos casos, uma conversa direta e empática com quem realmente falta com frequência tende a identificar a causa real — que pode ser desde problema de saúde até insatisfação com a função.</li>
-<li><strong>Rever a distribuição de carga:</strong> se o absenteísmo está concentrado em quem acumula mais horas extras, o problema não é disciplina — é dimensionamento de equipe.</li>
+<li data-i18n="li4"><strong>Escalas mais previsíveis:</strong> quando o colaborador sabe com antecedência sua escala e consegue planejar a vida pessoal em torno dela, faltas por conflito de agenda tendem a cair.</li>
+<li data-i18n="li5"><strong>Canal simples para avisar ausência com antecedência:</strong> muita falta "não avisada" na verdade é falta de um canal fácil de comunicar — um aplicativo onde o colaborador solicita troca ou avisa ausência facilita esse processo e reduz o improviso.</li>
+<li data-i18n="li6"><strong>Conversas individuais, não coletivas:</strong> em vez de um comunicado geral cobrando toda a equipe por causa de poucos casos, uma conversa direta e empática com quem realmente falta com frequência tende a identificar a causa real — que pode ser desde problema de saúde até insatisfação com a função.</li>
+<li data-i18n="li7"><strong>Rever a distribuição de carga:</strong> se o absenteísmo está concentrado em quem acumula mais horas extras, o problema não é disciplina — é dimensionamento de equipe.</li>
 </ul>
 
-<div class="callout">💡 Punição costuma reduzir o absenteísmo "no papel" no curto prazo (as pessoas forçam presença), mas aumenta o presenteísmo — estar fisicamente presente, mas improdutivo — e eleva o turnover a médio prazo. O ganho é ilusório.</div>
+<div class="callout" data-i18n="callout">💡 Punição costuma reduzir o absenteísmo "no papel" no curto prazo (as pessoas forçam presença), mas aumenta o presenteísmo — estar fisicamente presente, mas improdutivo — e eleva o turnover a médio prazo. O ganho é ilusório.</div>
 
-<h2>O papel dos dados na prevenção</h2>
-<p>Empresas que acompanham o índice de absenteísmo mês a mês, por setor, conseguem agir antes que o problema se torne crônico. Um sistema de ponto digital que gera esse relatório automaticamente — sem depender de compilação manual — permite que o RH identifique tendências (não só números isolados) e intervenha no momento certo, com a ação certa para cada causa.</p>
+<h2 data-i18n="h2_4">O papel dos dados na prevenção</h2>
+<p data-i18n="p3">Empresas que acompanham o índice de absenteísmo mês a mês, por setor, conseguem agir antes que o problema se torne crônico. Um sistema de ponto digital que gera esse relatório automaticamente — sem depender de compilação manual — permite que o RH identifique tendências (não só números isolados) e intervenha no momento certo, com a ação certa para cada causa.</p>
 
-<p>No fim, reduzir absenteísmo de forma sustentável é menos sobre "fazer a pessoa aparecer" e mais sobre remover as razões estruturais que a levam a faltar — o que exige olhar para escala, carga de trabalho e clima, não só para o relógio de ponto.</p>
+<p data-i18n="p4">No fim, reduzir absenteísmo de forma sustentável é menos sobre "fazer a pessoa aparecer" e mais sobre remover as razões estruturais que a levam a faltar — o que exige olhar para escala, carga de trabalho e clima, não só para o relógio de ponto.</p>
 
     </div>
 
     <div class="article-cta">
-      <h3>Enxergue padrões de ausência automaticamente</h3>
-      <p>Com o controle de ponto digital, sua empresa identifica tendências de absenteísmo antes que virem crise.</p>
-      <a href="/#apps">Conhecer Aplicativos</a>
+      <h3 data-i18n="cta_title">Enxergue padrões de ausência automaticamente</h3>
+      <p data-i18n="cta_desc">Com o controle de ponto digital, sua empresa identifica tendências de absenteísmo antes que virem crise.</p>
+      <a href="/#apps" data-i18n="cta_btn">Conhecer Aplicativos</a>
     </div>
 
     <div class="related">
-      <h3>Continue lendo</h3>
+      <h3 data-i18n="related_title">Continue lendo</h3>
       <div class="related-list">
-        <a href="/blog/como-calcular-turnover.html">Como calcular o turnover da sua empresa (com fórmula prática)</a>
-        <a href="/blog/gestao-empresarial-pequenas-empresas.html">KPIs de RH que toda empresa deveria acompanhar</a>
+        <a href="/blog/como-calcular-turnover.html" data-i18n="related1">Como calcular o turnover da sua empresa (com fórmula prática)</a>
+        <a href="/blog/gestao-empresarial-pequenas-empresas.html" data-i18n="related2">KPIs de RH que toda empresa deveria acompanhar</a>
 
       </div>
     </div>
@@ -137,14 +166,136 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
 
 <footer>
   <div class="container">
-    <p>© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
+    <p data-i18n="footer_copy">© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
     <div style="margin-top:8px;">
-      <a href="/privacidade.html">Privacidade</a>
-      <a href="/termos.html">Termos de Uso</a>
-      <a href="/#contact">Contato</a>
+      <a href="/privacidade.html" data-i18n="footer_privacy">Privacidade</a>
+      <a href="/termos.html" data-i18n="footer_terms">Termos de Uso</a>
+      <a href="/#contact" data-i18n="footer_contact">Contato</a>
     </div>
   </div>
 </footer>
+
+<script>
+const TRANSLATIONS = {
+  pt: {
+    lang:'pt-BR', flag:'🇧🇷', code:'PT',
+    back_link: '← Voltar para Tutoriais',
+    nav_home: 'Início',
+    nav_tutorials: 'Tutoriais',
+    art_title_bc: 'Reduzir absenteísmo sem aumentar a pressão sobre a equipe',
+    art_category: 'Gestão de Pessoas',
+    art_title: 'Reduzir absenteísmo sem aumentar a pressão sobre a equipe',
+    art_date: '📅 21 de abril de 2026',
+    art_read: '⏱️ 7 min de leitura',
+    art_author: '✍️ Equipe Dev.Lobbo',
+    p1: 'Absenteísmo — faltas e atrasos não planejados — costuma ser tratado como problema de disciplina individual. Mas na maior parte dos casos, quando o índice está persistentemente alto em uma equipe inteira, a causa raiz é estrutural: sobrecarga, escala mal distribuída, ou falta de reconhecimento. Tratar isso só com cobrança tende a piorar o quadro, não melhorar.',
+    p2: 'Antes de qualquer ação, é preciso ter o dado correto — quantas faltas e atrasos aconteceram, em quais dias da semana, em quais setores, e se há concentração em colaboradores específicos ou se é um padrão distribuído por toda a equipe. Sem esse mapeamento, qualquer intervenção vira tentativa e erro.',
+    p3: 'Empresas que acompanham o índice de absenteísmo mês a mês, por setor, conseguem agir antes que o problema se torne crônico. Um sistema de ponto digital que gera esse relatório automaticamente — sem depender de compilação manual — permite que o RH identifique tendências (não só números isolados) e intervenha no momento certo, com a ação certa para cada causa.',
+    p4: 'No fim, reduzir absenteísmo de forma sustentável é menos sobre "fazer a pessoa aparecer" e mais sobre remover as razões estruturais que a levam a faltar — o que exige olhar para escala, carga de trabalho e clima, não só para o relógio de ponto.',
+    h2_1: 'Primeiro passo: medir antes de agir',
+    h2_2: 'Os padrões mais comuns e o que eles revelam',
+    h2_3: 'Estratégias que funcionam melhor do que punição',
+    h2_4: 'O papel dos dados na prevenção',
+    li1: '<strong>Faltas concentradas às segundas-feiras ou após feriados:</strong> pode indicar desgaste acumulado, sugerindo necessidade de revisar a distribuição de folgas.',
+    li2: '<strong>Absenteísmo concentrado em um único setor:</strong> geralmente aponta para problema de liderança direta ou sobrecarga específica daquela equipe, não da empresa como um todo.',
+    li3: '<strong>Aumento gradual ao longo dos meses:</strong> costuma indicar esgotamento acumulado (burnout), especialmente em equipes de plantão ou alta demanda.',
+    li4: '<strong>Escalas mais previsíveis:</strong> quando o colaborador sabe com antecedência sua escala e consegue planejar a vida pessoal em torno dela, faltas por conflito de agenda tendem a cair.',
+    li5: '<strong>Canal simples para avisar ausência com antecedência:</strong> muita falta "não avisada" na verdade é falta de um canal fácil de comunicar — um aplicativo onde o colaborador solicita troca ou avisa ausência facilita esse processo e reduz o improviso.',
+    li6: '<strong>Conversas individuais, não coletivas:</strong> em vez de um comunicado geral cobrando toda a equipe por causa de poucos casos, uma conversa direta e empática com quem realmente falta com frequência tende a identificar a causa real — que pode ser desde problema de saúde até insatisfação com a função.',
+    li7: '<strong>Rever a distribuição de carga:</strong> se o absenteísmo está concentrado em quem acumula mais horas extras, o problema não é disciplina — é dimensionamento de equipe.',
+    callout: '💡 Punição costuma reduzir o absenteísmo "no papel" no curto prazo (as pessoas forçam presença), mas aumenta o presenteísmo — estar fisicamente presente, mas improdutivo — e eleva o turnover a médio prazo. O ganho é ilusório.',
+    cta_title: 'Enxergue padrões de ausência automaticamente',
+    cta_desc: 'Com o controle de ponto digital, sua empresa identifica tendências de absenteísmo antes que virem crise.',
+    cta_btn: 'Conhecer Aplicativos',
+    related_title: 'Continue lendo',
+    related1: 'Como calcular o turnover da sua empresa (com fórmula prática)',
+    related2: 'KPIs de RH que toda empresa deveria acompanhar',
+    footer_copy: '© 2026 Dev.Lobbo. Todos os direitos reservados.',
+    footer_privacy: 'Privacidade',
+    footer_terms: 'Termos de Uso',
+    footer_contact: 'Contato',
+    page_title: 'Reduzir absenteísmo sem aumentar a pressão sobre a equipe | Blog Dev.Lobbo',
+  },
+  en: {
+    lang:'en', flag:'🇺🇸', code:'EN',
+    art_title_bc: 'Reducing absenteeism without increasing pressure on the team',
+    art_category: 'People Management',
+    art_title: 'Reducing absenteeism without increasing pressure on the team',
+    art_date: '📅 April 21, 2026',
+    art_read: '⏱️ 7 min read',
+    art_author: '✍️ Dev.Lobbo Team',
+    p1: 'Absenteeism — unplanned absences and lateness — is usually treated as an individual discipline problem. But in most cases, when the rate is persistently high across an entire team, the root cause is structural: overload, poorly distributed schedules, or lack of recognition. Addressing this only with pressure tends to make things worse, not better.',
+    h2_1: 'First step: measure before acting',
+    p2: 'Before any action, you need the right data — how many absences and late arrivals happened, on which days of the week, in which departments, and whether it\'s concentrated in specific employees or spread across the whole team. Without this mapping, any intervention becomes trial and error.',
+    h2_2: 'The most common patterns and what they reveal',
+    li1: '<strong>Absences concentrated on Mondays or after holidays:</strong> may indicate accumulated fatigue, suggesting a need to review how time off is distributed.',
+    li2: '<strong>Absenteeism concentrated in a single department:</strong> usually points to a direct leadership problem or overload specific to that team, not the company as a whole.',
+    li3: '<strong>Gradual increase over the months:</strong> often indicates accumulated burnout, especially in on-call or high-demand teams.',
+    h2_3: 'Strategies that work better than punishment',
+    li4: '<strong>More predictable schedules:</strong> when employees know their schedule in advance and can plan their personal life around it, absences due to scheduling conflicts tend to drop.',
+    li5: '<strong>A simple channel to report an absence in advance:</strong> a lot of "unreported" absence is actually the lack of an easy channel to communicate — an app where the employee requests a swap or reports an absence makes this process easier and reduces improvisation.',
+    li6: '<strong>One-on-one conversations, not group ones:</strong> instead of a general notice pressuring the whole team because of a few cases, a direct, empathetic conversation with whoever is actually absent frequently tends to uncover the real cause — which can range from a health issue to dissatisfaction with the role.',
+    li7: '<strong>Review workload distribution:</strong> if absenteeism is concentrated among those racking up the most overtime, the problem isn\'t discipline — it\'s understaffing.',
+    callout: '💡 Punishment tends to reduce absenteeism "on paper" in the short term (people force themselves to show up), but it increases presenteeism — being physically present but unproductive — and raises turnover in the medium term. The gain is an illusion.',
+    h2_4: 'The role of data in prevention',
+    p3: 'Companies that track their absenteeism rate month by month, by department, can act before the problem becomes chronic. A digital time-tracking system that generates this report automatically — without relying on manual compilation — lets HR spot trends (not just isolated numbers) and step in at the right time, with the right action for each cause.',
+    p4: 'In the end, reducing absenteeism sustainably is less about "making the person show up" and more about removing the structural reasons that lead them to be absent — which requires looking at schedules, workload and morale, not just the time clock.',
+    cta_title: 'Spot absence patterns automatically',
+    cta_desc: 'With digital time tracking, your company spots absenteeism trends before they become a crisis.',
+    cta_btn: 'Explore Apps',
+    related_title: 'Keep reading',
+    related1: 'How to calculate your company\'s turnover (with a practical formula)',
+    related2: 'HR KPIs every company should track',
+    footer_copy: '© 2026 Dev.Lobbo. All rights reserved.',
+    page_title: 'Reducing absenteeism without increasing pressure on the team | Dev.Lobbo Blog',
+    nav_home: 'Home',
+    nav_tutorials: 'Tutorials',
+    back_link: '← Back to Tutorials',
+    footer_privacy: 'Privacy',
+    footer_terms: 'Terms of Use',
+    footer_contact: 'Contact',
+  }
+};
+
+function detectLang() {
+  const saved = localStorage.getItem('dl-lang');
+  if (saved && TRANSLATIONS[saved]) return saved;
+  const browserLang = navigator.language || navigator.userLanguage || 'pt';
+  const code = browserLang.toLowerCase().slice(0, 2);
+  const map = { pt: 'pt', en: 'en' };
+  return map[code] || 'pt';
+}
+
+function applyLang(langCode) {
+  const t = TRANSLATIONS[langCode];
+  if (!t) return;
+  document.documentElement.setAttribute('lang', t.lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.getElementById('lang-flag').textContent = t.flag;
+  document.getElementById('lang-code').textContent = t.code;
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    const isActive = opt.dataset.lang === langCode;
+    opt.classList.toggle('active', isActive);
+    const check = opt.querySelector('.lang-option-check');
+    if (check) check.style.display = isActive ? '' : 'none';
+  });
+  localStorage.setItem('dl-lang', langCode);
+  if (t.page_title) document.title = t.page_title;
+}
+
+const langSwitcher = document.getElementById('lang-switcher');
+const langBtnEl = document.getElementById('lang-btn');
+langBtnEl.addEventListener('click', (e) => { e.stopPropagation(); langSwitcher.classList.toggle('open'); });
+document.addEventListener('click', () => langSwitcher.classList.remove('open'));
+document.querySelectorAll('.lang-option').forEach(opt => {
+  opt.addEventListener('click', (e) => { e.stopPropagation(); applyLang(opt.dataset.lang); langSwitcher.classList.remove('open'); });
+});
+
+(function() { applyLang(detectLang()); })();
+</script>
 
 </body>
 </html>

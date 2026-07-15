@@ -59,6 +59,22 @@ main { padding: 48px 0 80px; }
 footer { border-top:1px solid var(--clr-border); padding:32px 0; text-align:center; font-size:13px; color:var(--clr-muted); }
 footer a { color:var(--clr-muted2); margin:0 8px; }
 .adslot { margin:40px 0; text-align:center; }
+.lang-switcher { position: relative; }
+.lang-btn { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 9px; background: rgba(255,255,255,0.06); border: 1px solid var(--clr-border); color: var(--clr-muted2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }
+.lang-btn:hover { background: rgba(255,255,255,0.1); color: var(--clr-text); }
+.lang-flag { font-size: 16px; }
+.lang-code { font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
+.lang-arrow { font-size: 10px; color: var(--clr-muted); transition: transform var(--transition); }
+.lang-switcher.open .lang-arrow { transform: rotate(180deg); }
+.lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-md); padding: 6px; min-width: 160px; z-index: 200; box-shadow: 0 8px 32px rgba(0,0,0,0.4); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all var(--transition); }
+.lang-switcher.open .lang-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.lang-option { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--clr-muted2); cursor: pointer; transition: all var(--transition); border: none; background: none; width: 100%; text-align: left; font-family: var(--font-body); }
+.lang-option:hover { background: rgba(0,207,255,0.07); color: var(--clr-text); }
+.lang-option.active { color: var(--clr-neon-blue); background: rgba(0,207,255,0.07); }
+.lang-option .lang-flag { font-size: 18px; }
+.lang-option-name { flex: 1; }
+.lang-option-check { color: var(--clr-neon-blue); font-size: 12px; }
+@media (max-width:480px){ .lang-code{display:none;} .lang-btn{padding:6px 8px;} }
 </style>
 </head>
 <body>
@@ -69,64 +85,77 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
       <div class="nav-logo-icon">dL</div>
       <span class="nav-logo-text">Dev<span>.Lobbo</span></span>
     </a>
-    <a href="/#blog" class="back-link">← Voltar para Tutoriais</a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="/#blog" class="back-link" data-i18n="back_link">← Voltar para Tutoriais</a>
+      <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn" aria-label="Idioma" aria-haspopup="true">
+          <span class="lang-flag" id="lang-flag">🇧🇷</span>
+          <span class="lang-code" id="lang-code">PT</span>
+          <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="menu">
+          <button class="lang-option active" data-lang="pt" role="menuitem"><span class="lang-flag">🇧🇷</span><span class="lang-option-name">Português</span><span class="lang-option-check" id="check-pt">✓</span></button>
+          <button class="lang-option" data-lang="en" role="menuitem"><span class="lang-flag">🇺🇸</span><span class="lang-option-name">English</span><span class="lang-option-check" id="check-en" style="display:none">✓</span></button>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <main>
   <div class="container">
-    <div class="breadcrumb"><a href="/">Início</a> › <a href="/#blog">Tutoriais</a> › JavaScript moderno: features essenciais que você precisa dominar em 2026</div>
+    <div class="breadcrumb"><a href="/" data-i18n="nav_home">Início</a> › <a href="/#blog" data-i18n="nav_tutorials">Tutoriais</a> › <span data-i18n="art_title_bc">JavaScript moderno: features essenciais que você precisa dominar em 2026</span></div>
 
-    <div class="article-category">Desenvolvimento</div>
-    <h1 class="article-title">JavaScript moderno: features essenciais que você precisa dominar em 2026</h1>
+    <div class="article-category" data-i18n="art_category">Desenvolvimento</div>
+    <h1 class="article-title" data-i18n="art_title">JavaScript moderno: features essenciais que você precisa dominar em 2026</h1>
     <div class="article-meta">
-      <span>📅 3 de março de 2026</span>
-      <span>⏱️ 8 min de leitura</span>
-      <span>✍️ Equipe Dev.Lobbo</span>
+      <span data-i18n="art_date">📅 3 de março de 2026</span>
+      <span data-i18n="art_read">⏱️ 8 min de leitura</span>
+      <span data-i18n="art_author">✍️ Equipe Dev.Lobbo</span>
     </div>
 
     <img class="article-cover" src="/blog/img/javascript-moderno-2026.jpg" alt="" loading="lazy">
 
     <div class="article-body">
 
-<p>O JavaScript evoluiu muito nos últimos anos, e boa parte do código que circula em tutoriais antigos já não reflete as formas mais modernas — e mais simples — de resolver os mesmos problemas. Este guia foca no que realmente vale a pena dominar hoje, sem entrar em recursos exóticos raramente usados no dia a dia.</p>
+<p data-i18n="p1">O JavaScript evoluiu muito nos últimos anos, e boa parte do código que circula em tutoriais antigos já não reflete as formas mais modernas — e mais simples — de resolver os mesmos problemas. Este guia foca no que realmente vale a pena dominar hoje, sem entrar em recursos exóticos raramente usados no dia a dia.</p>
 
-<h2>Async/await: assincronismo legível</h2>
-<p>Antes das Promises e do async/await, lidar com operações assíncronas (como buscar dados de uma API) significava encadear callbacks dentro de callbacks — o famoso "callback hell". Hoje, escrever código assíncrono que parece síncrono, usando <code>async function</code> e <code>await</code>, tornou o código muito mais legível e fácil de depurar.</p>
+<h2 data-i18n="h2_1">Async/await: assincronismo legível</h2>
+<p data-i18n="p2">Antes das Promises e do async/await, lidar com operações assíncronas (como buscar dados de uma API) significava encadear callbacks dentro de callbacks — o famoso "callback hell". Hoje, escrever código assíncrono que parece síncrono, usando <code>async function</code> e <code>await</code>, tornou o código muito mais legível e fácil de depurar.</p>
 
-<h2>Desestruturação e spread/rest</h2>
-<p>Extrair valores de objetos e arrays diretamente na atribuição (desestruturação), e combinar ou espalhar coleções com o operador spread (<code>...</code>), reduziu drasticamente a quantidade de código repetitivo necessário para manipular estruturas de dados — algo constante em qualquer aplicação que lida com listas de usuários, registros ou configurações.</p>
+<h2 data-i18n="h2_2">Desestruturação e spread/rest</h2>
+<p data-i18n="p3">Extrair valores de objetos e arrays diretamente na atribuição (desestruturação), e combinar ou espalhar coleções com o operador spread (<code>...</code>), reduziu drasticamente a quantidade de código repetitivo necessário para manipular estruturas de dados — algo constante em qualquer aplicação que lida com listas de usuários, registros ou configurações.</p>
 
-<h2>Módulos ES (import/export)</h2>
-<p>O sistema nativo de módulos do JavaScript permite organizar o código em arquivos separados, importando apenas o que é necessário em cada parte da aplicação. Isso substitui soluções antigas baseadas em scripts globais e facilita tanto a manutenção quanto a otimização do tamanho final do código carregado pelo navegador.</p>
+<h2 data-i18n="h2_3">Módulos ES (import/export)</h2>
+<p data-i18n="p4">O sistema nativo de módulos do JavaScript permite organizar o código em arquivos separados, importando apenas o que é necessário em cada parte da aplicação. Isso substitui soluções antigas baseadas em scripts globais e facilita tanto a manutenção quanto a otimização do tamanho final do código carregado pelo navegador.</p>
 
-<h2>Web Components</h2>
-<p>Para quem quer criar elementos de interface reutilizáveis sem depender de um framework inteiro, os Web Components (Custom Elements, Shadow DOM e HTML Templates) permitem encapsular estilo e comportamento em um componente próprio, que funciona em qualquer projeto, independente da tecnologia usada no restante da aplicação.</p>
+<h2 data-i18n="h2_4">Web Components</h2>
+<p data-i18n="p5">Para quem quer criar elementos de interface reutilizáveis sem depender de um framework inteiro, os Web Components (Custom Elements, Shadow DOM e HTML Templates) permitem encapsular estilo e comportamento em um componente próprio, que funciona em qualquer projeto, independente da tecnologia usada no restante da aplicação.</p>
 
-<h2>Optional chaining e nullish coalescing</h2>
-<p>Dois operadores pequenos, mas que eliminam uma quantidade enorme de verificações repetitivas: o <code>?.</code> permite acessar propriedades aninhadas de um objeto sem quebrar o código caso algum nível intermediário seja indefinido, e o <code>??</code> define um valor padrão apenas quando o original é <code>null</code> ou <code>undefined</code> — diferente do operador <code>||</code>, que também trocaria valores como <code>0</code> ou string vazia.</p>
+<h2 data-i18n="h2_5">Optional chaining e nullish coalescing</h2>
+<p data-i18n="p6">Dois operadores pequenos, mas que eliminam uma quantidade enorme de verificações repetitivas: o <code>?.</code> permite acessar propriedades aninhadas de um objeto sem quebrar o código caso algum nível intermediário seja indefinido, e o <code>??</code> define um valor padrão apenas quando o original é <code>null</code> ou <code>undefined</code> — diferente do operador <code>||</code>, que também trocaria valores como <code>0</code> ou string vazia.</p>
 
-<div class="callout">💡 Combinar optional chaining com nullish coalescing (<code>usuario?.endereco?.cidade ?? "Não informado"</code>) é hoje o padrão recomendado para lidar com dados que podem vir incompletos de uma API — muito mais seguro do que múltiplos <code>if</code> aninhados.</div>
+<div class="callout" data-i18n="callout">💡 Combinar optional chaining com nullish coalescing (<code>usuario?.endereco?.cidade ?? "Não informado"</code>) é hoje o padrão recomendado para lidar com dados que podem vir incompletos de uma API — muito mais seguro do que múltiplos <code>if</code> aninhados.</div>
 
-<h2>Fetch API e manipulação de respostas</h2>
-<p>A Fetch API se consolidou como a forma padrão de fazer requisições HTTP no navegador, substituindo bibliotecas mais antigas para casos de uso comuns. Combinada com async/await, permite escrever chamadas de API de forma direta e sem dependências externas.</p>
+<h2 data-i18n="h2_6">Fetch API e manipulação de respostas</h2>
+<p data-i18n="p7">A Fetch API se consolidou como a forma padrão de fazer requisições HTTP no navegador, substituindo bibliotecas mais antigas para casos de uso comuns. Combinada com async/await, permite escrever chamadas de API de forma direta e sem dependências externas.</p>
 
-<h2>Por que isso importa para quem contrata desenvolvimento</h2>
-<p>Para além do interesse técnico, dominar essas features tem impacto direto na qualidade do produto final: código mais legível é mais fácil de manter, tem menos bugs escondidos e permite que a equipe evolua o sistema com mais velocidade ao longo do tempo — o que se traduz em produtos mais estáveis e atualizações mais rápidas para quem usa o sistema no dia a dia.</p>
+<h2 data-i18n="h2_7">Por que isso importa para quem contrata desenvolvimento</h2>
+<p data-i18n="p8">Para além do interesse técnico, dominar essas features tem impacto direto na qualidade do produto final: código mais legível é mais fácil de manter, tem menos bugs escondidos e permite que a equipe evolua o sistema com mais velocidade ao longo do tempo — o que se traduz em produtos mais estáveis e atualizações mais rápidas para quem usa o sistema no dia a dia.</p>
 
     </div>
 
     <div class="article-cta">
-      <h3>Tecnologia de ponta em cada projeto</h3>
-      <p>Usamos JavaScript moderno para construir sistemas rápidos, leves e fáceis de manter.</p>
-      <a href="/#apps">Conhecer Aplicativos</a>
+      <h3 data-i18n="cta_title">Tecnologia de ponta em cada projeto</h3>
+      <p data-i18n="cta_desc">Usamos JavaScript moderno para construir sistemas rápidos, leves e fáceis de manter.</p>
+      <a href="/#apps" data-i18n="cta_btn">Conhecer Aplicativos</a>
     </div>
 
     <div class="related">
-      <h3>Continue lendo</h3>
+      <h3 data-i18n="related_title">Continue lendo</h3>
       <div class="related-list">
-        <a href="/blog/firebase-para-iniciantes.html">Firebase Firestore vs Realtime Database: qual escolher?</a>
-        <a href="/blog/seguranca-digital-empresas.html">Autenticação segura em apps web: guia completo</a>
+        <a href="/blog/firebase-para-iniciantes.html" data-i18n="related1">Firebase Firestore vs Realtime Database: qual escolher?</a>
+        <a href="/blog/seguranca-digital-empresas.html" data-i18n="related2">Autenticação segura em apps web: guia completo</a>
 
       </div>
     </div>
@@ -135,14 +164,136 @@ footer a { color:var(--clr-muted2); margin:0 8px; }
 
 <footer>
   <div class="container">
-    <p>© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
+    <p data-i18n="footer_copy">© 2026 Dev.Lobbo. Todos os direitos reservados.</p>
     <div style="margin-top:8px;">
-      <a href="/privacidade.html">Privacidade</a>
-      <a href="/termos.html">Termos de Uso</a>
-      <a href="/#contact">Contato</a>
+      <a href="/privacidade.html" data-i18n="footer_privacy">Privacidade</a>
+      <a href="/termos.html" data-i18n="footer_terms">Termos de Uso</a>
+      <a href="/#contact" data-i18n="footer_contact">Contato</a>
     </div>
   </div>
 </footer>
+
+<script>
+const TRANSLATIONS = {
+  pt: {
+    lang:'pt-BR', flag:'🇧🇷', code:'PT',
+    back_link: '← Voltar para Tutoriais',
+    nav_home: 'Início',
+    nav_tutorials: 'Tutoriais',
+    art_title_bc: 'JavaScript moderno: features essenciais que você precisa dominar em 2026',
+    art_category: 'Desenvolvimento',
+    art_title: 'JavaScript moderno: features essenciais que você precisa dominar em 2026',
+    art_date: '📅 3 de março de 2026',
+    art_read: '⏱️ 8 min de leitura',
+    art_author: '✍️ Equipe Dev.Lobbo',
+    p1: 'O JavaScript evoluiu muito nos últimos anos, e boa parte do código que circula em tutoriais antigos já não reflete as formas mais modernas — e mais simples — de resolver os mesmos problemas. Este guia foca no que realmente vale a pena dominar hoje, sem entrar em recursos exóticos raramente usados no dia a dia.',
+    p2: 'Antes das Promises e do async/await, lidar com operações assíncronas (como buscar dados de uma API) significava encadear callbacks dentro de callbacks — o famoso "callback hell". Hoje, escrever código assíncrono que parece síncrono, usando <code>async function</code> e <code>await</code>, tornou o código muito mais legível e fácil de depurar.',
+    p3: 'Extrair valores de objetos e arrays diretamente na atribuição (desestruturação), e combinar ou espalhar coleções com o operador spread (<code>...</code>), reduziu drasticamente a quantidade de código repetitivo necessário para manipular estruturas de dados — algo constante em qualquer aplicação que lida com listas de usuários, registros ou configurações.',
+    p4: 'O sistema nativo de módulos do JavaScript permite organizar o código em arquivos separados, importando apenas o que é necessário em cada parte da aplicação. Isso substitui soluções antigas baseadas em scripts globais e facilita tanto a manutenção quanto a otimização do tamanho final do código carregado pelo navegador.',
+    p5: 'Para quem quer criar elementos de interface reutilizáveis sem depender de um framework inteiro, os Web Components (Custom Elements, Shadow DOM e HTML Templates) permitem encapsular estilo e comportamento em um componente próprio, que funciona em qualquer projeto, independente da tecnologia usada no restante da aplicação.',
+    p6: 'Dois operadores pequenos, mas que eliminam uma quantidade enorme de verificações repetitivas: o <code>?.</code> permite acessar propriedades aninhadas de um objeto sem quebrar o código caso algum nível intermediário seja indefinido, e o <code>??</code> define um valor padrão apenas quando o original é <code>null</code> ou <code>undefined</code> — diferente do operador <code>||</code>, que também trocaria valores como <code>0</code> ou string vazia.',
+    p7: 'A Fetch API se consolidou como a forma padrão de fazer requisições HTTP no navegador, substituindo bibliotecas mais antigas para casos de uso comuns. Combinada com async/await, permite escrever chamadas de API de forma direta e sem dependências externas.',
+    p8: 'Para além do interesse técnico, dominar essas features tem impacto direto na qualidade do produto final: código mais legível é mais fácil de manter, tem menos bugs escondidos e permite que a equipe evolua o sistema com mais velocidade ao longo do tempo — o que se traduz em produtos mais estáveis e atualizações mais rápidas para quem usa o sistema no dia a dia.',
+    h2_1: 'Async/await: assincronismo legível',
+    h2_2: 'Desestruturação e spread/rest',
+    h2_3: 'Módulos ES (import/export)',
+    h2_4: 'Web Components',
+    h2_5: 'Optional chaining e nullish coalescing',
+    h2_6: 'Fetch API e manipulação de respostas',
+    h2_7: 'Por que isso importa para quem contrata desenvolvimento',
+    callout: '💡 Combinar optional chaining com nullish coalescing (<code>usuario?.endereco?.cidade ?? "Não informado"</code>) é hoje o padrão recomendado para lidar com dados que podem vir incompletos de uma API — muito mais seguro do que múltiplos <code>if</code> aninhados.',
+    cta_title: 'Tecnologia de ponta em cada projeto',
+    cta_desc: 'Usamos JavaScript moderno para construir sistemas rápidos, leves e fáceis de manter.',
+    cta_btn: 'Conhecer Aplicativos',
+    related_title: 'Continue lendo',
+    related1: 'Firebase Firestore vs Realtime Database: qual escolher?',
+    related2: 'Autenticação segura em apps web: guia completo',
+    footer_copy: '© 2026 Dev.Lobbo. Todos os direitos reservados.',
+    footer_privacy: 'Privacidade',
+    footer_terms: 'Termos de Uso',
+    footer_contact: 'Contato',
+    page_title: 'JavaScript moderno: features essenciais que você precisa dominar em 2026 | Blog Dev.Lobbo',
+  },
+  en: {
+    lang:'en', flag:'🇺🇸', code:'EN',
+    art_title_bc: 'Modern JavaScript: essential features you need to master in 2026',
+    art_category: 'Development',
+    art_title: 'Modern JavaScript: essential features you need to master in 2026',
+    art_date: '📅 March 3, 2026',
+    art_read: '⏱️ 8 min read',
+    art_author: '✍️ Dev.Lobbo Team',
+    p1: 'JavaScript has evolved a lot in recent years, and much of the code found in older tutorials no longer reflects the more modern — and simpler — ways of solving the same problems. This guide focuses on what\'s actually worth mastering today, without getting into exotic features rarely used in everyday work.',
+    h2_1: 'Async/await: readable asynchronicity',
+    p2: 'Before Promises and async/await, dealing with asynchronous operations (like fetching data from an API) meant chaining callbacks inside callbacks — the infamous "callback hell." Today, writing asynchronous code that looks synchronous, using <code>async function</code> and <code>await</code>, has made code far more readable and easier to debug.',
+    h2_2: 'Destructuring and spread/rest',
+    p3: 'Extracting values from objects and arrays directly during assignment (destructuring), and combining or spreading collections with the spread operator (<code>...</code>), has drastically reduced the amount of repetitive code needed to manipulate data structures — something constant in any application dealing with lists of users, records or settings.',
+    h2_3: 'ES Modules (import/export)',
+    p4: 'JavaScript\'s native module system lets you organize code into separate files, importing only what\'s needed in each part of the application. This replaces older solutions based on global scripts and makes both maintenance and optimizing the final bundle size loaded by the browser easier.',
+    h2_4: 'Web Components',
+    p5: 'For those who want to create reusable UI elements without depending on an entire framework, Web Components (Custom Elements, Shadow DOM and HTML Templates) let you encapsulate style and behavior into a self-contained component that works in any project, regardless of the technology used in the rest of the application.',
+    h2_5: 'Optional chaining and nullish coalescing',
+    p6: 'Two small operators that eliminate a huge amount of repetitive checks: <code>?.</code> lets you access nested properties of an object without breaking the code if some intermediate level is undefined, and <code>??</code> sets a default value only when the original is <code>null</code> or <code>undefined</code> — unlike the <code>||</code> operator, which would also replace values like <code>0</code> or an empty string.',
+    callout: '💡 Combining optional chaining with nullish coalescing (<code>user?.address?.city ?? "Not provided"</code>) is now the recommended pattern for handling data that might come incomplete from an API — much safer than multiple nested <code>if</code> statements.',
+    h2_6: 'Fetch API and handling responses',
+    p7: 'The Fetch API has become the standard way to make HTTP requests in the browser, replacing older libraries for common use cases. Combined with async/await, it lets you write API calls in a direct way, with no external dependencies.',
+    h2_7: 'Why this matters for those hiring development work',
+    p8: 'Beyond the technical interest, mastering these features has a direct impact on the quality of the final product: more readable code is easier to maintain, has fewer hidden bugs, and lets the team evolve the system faster over time — which translates into more stable products and faster updates for whoever uses the system day to day.',
+    cta_title: 'Cutting-edge technology in every project',
+    cta_desc: 'We use modern JavaScript to build fast, lightweight, easy-to-maintain systems.',
+    cta_btn: 'Explore Apps',
+    related_title: 'Keep reading',
+    related1: 'Firebase Firestore vs Realtime Database: which one to choose?',
+    related2: 'Secure authentication in web apps: complete guide',
+    footer_copy: '© 2026 Dev.Lobbo. All rights reserved.',
+    page_title: 'Modern JavaScript: essential features you need to master in 2026 | Dev.Lobbo Blog',
+    nav_home: 'Home',
+    nav_tutorials: 'Tutorials',
+    back_link: '← Back to Tutorials',
+    footer_privacy: 'Privacy',
+    footer_terms: 'Terms of Use',
+    footer_contact: 'Contact',
+  }
+};
+
+function detectLang() {
+  const saved = localStorage.getItem('dl-lang');
+  if (saved && TRANSLATIONS[saved]) return saved;
+  const browserLang = navigator.language || navigator.userLanguage || 'pt';
+  const code = browserLang.toLowerCase().slice(0, 2);
+  const map = { pt: 'pt', en: 'en' };
+  return map[code] || 'pt';
+}
+
+function applyLang(langCode) {
+  const t = TRANSLATIONS[langCode];
+  if (!t) return;
+  document.documentElement.setAttribute('lang', t.lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.getElementById('lang-flag').textContent = t.flag;
+  document.getElementById('lang-code').textContent = t.code;
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    const isActive = opt.dataset.lang === langCode;
+    opt.classList.toggle('active', isActive);
+    const check = opt.querySelector('.lang-option-check');
+    if (check) check.style.display = isActive ? '' : 'none';
+  });
+  localStorage.setItem('dl-lang', langCode);
+  if (t.page_title) document.title = t.page_title;
+}
+
+const langSwitcher = document.getElementById('lang-switcher');
+const langBtnEl = document.getElementById('lang-btn');
+langBtnEl.addEventListener('click', (e) => { e.stopPropagation(); langSwitcher.classList.toggle('open'); });
+document.addEventListener('click', () => langSwitcher.classList.remove('open'));
+document.querySelectorAll('.lang-option').forEach(opt => {
+  opt.addEventListener('click', (e) => { e.stopPropagation(); applyLang(opt.dataset.lang); langSwitcher.classList.remove('open'); });
+});
+
+(function() { applyLang(detectLang()); })();
+</script>
 
 </body>
 </html>
