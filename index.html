@@ -1137,6 +1137,8 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
   .hero-stats { gap: 20px !important; }
   .hero-cta { flex-direction: column !important; }
   .section-title { font-size: 26px !important; }
+  #hero { min-height: auto !important; padding-top: 96px !important; }
+  .hero-content { padding: 24px 0 48px !important; }
 }
 @media (max-width: 480px) {
   .footer-grid { grid-template-columns: 1fr !important; }
@@ -1156,6 +1158,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
 }
 
 </style>
+</head>
 <body>
 
 <!-- ══ NAVBAR ══════════════════════════════════════════════════════ -->
@@ -1194,21 +1197,6 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
             <span class="lang-flag">🇺🇸</span>
             <span class="lang-option-name">English</span>
             <span class="lang-option-check" id="check-en" style="display:none">✓</span>
-          </button>
-          <button class="lang-option" data-lang="es" role="menuitem">
-            <span class="lang-flag">🇪🇸</span>
-            <span class="lang-option-name">Español</span>
-            <span class="lang-option-check" id="check-es" style="display:none">✓</span>
-          </button>
-          <button class="lang-option" data-lang="fr" role="menuitem">
-            <span class="lang-flag">🇫🇷</span>
-            <span class="lang-option-name">Français</span>
-            <span class="lang-option-check" id="check-fr" style="display:none">✓</span>
-          </button>
-          <button class="lang-option" data-lang="de" role="menuitem">
-            <span class="lang-flag">🇩🇪</span>
-            <span class="lang-option-name">Deutsch</span>
-            <span class="lang-option-check" id="check-de" style="display:none">✓</span>
           </button>
         </div>
       </div>
@@ -1982,7 +1970,6 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
 
 <!-- ══ SCRIPTS ════════════════════════════════════════════════════════ -->
 
-</body>
 <script>
 /* ============================================
    DEV.LOBBO — MAIN JAVASCRIPT
@@ -2397,192 +2384,6 @@ const TRANSLATIONS = {
     footer_privacy: 'Privacy', footer_terms: 'Terms of Use', footer_cookies: 'Cookies',
     pwa_title: 'Install Dev.Lobbo', pwa_desc: 'Add to your home screen for quick access', pwa_install: 'Install', pwa_dismiss: 'Not now',
   },
-  es: {
-    lang: 'es-ES',
-    flag: '🇪🇸', code: 'ES',
-    hero_badge: 'Portal Oficial — Dev.Lobbo',
-    hero_title: 'Desarrollamos <em class="text-gradient">software<br>inteligente</em> para facilitar<br>tu trabajo.',
-    hero_sub: 'Creamos aplicaciones modernas, rápidas e intuitivas para empresas y profesionales. Desde turnos hasta control de asistencia y gestión empresarial completa.',
-    btn_apps: 'Ver Aplicaciones',
-    btn_articles: 'Ver Artículos',
-    nav_cta: 'Abrir Aplicaciones',
-    apps_title: 'Productos listos para usar<br><em class="text-gradient">en tu día a día</em>',
-    apps_sub: 'Tres aplicaciones web instalables, enfocadas en problemas reales de empresas y profesionales.',
-    features_title: 'Construidos con <em class="text-gradient">obsesión</em><br>por el detalle',
-    blog_title: 'Contenido útil sobre<br><em class="text-gradient">tecnología y gestión</em>',
-    newsletter_title: 'Recibe contenido de tecnología<br><em class="text-gradient">directo en tu correo</em>',
-    newsletter_sub: 'Artículos nuevos, actualizaciones y consejos prácticos. Sin spam, cancela cuando quieras.',
-    about_title: 'Tecnología pensada<br>para <em class="text-gradient">quienes trabajan</em>',
-    about_tag: 'Sobre la Empresa',
-    about_p1: 'Dev.Lobbo nació al observar un problema simple: profesionales y empresas pierden horas valiosas con herramientas poco adecuadas para la gestión de tiempo, asistencia y turnos.',
-    about_p2: 'Desarrollamos software moderno enfocado en productividad, organización y gestión — aplicaciones que cualquier persona puede usar desde el primer acceso, sin capacitación.',
-    about_p3: 'Nuestra stack es ligera y potente: HTML, CSS y JavaScript puro en el frontend, Firebase como backend en tiempo real, y Cloudflare para entrega global con latencia mínima.',
-    about_p4: 'Cada aplicación se construye como una PWA de verdad — instalable y responsiva en cualquier dispositivo.',
-    about_btn1: 'Ver Aplicaciones',
-    about_btn2: 'Hablar con el Equipo',
-    contact_title: '¿Hablamos?',
-    team_title: 'Las personas detrás de Dev.Lobbo',
-    team_sub: 'Dos desarrolladoras full stack apasionadas por la tecnología.',
-    nav_home: 'Inicio', nav_apps: 'Aplicaciones', nav_tutorials: 'Tutoriales', nav_about: 'Nosotros', nav_team: 'Equipo', nav_contact: 'Contacto',
-    app1_category: 'Gestión Empresarial Completa',
-    app1_desc: 'Sistema completo de gestión empresarial. Controla finanzas, clientes, ventas, inventario e informes en un solo lugar.',
-    app1_feat1: 'Finanzas', app1_feat2: 'Clientes', app1_feat3: 'Ventas', app1_feat4: 'Inventario', app1_feat5: 'Informes', app1_feat6: 'Panel',
-    app2_category: 'Turnos y Guardias Inteligentes',
-    app2_desc: 'Gestión completa de turnos y guardias para médicos, enfermeros, policías, vigilantes, bomberos y socorristas.',
-    app2_feat1: 'Turnos dinámicos', app2_feat2: 'Cambio de turno', app2_feat3: 'Notificaciones', app2_feat4: 'Informes mensuales', app2_feat5: 'Multi-equipo', app2_feat6: 'Banco de horas',
-    app3_category: 'Control de Asistencia Digital',
-    app3_desc: 'Sistema inteligente de control de asistencia con banco de horas, descansos, informes y justificaciones electrónicas.',
-    app3_feat1: 'Banco de horas', app3_feat2: 'Descansos', app3_feat3: 'Justificaciones', app3_feat4: 'Informes PDF', app3_feat5: 'Multiusuario', app3_feat6: 'Exportación',
-    app3_mock_break: 'Descanso', app3_mock_checkin: 'Entrada registrada', app3_soon: '⏳ Próximamente',
-    btn_open_system: 'Abrir Sistema', btn_download_android: 'Descargar para Android', btn_learn_more: 'Saber Más',
-    features_desc: 'Cada app de Dev.Lobbo sigue el mismo estándar de calidad — desde el código hasta la experiencia del usuario.',
-    feat1_title: 'Interfaz Moderna', feat1_desc: 'Diseño pensado en detalle, con tipografía, movimiento y tema oscuro/claro.',
-    feat2_title: 'Alto Rendimiento', feat2_desc: 'Carga ultrarrápida, incluso en conexiones limitadas. Todo optimizado para Lighthouse.',
-    feat3_title: 'Responsivo', feat3_desc: 'Experiencia consistente de escritorio a móvil, con soporte táctil y de teclado.',
-    feat4_title: 'PWA', feat4_desc: 'Instálalo en tu móvil como una app nativa, con ícono en la pantalla de inicio.',
-    feat5_title: 'Copia de Seguridad en la Nube', feat5_desc: 'Tus datos guardados con seguridad y sincronizados entre dispositivos.',
-    feat6_title: 'Actualizaciones Frecuentes', feat6_desc: 'Novedades publicadas en ciclos cortos, sin complicaciones.',
-    feat7_title: 'Seguridad', feat7_desc: 'Buenas prácticas de autenticación, cifrado en tránsito y en reposo.',
-    feat8_title: 'Fácil de Usar', feat8_desc: 'Curva de aprendizaje corta, con flujos pensados para personas reales.',
-    tech_eyebrow: 'Tecnologías', tech_title: 'La stack que nos mueve', tech_desc: 'Tecnologías maduras, con comunidad activa y hoja de ruta predecible.',
-    blog_search_placeholder: 'Buscar artículos...', blog_view_all: 'Ver todos →',
-    cat_all: 'Todos', cat_dev: 'Desarrollo', cat_gestao: 'Gestión', cat_escalas: 'Turnos', cat_ponto: 'Control de Asistencia', cat_ia: 'Inteligencia Artificial',
-    contact_eyebrow: 'Contacto',
-    contact_desc: '¿Tienes una duda, quieres sugerir una función o te interesa una alianza? Contacta al equipo de Dev.Lobbo.',
-    team_eyebrow: 'Nuestro Equipo', team_edu: 'Ciencias de la Computación — Último semestre',
-    team1_role: 'Cofundadora y Desarrolladora Full Stack',
-    team1_bio: 'Cursando el último semestre de Ciencias de la Computación, Lorrainy es desarrolladora full stack con experiencia en desarrollo móvil y web. Tiene una extensión en Python y domina tanto el front como el back end.',
-    team2_bio: 'Cursando el último semestre de Ciencias de la Computación, Cibeli es desarrolladora full stack enfocada en aplicaciones móviles y sistemas robustos. Combina habilidades de front y back end para entregar productos completos.',
-    footer_tagline: 'Desarrollamos software moderno, rápido e intuitivo para empresas y profesionales que valoran la calidad y la productividad.',
-    footer_content: 'Contenido', footer_company: 'Empresa', footer_features: 'Ventajas', footer_newsletter: 'Boletín', footer_sitemap: 'Mapa del sitio',
-    footer_copy: '© 2025 Dev.Lobbo. Todos los derechos reservados.',
-    footer_privacy: 'Privacidad', footer_terms: 'Términos de Uso', footer_cookies: 'Cookies',
-    pwa_title: 'Instalar Dev.Lobbo', pwa_desc: 'Añádelo a tu pantalla de inicio para acceso rápido', pwa_install: 'Instalar', pwa_dismiss: 'Ahora no',
-  },
-  fr: {
-    lang: 'fr-FR',
-    flag: '🇫🇷', code: 'FR',
-    hero_badge: 'Portail Officiel — Dev.Lobbo',
-    hero_title: 'Nous créons des <em class="text-gradient">logiciels<br>intelligents</em> pour faciliter<br>votre travail.',
-    hero_sub: 'Des applications modernes, rapides et intuitives pour les entreprises et les professionnels. De la planification des gardes à la gestion complète.',
-    btn_apps: 'Voir les Apps',
-    btn_articles: 'Lire les Articles',
-    nav_cta: 'Ouvrir les Apps',
-    apps_title: 'Produits prêts à utiliser<br><em class="text-gradient">au quotidien</em>',
-    apps_sub: 'Trois applications web installables, axées sur les vrais problèmes des entreprises et professionnels.',
-    features_title: 'Construits avec <em class="text-gradient">obsession</em><br>du détail',
-    blog_title: 'Contenu utile sur<br><em class="text-gradient">la tech et la gestion</em>',
-    newsletter_title: 'Recevez du contenu tech<br><em class="text-gradient">directement par e-mail</em>',
-    newsletter_sub: "Nouveaux articles, mises à jour et conseils pratiques. Pas de spam, désabonnez-vous à tout moment.",
-    about_title: 'Technologie pensée<br>pour <em class="text-gradient">ceux qui travaillent</em>',
-    about_tag: "À propos de l'Entreprise",
-    about_p1: "Dev.Lobbo est né d'un constat simple : les professionnels et les entreprises perdent un temps précieux avec des outils mal adaptés à la gestion du temps, de la présence et des plannings.",
-    about_p2: "Nous développons des logiciels modernes axés sur la productivité, l'organisation et la gestion — des applications que n'importe qui peut utiliser dès le premier accès, sans formation.",
-    about_p3: "Notre stack est légère et puissante : HTML, CSS et JavaScript pur en frontend, Firebase comme backend en temps réel, et Cloudflare pour une diffusion mondiale à latence minimale.",
-    about_p4: "Chaque application est conçue comme une véritable PWA — installable et responsive sur tout appareil.",
-    about_btn1: 'Voir les Apps',
-    about_btn2: "Parler à l'Équipe",
-    contact_title: 'Parlons-en ?',
-    team_title: "Les personnes derrière Dev.Lobbo",
-    team_sub: 'Deux développeuses full stack passionnées par la technologie.',
-    nav_home: 'Accueil', nav_apps: 'Applications', nav_tutorials: 'Tutoriels', nav_about: 'À propos', nav_team: 'Équipe', nav_contact: 'Contact',
-    app1_category: "Gestion d'Entreprise Complète",
-    app1_desc: "Système complet de gestion d'entreprise. Gérez finances, clients, ventes, stock et rapports en un seul endroit.",
-    app1_feat1: 'Finances', app1_feat2: 'Clients', app1_feat3: 'Ventes', app1_feat4: 'Stock', app1_feat5: 'Rapports', app1_feat6: 'Tableau de bord',
-    app2_category: 'Gardes et Plannings Intelligents',
-    app2_desc: 'Gestion complète des gardes et plannings pour médecins, infirmiers, policiers, agents de sécurité, pompiers et secouristes.',
-    app2_feat1: 'Plannings dynamiques', app2_feat2: 'Échange de garde', app2_feat3: 'Notifications', app2_feat4: 'Rapports mensuels', app2_feat5: 'Multi-équipe', app2_feat6: "Compteur d'heures",
-    app3_category: 'Pointage Numérique',
-    app3_desc: 'Système intelligent de pointage avec compteur d\'heures, pauses, rapports et justificatifs électroniques.',
-    app3_feat1: "Compteur d'heures", app3_feat2: 'Pauses', app3_feat3: 'Justificatifs', app3_feat4: 'Rapports PDF', app3_feat5: 'Multi-utilisateur', app3_feat6: 'Exportation',
-    app3_mock_break: 'Pause', app3_mock_checkin: 'Entrée enregistrée', app3_soon: '⏳ Bientôt disponible',
-    btn_open_system: 'Ouvrir le Système', btn_download_android: 'Télécharger pour Android', btn_learn_more: 'En Savoir Plus',
-    features_desc: "Chaque app Dev.Lobbo suit la même exigence de qualité — du code à l'expérience utilisateur.",
-    feat1_title: 'Interface Moderne', feat1_desc: 'Design pensé dans le détail, avec typographie, animations et thème sombre/clair.',
-    feat2_title: 'Haute Performance', feat2_desc: "Chargement ultra-rapide, même sur des connexions limitées. Tout optimisé pour Lighthouse.",
-    feat3_title: 'Responsive', feat3_desc: 'Expérience cohérente du bureau au mobile, avec support tactile et clavier.',
-    feat4_title: 'PWA', feat4_desc: "Installez-le sur votre mobile comme une app native, avec une icône sur l'écran d'accueil.",
-    feat5_title: 'Sauvegarde Cloud', feat5_desc: 'Vos données stockées en sécurité et synchronisées entre appareils.',
-    feat6_title: 'Mises à Jour Fréquentes', feat6_desc: 'Nouveautés publiées par cycles courts, sans prise de tête.',
-    feat7_title: 'Sécurité', feat7_desc: "Bonnes pratiques d'authentification, chiffrement en transit et au repos.",
-    feat8_title: 'Facile à Utiliser', feat8_desc: "Courbe d'apprentissage courte, avec des parcours pensés pour de vraies personnes.",
-    tech_eyebrow: 'Technologies', tech_title: 'La stack qui nous fait avancer', tech_desc: 'Des technologies matures, avec une communauté active et une feuille de route prévisible.',
-    blog_search_placeholder: 'Rechercher des articles...', blog_view_all: 'Voir tout →',
-    cat_all: 'Tous', cat_dev: 'Développement', cat_gestao: 'Gestion', cat_escalas: 'Plannings', cat_ponto: 'Pointage', cat_ia: 'Intelligence Artificielle',
-    contact_eyebrow: 'Contact',
-    contact_desc: "Une question, une suggestion de fonctionnalité, ou un intérêt pour un partenariat ? Contactez l'équipe Dev.Lobbo.",
-    team_eyebrow: 'Notre Équipe', team_edu: 'Informatique — Dernière année',
-    team1_role: 'Cofondatrice et Développeuse Full Stack',
-    team1_bio: "En dernière année de Licence en Informatique, Lorrainy est développeuse full stack avec de l'expérience en développement mobile et web. Elle a une formation complémentaire en Python et maîtrise le front comme le back end.",
-    team2_bio: 'En dernière année de Licence en Informatique, Cibeli est développeuse full stack spécialisée dans les applications mobiles et les systèmes robustes. Elle combine des compétences front et back end pour livrer des produits complets.',
-    footer_tagline: 'Nous créons des logiciels modernes, rapides et intuitifs pour les entreprises et professionnels qui valorisent la qualité et la productivité.',
-    footer_content: 'Contenu', footer_company: 'Entreprise', footer_features: 'Atouts', footer_newsletter: 'Newsletter', footer_sitemap: 'Plan du site',
-    footer_copy: '© 2025 Dev.Lobbo. Tous droits réservés.',
-    footer_privacy: 'Confidentialité', footer_terms: "Conditions d'Utilisation", footer_cookies: 'Cookies',
-    pwa_title: 'Installer Dev.Lobbo', pwa_desc: "Ajoutez à l'écran d'accueil pour un accès rapide", pwa_install: 'Installer', pwa_dismiss: 'Pas maintenant',
-  },
-  de: {
-    lang: 'de-DE',
-    flag: '🇩🇪', code: 'DE',
-    hero_badge: 'Offizielles Portal — Dev.Lobbo',
-    hero_title: 'Wir entwickeln <em class="text-gradient">intelligente<br>Software</em>, die Ihre<br>Arbeit erleichtert.',
-    hero_sub: 'Moderne, schnelle und intuitive Apps für Unternehmen und Fachleute. Von der Schichtplanung bis zur vollständigen Unternehmensverwaltung.',
-    btn_apps: 'Apps entdecken',
-    btn_articles: 'Artikel lesen',
-    nav_cta: 'Apps öffnen',
-    apps_title: 'Produkte, die täglich<br><em class="text-gradient">einsatzbereit sind</em>',
-    apps_sub: 'Drei installierbare Web-Apps für reale Probleme von Unternehmen und Fachleuten.',
-    features_title: 'Gebaut mit <em class="text-gradient">Obsession</em><br>fürs Detail',
-    blog_title: 'Nützliche Inhalte über<br><em class="text-gradient">Technik & Management</em>',
-    newsletter_title: 'Tech-Inhalte<br><em class="text-gradient">direkt in Ihr Postfach</em>',
-    newsletter_sub: 'Neue Artikel, App-Updates und praktische Tipps. Kein Spam, jederzeit abmelden.',
-    about_title: 'Technologie für<br><em class="text-gradient">Menschen, die arbeiten</em>',
-    about_tag: 'Über das Unternehmen',
-    about_p1: 'Dev.Lobbo entstand aus einer einfachen Beobachtung: Fachleute und Unternehmen verlieren wertvolle Zeit mit Tools, die für Zeit-, Anwesenheits- und Schichtverwaltung schlecht geeignet sind.',
-    about_p2: 'Wir entwickeln moderne Software für Produktivität, Organisation und Verwaltung — Apps, die jeder von Anfang an ohne Schulung nutzen kann.',
-    about_p3: 'Unser Stack ist schlank und leistungsstark: reines HTML, CSS und JavaScript im Frontend, Firebase als Echtzeit-Backend und Cloudflare für globale Auslieferung mit minimaler Latenz.',
-    about_p4: 'Jede App wird als echte PWA gebaut — installierbar und responsiv auf jedem Gerät.',
-    about_btn1: 'Apps entdecken',
-    about_btn2: 'Team kontaktieren',
-    contact_title: 'Sprechen wir?',
-    team_title: 'Die Menschen hinter Dev.Lobbo',
-    team_sub: 'Zwei Full-Stack-Entwicklerinnen mit Leidenschaft für Technologie.',
-    nav_home: 'Start', nav_apps: 'Apps', nav_tutorials: 'Tutorials', nav_about: 'Über uns', nav_team: 'Team', nav_contact: 'Kontakt',
-    app1_category: 'Komplettes Unternehmensmanagement',
-    app1_desc: 'Komplettes Unternehmensverwaltungssystem. Finanzen, Kunden, Verkäufe, Lagerbestand und Berichte an einem Ort verwalten.',
-    app1_feat1: 'Finanzen', app1_feat2: 'Kunden', app1_feat3: 'Verkäufe', app1_feat4: 'Lagerbestand', app1_feat5: 'Berichte', app1_feat6: 'Dashboard',
-    app2_category: 'Intelligente Dienst- und Schichtplanung',
-    app2_desc: 'Komplette Dienst- und Schichtplanung für Ärzte, Pflegekräfte, Polizisten, Sicherheitskräfte, Feuerwehrleute und Rettungskräfte.',
-    app2_feat1: 'Dynamische Schichten', app2_feat2: 'Schichttausch', app2_feat3: 'Benachrichtigungen', app2_feat4: 'Monatsberichte', app2_feat5: 'Mehrere Teams', app2_feat6: 'Stundenkonto',
-    app3_category: 'Digitale Zeiterfassung',
-    app3_desc: 'Intelligentes Zeiterfassungssystem mit Stundenkonto, Pausen, Berichten und elektronischen Begründungen.',
-    app3_feat1: 'Stundenkonto', app3_feat2: 'Pausen', app3_feat3: 'Begründungen', app3_feat4: 'PDF-Berichte', app3_feat5: 'Mehrbenutzer', app3_feat6: 'Export',
-    app3_mock_break: 'Pause', app3_mock_checkin: 'Einstempeln erfasst', app3_soon: '⏳ Demnächst',
-    btn_open_system: 'System Öffnen', btn_download_android: 'Für Android herunterladen', btn_learn_more: 'Mehr Erfahren',
-    features_desc: 'Jede Dev.Lobbo-App folgt demselben Qualitätsstandard — vom Code bis zur Nutzererfahrung.',
-    feat1_title: 'Modernes Interface', feat1_desc: 'Bis ins Detail durchdachtes Design mit Typografie, Bewegung und Dunkel-/Hellmodus.',
-    feat2_title: 'Hohe Leistung', feat2_desc: 'Blitzschnelles Laden, selbst bei begrenzten Verbindungen. Alles für Lighthouse optimiert.',
-    feat3_title: 'Responsiv', feat3_desc: 'Konsistente Erfahrung vom Desktop bis zum Handy, mit Touch- und Tastaturunterstützung.',
-    feat4_title: 'PWA', feat4_desc: 'Installieren Sie es auf Ihrem Handy wie eine native App, mit Symbol auf dem Startbildschirm.',
-    feat5_title: 'Cloud-Backup', feat5_desc: 'Ihre Daten sicher gespeichert und geräteübergreifend synchronisiert.',
-    feat6_title: 'Häufige Updates', feat6_desc: 'Neuerungen in kurzen Zyklen veröffentlicht, ohne Kopfschmerzen.',
-    feat7_title: 'Sicherheit', feat7_desc: 'Bewährte Authentifizierungspraktiken, Verschlüsselung bei Übertragung und Speicherung.',
-    feat8_title: 'Einfach zu Bedienen', feat8_desc: 'Kurze Lernkurve, mit Abläufen für echte Menschen konzipiert.',
-    tech_eyebrow: 'Technologien', tech_title: 'Der Stack, der uns antreibt', tech_desc: 'Ausgereifte Technologien mit aktiver Community und vorhersehbarem Fahrplan.',
-    blog_search_placeholder: 'Artikel suchen...', blog_view_all: 'Alle ansehen →',
-    cat_all: 'Alle', cat_dev: 'Entwicklung', cat_gestao: 'Management', cat_escalas: 'Schichtplanung', cat_ponto: 'Zeiterfassung', cat_ia: 'Künstliche Intelligenz',
-    contact_eyebrow: 'Kontakt',
-    contact_desc: 'Haben Sie eine Frage, möchten Sie eine Funktion vorschlagen oder sich für eine Partnerschaft interessieren? Kontaktieren Sie das Dev.Lobbo-Team.',
-    team_eyebrow: 'Unser Team', team_edu: 'Informatik — Letztes Semester',
-    team1_role: 'Mitgründerin & Full-Stack-Entwicklerin',
-    team1_bio: 'Im letzten Semester der Informatik, ist Lorrainy Full-Stack-Entwicklerin mit Erfahrung in mobiler und Web-Entwicklung. Sie hat einen Python-Zusatzkurs absolviert und beherrscht sowohl Front- als auch Back-End.',
-    team2_bio: 'Im letzten Semester der Informatik, ist Cibeli Full-Stack-Entwicklerin mit Fokus auf mobile Anwendungen und robuste Systeme. Sie kombiniert Front- und Back-End-Fähigkeiten, um vollständige Produkte zu liefern.',
-    footer_tagline: 'Wir entwickeln moderne, schnelle und intuitive Software für Unternehmen und Fachleute, die Qualität und Produktivität schätzen.',
-    footer_content: 'Inhalt', footer_company: 'Unternehmen', footer_features: 'Vorteile', footer_newsletter: 'Newsletter', footer_sitemap: 'Sitemap',
-    footer_copy: '© 2025 Dev.Lobbo. Alle Rechte vorbehalten.',
-    footer_privacy: 'Datenschutz', footer_terms: 'Nutzungsbedingungen', footer_cookies: 'Cookies',
-    pwa_title: 'Dev.Lobbo installieren', pwa_desc: 'Zum Startbildschirm hinzufügen für schnellen Zugriff', pwa_install: 'Installieren', pwa_dismiss: 'Nicht jetzt',
-  }
 };
 
 // ── DETECT LANGUAGE ──────────────────────────
@@ -2593,7 +2394,7 @@ function detectLang() {
   const browserLang = navigator.language || navigator.userLanguage || 'pt';
   const code = browserLang.toLowerCase().slice(0, 2);
 
-  const map = { pt: 'pt', en: 'en', es: 'es', fr: 'fr', de: 'de' };
+  const map = { pt: 'pt', en: 'en' };
   return map[code] || 'pt';
 }
 
@@ -2636,9 +2437,6 @@ function applyLang(langCode) {
   const titles = {
     pt: 'Dev.Lobbo — Softwares Inteligentes para Empresas e Profissionais',
     en: 'Dev.Lobbo — Intelligent Software for Businesses and Professionals',
-    es: 'Dev.Lobbo — Software Inteligente para Empresas y Profesionales',
-    fr: 'Dev.Lobbo — Logiciels Intelligents pour Entreprises et Professionnels',
-    de: 'Dev.Lobbo — Intelligente Software für Unternehmen und Fachleute',
   };
   document.title = titles[langCode] || titles.pt;
 }
