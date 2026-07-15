@@ -397,7 +397,8 @@ body.light-mode #navbar.scrolled {
 
 .app-visual {
   background: linear-gradient(135deg, #0a1628, #140a28);
-  min-height: 340px; display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 16 / 11; align-self: start;
+  display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden; padding: 32px;
 }
 .app-visual::after {
@@ -781,7 +782,7 @@ footer {
   .blog-card.featured { flex-direction: column; }
   .blog-card.featured .blog-card-img { width: 100%; height: 200px; }
   .app-card { grid-template-columns: 1fr; }
-  .app-visual { min-height: 280px; }
+  .app-visual { aspect-ratio: 16 / 10; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .about-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
