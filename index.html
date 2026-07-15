@@ -923,54 +923,88 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
 #team { background: var(--clr-surface); }
 .team-grid {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 32px; margin-top: 56px;
+  gap: 32px; margin-top: 56px; align-items: stretch;
 }
+
+/* Card com borda em gradiente sutil (double-background trick) */
 .team-card {
-  background: var(--clr-bg);
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius-xl);
-  padding: 40px 36px;
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center;
-  transition: all var(--transition); position: relative; overflow: hidden;
-}
-.team-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 3px; background: var(--grad-neon);
+  position: relative; border-radius: var(--radius-xl);
+  padding: 2px;
+  background: linear-gradient(160deg, rgba(0,207,255,0.35), rgba(182,0,255,0.35) 60%, rgba(0,207,255,0.1));
+  transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease;
 }
 .team-card:hover {
-  border-color: rgba(0,207,255,0.2);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0,207,255,0.12), 0 8px 24px rgba(0,0,0,0.35);
 }
+.team-card-inner {
+  background: var(--clr-bg);
+  border-radius: calc(var(--radius-xl) - 2px);
+  padding: 40px 36px;
+  height: 100%;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+}
+
 .team-avatar {
-  width: 100px; height: 100px; border-radius: 50%;
+  width: 96px; height: 96px; border-radius: 50%;
   background: var(--grad-neon);
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-size: 32px; font-weight: 800;
-  color: #000; margin-bottom: 24px;
-  box-shadow: 0 0 30px rgba(0,207,255,0.3);
+  font-family: var(--font-display); font-size: 30px; font-weight: 800;
+  color: #000; margin-bottom: 20px;
+  box-shadow: 0 0 0 4px rgba(0,207,255,0.08), 0 10px 30px rgba(0,207,255,0.25);
   position: relative;
+  transition: transform var(--transition);
 }
+.team-card:hover .team-avatar { transform: scale(1.05); }
 .team-avatar-badge {
-  position: absolute; bottom: 4px; right: 4px;
+  position: absolute; bottom: 2px; right: 2px;
   width: 24px; height: 24px; border-radius: 50%;
-  background: #22c55e; border: 2px solid var(--clr-bg);
+  background: #22c55e; border: 3px solid var(--clr-bg);
   display: flex; align-items: center; justify-content: center;
-  font-size: 10px;
+  font-size: 11px; color: #fff;
 }
 .team-name {
-  font-family: var(--font-display); font-size: 22px; font-weight: 700;
-  margin-bottom: 6px; color: var(--clr-text);
+  font-family: var(--font-display); font-size: 21px; font-weight: 700;
+  margin-bottom: 4px; color: var(--clr-text);
 }
 .team-role {
-  font-size: 13px; font-weight: 600; color: var(--clr-neon-blue);
-  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
+  font-size: 12px; font-weight: 700; color: var(--clr-neon-blue);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 18px;
 }
 .team-bio {
-  font-size: 14px; color: var(--clr-muted2); line-height: 1.7;
-  margin-bottom: 24px;
+  font-size: 14px; color: var(--clr-muted2); line-height: 1.75;
+  margin-bottom: 24px; max-width: 420px;
 }
+
+/* Faixa de especializações (4 itens, estilo mini-stats) */
+.team-specialties {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+  width: 100%; margin-bottom: 24px;
+}
+.team-specialty {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 12px 6px; border-radius: 12px;
+  background: rgba(255,255,255,0.03); border: 1px solid var(--clr-border);
+  font-size: 10.5px; font-weight: 600; color: var(--clr-muted2);
+  line-height: 1.3; transition: all var(--transition);
+}
+.team-specialty:hover { border-color: rgba(0,207,255,0.3); background: rgba(0,207,255,0.05); }
+.team-specialty-icon { font-size: 18px; }
+
+/* Checklist de destaques (2 colunas) */
+.team-highlights {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px;
+  width: 100%; margin-bottom: 24px; text-align: left;
+}
+.team-highlight {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 12.5px; color: var(--clr-muted2); line-height: 1.4;
+}
+.team-highlight-check {
+  color: #22c55e; flex-shrink: 0; font-size: 13px; margin-top: 1px;
+}
+
 .team-skills {
   display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
   margin-bottom: 24px;
@@ -980,105 +1014,29 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
   background: rgba(0,207,255,0.08); border: 1px solid rgba(0,207,255,0.2);
   color: var(--clr-neon-blue); transition: all var(--transition);
 }
-.skill-tag:hover { background: rgba(0,207,255,0.15); }
+.skill-tag:hover { background: rgba(0,207,255,0.15); transform: translateY(-1px); }
 .skill-tag.purple {
   background: rgba(182,0,255,0.08); border-color: rgba(182,0,255,0.2);
   color: var(--clr-neon-purple);
 }
+.skill-tag.purple:hover { background: rgba(182,0,255,0.15); }
+
 .team-edu {
   display: flex; align-items: center; gap: 8px;
   padding: 10px 16px; border-radius: 10px;
   background: rgba(255,255,255,0.03); border: 1px solid var(--clr-border);
   font-size: 12px; color: var(--clr-muted2); width: 100%;
-  justify-content: center;
+  justify-content: center; margin-bottom: 20px;
 }
 .team-edu-icon { font-size: 16px; }
-.team-photo-placeholder {
-  margin-top: 16px; font-size: 11px; color: var(--clr-muted);
-  font-style: italic;
-}
+
+.team-actions { display: flex; gap: 10px; width: 100%; }
+.team-actions .btn { flex: 1; justify-content: center; }
+
 @media(max-width:768px){
   .team-grid { grid-template-columns: 1fr; }
+  .team-specialties { grid-template-columns: repeat(2, 1fr); }
 }
-
-
-/* ── TEAM SECTION ── */
-#team { background: var(--clr-surface); }
-.team-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 32px; margin-top: 56px;
-}
-.team-card {
-  background: var(--clr-bg);
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius-xl);
-  padding: 40px 36px;
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center;
-  transition: all var(--transition); position: relative; overflow: hidden;
-}
-.team-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 3px; background: var(--grad-neon);
-}
-.team-card:hover {
-  border-color: rgba(0,207,255,0.2);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-.team-avatar {
-  width: 100px; height: 100px; border-radius: 50%;
-  background: var(--grad-neon);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-size: 32px; font-weight: 800;
-  color: #000; margin-bottom: 24px;
-  box-shadow: 0 0 30px rgba(0,207,255,0.3);
-  position: relative;
-}
-.team-avatar-badge {
-  position: absolute; bottom: 4px; right: 4px;
-  width: 24px; height: 24px; border-radius: 50%;
-  background: #22c55e; border: 2px solid var(--clr-bg);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px;
-}
-.team-name {
-  font-family: var(--font-display); font-size: 22px; font-weight: 700;
-  margin-bottom: 6px; color: var(--clr-text);
-}
-.team-role {
-  font-size: 13px; font-weight: 600; color: var(--clr-neon-blue);
-  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
-}
-.team-bio {
-  font-size: 14px; color: var(--clr-muted2); line-height: 1.7;
-  margin-bottom: 24px;
-}
-.team-skills {
-  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
-  margin-bottom: 24px;
-}
-.skill-tag {
-  padding: 4px 12px; border-radius: 100px; font-size: 11px; font-weight: 600;
-  background: rgba(0,207,255,0.08); border: 1px solid rgba(0,207,255,0.2);
-  color: var(--clr-neon-blue);
-}
-.skill-tag.purple {
-  background: rgba(182,0,255,0.08); border-color: rgba(182,0,255,0.2);
-  color: var(--clr-neon-purple);
-}
-.team-edu {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 16px; border-radius: 10px;
-  background: rgba(255,255,255,0.03); border: 1px solid var(--clr-border);
-  font-size: 12px; color: var(--clr-muted2); width: 100%;
-  justify-content: center;
-}
-.team-photo-placeholder {
-  margin-top: 16px; font-size: 11px; color: var(--clr-muted);
-  font-style: italic;
-}
-@media(max-width:768px){ .team-grid { grid-template-columns: 1fr; } }
 
 /* ── ADSENSE MOBILE FIX: evita reserva de espaço excessiva do formato "auto" ── */
 @media (max-width: 768px) {
@@ -1787,42 +1745,114 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
     <h2 class="section-title fade-in" id="team-title">
       <span data-i18n="team_title">As pessoas por trás<br>da <em class="text-gradient">Dev.Lobbo</em></span>
     </h2>
-    <p class="section-desc fade-in">
+    <p class="section-desc fade-in" data-i18n="team_sub">
       Duas desenvolvedoras full stack apaixonadas por tecnologia e por criar soluções que fazem diferença no dia a dia das pessoas.
     </p>
     <div class="team-grid">
       <div class="team-card fade-in">
-        <div class="team-avatar">LB<div class="team-avatar-badge">✓</div></div>
-        <div class="team-name">Lorrainy Bombonatto</div>
-        <div class="team-role" data-i18n="team1_role">Co-fundadora & Desenvolvedora Full Stack</div>
-        <p class="team-bio" data-i18n="team1_bio">Cursando o último período de Ciência da Computação, Lorrainy é desenvolvedora full stack com experiência em desenvolvimento mobile e web. Tem extensão em Python e domina tanto o front quanto o back end.</p>
-        <div class="team-skills">
-          <span class="skill-tag">Flutter</span>
-          <span class="skill-tag">React</span>
-          <span class="skill-tag purple">Java</span>
-          <span class="skill-tag purple">Kotlin</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Front End</span>
-          <span class="skill-tag purple">Back End</span>
+        <div class="team-card-inner">
+          <div class="team-avatar">LB<div class="team-avatar-badge">✓</div></div>
+          <div class="team-name">Lorrainy Bombonatto</div>
+          <div class="team-role" data-i18n="team_role">Co-fundadora & Desenvolvedora Full Stack</div>
+          <p class="team-bio" data-i18n="team_bio_shared">Estudante do último período de Ciência da Computação e Desenvolvedora Full Stack na Dev.Lobbo. Responsável por projetar, desenvolver e manter aplicações web e mobile modernas, desde a implementação de UI/UX até arquitetura de backend, APIs, bancos de dados e integração com nuvem. Apaixonada por construir soluções de software escaláveis e de alta performance.</p>
+
+          <div class="team-specialties" aria-label="Especializações">
+            <div class="team-specialty"><span class="team-specialty-icon">🌐</span><span data-i18n="team_spec1">Web Development</span></div>
+            <div class="team-specialty"><span class="team-specialty-icon">📱</span><span data-i18n="team_spec2">Mobile Development</span></div>
+            <div class="team-specialty"><span class="team-specialty-icon">☁️</span><span data-i18n="team_spec3">Cloud Solutions</span></div>
+            <div class="team-specialty"><span class="team-specialty-icon">🎨</span><span data-i18n="team_spec4">UI/UX</span></div>
+          </div>
+
+          <div class="team-highlights" aria-label="Destaques">
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h1">Full Stack Development</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h2">Mobile Applications</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h3">Progressive Web Apps (PWA)</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h4">REST APIs</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h5">Firebase</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h6">Responsive UI</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h7">Database Design</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h8">Cloud Integration</span></div>
+          </div>
+
+          <div class="team-skills">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">React Native</span>
+            <span class="skill-tag purple">Flutter</span>
+            <span class="skill-tag purple">Kotlin</span>
+            <span class="skill-tag purple">Java</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag purple">Firebase</span>
+            <span class="skill-tag purple">Firestore</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+          </div>
+
+          <div class="team-edu"><span class="team-edu-icon">🎓</span> <span data-i18n="team_edu">Bacharelado em Ciência da Computação (Último Semestre)</span></div>
+
+          <div class="team-actions">
+            <a href="#apps" class="btn btn-primary btn-sm"><span data-i18n="team_btn_projects">Ver Projetos</span></a>
+            <a href="#contact" class="btn btn-secondary btn-sm"><span data-i18n="team_btn_contact">Contato</span></a>
+          </div>
         </div>
-        <div class="team-edu"><span>🎓</span> <span data-i18n="team_edu">Ciência da Computação — Último período</span></div>
-        <div class="team-photo-placeholder">📸 Foto em breve</div>
       </div>
+
       <div class="team-card fade-in">
-        <div class="team-avatar" style="background:linear-gradient(135deg,#B600FF,#7000cc);">CD<div class="team-avatar-badge">✓</div></div>
-        <div class="team-name">Cibeli Defreyn</div>
-        <div class="team-role" data-i18n="team1_role">Co-fundadora & Desenvolvedora Full Stack</div>
-        <p class="team-bio" data-i18n="team2_bio">Cursando o último período de Ciência da Computação, Cibeli é desenvolvedora full stack com foco em aplicações mobile e sistemas robustos. Combina habilidades de front e back end para entregar produtos completos.</p>
-        <div class="team-skills">
-          <span class="skill-tag">Flutter</span>
-          <span class="skill-tag">React</span>
-          <span class="skill-tag purple">Java</span>
-          <span class="skill-tag purple">Kotlin</span>
-          <span class="skill-tag">Front End</span>
-          <span class="skill-tag purple">Back End</span>
+        <div class="team-card-inner">
+          <div class="team-avatar" style="background:linear-gradient(135deg,#B600FF,#7000cc);">CD<div class="team-avatar-badge">✓</div></div>
+          <div class="team-name">Cibeli Defreyn</div>
+          <div class="team-role" data-i18n="team_role">Co-fundadora & Desenvolvedora Full Stack</div>
+          <p class="team-bio" data-i18n="team_bio_shared">Estudante do último período de Ciência da Computação e Desenvolvedora Full Stack na Dev.Lobbo. Responsável por projetar, desenvolver e manter aplicações web e mobile modernas, desde a implementação de UI/UX até arquitetura de backend, APIs, bancos de dados e integração com nuvem. Apaixonada por construir soluções de software escaláveis e de alta performance.</p>
+
+          <div class="team-specialties" aria-label="Especializações">
+            <div class="team-specialty"><span class="team-specialty-icon">🌐</span><span data-i18n="team_spec1">Web Development</span></div>
+            <div class="team-specialty"><span class="team-specialty-icon">📱</span><span data-i18n="team_spec2">Mobile Development</span></div>
+            <div class="team-specialty"><span class="team-specialty-icon">☁️</span><span data-i18n="team_spec3">Cloud Solutions</span></div>
+            <div class="team-specialty"><span class="team-specialty-icon">🎨</span><span data-i18n="team_spec4">UI/UX</span></div>
+          </div>
+
+          <div class="team-highlights" aria-label="Destaques">
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h1">Full Stack Development</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h2">Mobile Applications</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h3">Progressive Web Apps (PWA)</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h4">REST APIs</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h5">Firebase</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h6">Responsive UI</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h7">Database Design</span></div>
+            <div class="team-highlight"><span class="team-highlight-check">✔️</span><span data-i18n="team_h8">Cloud Integration</span></div>
+          </div>
+
+          <div class="team-skills">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">React Native</span>
+            <span class="skill-tag purple">Flutter</span>
+            <span class="skill-tag purple">Kotlin</span>
+            <span class="skill-tag purple">Java</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag purple">Firebase</span>
+            <span class="skill-tag purple">Firestore</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+          </div>
+
+          <div class="team-edu"><span class="team-edu-icon">🎓</span> <span data-i18n="team_edu">Bacharelado em Ciência da Computação (Último Semestre)</span></div>
+
+          <div class="team-actions">
+            <a href="#apps" class="btn btn-primary btn-sm"><span data-i18n="team_btn_projects">Ver Projetos</span></a>
+            <a href="#contact" class="btn btn-secondary btn-sm"><span data-i18n="team_btn_contact">Contato</span></a>
+          </div>
         </div>
-        <div class="team-edu"><span>🎓</span> <span data-i18n="team_edu">Ciência da Computação — Último período</span></div>
-        <div class="team-photo-placeholder">📸 Foto em breve</div>
       </div>
     </div>
   </div>
@@ -2278,10 +2308,13 @@ const TRANSLATIONS = {
     cat_all: 'Todos', cat_dev: 'Desenvolvimento', cat_gestao: 'Gestão', cat_escalas: 'Escalas', cat_ponto: 'Controle de Ponto', cat_ia: 'Inteligência Artificial',
     contact_eyebrow: 'Contato',
     contact_desc: 'Tem uma dúvida, quer sugerir um recurso ou está interessado em uma parceria? Entre em contato com a equipe Dev.Lobbo.',
-    team_eyebrow: 'Nossa Equipe', team_edu: 'Ciência da Computação — Último período',
-    team1_role: 'Co-fundadora & Desenvolvedora Full Stack',
-    team1_bio: 'Cursando o último período de Ciência da Computação, Lorrainy é desenvolvedora full stack com experiência em desenvolvimento mobile e web. Tem extensão em Python e domina tanto o front quanto o back end.',
-    team2_bio: 'Cursando o último período de Ciência da Computação, Cibeli é desenvolvedora full stack com foco em aplicações mobile e sistemas robustos. Combina habilidades de front e back end para entregar produtos completos.',
+    team_eyebrow: 'Nossa Equipe', team_edu: 'Bacharelado em Ciência da Computação (Último Semestre)',
+    team_role: 'Co-fundadora & Desenvolvedora Full Stack',
+    team_bio_shared: 'Estudante do último período de Ciência da Computação e Desenvolvedora Full Stack na Dev.Lobbo. Responsável por projetar, desenvolver e manter aplicações web e mobile modernas, desde a implementação de UI/UX até arquitetura de backend, APIs, bancos de dados e integração com nuvem. Apaixonada por construir soluções de software escaláveis e de alta performance.',
+    team_spec1: 'Desenvolvimento Web', team_spec2: 'Desenvolvimento Mobile', team_spec3: 'Soluções em Nuvem', team_spec4: 'UI/UX',
+    team_h1: 'Desenvolvimento Full Stack', team_h2: 'Aplicativos Mobile', team_h3: 'Progressive Web Apps (PWA)', team_h4: 'REST APIs',
+    team_h5: 'Firebase', team_h6: 'Interface Responsiva', team_h7: 'Modelagem de Banco de Dados', team_h8: 'Integração com Nuvem',
+    team_btn_projects: 'Ver Projetos', team_btn_contact: 'Contato',
     footer_tagline: 'Desenvolvemos softwares modernos, rápidos e intuitivos para empresas e profissionais que valorizam qualidade e produtividade.',
     footer_content: 'Conteúdo', footer_company: 'Empresa', footer_features: 'Diferenciais', footer_newsletter: 'Newsletter', footer_sitemap: 'Sitemap',
     footer_copy: '© 2025 Dev.Lobbo. Todos os direitos reservados.',
@@ -2373,10 +2406,13 @@ const TRANSLATIONS = {
     cat_all: 'All', cat_dev: 'Development', cat_gestao: 'Management', cat_escalas: 'Scheduling', cat_ponto: 'Time Tracking', cat_ia: 'Artificial Intelligence',
     contact_eyebrow: 'Contact',
     contact_desc: 'Have a question, want to suggest a feature, or interested in a partnership? Get in touch with the Dev.Lobbo team.',
-    team_eyebrow: 'Our Team', team_edu: 'Computer Science — Final semester',
-    team1_role: 'Co-founder & Full Stack Developer',
-    team1_bio: 'Currently in her final semester of Computer Science, Lorrainy is a full stack developer with experience in mobile and web development. She has an extension course in Python and masters both front and back end.',
-    team2_bio: 'Currently in her final semester of Computer Science, Cibeli is a full stack developer focused on mobile applications and robust systems. She combines front and back end skills to deliver complete products.',
+    team_eyebrow: 'Our Team', team_edu: "Bachelor's Degree in Computer Science (Final Semester)",
+    team_role: 'Co-Founder & Full Stack Developer',
+    team_bio_shared: 'Final-year Computer Science student and Full Stack Developer at Dev.Lobbo. Responsible for designing, developing and maintaining modern web and mobile applications, from UI/UX implementation to backend architecture, APIs, databases and cloud integration. Passionate about building scalable, high-performance software solutions.',
+    team_spec1: 'Web Development', team_spec2: 'Mobile Development', team_spec3: 'Cloud Solutions', team_spec4: 'UI/UX',
+    team_h1: 'Full Stack Development', team_h2: 'Mobile Applications', team_h3: 'Progressive Web Apps (PWA)', team_h4: 'REST APIs',
+    team_h5: 'Firebase', team_h6: 'Responsive UI', team_h7: 'Database Design', team_h8: 'Cloud Integration',
+    team_btn_projects: 'View Projects', team_btn_contact: 'Contact',
     footer_tagline: 'We build modern, fast and intuitive software for businesses and professionals who value quality and productivity.',
     footer_content: 'Content', footer_company: 'Company', footer_features: 'Highlights', footer_newsletter: 'Newsletter', footer_sitemap: 'Sitemap',
     footer_copy: '© 2025 Dev.Lobbo. All rights reserved.',
