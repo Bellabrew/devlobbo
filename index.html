@@ -1249,6 +1249,11 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <div class="preview-name">Ponto Justificado</div>
           <div class="preview-desc" style="color:var(--clr-neon-purple)">⏳ Em breve</div>
         </div>
+        <a href="https://play.google.com/store/apps/details?id=com.docviewerpdf.app&pcampaignid=web_share" target="_blank" rel="noopener" class="preview-card">
+          <div class="preview-img" style="padding:0;overflow:hidden;"><img src="/img/docviewer-pdf-preview.jpg" alt="DocViewer-PDF" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" loading="lazy"></div>
+          <div class="preview-name">DocViewer-PDF</div>
+          <div class="preview-desc" data-i18n="app4_category">Leitor de PDF</div>
+        </a>
       </div>
     </div>
   </div>
@@ -1357,10 +1362,9 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
             <div class="app-feature" data-i18n="app3_feat6">Exportação</div>
           </div>
           <div class="app-actions">
-            <a href="https://644568a8.pontojustificado.pages.dev" class="btn btn-primary" target="_blank" rel="noopener" aria-label="Abrir Ponto Justificado">
-              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-              <span data-i18n="btn_open_system">Abrir Sistema</span>
-            </a>
+            <button class="btn btn-secondary" disabled style="opacity:0.5;cursor:not-allowed;pointer-events:none;">
+              <span data-i18n="app3_soon">⏳ Em breve</span>
+            </button>
             <button class="btn btn-secondary btn-sm" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">
               <span data-i18n="btn_learn_more">Saiba Mais</span>
             </button>
@@ -1927,7 +1931,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
         <ul>
           <li><a href="https://devlobbo.com/gestfacil" target="_blank" rel="noopener">GestFácil</a></li>
           <li><a href="https://devlobbo.com/srplantao" target="_blank" rel="noopener">Sr. Plantão</a></li>
-          <li><a href="https://644568a8.pontojustificado.pages.dev" target="_blank" rel="noopener">Ponto Justificado</a></li>
+          <li><span style="opacity:0.6;cursor:default;" title="Em breve">Ponto Justificado</span></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -2313,6 +2317,7 @@ const TRANSLATIONS = {
     app3_category: 'Controle de Ponto Digital',
     app3_desc: 'Sistema inteligente de controle de ponto com banco de horas, intervalos, relatórios e justificativas eletrônicas.',
     app3_feat1: 'Banco de horas', app3_feat2: 'Intervalos', app3_feat3: 'Justificativas', app3_feat4: 'Relatórios PDF', app3_feat5: 'Multi-usuário', app3_feat6: 'Exportação',
+    app3_soon: '⏳ Em breve',
     app4_category: 'Leitor de PDF',
     app4_desc: 'Leitor de PDF rápido, leve e fácil de usar.',
     app4_feat1: 'WhatsApp', app4_feat2: 'E-mail', app4_feat3: 'Google Drive', app4_feat4: 'Qualquer App', app4_feat5: 'Gratuito',
@@ -2414,6 +2419,7 @@ const TRANSLATIONS = {
     app3_category: 'Digital Time Tracking',
     app3_desc: 'Smart time-tracking system with overtime bank, breaks, reports and electronic justifications.',
     app3_feat1: 'Overtime bank', app3_feat2: 'Breaks', app3_feat3: 'Justifications', app3_feat4: 'PDF reports', app3_feat5: 'Multi-user', app3_feat6: 'Export',
+    app3_soon: '⏳ Coming soon',
     app4_category: 'PDF Reader',
     app4_desc: 'Fast, lightweight and easy-to-use PDF reader.',
     app4_feat1: 'WhatsApp', app4_feat2: 'Email', app4_feat3: 'Google Drive', app4_feat4: 'Any App', app4_feat5: 'Free',
