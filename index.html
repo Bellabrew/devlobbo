@@ -1374,6 +1374,32 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
         </div>
       </article>
 
+      <!-- ── DocViewer-PDF (app externo, divulgação apenas) ── -->
+      <article class="app-card reverse fade-in" aria-label="DocViewer-PDF — Leitor de PDF">
+        <div class="app-visual" style="padding:16px;overflow:hidden;"><img src="/img/docviewer-pdf-preview.png" alt="DocViewer-PDF" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;" loading="lazy"></div>
+        <div class="app-info">
+          <div class="app-category" data-i18n="app4_category">Leitor de PDF</div>
+          <h3 class="app-title">DocViewer-PDF</h3>
+          <p class="app-desc" data-i18n="app4_desc">Leitor de PDF rápido, leve e fácil de usar.</p>
+          <div class="app-features" aria-label="Recursos">
+            <div class="app-feature" data-i18n="app4_feat1">WhatsApp</div>
+            <div class="app-feature" data-i18n="app4_feat2">E-mail</div>
+            <div class="app-feature" data-i18n="app4_feat3">Google Drive</div>
+            <div class="app-feature" data-i18n="app4_feat4">Qualquer App</div>
+            <div class="app-feature" data-i18n="app4_feat5">Gratuito</div>
+          </div>
+          <div class="app-actions">
+            <a href="https://play.google.com/store/apps/details?id=com.docviewerpdf.app&pcampaignid=web_share" class="btn btn-primary" target="_blank" rel="noopener" aria-label="Baixar DocViewer-PDF na Play Store">
+              <i class="fa-brands fa-google-play" aria-hidden="true"></i>
+              <span data-i18n="btn_download_android">Baixar para Android</span>
+            </a>
+            <button class="btn btn-secondary btn-sm" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">
+              <span data-i18n="btn_learn_more">Saiba Mais</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -2293,6 +2319,9 @@ const TRANSLATIONS = {
     app3_category: 'Controle de Ponto Digital',
     app3_desc: 'Sistema inteligente de controle de ponto com banco de horas, intervalos, relatórios e justificativas eletrônicas.',
     app3_feat1: 'Banco de horas', app3_feat2: 'Intervalos', app3_feat3: 'Justificativas', app3_feat4: 'Relatórios PDF', app3_feat5: 'Multi-usuário', app3_feat6: 'Exportação',
+    app4_category: 'Leitor de PDF',
+    app4_desc: 'Leitor de PDF rápido, leve e fácil de usar.',
+    app4_feat1: 'WhatsApp', app4_feat2: 'E-mail', app4_feat3: 'Google Drive', app4_feat4: 'Qualquer App', app4_feat5: 'Gratuito',
     btn_open_system: 'Abrir Sistema', btn_download_android: 'Baixar para Android', btn_learn_more: 'Saiba Mais',
     features_desc: 'Cada app da Dev.Lobbo segue o mesmo padrão de qualidade — do código à experiência do usuário.',
     feat1_title: 'Interface Moderna', feat1_desc: 'Design pensado em detalhes, com tipografia, motion e tema dark/claro.',
@@ -2391,6 +2420,9 @@ const TRANSLATIONS = {
     app3_category: 'Digital Time Tracking',
     app3_desc: 'Smart time-tracking system with overtime bank, breaks, reports and electronic justifications.',
     app3_feat1: 'Overtime bank', app3_feat2: 'Breaks', app3_feat3: 'Justifications', app3_feat4: 'PDF reports', app3_feat5: 'Multi-user', app3_feat6: 'Export',
+    app4_category: 'PDF Reader',
+    app4_desc: 'Fast, lightweight and easy-to-use PDF reader.',
+    app4_feat1: 'WhatsApp', app4_feat2: 'Email', app4_feat3: 'Google Drive', app4_feat4: 'Any App', app4_feat5: 'Free',
     btn_open_system: 'Open System', btn_download_android: 'Download for Android', btn_learn_more: 'Learn More',
     features_desc: 'Every Dev.Lobbo app follows the same quality standard — from the code to the user experience.',
     feat1_title: 'Modern Interface', feat1_desc: 'Design crafted down to the details, with typography, motion and dark/light theme.',
