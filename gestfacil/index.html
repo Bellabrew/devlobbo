@@ -16,6 +16,16 @@
   -->
   <base href="/gestfacil/">
 
+  <!-- Redireciona URL padrão do Firebase para o domínio oficial -->
+  <script>
+    (function() {
+      var h = window.location.hostname;
+      if (h === 'gestfacil-b3422.web.app' || h === 'gestfacil-b3422.firebaseapp.com') {
+        window.location.replace('https://devlobbo.com/gestfacil');
+      }
+    })();
+  </script>
+
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="GestFácil - Gestão completa para o seu negócio">
@@ -24,7 +34,7 @@
   <meta property="og:title" content="GestFácil">
   <meta property="og:description" content="Gestão completa para o seu negócio">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://gestfacil-b3422.web.app/icons/Icon-512.png">
+  <meta property="og:image" content="https://devlobbo.com/gestfacil/icons/Icon-512.png">
   <meta property="og:image:width" content="512">
   <meta property="og:image:height" content="512">
 
