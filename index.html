@@ -1206,17 +1206,17 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
         <a href="/gestfacil" class="preview-card">
           <div class="preview-img" style="padding:0;overflow:hidden;"><img src="/img/gestfacil-preview.jpg" alt="GestFácil" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" loading="lazy"></div>
           <div class="preview-name">GestFácil</div>
-          <div class="preview-desc">Gestão empresarial completa</div>
+          <div class="preview-desc" data-i18n="preview_gestfacil_desc">Gestão empresarial completa</div>
         </a>
         <a href="https://devlobbo.com/srplantao" target="_blank" rel="noopener" class="preview-card">
           <div class="preview-img" style="padding:0;overflow:hidden;"><img src="/img/srplantao-preview.jpg" alt="Sr. Plantão" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" loading="lazy"></div>
           <div class="preview-name">Sr. Plantão</div>
-          <div class="preview-desc">Escalas inteligentes</div>
+          <div class="preview-desc" data-i18n="preview_srplantao_desc">Escalas inteligentes</div>
         </a>
         <div class="preview-card" style="opacity:0.5;cursor:default;pointer-events:none;" title="Em breve">
           <div class="preview-img" style="padding:0;overflow:hidden;"><img src="/img/pontojustificado-preview.jpg" alt="Ponto Justificado" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" loading="lazy"></div>
           <div class="preview-name">Ponto Justificado</div>
-          <div class="preview-desc" style="color:var(--clr-neon-purple)">⏳ Em breve</div>
+          <div class="preview-desc" style="color:var(--clr-neon-purple)" data-i18n="app3_soon">⏳ Em breve</div>
         </div>
         <a href="https://play.google.com/store/apps/details?id=com.docviewerpdf.app&pcampaignid=web_share" target="_blank" rel="noopener" class="preview-card">
           <div class="preview-img" style="padding:0;overflow:hidden;"><img src="/img/docviewer-pdf-preview.jpg" alt="DocViewer-PDF" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" loading="lazy"></div>
@@ -1243,7 +1243,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
 <!-- ══ APPS ══════════════════════════════════════════════════════════ -->
 <section id="apps" class="section" aria-labelledby="apps-title">
   <div class="container">
-    <div class="section-eyebrow fade-in">Aplicativos</div>
+    <div class="section-eyebrow fade-in" data-i18n="nav_apps">Aplicativos</div>
     <h2 class="section-title fade-in" id="apps-title">
       <span data-i18n="apps_title">Produtos prontos para usar<br><em class="text-gradient">no seu dia a dia</em></span>
     </h2>
@@ -1450,7 +1450,13 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
 
     <!-- Google AdSense -->
     <div style="margin-top:56px;">
-      <div class="adsense-slot leaderboard" aria-hidden="true">Espaço Publicitário — 728×90</div>
+      <ins class="adsbygoogle adsense-slot leaderboard"
+           style="display:block"
+           data-ad-client="ca-pub-7614768764999229"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
   </div>
 </section>
@@ -1461,7 +1467,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
 
     <div class="blog-header">
       <div>
-        <div class="section-eyebrow fade-in">Tutoriais</div>
+        <div class="section-eyebrow fade-in" data-i18n="nav_tutorials">Tutoriais</div>
         <h2 class="section-title fade-in" id="blog-title">
           <span data-i18n="blog_title">Conteúdo útil sobre<br><em class="text-gradient">tecnologia e gestão</em></span>
         </h2>
@@ -1488,7 +1494,15 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
     </div>
 
     <!-- Google AdSense — Entre artigos -->
-    <div class="adsense-slot leaderboard fade-in" style="margin-bottom:32px;" aria-hidden="true">Espaço Publicitário — 728×90</div>
+    <div class="fade-in" style="margin-bottom:32px;">
+      <ins class="adsbygoogle adsense-slot leaderboard"
+           style="display:block"
+           data-ad-client="ca-pub-7614768764999229"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
     <!-- Featured articles -->
     <div class="blog-featured">
@@ -1504,7 +1518,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <p class="blog-card-excerpt" data-i18n="card1_excerpt">Um guia prático para quem quer organizar horas extras, compensações e folgas de forma justa e transparente. Aprenda a estruturar políticas claras e usar ferramentas digitais para automatizar o processo.</p>
           <div class="blog-card-footer">
             <div class="author-avatar" aria-hidden="true">DL</div>
-            <span class="author-name">Dev.Lobbo Team</span>
+            <span class="author-name" data-i18n="blog_author">Dev.Lobbo Team</span>
             <span style="margin-left:auto;font-size:12px;color:var(--clr-neon-blue)"><span data-i18n="card_read_more">Ler artigo →</span></span>
           </div>
         </div>
@@ -1521,7 +1535,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <p class="blog-card-excerpt" data-i18n="card2_excerpt">Estratégias para gerenciar escalas de profissionais de segurança pública, saúde e emergência de forma justa e eficiente.</p>
           <div class="blog-card-footer">
             <div class="author-avatar" aria-hidden="true">DL</div>
-            <span class="author-name">Dev.Lobbo Team</span>
+            <span class="author-name" data-i18n="blog_author">Dev.Lobbo Team</span>
           </div>
         </div>
       </article>
@@ -1542,7 +1556,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <p class="blog-card-excerpt" data-i18n="card3_excerpt">Tudo o que sua empresa precisa saber sobre REP-A, REP-P e REP-C, e como migrar do papel para o digital.</p>
           <div class="blog-card-footer">
             <div class="author-avatar" aria-hidden="true">DL</div>
-            <span class="author-name">Dev.Lobbo Team</span>
+            <span class="author-name" data-i18n="blog_author">Dev.Lobbo Team</span>
           </div>
         </div>
       </article>
@@ -1558,7 +1572,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <p class="blog-card-excerpt" data-i18n="card4_excerpt">Progressive Web Apps combinam o melhor da web e dos aplicativos nativos. Entenda como funciona e quando adotar.</p>
           <div class="blog-card-footer">
             <div class="author-avatar" aria-hidden="true">DL</div>
-            <span class="author-name">Dev.Lobbo Team</span>
+            <span class="author-name" data-i18n="blog_author">Dev.Lobbo Team</span>
           </div>
         </div>
       </article>
@@ -1574,7 +1588,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <p class="blog-card-excerpt" data-i18n="card5_excerpt">Comparativo técnico completo entre as duas opções de banco de dados em tempo real do Firebase para seu projeto.</p>
           <div class="blog-card-footer">
             <div class="author-avatar" aria-hidden="true">DL</div>
-            <span class="author-name">Dev.Lobbo Team</span>
+            <span class="author-name" data-i18n="blog_author">Dev.Lobbo Team</span>
           </div>
         </div>
       </article>
@@ -1590,7 +1604,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <p class="blog-card-excerpt" data-i18n="card6_excerpt">Como publicar aplicações web estáticas e PWAs com CDN global, SSL automático e deploys contínuos sem custo.</p>
           <div class="blog-card-footer">
             <div class="author-avatar" aria-hidden="true">DL</div>
-            <span class="author-name">Dev.Lobbo Team</span>
+            <span class="author-name" data-i18n="blog_author">Dev.Lobbo Team</span>
           </div>
         </div>
       </article>
@@ -1606,7 +1620,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <p class="blog-card-excerpt" data-i18n="card7_excerpt">IA pode sugerir escalas otimizadas, prever faltas e reduzir conflitos de agenda. Veja casos reais de uso.</p>
           <div class="blog-card-footer">
             <div class="author-avatar" aria-hidden="true">DL</div>
-            <span class="author-name">Dev.Lobbo Team</span>
+            <span class="author-name" data-i18n="blog_author">Dev.Lobbo Team</span>
           </div>
         </div>
       </article>
@@ -1622,7 +1636,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <p class="blog-card-excerpt" data-i18n="card8_excerpt">De async/await a Web Components, um guia focado nas funcionalidades que realmente importam para o dia a dia.</p>
           <div class="blog-card-footer">
             <div class="author-avatar" aria-hidden="true">DL</div>
-            <span class="author-name">Dev.Lobbo Team</span>
+            <span class="author-name" data-i18n="blog_author">Dev.Lobbo Team</span>
           </div>
         </div>
       </article>
@@ -1638,7 +1652,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <p class="blog-card-excerpt" data-i18n="card9_excerpt">Turnover, absenteísmo, horas extras e NPS de funcionários. Saiba como medir e interpretar cada indicador.</p>
           <div class="blog-card-footer">
             <div class="author-avatar" aria-hidden="true">DL</div>
-            <span class="author-name">Dev.Lobbo Team</span>
+            <span class="author-name" data-i18n="blog_author">Dev.Lobbo Team</span>
           </div>
         </div>
       </article>
@@ -1654,7 +1668,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <p class="blog-card-excerpt" data-i18n="card10_excerpt">Identifique as tarefas que mais roubam tempo da sua equipe e descubra ferramentas acessíveis para automatizá-las.</p>
           <div class="blog-card-footer">
             <div class="author-avatar" aria-hidden="true">DL</div>
-            <span class="author-name">Dev.Lobbo Team</span>
+            <span class="author-name" data-i18n="blog_author">Dev.Lobbo Team</span>
           </div>
         </div>
       </article>
@@ -1670,7 +1684,7 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           <p class="blog-card-excerpt" data-i18n="card11_excerpt">De OAuth ao 2FA, boas práticas de segurança que protegem seus usuários sem sacrificar a experiência.</p>
           <div class="blog-card-footer">
             <div class="author-avatar" aria-hidden="true">DL</div>
-            <span class="author-name">Dev.Lobbo Team</span>
+            <span class="author-name" data-i18n="blog_author">Dev.Lobbo Team</span>
           </div>
         </div>
       </article>
@@ -1704,15 +1718,15 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
         <div class="about-card-stack">
           <div class="about-card-item">
             <div style="font-size:20px;margin-bottom:8px;">⚡</div>
-            <div style="font-size:13px;font-weight:600;margin-bottom:4px;">Performance First</div>
-            <div style="font-size:11px;color:var(--clr-muted);">Lighthouse 95+ em todos os apps</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:4px;" data-i18n="about_card1_title">Performance em Primeiro Lugar</div>
+            <div style="font-size:11px;color:var(--clr-muted);" data-i18n="about_card1_desc">Lighthouse 95+ em todos os apps</div>
           </div>
           <div class="about-card-item">
             <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;">
               <div style="font-size:20px;">🚀</div>
               <div style="font-size:14px;font-weight:700;">Dev.Lobbo</div>
             </div>
-            <div style="font-size:12px;color:var(--clr-muted);line-height:1.5;">Softwares inteligentes para facilitar o seu trabalho.</div>
+            <div style="font-size:12px;color:var(--clr-muted);line-height:1.5;" data-i18n="about_card2_desc">Softwares inteligentes para facilitar o seu trabalho.</div>
             <div style="margin-top:12px;display:flex;gap:6px;">
               <div style="padding:3px 10px;border-radius:100px;background:rgba(0,207,255,0.1);border:1px solid rgba(0,207,255,0.2);font-size:10px;color:var(--clr-neon-blue);">PWA</div>
               <div style="padding:3px 10px;border-radius:100px;background:rgba(182,0,255,0.1);border:1px solid rgba(182,0,255,0.2);font-size:10px;color:var(--clr-neon-purple);">Firebase</div>
@@ -1720,8 +1734,8 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
           </div>
           <div class="about-card-item">
             <div style="font-size:18px;margin-bottom:6px;">🛡️</div>
-            <div style="font-size:12px;font-weight:600;margin-bottom:3px;">Seguro & Confiável</div>
-            <div style="font-size:11px;color:var(--clr-muted);">HTTPS · Auth segura · Backups</div>
+            <div style="font-size:12px;font-weight:600;margin-bottom:3px;" data-i18n="about_card3_title">Seguro & Confiável</div>
+            <div style="font-size:11px;color:var(--clr-muted);" data-i18n="about_card3_desc">HTTPS · Auth segura · Backups</div>
           </div>
         </div>
       </div>
@@ -2255,6 +2269,11 @@ const TRANSLATIONS = {
     hero_badge: 'Portal Oficial — Dev.Lobbo',
     hero_title: 'Desenvolvemos <em class="text-gradient">softwares<br>inteligentes</em> para facilitar<br>o seu trabalho.',
     hero_sub: 'Criamos aplicativos modernos, rápidos e intuitivos para empresas e profissionais. Da escala de plantão ao controle de ponto, passando por gestão completa do seu negócio.',
+    preview_gestfacil_desc: 'Gestão empresarial completa', preview_srplantao_desc: 'Escalas inteligentes',
+    about_card1_title: 'Performance em Primeiro Lugar', about_card1_desc: 'Lighthouse 95+ em todos os apps',
+    about_card2_desc: 'Softwares inteligentes para facilitar o seu trabalho.',
+    about_card3_title: 'Seguro & Confiável', about_card3_desc: 'HTTPS · Autenticação segura · Backups',
+    blog_author: 'Equipe Dev.Lobbo',
     btn_apps: 'Conhecer Aplicativos',
     btn_articles: 'Ver Artigos',
     nav_cta: 'Abrir Aplicativos',
@@ -2357,6 +2376,11 @@ const TRANSLATIONS = {
     hero_badge: 'Official Portal — Dev.Lobbo',
     hero_title: 'We build <em class="text-gradient">intelligent<br>software</em> to make your<br>work easier.',
     hero_sub: 'Modern, fast and intuitive apps for businesses and professionals. From shift scheduling to time tracking, all the way to full business management.',
+    preview_gestfacil_desc: 'Complete business management', preview_srplantao_desc: 'Smart scheduling',
+    about_card1_title: 'Performance First', about_card1_desc: 'Lighthouse 95+ across every app',
+    about_card2_desc: 'Smart software to make your work easier.',
+    about_card3_title: 'Secure & Reliable', about_card3_desc: 'HTTPS · Secure auth · Backups',
+    blog_author: 'Dev.Lobbo Team',
     btn_apps: 'Explore Apps',
     btn_articles: 'Read Articles',
     nav_cta: 'Open Apps',
