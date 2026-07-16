@@ -34,39 +34,40 @@ nav{position:sticky;top:0;z-index:100;background:rgba(5,5,8,0.92);backdrop-filte
 .nav-back:hover{color:#00CFFF;text-decoration:none}
 .hero{background:linear-gradient(135deg,#050508,#0a0a14,#0d0820);padding:56px 0 40px;border-bottom:1px solid rgba(255,255,255,0.07);position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,207,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,207,255,0.02) 1px,transparent 1px);background-size:50px 50px}
-.hero-inner{max-width:820px;margin:0 auto;padding:0 40px;position:relative;z-index:1}
+.hero-inner{max-width:1100px;margin:0 auto;padding:0 40px;position:relative;z-index:1}
 .breadcrumb{font-size:12px;color:rgba(150,150,170,0.6);margin-bottom:16px;display:flex;align-items:center;gap:6px}
 .breadcrumb a{color:#00CFFF}
 .tag{display:inline-flex;align-items:center;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;background:#00CFFF10;border:1px solid #00CFFF30;color:#00CFFF}
 h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:700;line-height:1.15;color:#fff;margin-bottom:16px;letter-spacing:-0.5px}
-.hero-desc{font-size:16px;color:rgba(200,200,220,0.75);max-width:620px;line-height:1.7;margin-bottom:24px}
+.hero-desc{font-size:16px;color:rgba(200,200,220,0.75);max-width:700px;line-height:1.7;margin-bottom:24px}
 .meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .meta-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(90deg,#00CFFF,#B600FF);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000;flex-shrink:0}
 .meta-name{font-size:13px;font-weight:600;color:#e8e8f0}
 .meta-date{font-size:12px;color:rgba(150,150,170,0.6)}
 .meta-sep{color:rgba(255,255,255,0.15)}
 .meta-read{font-size:12px;color:rgba(150,150,170,0.6)}
-.layout{max-width:1100px;margin:0 auto;padding:48px 40px 80px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start}
-.article h2{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#fff;margin:40px 0 14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.07)}
+.layout{max-width:1100px;margin:0 auto;padding:40px 40px 80px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start}
+.article-hero-img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;margin-bottom:32px;border:1px solid rgba(255,255,255,0.08)}
+.article h2{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#fff;margin:48px 0 16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.07)}
 .article h2::before{content:'';display:block;width:28px;height:3px;background:linear-gradient(90deg,#00CFFF,#B600FF);border-radius:2px;margin-bottom:10px}
-.article h3{font-size:17px;font-weight:600;color:#e8e8f0;margin:28px 0 10px}
-.article p{font-size:15px;color:rgba(200,200,220,0.82);margin-bottom:18px;line-height:1.85}
+.article h3{font-size:17px;font-weight:600;color:#e8e8f0;margin:32px 0 8px}
+.article p{font-size:15px;color:rgba(200,200,220,0.82);margin-bottom:16px;line-height:1.85}
 .article p strong{color:#fff}
-.article ul,.article ol{margin:0 0 20px 20px}
+.article ul,.article ol{margin:0 0 24px 24px}
 .article li{font-size:15px;color:rgba(200,200,220,0.82);margin-bottom:8px;line-height:1.7}
 .article li::marker{color:#00CFFF}
-.callout{background:rgba(0,207,255,0.05);border:1px solid rgba(0,207,255,0.15);border-left:3px solid #00CFFF;border-radius:0 12px 12px 0;padding:18px 22px;margin:24px 0}
+.callout{background:rgba(0,207,255,0.05);border:1px solid rgba(0,207,255,0.15);border-left:3px solid #00CFFF;border-radius:0 12px 12px 0;padding:16px 24px;margin:32px 0}
 .callout.purple{background:rgba(182,0,255,0.05);border-color:rgba(182,0,255,0.15);border-left-color:#B600FF}
 .callout.green{background:rgba(0,200,100,0.05);border-color:rgba(0,200,100,0.15);border-left-color:#00c864}
 .callout-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#00CFFF;margin-bottom:6px}
 .callout.purple .callout-title{color:#B600FF}
 .callout.green .callout-title{color:#00c864}
 .callout p{margin:0;font-size:14px}
-.divider{height:1px;background:rgba(255,255,255,0.07);margin:36px 0}
-.tags-row{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0}
+.divider{height:1px;background:rgba(255,255,255,0.07);margin:40px 0}
+.tags-row{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
 .tag-pill{font-size:11px;font-weight:600;color:rgba(200,200,220,0.6);padding:5px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);transition:all .2s;cursor:default}
 .tag-pill:hover{border-color:rgba(0,207,255,0.3);color:#00CFFF}
-.share-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:22px;margin:28px 0;text-align:center}
+.share-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px;margin:24px 0;text-align:center}
 .share-box h4{font-size:14px;color:rgba(200,200,220,0.7);margin-bottom:14px}
 .share-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 .sbtn{padding:9px 18px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:all .2s}
@@ -74,8 +75,8 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,42px);font-we
 .sbtn.wa:hover{background:rgba(37,211,102,0.18)}
 .sbtn.cp{background:rgba(255,255,255,0.05);color:rgba(200,200,220,0.7);border:1px solid rgba(255,255,255,0.1)}
 .sbtn.cp:hover{background:rgba(255,255,255,0.09);color:#fff}
-.sidebar{position:sticky;top:88px;display:flex;flex-direction:column;gap:20px}
-.sidebar-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px}
+.sidebar{position:sticky;top:88px;display:flex;flex-direction:column;gap:24px}
+.sidebar-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px}
 .sidebar-card h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(150,150,170,0.6);margin-bottom:14px}
 .toc-item{display:flex;align-items:flex-start;gap:8px;padding:7px 10px;border-radius:8px;font-size:13px;color:rgba(200,200,220,0.7);cursor:pointer;transition:all .2s;line-height:1.4}
 .toc-item:hover,.toc-item.active{background:rgba(0,207,255,0.07);color:#00CFFF}
@@ -85,7 +86,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,42px);font-we
 .app-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(90deg,#00CFFF,#B600FF);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
 .app-name{font-size:13px;font-weight:600;color:#e8e8f0}
 .app-desc{font-size:11px;color:rgba(150,150,170,0.6)}
-.rel-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.rel-item{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
 .rel-item:last-child{border-bottom:none;padding-bottom:0}
 .rel-icon{font-size:22px;flex-shrink:0;margin-top:2px}
 .rel-title{font-size:13px;font-weight:500;color:#e8e8f0;line-height:1.4;transition:color .2s}
@@ -95,6 +96,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,42px);font-we
 footer{background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.07);padding:28px 40px;text-align:center;font-size:13px;color:rgba(150,150,170,0.5)}
 footer a{color:#00CFFF}
 @media(max-width:900px){.layout{grid-template-columns:1fr;padding:32px 24px 60px}.sidebar{position:static}.hero-inner{padding:0 24px}nav{padding:0 20px}}
+@media(max-width:480px){.article-hero-img{border-radius:12px;margin-bottom:24px}.article h2{margin:32px 0 16px}.article h3{margin:24px 0 8px}.callout{padding:16px 20px;margin:24px 0}}
 
 .lang-switcher{position:relative}
 .lang-btn2{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);color:rgba(200,200,220,0.75);font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
@@ -111,7 +113,7 @@ footer a{color:#00CFFF}
 <nav>
   <a href="/" class="logo"><div class="logo-icon">dL</div>Dev<span>.Lobbo</span></a>
   <div style="display:flex;align-items:center;gap:16px;">
-    <a href="/" class="nav-back" data-i18n="back_link">← Voltar ao blog</a>
+    <a href="/#blog" class="nav-back" data-i18n="back_link">← Voltar para Tutoriais</a>
     <div class="lang-switcher" id="lang-switcher">
       <button class="lang-btn2" id="lang-btn" aria-label="Idioma">
         <span id="lang-flag">🇧🇷</span><span id="lang-code">PT</span><span style="font-size:9px;">▼</span>
@@ -137,13 +139,9 @@ footer a{color:#00CFFF}
     </div>
   </div>
 </div>
-<!-- Google AdSense -->
-<div style="max-width:1100px;margin:24px auto;padding:0 40px">
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7614768764999229" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
 <div class="layout">
   <article class="article">
+    <img class="article-hero-img" src="/blog/img/wearables-saude-2026.jpg" alt="Wearables de saúde 2026" loading="lazy">
 
     <h2 id="intro" data-i18n="h2_1">Do fitness ao monitoramento médico</h2>
     <p data-i18n="p1">Em poucos anos, os smartwatches evoluíram de contadores de passos para dispositivos médicos capazes de detectar fibrilação atrial, medir saturação de oxigênio e estimar composição corporal. Em 2025, estamos no limiar de uma nova era: monitoramento contínuo de saúde no pulso.</p>
@@ -227,7 +225,7 @@ footer a{color:#00CFFF}
 <script>
 const TRANSLATIONS = {
   pt: {
-    back_link: '← Voltar ao blog',
+    back_link: '← Voltar para Tutoriais',
     art_title_bc: 'Tecnologia',
     art_category: 'Tecnologia',
     art_title: 'Wearables de saúde em 2026: quando o relógio vira médico',
@@ -309,7 +307,7 @@ const TRANSLATIONS = {
     app_desc2: 'Smart scheduling',
     footer_copy: '© 2025 Dev.Lobbo ·',
     page_title: 'Health wearables in 2026: when your watch becomes a doctor — Dev.Lobbo',
-    back_link: '← Back to blog',
+    back_link: '← Back to Tutorials',
     toc_title: 'Contents',
     apps_title: 'Apps',
     related_sidebar_title: 'Related articles',
