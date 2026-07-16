@@ -299,14 +299,6 @@ body.light-mode #navbar.scrolled {
 
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
 
-.hero-stats {
-  display: flex; gap: 48px; flex-wrap: wrap;
-  padding-top: 40px; border-top: 1px solid var(--clr-border);
-}
-.hero-stat-label { font-size: 12px; color: var(--clr-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-.hero-stat-value { font-size: 24px; font-weight: 700; font-family: var(--font-display); color: var(--clr-white); }
-.hero-stat-value span { font-size: 14px; color: var(--clr-neon-blue); margin-left: 4px; }
-
 /* ── HERO CARDS PREVIEW ── */
 .hero-apps-preview {
   display: flex; gap: 24px; margin-top: 48px;
@@ -800,7 +792,6 @@ footer {
   .tech-grid { grid-template-columns: repeat(4, 1fr); }
   .blog-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
-  .hero-stats { gap: 28px; }
   .app-info { padding: 28px 24px; }
 }
 
@@ -904,7 +895,6 @@ body.light-mode .preview-card {
 body.light-mode .preview-name { color: #111118; }
 body.light-mode .preview-desc { color: #5a5a72; }
 body.light-mode .hero-orb { opacity: 0.08; }
-body.light-mode .hero-stats { border-top-color: rgba(0,0,0,0.1); }
 body.light-mode .btn-secondary { 
   background: rgba(0,0,0,0.05); 
   border-color: rgba(0,0,0,0.15);
@@ -1085,7 +1075,6 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
     gap: 32px !important;
   }
   .nav-links { display: none !important; }
-  .hero-stats { gap: 20px !important; }
   .hero-cta { flex-direction: column !important; }
   .section-title { font-size: 26px !important; }
   #hero { min-height: auto !important; padding-top: 96px !important; }
@@ -1211,27 +1200,6 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
         </a>
       </div>
       </div><!-- end hero-content-left -->
-
-      <div class="hero-stats fade-in" aria-label="Estatísticas">
-        <div>
-          <div class="hero-stat-label">Aplicativos</div>
-          <div class="hero-stat-value" data-counter="3" data-suffix="">
-            3<span>prontos</span>
-          </div>
-        </div>
-        <div>
-          <div class="hero-stat-label">PWA-Friendly</div>
-          <div class="hero-stat-value">100%<span>offline</span></div>
-        </div>
-        <div>
-          <div class="hero-stat-label">Lighthouse</div>
-          <div class="hero-stat-value">95+<span>score</span></div>
-        </div>
-        <div>
-          <div class="hero-stat-label">CloudFlare</div>
-          <div class="hero-stat-value">Free<span>CDN</span></div>
-        </div>
-      </div>
 
       <!-- App preview cards -->
       <div class="hero-apps-preview fade-in" aria-label="Preview dos aplicativos">
@@ -1948,8 +1916,6 @@ body.light-mode .breadcrumb span { color: #5a5a72; }
         <ul>
           <li><a href="#about" data-i18n="nav_about">Sobre</a></li>
           <li><a href="#contact" data-i18n="nav_contact">Contato</a></li>
-          <li><a href="#newsletter" data-i18n="footer_newsletter">Newsletter</a></li>
-          <li><a href="/sitemap.xml" data-i18n="footer_sitemap">Sitemap</a></li>
         </ul>
       </div>
     </div>
@@ -2345,7 +2311,7 @@ const TRANSLATIONS = {
     team_h5: 'Firebase', team_h6: 'Interface Responsiva', team_h7: 'Modelagem de Banco de Dados', team_h8: 'Integração com Nuvem',
     team_btn_projects: 'Ver Projetos', team_btn_contact: 'Contato',
     footer_tagline: 'Desenvolvemos softwares modernos, rápidos e intuitivos para empresas e profissionais que valorizam qualidade e produtividade.',
-    footer_content: 'Conteúdo', footer_company: 'Empresa', footer_features: 'Diferenciais', footer_newsletter: 'Newsletter', footer_sitemap: 'Sitemap',
+    footer_content: 'Conteúdo', footer_company: 'Empresa', footer_features: 'Diferenciais',
     footer_copy: '© 2025 Dev.Lobbo. Todos os direitos reservados.',
     footer_privacy: 'Privacidade', footer_terms: 'Termos de Uso', footer_cookies: 'Cookies',
     pwa_title: 'Instalar Dev.Lobbo', pwa_desc: 'Adicione à tela inicial para acesso rápido', pwa_install: 'Instalar', pwa_dismiss: 'Agora não',
@@ -2447,7 +2413,7 @@ const TRANSLATIONS = {
     team_h5: 'Firebase', team_h6: 'Responsive UI', team_h7: 'Database Design', team_h8: 'Cloud Integration',
     team_btn_projects: 'View Projects', team_btn_contact: 'Contact',
     footer_tagline: 'We build modern, fast and intuitive software for businesses and professionals who value quality and productivity.',
-    footer_content: 'Content', footer_company: 'Company', footer_features: 'Highlights', footer_newsletter: 'Newsletter', footer_sitemap: 'Sitemap',
+    footer_content: 'Content', footer_company: 'Company', footer_features: 'Highlights',
     footer_copy: '© 2025 Dev.Lobbo. All rights reserved.',
     footer_privacy: 'Privacy', footer_terms: 'Terms of Use', footer_cookies: 'Cookies',
     pwa_title: 'Install Dev.Lobbo', pwa_desc: 'Add to your home screen for quick access', pwa_install: 'Install', pwa_dismiss: 'Not now',
