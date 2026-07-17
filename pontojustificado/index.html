@@ -215,6 +215,10 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--pg);color:v
 .btn-print-nologin{width:100%;padding:14px;border-radius:12px;border:2px dashed var(--pb);background:#fff;color:var(--pm);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
 .btn-print-nologin i{font-size:20px;color:var(--po)}
 /* ADMOB */
+.pwd-wrap{position:relative;display:flex;align-items:center}
+.pwd-wrap input{width:100%;padding-right:40px}
+.pwd-eye{position:absolute;right:12px;cursor:pointer;color:var(--pm);font-size:18px;background:none;border:none;padding:0;line-height:1;flex-shrink:0}
+.pwd-eye:hover{color:var(--pg)}
 .admob{background:#fff;border-top:1px solid var(--pb);padding:5px 8px;padding-bottom:calc(env(safe-area-inset-bottom,0px)+5px);display:flex;align-items:center;justify-content:center;gap:6px;min-height:56px;flex-shrink:0}
 .admob-lbl{font-size:8px;color:#bbb;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0}
 .admob-ad{flex:1;max-width:320px;height:50px;background:var(--pgl);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--pg);border:1px solid var(--pb);font-weight:700}
@@ -305,8 +309,8 @@ ins.adsbygoogle{display:block}
         <div class="msg msg-blue" style="margin-bottom:14px"><i class="ti ti-lock"></i><span>Esta é a conta principal que gerencia todo o sistema. Guarde bem o e-mail e senha!</span></div>
         <div class="fg"><label>Nome completo *</label><input type="text" id="setup-adm-nome" placeholder="Seu nome completo"/></div>
         <div class="fg"><label>E-mail *</label><input type="email" id="setup-adm-email" placeholder="rh@suaempresa.com.br" autocomplete="off"/></div>
-        <div class="fg"><label>Senha *</label><input type="password" id="setup-adm-senha" placeholder="Mínimo 6 caracteres" autocomplete="new-password"/></div>
-        <div class="fg"><label>Confirmar senha *</label><input type="password" id="setup-adm-conf" placeholder="Repita a senha" autocomplete="new-password"/></div>
+        <div class="fg"><label>Senha *</label><div class="pwd-wrap"><input type="password" id="setup-adm-senha" placeholder="Mínimo 6 caracteres" autocomplete="new-password"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
+        <div class="fg"><label>Confirmar senha *</label><div class="pwd-wrap"><input type="password" id="setup-adm-conf" placeholder="Repita a senha" autocomplete="new-password"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
         <div id="err-setup2" class="msg msg-r err-msg" style="display:none"><i class="ti ti-alert-circle"></i><span></span></div>
         <div style="display:flex;gap:8px">
           <button class="btn btn-ghost" onclick="setupVoltar(1)" style="flex:1"><i class="ti ti-arrow-left"></i>Voltar</button>
@@ -419,7 +423,7 @@ ins.adsbygoogle{display:block}
       </div>
       <div class="msg msg-r err-msg" id="err-login"><i class="ti ti-alert-circle"></i><span id="err-login-txt"></span></div>
       <div class="fg"><label>E-mail</label><input type="email" id="l-email" placeholder="seu@empresa.com.br" autocomplete="email"/></div>
-      <div class="fg"><label>Senha</label><input type="password" id="l-senha" placeholder="••••••" autocomplete="current-password"/></div>
+      <div class="fg"><label>Senha</label><div class="pwd-wrap"><input type="password" id="l-senha" placeholder="••••••" autocomplete="current-password"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
       <div style="text-align:right;margin:-6px 0 10px"><span style="color:var(--blue);font-size:12px;cursor:pointer;text-decoration:underline" onclick="abrirEsqueciSenha()"><i class="ti ti-key" style="font-size:11px"></i> Esqueci minha senha</span></div>
       <button class="btn btn-g btn-full" onclick="fazerLogin()"><i class="ti ti-login"></i>Entrar</button>
       <div style="display:flex;align-items:center;gap:8px;margin:14px 0 12px"><div style="flex:1;height:1px;background:var(--pb)"></div><span style="font-size:11px;color:#bbb">ou</span><div style="flex:1;height:1px;background:var(--pb)"></div></div>
@@ -501,8 +505,8 @@ ins.adsbygoogle{display:block}
     </div>
     <div class="fg"><label>Setor</label><select id="c-setor"><option value="">Selecione o setor...</option></select></div>
     <div class="fg"><label>E-mail</label><input type="email" id="c-email" placeholder="seu@empresa.com.br" autocomplete="email"/></div>
-    <div class="fg"><label>Senha</label><input type="password" id="c-senha" placeholder="Mínimo 6 caracteres" autocomplete="new-password"/></div>
-    <div class="fg"><label>Confirmar senha</label><input type="password" id="c-senha2" placeholder="Repita a senha" autocomplete="new-password"/></div>
+    <div class="fg"><label>Senha</label><div class="pwd-wrap"><input type="password" id="c-senha" placeholder="Mínimo 6 caracteres" autocomplete="new-password"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
+    <div class="fg"><label>Confirmar senha</label><div class="pwd-wrap"><input type="password" id="c-senha2" placeholder="Repita a senha" autocomplete="new-password"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
     <div class="fg">
       <label>Sua assinatura digital <span style="color:var(--blue)">(será exibida em azul)</span></label>
       <div class="sig-digital-box">
@@ -542,8 +546,8 @@ ins.adsbygoogle{display:block}
     <div class="fg"><label>Cargo / Função *</label><input type="text" id="sup-cad-cargo" placeholder="Ex: Chefe de Seção, Supervisor, Diretor"/></div>
     <div class="fg"><label>Setor que supervisiona *</label><select id="sup-cad-setor"><option value="">Selecione o setor...</option></select></div>
     <div class="fg"><label>E-mail *</label><input type="email" id="sup-cad-email" placeholder="seu@empresa.com.br" autocomplete="email"/></div>
-    <div class="fg"><label>Senha *</label><input type="password" id="sup-cad-senha" placeholder="Mínimo 6 caracteres" autocomplete="new-password"/></div>
-    <div class="fg"><label>Confirmar senha *</label><input type="password" id="sup-cad-senha2" placeholder="Repita a senha" autocomplete="new-password"/></div>
+    <div class="fg"><label>Senha *</label><div class="pwd-wrap"><input type="password" id="sup-cad-senha" placeholder="Mínimo 6 caracteres" autocomplete="new-password"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
+    <div class="fg"><label>Confirmar senha *</label><div class="pwd-wrap"><input type="password" id="sup-cad-senha2" placeholder="Repita a senha" autocomplete="new-password"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
     <div class="fg">
       <label>Assinatura digital <span style="color:var(--blue)">(usada nos documentos)</span></label>
       <div class="sig-digital-box">
@@ -713,9 +717,9 @@ ins.adsbygoogle{display:block}
       </div>
       <div class="card" style="margin-top:0">
         <div class="card-title"><i class="ti ti-lock"></i>Minha Senha (ADM)</div>
-        <div class="fg"><label>Senha atual</label><input type="password" id="adm-senha-atual" placeholder="Senha atual"/></div>
-        <div class="fg"><label>Nova senha</label><input type="password" id="adm-nova-senha" placeholder="Nova senha"/></div>
-        <div class="fg"><label>Confirmar</label><input type="password" id="adm-conf-senha" placeholder="Confirmar nova senha"/></div>
+        <div class="fg"><label>Senha atual</label><div class="pwd-wrap"><input type="password" id="adm-senha-atual" placeholder="Senha atual"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
+        <div class="fg"><label>Nova senha</label><div class="pwd-wrap"><input type="password" id="adm-nova-senha" placeholder="Nova senha"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
+        <div class="fg"><label>Confirmar</label><div class="pwd-wrap"><input type="password" id="adm-conf-senha" placeholder="Confirmar nova senha"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
         <button class="btn btn-g btn-full" onclick="alterarSenhaAdm()"><i class="ti ti-check"></i>Salvar nova senha</button>
       </div>
     </div>
@@ -742,9 +746,9 @@ ins.adsbygoogle{display:block}
       <div class="card"><div class="card-title"><i class="ti ti-user"></i>Meu Perfil</div><div id="sup-perfil-info" style="font-size:13px;line-height:1.9;color:var(--pt)"></div></div>
       <div class="card">
         <div class="card-title"><i class="ti ti-lock"></i>Alterar Minha Senha</div>
-        <div class="fg"><label>Senha atual</label><input type="password" id="sup-senha-atual" placeholder="Senha atual"/></div>
-        <div class="fg"><label>Nova senha</label><input type="password" id="sup-nova-senha" placeholder="Nova senha (mín. 4 caracteres)"/></div>
-        <div class="fg"><label>Confirmar</label><input type="password" id="sup-conf-senha" placeholder="Confirmar nova senha"/></div>
+        <div class="fg"><label>Senha atual</label><div class="pwd-wrap"><input type="password" id="sup-senha-atual" placeholder="Senha atual"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
+        <div class="fg"><label>Nova senha</label><div class="pwd-wrap"><input type="password" id="sup-nova-senha" placeholder="Nova senha (mín. 4 caracteres)"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
+        <div class="fg"><label>Confirmar</label><div class="pwd-wrap"><input type="password" id="sup-conf-senha" placeholder="Confirmar nova senha"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
         <button class="btn btn-g btn-full" onclick="alterarSenhaSup()"><i class="ti ti-check"></i>Salvar nova senha</button>
       </div>
     </div>
@@ -845,7 +849,7 @@ ins.adsbygoogle{display:block}
             <div id="func-sig-form">
               <div style="font-size:12px;color:var(--pm);margin-bottom:8px;display:flex;align-items:center;gap:6px"><i class="ti ti-lock" style="color:var(--blue);font-size:16px"></i>Insira sua senha para liberar sua assinatura</div>
               <div style="display:flex;gap:8px">
-                <input type="password" id="func-pwd" placeholder="Sua senha" autocomplete="current-password" style="flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--pb);font-size:14px;font-family:inherit"/>
+                <div class="pwd-wrap"><input type="password" id="func-pwd" placeholder="Sua senha" autocomplete="current-password" style="flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--pb);font-size:14px;font-family:inherit"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div>
                 <button class="btn btn-blue" onclick="assinarFunc()"><i class="ti ti-fingerprint"></i>Assinar</button>
               </div>
               <div style="font-size:11px;color:var(--red);margin-top:5px;display:none" id="func-pwd-err">Senha incorreta.</div>
@@ -879,9 +883,9 @@ ins.adsbygoogle{display:block}
       <div class="card"><div class="card-title"><i class="ti ti-user"></i>Meu Perfil</div><div id="func-perfil-info" style="font-size:13px;line-height:1.9;color:var(--pt)"></div></div>
       <div class="card">
         <div class="card-title"><i class="ti ti-lock"></i>Alterar Minha Senha</div>
-        <div class="fg"><label>Senha atual</label><input type="password" id="func-senha-atual" placeholder="Senha atual"/></div>
-        <div class="fg"><label>Nova senha</label><input type="password" id="func-nova-senha" placeholder="Nova senha (mín. 4 caracteres)"/></div>
-        <div class="fg"><label>Confirmar</label><input type="password" id="func-conf-senha" placeholder="Confirmar nova senha"/></div>
+        <div class="fg"><label>Senha atual</label><div class="pwd-wrap"><input type="password" id="func-senha-atual" placeholder="Senha atual"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
+        <div class="fg"><label>Nova senha</label><div class="pwd-wrap"><input type="password" id="func-nova-senha" placeholder="Nova senha (mín. 4 caracteres)"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
+        <div class="fg"><label>Confirmar</label><div class="pwd-wrap"><input type="password" id="func-conf-senha" placeholder="Confirmar nova senha"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>
         <button class="btn btn-g btn-full" onclick="alterarSenhaFunc()"><i class="ti ti-check"></i>Salvar nova senha</button>
       </div>
     </div>
@@ -945,7 +949,7 @@ ins.adsbygoogle{display:block}
       <div class="fg"><label>Motivo do indeferimento (obrigatório)</label><textarea id="motivo-indeferimento" placeholder="Explique o motivo do indeferimento..." style="min-height:100px"></textarea></div>
       <div style="font-size:12px;color:var(--pm);margin-bottom:8px;display:flex;align-items:center;gap:6px"><i class="ti ti-lock" style="color:var(--blue);font-size:16px"></i>Insira sua senha para confirmar e assinar</div>
       <div style="display:flex;gap:8px;margin-bottom:10px">
-        <input type="password" id="ind-pwd" placeholder="Sua senha" autocomplete="current-password" style="flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--pb);font-size:14px;font-family:inherit"/>
+        <div class="pwd-wrap"><input type="password" id="ind-pwd" placeholder="Sua senha" autocomplete="current-password" style="flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--pb);font-size:14px;font-family:inherit"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div>
       </div>
       <div id="ind-pwd-err" style="font-size:11px;color:var(--red);margin-bottom:8px;display:none">Senha incorreta ou motivo não preenchido.</div>
       <div style="display:flex;gap:8px">
@@ -966,6 +970,11 @@ ins.adsbygoogle{display:block}
 </div>
 
 <script>
+function togglePwd(btn){
+  var inp=btn.previousElementSibling;
+  if(inp.type==='password'){inp.type='text';btn.innerHTML='<i class="ti ti-eye-off"></i>';}
+  else{inp.type='password';btn.innerHTML='<i class="ti ti-eye"></i>';}
+}
 /* ====== SUPABASE CONFIG — MULTI-TENANT ====== */
 /* 🔴 SUPABASE DESATIVADO — aguardando novo projeto */
 /* Quando tiver o novo projeto, substitua a URL e KEY abaixo */
@@ -2774,7 +2783,7 @@ function openModal(docId,perfil){
     html+='<div class="decisao-btns"><button class="btn-deferir" onclick="deferir('+doc.id+')"><i class="ti ti-check"></i>✅ Deferir</button><button class="btn-indeferir" onclick="abrirIndeferir('+doc.id+')"><i class="ti ti-x"></i>❌ Indeferir</button></div>';
     html+='<div style="font-size:12px;color:var(--pm);margin-bottom:10px;text-align:center">Ao deferir, você assina digitalmente e envia ao RH.</div>';
     html+='<div style="background:var(--bluel);border-radius:10px;padding:10px;margin-bottom:10px;border:1px solid #c3d0f5;font-size:12px;display:flex;align-items:center;gap:6px"><i class="ti ti-lock" style="color:var(--blue);font-size:16px"></i><span>Insira sua senha para confirmar o deferimento:</span></div>';
-    html+='<div style="display:flex;gap:8px;margin-bottom:5px"><input type="password" id="sup-pwd" placeholder="Sua senha" autocomplete="current-password" style="flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--pb);font-size:14px;font-family:inherit"/></div>';
+    html+='<div style="display:flex;gap:8px;margin-bottom:5px"><div class="pwd-wrap"><input type="password" id="sup-pwd" placeholder="Sua senha" autocomplete="current-password" style="flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--pb);font-size:14px;font-family:inherit"/><button type="button" class="pwd-eye" onclick="togglePwd(this)"><i class="ti ti-eye"></i></button></div></div>';
     html+='<div id="sup-pwd-err" style="font-size:11px;color:var(--red);margin-bottom:8px;display:none">Senha incorreta.</div>';
   }
 
