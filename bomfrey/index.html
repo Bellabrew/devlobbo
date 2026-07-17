@@ -31,29 +31,57 @@
     --text: #EEF2FC;
     --muted: #8891B8;
     --grad: linear-gradient(135deg, var(--blue), var(--teal));
-    --bottom-bar-h: 84px; /* fallback; recalculado via JS (ResizeObserver) com o valor real da barra */
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{ height:100%; }
   body{
-    min-height:100%;
-    min-height:100svh; /* fallback seguro em navegadores móveis mais antigos */
-    min-height:100dvh; /* considera a barra de endereço dinâmica do navegador mobile */
-  }
-  body{
+    height:100%;
     background: var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-    /* espaço reservado para a bottom-bar: soma a altura real (medida em JS) + folga,
-       nunca um número fixo, pra nunca ficar escondido atrás da barra */
-    padding-bottom: calc(var(--bottom-bar-h) + 16px);
+    overflow:hidden; /* quem rola é .screen-scroll, nunca a página inteira */
   }
-  .app-shell{
-    max-width: 480px;
-    margin: 0 auto;
+
+  /* ---------------------------------------------------------------------
+     ARQUITETURA DA TELA — 4 blocos empilhados em coluna (equivalente a um
+     Scaffold com Column([Header, Expanded(scroll), AdBanner, BottomNav])).
+     Nenhum bloco usa position:fixed/absolute, então nenhum sobrepõe o outro
+     — cada um reserva o próprio espaço no fluxo normal do documento.
+     Só .screen-scroll rola; os outros 3 têm altura natural do conteúdo.
+  --------------------------------------------------------------------- */
+  .screen{
+    display:flex;
+    flex-direction:column;
+    height:100vh;   /* fallback pra navegadores sem suporte a dvh */
+    height:100dvh;  /* considera a barra de endereço dinâmica do mobile */
   }
+  .screen-header{
+    flex:0 0 auto; /* tamanho natural, nunca cresce nem encolhe */
+    padding-top: env(safe-area-inset-top);
+  }
+  .screen-scroll{
+    flex:1 1 auto; /* ocupa todo espaço restante entre header e rodapé */
+    min-height:0;  /* ESSENCIAL: sem isso o item não encolhe e o scroll
+                      interno não funciona — ele cresce do tamanho do
+                      conteúdo e empurra tudo pra fora da tela visível */
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom: 20px; /* respiro visual final, não compensação de sobreposição */
+  }
+  .ad-banner-row{
+    flex:0 0 auto; /* linha própria — nunca sobrepõe o conteúdo acima */
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .bottom-nav-row{
+    flex:0 0 auto; /* linha própria — nunca sobrepõe o banner nem o conteúdo */
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    padding-bottom: env(safe-area-inset-bottom); /* respiro real do home indicator do iPhone */
+  }
+  .row-inner{ max-width:480px; margin:0 auto; }
+  .app-shell{ max-width:480px; margin:0 auto; }
   h1,h2,h3,.display{ font-family:'Sora', sans-serif; letter-spacing:-0.01em; }
 
   /* ---------- topo ---------- */
@@ -201,25 +229,16 @@
   .hist-text .s{ font-size:11px; color:var(--muted); margin-top:2px; }
   .hist-score{ font-family:'Sora'; font-weight:700; font-size:13px; }
 
-  /* ---------- bottom nav + banner (placeholder de monetização) ---------- */
-  .bottom-bar{
-    position:fixed; left:0; right:0; bottom:0;
-    background: var(--surface);
-    border-top: 1px solid var(--line);
-    display:flex; justify-content:center; /* centraliza o conteúdo interno em telas largas */
-  }
-  .bottom-bar-inner{
-    width:100%; max-width:480px; /* mesma largura do .app-shell, mantém alinhamento em desktop/tablet */
-  }
+  /* ---------- banner de publicidade e navegação inferior ---------- */
   .ad-slot{
-    height:44px; margin:8px 12px 0;
+    height:44px; margin:8px 12px;
     border: 1px dashed var(--line);
     border-radius: 10px;
     display:flex; align-items:center; justify-content:center;
     font-size:10.5px; color:var(--muted);
   }
   .nav-row{
-    display:flex; justify-content:space-around; padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+    display:flex; justify-content:space-around; padding: 8px 0;
   }
   .nav-item{ display:flex; flex-direction:column; align-items:center; gap:3px; color:var(--muted); font-size:10px; }
   .nav-item.active{ color: var(--teal); }
@@ -242,16 +261,24 @@
 </head>
 <body>
 
-<div class="app-shell">
-<div class="topbar">
-  <div class="mark">
-    <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l7 3v6c0 5-3.2 8.6-7 11-3.8-2.4-7-6-7-11V5l7-3z" fill="#fff"/><path d="M8.5 12l2.4 2.4L16 9" stroke="#0A1128" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div class="screen">
+
+  <div class="screen-header">
+    <div class="row-inner">
+      <div class="topbar">
+        <div class="mark">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l7 3v6c0 5-3.2 8.6-7 11-3.8-2.4-7-6-7-11V5l7-3z" fill="#fff"/><path d="M8.5 12l2.4 2.4L16 9" stroke="#0A1128" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="name">BOMFREY <span>Insight</span></div>
+          <div class="slogan">Veja além da informação</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <div class="name">BOMFREY <span>Insight</span></div>
-    <div class="slogan">Veja além da informação</div>
-  </div>
-</div>
+
+  <div class="screen-scroll">
+    <div class="app-shell">
 
 <div class="hero">
   <div class="ring-wrap">
@@ -327,19 +354,28 @@
   <div class="hist-text"><div class="t">Vídeo viral — "cura milagrosa"</div><div class="s">Analisado ontem · Vídeo</div></div>
   <div class="hist-score" style="color:var(--amber)">34</div>
 </div>
-</div><!-- /app-shell -->
 
-<div class="bottom-bar">
-  <div class="bottom-bar-inner">
-  <div class="ad-slot">espaço reservado — banner publicitário</div>
-  <div class="nav-row">
-    <div class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Início</div>
-    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>Histórico</div>
-    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.5-8.5C.5 8.6 2.4 5 6 5c2 0 3.5 1.3 4 2 .5-.7 2-2 4-2 3.6 0 5.5 3.6 3.5 7.5C19 16.6 12 21 12 21z"/></svg>Favoritos</div>
-    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.2a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.2a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.2a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.2a1.7 1.7 0 00-1.5 1z"/></svg>Ajustes</div>
+    </div><!-- /app-shell -->
+  </div><!-- /screen-scroll -->
+
+  <div class="ad-banner-row">
+    <div class="row-inner">
+      <div class="ad-slot">espaço reservado — banner publicitário</div>
+    </div>
   </div>
+
+  <div class="bottom-nav-row">
+    <div class="row-inner">
+      <div class="nav-row">
+        <div class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Início</div>
+        <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>Histórico</div>
+        <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.5-8.5C.5 8.6 2.4 5 6 5c2 0 3.5 1.3 4 2 .5-.7 2-2 4-2 3.6 0 5.5 3.6 3.5 7.5C19 16.6 12 21 12 21z"/></svg>Favoritos</div>
+        <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.2a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.2a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.2a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.2a1.7 1.7 0 00-1.5 1z"/></svg>Ajustes</div>
+      </div>
+    </div>
   </div>
-</div>
+
+</div><!-- /screen -->
 
 <script>
   // registra o service worker (funcionamento offline)
@@ -348,26 +384,6 @@
       navigator.serviceWorker.register('service-worker.js').catch(console.error);
     });
   }
-
-  // Mede a altura REAL da bottom-bar (banner + nav + safe-area do dispositivo)
-  // e informa isso pro resto da página via variável CSS, em vez de usar um
-  // número fixo que fica desatualizado quando a barra muda de tamanho
-  // (fonte carregando, orientação do celular, notch diferente, etc).
-  const bottomBar = document.querySelector('.bottom-bar');
-  function ajustarEspacoBottomBar(){
-    const altura = bottomBar.getBoundingClientRect().height;
-    document.documentElement.style.setProperty('--bottom-bar-h', altura + 'px');
-  }
-  if ('ResizeObserver' in window) {
-    new ResizeObserver(ajustarEspacoBottomBar).observe(bottomBar);
-  } else {
-    window.addEventListener('resize', ajustarEspacoBottomBar);
-  }
-  window.addEventListener('load', ajustarEspacoBottomBar);
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(ajustarEspacoBottomBar); // fonte pode mudar a altura do texto do nav
-  }
-  ajustarEspacoBottomBar();
 
   // textarea cresce sozinha conforme o usuário digita, até um limite (depois vira scroll interno)
   const inputText = document.getElementById('inputText');
