@@ -215,6 +215,16 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--pg);color:v
 .btn-print-nologin{width:100%;padding:14px;border-radius:12px;border:2px dashed var(--pb);background:#fff;color:var(--pm);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
 .btn-print-nologin i{font-size:20px;color:var(--po)}
 /* ADMOB */
+.func-search-wrap{position:relative}
+.func-search-input{width:100%;padding:10px 13px;border:1.5px solid var(--pb);border-radius:10px;font-size:14px;color:var(--pt);background:#fff;outline:none;font-family:inherit}
+.func-search-input:focus{border-color:var(--pg);box-shadow:0 0 0 3px rgba(27,122,62,.1)}
+.func-search-list{display:none;position:absolute;left:0;right:0;top:100%;margin-top:4px;background:#fff;border:1.5px solid var(--pb);border-radius:10px;max-height:220px;overflow-y:auto;z-index:300;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.func-search-list.open{display:block}
+.func-search-item{padding:10px 14px;font-size:13px;cursor:pointer;color:var(--pt);border-bottom:1px solid var(--ps)}
+.func-search-item:last-child{border-bottom:none}
+.func-search-item:hover,.func-search-item.selected{background:var(--pgl);color:var(--pg)}
+.func-search-item .fi-nome{font-weight:600}
+.func-search-item .fi-info{font-size:11px;color:var(--pm)}
 .pwd-wrap{position:relative;display:flex;align-items:center}
 .pwd-wrap input{width:100%;padding-right:40px}
 .pwd-eye{position:absolute;right:12px;cursor:pointer;color:var(--pm);font-size:18px;background:none;border:none;padding:0;line-height:1;flex-shrink:0}
@@ -672,7 +682,11 @@ ins.adsbygoogle{display:block}
         <div class="card-title"><i class="ti ti-bell-ringing"></i>Enviar Alerta ao Funcionário</div>
         <div class="msg msg-o"><i class="ti ti-info-circle"></i>O funcionário verá este alerta ao fazer login no sistema.</div>
         <div class="fg"><label>Destinatário</label>
-          <select id="alerta-func-sel"><option value="">Selecione o funcionário...</option></select>
+          <div class="func-search-wrap" id="alerta-func-wrap">
+          <input type="text" class="func-search-input" id="alerta-func-input" placeholder="🔍 Buscar funcionário por nome..." oninput="filtrarFuncs('alerta')" onfocus="abrirListaFuncs('alerta')" autocomplete="off"/>
+          <input type="hidden" id="alerta-func-sel"/>
+          <div class="func-search-list" id="alerta-func-list"></div>
+        </div>
         </div>
         <div class="fg"><label>Mensagem</label>
           <textarea id="alerta-msg" placeholder="Ex: Por favor, justifique os dias 10, 11 e 12 de junho. Compareça ao RH até sexta-feira." rows="4"></textarea>
@@ -688,7 +702,11 @@ ins.adsbygoogle{display:block}
         <div class="card-title"><i class="ti ti-file-invoice"></i>Convocar Funcionário para Justificar</div>
         <div class="msg msg-blue"><i class="ti ti-info-circle"></i>O funcionário receberá uma solicitação com os dias pré-preenchidos para justificar.</div>
         <div class="fg"><label>Funcionário</label>
-          <select id="convo-func-sel"><option value="">Selecione o funcionário...</option></select>
+          <div class="func-search-wrap" id="convo-func-wrap">
+          <input type="text" class="func-search-input" id="convo-func-input" placeholder="🔍 Buscar funcionário por nome..." oninput="filtrarFuncs('convo')" onfocus="abrirListaFuncs('convo')" autocomplete="off"/>
+          <input type="hidden" id="convo-func-sel"/>
+          <div class="func-search-list" id="convo-func-list"></div>
+        </div>
         </div>
         <div class="fg"><label>Dias a justificar (um por linha: DD/MM/AAAA)</label>
           <textarea id="convo-dias" placeholder="10/06/2026&#10;11/06/2026&#10;12/06/2026" rows="4"></textarea>
@@ -2375,12 +2393,73 @@ function removerAnexo(){
 }
 
 /* ====== ALERTAS RH → FUNCIONÁRIO ====== */
-function carregarSelectFuncs(selId){
-  var sel=document.getElementById(selId);if(!sel)return;
-  sel.innerHTML='<option value="">Selecione o funcionário...</option>';
-  Object.values(DB.users).filter(function(u){return u.perfil==='funcionario'}).forEach(function(u){
-    var o=document.createElement('option');o.value=u.email;o.textContent=u.nome+' ('+u.setor+')';sel.appendChild(o);
-  });
+/* ====== BUSCA DE FUNCIONÁRIO ====== */
+var funcSelecionado={alerta:null,convo:null};
+
+function carregarSelectFuncs(prefixo){
+  /* Compatibilidade - prefixo pode ser 'alerta-func-sel' ou 'convo-func-sel' */
+  var p=prefixo.replace('-func-sel','');
+  renderListaFuncs(p,'');
+}
+
+function getFuncs(){
+  return Object.values(DB.users).filter(function(u){return u.perfil==='funcionario'&&u.ativo!==false;});
+}
+
+function renderListaFuncs(prefixo,filtro){
+  var list=document.getElementById(prefixo+'-func-list');
+  if(!list)return;
+  var funcs=getFuncs();
+  if(filtro){
+    var f=filtro.toLowerCase();
+    funcs=funcs.filter(function(u){return u.nome.toLowerCase().includes(f)||u.setor.toLowerCase().includes(f)||(u.matricula&&u.matricula.includes(f));});
+  }
+  if(!funcs.length){
+    list.innerHTML='<div class="func-search-item"><span class="fi-info">Nenhum funcionário encontrado</span></div>';
+    return;
+  }
+  list.innerHTML=funcs.map(function(u){
+    return '<div class="func-search-item" onclick="selecionarFunc(\''+prefixo+'\',\''+encodeURIComponent(u.email)+'\',\''+encodeURIComponent(u.nome)+' ('+encodeURIComponent(u.setor)+')\')"> '
+      +'<div class="fi-nome">'+u.nome+'</div>'
+      +'<div class="fi-info">'+u.setor+(u.matricula?' · Mat: '+u.matricula:'')+(u.cargo?' · '+u.cargo:'')+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+function abrirListaFuncs(prefixo){
+  var list=document.getElementById(prefixo+'-func-list');
+  if(!list)return;
+  renderListaFuncs(prefixo,'');
+  list.classList.add('open');
+  /* Fechar ao clicar fora */
+  setTimeout(function(){
+    document.addEventListener('click',function handler(e){
+      var wrap=document.getElementById(prefixo+'-func-wrap');
+      if(wrap&&!wrap.contains(e.target)){list.classList.remove('open');}
+      document.removeEventListener('click',handler);
+    });
+  },100);
+}
+
+function filtrarFuncs(prefixo){
+  var input=document.getElementById(prefixo+'-func-input');
+  var list=document.getElementById(prefixo+'-func-list');
+  if(!input||!list)return;
+  /* Limpar seleção ao digitar */
+  document.getElementById(prefixo+'-func-sel').value='';
+  funcSelecionado[prefixo]=null;
+  list.classList.add('open');
+  renderListaFuncs(prefixo,input.value);
+}
+
+function selecionarFunc(prefixo,emailEnc,labelEnc){
+  var email=decodeURIComponent(emailEnc);
+  var label=decodeURIComponent(labelEnc);
+  document.getElementById(prefixo+'-func-input').value=label;
+  document.getElementById(prefixo+'-func-sel').value=email;
+  funcSelecionado[prefixo]=email;
+  var list=document.getElementById(prefixo+'-func-list');
+  if(list)list.classList.remove('open');
 }
 function renderAdmAlertas(){
   carregarSelectFuncs('alerta-func-sel');
