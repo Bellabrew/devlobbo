@@ -80,8 +80,8 @@
     border-top: 1px solid var(--line);
     padding-bottom: env(safe-area-inset-bottom); /* respiro real do home indicator do iPhone */
   }
-  .row-inner{ max-width:480px; margin:0 auto; }
-  .app-shell{ max-width:480px; margin:0 auto; }
+  .row-inner{ width:100%; } /* sem max-width: cada componente já tem sua própria margem lateral (20px) */
+  .app-shell{ width:100%; } /* idem — a largura é dada pelos componentes internos, não por este wrapper */
   h1,h2,h3,.display{ font-family:'Sora', sans-serif; letter-spacing:-0.01em; }
 
   /* ---------- topo ---------- */
