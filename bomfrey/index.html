@@ -144,6 +144,7 @@
   }
   .badge.alto{ background: rgba(47,224,180,.15); color: var(--teal); }
   .badge.medio{ background: rgba(242,169,59,.15); color: var(--amber); }
+  .badge.baixa{ background: rgba(242,90,59,.15); color: #F25A3B; }
   .result-head .rname{ font-size:13.5px; color:var(--muted); }
   .result-bars{ margin-top:14px; display:flex; flex-direction:column; gap:10px; }
   .bar-row{ font-size:12px; color:var(--muted); }
@@ -328,30 +329,54 @@
     });
   }
 
-  // demo local do fluxo de análise (sem backend real ainda — troque por chamada à API)
-  function runAnalysis(){
+  // chamada real à API do Insight Engine (motor de regras v1, rodando no PythonAnywhere)
+  const API_URL = 'https://devlobbo.pythonanywhere.com/api/v1/analyze';
+
+  async function runAnalysis(){
     const text = document.getElementById('inputText').value.trim();
     if(!text){ return; }
 
-    // score simulado só para visualizar o fluxo da interface
-    const score = Math.floor(55 + Math.random()*40);
-    const fake = Math.max(3, 100 - score - Math.floor(Math.random()*10));
-    const ai = Math.floor(Math.random()*35);
+    const tipo = text.startsWith('http') ? 'link' : 'texto';
+    const btn = document.querySelector('.btn-analyze');
+    const textoOriginalBtn = btn.textContent;
+    btn.textContent = 'Analisando...';
+    btn.disabled = true;
 
-    document.getElementById('scoreNum').textContent = score;
-    const circumference = 440;
-    const offset = circumference - (circumference * score/100);
-    document.getElementById('ringFg').style.strokeDashoffset = offset;
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ conteudo: text, tipo: tipo })
+      });
 
-    const badge = document.getElementById('resBadge');
-    if(score >= 70){ badge.textContent='Alta confiabilidade'; badge.className='badge alto'; }
-    else { badge.textContent='Confiabilidade moderada'; badge.className='badge medio'; }
+      if(!response.ok){ throw new Error('Erro na análise: ' + response.status); }
+      const data = await response.json();
 
-    document.getElementById('resType').textContent = text.startsWith('http') ? 'Link analisado' : 'Texto analisado';
-    document.getElementById('barFake').style.width = fake + '%';
-    document.getElementById('barAI').style.width = ai + '%';
-    document.getElementById('resNote').textContent = 'Conteúdo verificado contra fontes públicas e padrões de linguagem. Isto é uma simulação local — conecte a API do Insight Engine para resultados reais.';
-    document.getElementById('resultCard').classList.add('show');
+      const score = data.score;
+      document.getElementById('scoreNum').textContent = score;
+      const circumference = 440;
+      const offset = circumference - (circumference * score/100);
+      document.getElementById('ringFg').style.strokeDashoffset = offset;
+
+      const badge = document.getElementById('resBadge');
+      if(data.nivel === 'alta'){ badge.textContent='Alta confiabilidade'; badge.className='badge alto'; }
+      else if(data.nivel === 'moderada'){ badge.textContent='Confiabilidade moderada'; badge.className='badge medio'; }
+      else { badge.textContent='Baixa confiabilidade'; badge.className='badge baixa'; }
+
+      document.getElementById('resType').textContent = tipo === 'link' ? 'Link analisado' : 'Texto analisado';
+      document.getElementById('barFake').style.width = data.probabilidade_fake_news + '%';
+      document.getElementById('barAI').style.width = data.probabilidade_ia + '%';
+      document.getElementById('resNote').textContent = data.explicacao;
+      document.getElementById('resultCard').classList.add('show');
+
+    } catch (err) {
+      document.getElementById('resNote').textContent = 'Não foi possível conectar à API de análise agora. Tente novamente em instantes.';
+      document.getElementById('resultCard').classList.add('show');
+      console.error(err);
+    } finally {
+      btn.textContent = textoOriginalBtn;
+      btn.disabled = false;
+    }
   }
 </script>
 
