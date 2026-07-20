@@ -435,8 +435,22 @@ async function sendMessage(activeInput, activeBtn){
     }
 
     const data = await response.json();
+
+    if(data.error){
+      console.error('Erro da API:', data.error);
+      setStatus(`Erro ao consultar o Gemini: ${data.error.message || 'erro desconhecido'} (código ${data.error.code || '?'})`);
+      state.history.pop();
+      return;
+    }
+
     const candidate = data.candidates?.[0];
     const parts = candidate?.content?.parts || [];
+
+    if(!candidate){
+      setStatus('Não recebi uma resposta válida do Gemini. Tente novamente em instantes.');
+      state.history.pop();
+      return;
+    }
 
     // Fontes usadas na busca (grounding) do Gemini
     const chunks = candidate?.groundingMetadata?.groundingChunks || [];
@@ -461,7 +475,21 @@ async function sendMessage(activeInput, activeBtn){
           resposta: replyText,
           time: new Date().toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})
         });
-      } catch(e){ /* ignore malformed block */ }
+      } catch(e){
+        // JSON malformado: ainda assim mostra a resposta, sem o veredito estruturado
+        state.verdicts.push({
+          question: text, classificacao:'nao_verificavel', confianca:0,
+          resumo:'Não consegui estruturar um veredito para esta resposta.',
+          resposta: replyText, time: new Date().toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})
+        });
+      }
+    } else {
+      // O modelo não incluiu o bloco de veredito: mostra a resposta mesmo assim
+      state.verdicts.push({
+        question: text, classificacao:'nao_verificavel', confianca:0,
+        resumo:'O agente não retornou um veredito estruturado desta vez.',
+        resposta: replyText, time: new Date().toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})
+      });
     }
 
     if(typeof data._remaining === 'number') state.remainingToday = data._remaining;
