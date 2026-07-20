@@ -1,448 +1,574 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BOMFREY Insight — Veja além da informação</title>
-<meta name="description" content="Analise a confiabilidade de textos, links, imagens, vídeos e áudios antes de acreditar." />
-
-<!-- PWA -->
-<link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#0A1128" />
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="BOMFREY" />
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,400&family=Poppins:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
   :root{
-    --bg: #0A1128;
-    --surface: #121B3E;
-    --surface-2: #182552;
-    --line: #263168;
-    --teal: #2FE0B4;
-    --blue: #2E86FF;
-    --amber: #F2A93B;
-    --text: #EEF2FC;
-    --muted: #8891B8;
-    --grad: linear-gradient(135deg, var(--blue), var(--teal));
+    --ink:#080d1a;
+    --ink-2:#0f1830;
+    --line:#1f2b45;
+    --blue:#2f8fe0;
+    --green:#27d3a0;
+    --paper:#f2f5f9;
+    --amber:#f2a93a;
+    --danger:#dd6459;
+    --ash:#8b96ac;
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{ height:100%; }
+  *{box-sizing:border-box;}
   body{
-    height:100%;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    -webkit-font-smoothing:antialiased;
-    overflow:hidden; /* quem rola é .screen-scroll, nunca a página inteira */
+    margin:0; background:var(--ink); color:var(--paper);
+    font-family:'Inter',sans-serif; min-height:100vh;
   }
-
-  /* ---------------------------------------------------------------------
-     ARQUITETURA DA TELA — 4 blocos empilhados em coluna (equivalente a um
-     Scaffold com Column([Header, Expanded(scroll), AdBanner, BottomNav])).
-     Nenhum bloco usa position:fixed/absolute, então nenhum sobrepõe o outro
-     — cada um reserva o próprio espaço no fluxo normal do documento.
-     Só .screen-scroll rola; os outros 3 têm altura natural do conteúdo.
-  --------------------------------------------------------------------- */
-  .screen{
-    display:flex;
-    flex-direction:column;
-    height:100vh;   /* fallback pra navegadores sem suporte a dvh */
-    height:100dvh;  /* considera a barra de endereço dinâmica do mobile */
+  .shell{ display:flex; min-height:100vh; }
+  /* ---- Sidebar: Source Ledger ---- */
+  .ledger{
+    width:300px; flex-shrink:0; border-right:1px solid var(--line);
+    background:var(--ink-2); padding:22px 18px; display:flex; flex-direction:column;
   }
-  .screen-header{
-    flex:0 0 auto; /* tamanho natural, nunca cresce nem encolhe */
-    padding-top: env(safe-area-inset-top);
+  .brand{ margin-bottom:22px; display:flex; gap:12px; align-items:flex-start; }
+  .mark{ flex-shrink:0; margin-top:2px; }
+  .brand-text .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--green); display:flex; align-items:center; gap:6px;
   }
-  .screen-scroll{
-    flex:1 1 auto; /* ocupa todo espaço restante entre header e rodapé */
-    min-height:0;  /* ESSENCIAL: sem isso o item não encolhe e o scroll
-                      interno não funciona — ele cresce do tamanho do
-                      conteúdo e empurra tudo pra fora da tela visível */
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
-    padding-bottom: 20px; /* respiro visual final, não compensação de sobreposição */
+  .sweep-dot{
+    width:6px;height:6px;border-radius:50%;background:var(--green);
+    box-shadow:0 0 0 0 rgba(39,211,160,.6); animation:pulse 2s infinite;
   }
-  .ad-banner-row{
-    flex:0 0 auto; /* linha própria — nunca sobrepõe o conteúdo acima */
-    background: var(--surface);
-    border-top: 1px solid var(--line);
+  .sweep-dot.idle{ animation:none; opacity:.35; }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(39,211,160,.55);}
+    70%{box-shadow:0 0 0 8px rgba(39,211,160,0);}
+    100%{box-shadow:0 0 0 0 rgba(39,211,160,0);}
   }
-  .bottom-nav-row{
-    flex:0 0 auto; /* linha própria — nunca sobrepõe o banner nem o conteúdo */
-    background: var(--surface);
-    border-top: 1px solid var(--line);
-    padding-bottom: env(safe-area-inset-bottom); /* respiro real do home indicator do iPhone */
+  .brand-row{ display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+  .brand-text h1{
+    font-family:'Poppins',sans-serif; font-size:1.5rem; margin:5px 0 0; font-weight:700; line-height:1.1;
   }
-  .row-inner{ width:100%; } /* sem max-width: cada componente já tem sua própria margem lateral (20px) */
-  .app-shell{ width:100%; } /* idem — a largura é dada pelos componentes internos, não por este wrapper */
-  h1,h2,h3,.display{ font-family:'Sora', sans-serif; letter-spacing:-0.01em; }
-
-  /* ---------- topo ---------- */
-  .topbar{
-    display:flex; align-items:center; gap:12px;
-    padding: 22px 20px 14px;
+  .brand-text h1 .fr{ background:linear-gradient(90deg,var(--blue),var(--green)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .brand-text .sub{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:1.02rem; color:var(--green);
+    letter-spacing:.02em; margin:5px 0 0;
   }
-  .topbar .mark{
-    width:38px;height:38px;border-radius:11px;
-    background: var(--grad);
-    display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;
+  .tagline{ font-size:.78rem; color:var(--ash); line-height:1.3; margin:2px 0 0; }
+  .ledger-head{
+    font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ash); border-top:1px solid var(--line);
+    padding-top:16px; margin-top:14px; margin-bottom:10px; display:flex; justify-content:space-between;
   }
-  .topbar .mark svg{ width:20px; height:20px; }
-  .topbar .name{ font-size:16px; font-weight:700; }
-  .topbar .name span{ color: var(--teal); font-weight:600; }
-  .topbar .slogan{ font-size:11px; color:var(--muted); margin-top:1px; }
-
-  /* ---------- hero ---------- */
-  .hero{
-    position:relative;
-    padding: 28px 20px 34px;
-    text-align:center;
+  .ledger-list{ flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:10px; padding-right:2px;}
+  .ledger-empty{ font-size:.82rem; color:var(--ash); font-style:italic; padding:8px 0;}
+  .entry{ border-left:2px solid var(--line); padding:6px 0 6px 10px; font-size:.78rem; }
+  .entry.web{ border-left-color:var(--blue); }
+  .entry.doc{ border-left-color:var(--green); }
+  .entry.audio{ border-left-color:var(--amber); }
+  .entry .tag{ font-family:'IBM Plex Mono',monospace; font-size:.64rem; text-transform:uppercase; letter-spacing:.08em; color:var(--blue); }
+  .entry.doc .tag{ color:var(--green); }
+  .entry.audio .tag{ color:var(--amber); }
+  .entry .title{ color:var(--paper); margin:2px 0; line-height:1.3;}
+  .entry .meta{ color:var(--ash); font-family:'IBM Plex Mono',monospace; font-size:.68rem;}
+  .upload-btn{
+    margin-top:14px; border:1px dashed var(--line); border-radius:6px; padding:10px;
+    text-align:center; font-size:.78rem; color:var(--ash); cursor:pointer; transition:.15s;
   }
-  .ring-wrap{
-    position:relative;
-    width:172px; height:172px;
-    margin: 6px auto 22px;
+  .upload-btn:hover{ border-color:var(--green); color:var(--green); }
+  /* ---- Main ---- */
+  .main{ flex:1; display:flex; flex-direction:column; min-width:0; }
+  .tabs{ display:flex; border-bottom:1px solid var(--line); padding:0 26px; }
+  .tab{
+    font-family:'IBM Plex Mono',monospace; font-size:.75rem; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--ash); padding:16px 4px; margin-right:26px;
+    cursor:pointer; border-bottom:2px solid transparent; background:none; border-top:none;border-left:none;border-right:none;
   }
-  .ring-wrap svg{ width:100%; height:100%; transform: rotate(-90deg); }
-  .ring-bg{ stroke: var(--surface-2); }
-  .ring-fg{
-    stroke: url(#ringGrad);
-    stroke-linecap: round;
-    stroke-dasharray: 440;
-    stroke-dashoffset: 440;
-    transition: stroke-dashoffset 1.1s cubic-bezier(.2,.9,.25,1);
+  .tab.active{ color:var(--green); border-bottom-color:var(--green); }
+  .view{ display:none; flex:1; min-height:0; flex-direction:column; }
+  .view.active{ display:flex; }
+  /* Chat / Pesquisa */
+  .chat-scroll{ flex:1; overflow-y:auto; padding:28px 26px; display:flex; flex-direction:column; gap:18px;}
+  .msg{ max-width:680px; line-height:1.55; font-size:.94rem; }
+  .msg.user{ align-self:flex-end; background:var(--paper); color:var(--ink); padding:10px 14px; border-radius:10px 10px 2px 10px;}
+  .msg.assistant{ align-self:flex-start; color:var(--paper); padding:2px 0; white-space:pre-wrap; }
+  .composer{ border-top:1px solid var(--line); padding:16px 26px 22px; display:flex; gap:10px; align-items:flex-end; }
+  .composer textarea{
+    flex:1; resize:none; background:var(--ink-2); border:1px solid var(--line); border-radius:8px;
+    color:var(--paper); font-family:'Inter',sans-serif; font-size:.92rem; padding:11px 12px; min-height:44px; max-height:140px;
   }
-  .ring-center{
-    position:absolute; inset:0;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:2px;
+  .composer textarea:focus{ outline:none; border-color:var(--green); }
+  .send-btn{
+    background:linear-gradient(90deg,var(--blue),var(--green)); color:var(--ink); border:none; border-radius:8px; padding:11px 18px;
+    font-weight:700; font-size:.86rem; cursor:pointer; font-family:'Inter',sans-serif;
   }
-  .ring-center .shield{ width:46px; height:46px; }
-  .ring-center .score{ font-family:'Sora'; font-size:26px; font-weight:800; margin-top:6px; }
-  .ring-center .score-label{ font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
-
-  .hero h1{ font-size:22px; font-weight:700; line-height:1.3; padding:0 12px; }
-  .hero p{ color:var(--muted); font-size:13.5px; margin-top:8px; padding:0 20px; }
-
-  /* ---------- input de análise ---------- */
-  .analyze-box{
-    margin: 22px 20px 0;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 14px;
+  .send-btn:disabled{ opacity:.5; cursor:default; }
+  .mic-btn{
+    background:var(--ink-2); border:1px solid var(--line); color:var(--paper); border-radius:8px;
+    width:44px; height:44px; flex-shrink:0; font-size:1.1rem; cursor:pointer; transition:.15s;
   }
-  .analyze-box textarea{
-    width:100%; min-height:64px; max-height:220px; resize:none; overflow-y:auto;
-    background:transparent; border:none; outline:none;
-    color:var(--text); font-family:'Inter'; font-size:14px; line-height:1.5;
+  .mic-btn:hover{ border-color:var(--green); }
+  .mic-btn.recording{
+    background:var(--danger); border-color:var(--danger); color:#fff;
+    animation:mic-pulse 1.1s infinite;
   }
-  .analyze-box textarea::placeholder{ color: var(--muted); }
-  .analyze-actions{
-    display:flex; align-items:center; justify-content:space-between;
-    margin-top:10px; padding-top:10px; border-top:1px solid var(--line);
+  @keyframes mic-pulse{
+    0%{ box-shadow:0 0 0 0 rgba(221,100,89,.55); }
+    70%{ box-shadow:0 0 0 10px rgba(221,100,89,0); }
+    100%{ box-shadow:0 0 0 0 rgba(221,100,89,0); }
   }
-  .chip-row{ display:flex; gap:8px; }
+  .files-chip-row{ padding:12px 26px 0; display:flex; gap:8px; flex-wrap:wrap; }
   .chip{
-    width:32px;height:32px;border-radius:9px;
-    background: var(--surface-2);
-    display:flex;align-items:center;justify-content:center;
-    color: var(--muted);
+    font-family:'IBM Plex Mono',monospace; font-size:.7rem; background:var(--ink-2); border:1px solid var(--line);
+    color:var(--ash); padding:4px 9px; border-radius:20px;
   }
-  .chip svg{ width:15px; height:15px; }
-  .btn-analyze{
-    background: var(--grad);
-    border:none; color:#06121C;
-    font-family:'Sora'; font-weight:700; font-size:13.5px;
-    padding: 11px 20px; border-radius: 12px;
-    cursor:pointer;
+  /* Confiabilidade */
+  .conf{ padding:30px 34px; overflow-y:auto; flex:1; min-height:0; }
+  .conf h2{ font-family:'Poppins',sans-serif; font-weight:700; font-size:1.4rem; margin:0 0 4px;}
+  .conf .sub{ color:var(--ash); font-size:.86rem; margin-bottom:26px; }
+  .conf-empty{ color:var(--ash); font-size:.9rem; border:1px dashed var(--line); border-radius:10px; padding:22px; text-align:center; }
+  .latest-card{
+    display:flex; gap:28px; align-items:center; background:var(--ink-2); border:1px solid var(--line);
+    border-radius:14px; padding:24px; margin-bottom:30px; flex-wrap:wrap;
   }
-  .btn-analyze:active{ transform: scale(.97); }
-
-  /* ---------- resultado ---------- */
-  .result{
-    margin: 16px 20px 0;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 16px;
-    display:none;
+  .gauge-wrap{ position:relative; width:150px; height:150px; flex-shrink:0; }
+  .gauge-wrap svg{ transform:rotate(-90deg); }
+  .gauge-pct{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    flex-direction:column;
   }
-  .result.show{ display:block; animation: rise .35s ease; }
-  @keyframes rise{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
-  .result-head{ display:flex; align-items:center; gap:10px; }
-  .badge{
-    font-size:11px; font-weight:700; padding:4px 10px; border-radius:100px;
+  .gauge-pct .num{ font-family:'Poppins',sans-serif; font-size:1.9rem; font-weight:700; }
+  .gauge-pct .lbl{ font-size:.65rem; color:var(--ash); text-transform:uppercase; letter-spacing:.06em; }
+  .latest-info{ flex:1; min-width:220px; }
+  .verdict-tag{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.72rem; text-transform:uppercase;
+    letter-spacing:.08em; padding:4px 10px; border-radius:20px; margin-bottom:10px;
   }
-  .badge.alto{ background: rgba(47,224,180,.15); color: var(--teal); }
-  .badge.medio{ background: rgba(242,169,59,.15); color: var(--amber); }
-  .badge.baixa{ background: rgba(242,90,59,.15); color: #F25A3B; }
-  .result-head .rname{ font-size:13.5px; color:var(--muted); }
-  .result-bars{ margin-top:14px; display:flex; flex-direction:column; gap:10px; }
-  .bar-row{ font-size:12px; color:var(--muted); }
-  .bar-track{ height:6px; border-radius:100px; background:var(--surface-2); margin-top:5px; overflow:hidden;}
-  .bar-fill{ height:100%; border-radius:100px; background: var(--grad); width:0%; transition: width .8s ease; }
-  .result-note{ font-size:12.5px; color:var(--muted); margin-top:12px; line-height:1.5; }
-
-  /* ---------- tipos de conteúdo ---------- */
-  .section-label{
-    margin: 28px 20px 12px; font-size:11px; color:var(--muted);
-    text-transform:uppercase; letter-spacing:.09em; font-weight:600;
+  .latest-info .question{ color:var(--ash); font-size:.82rem; margin-bottom:6px; }
+  .latest-info .summary{ font-size:.98rem; line-height:1.5; }
+  .full-answer{
+    margin-top:12px; padding-top:12px; border-top:1px solid var(--line);
+    font-size:.88rem; line-height:1.6; color:var(--ash); white-space:pre-wrap;
   }
-  .formats{
-    display:flex; gap:10px; padding: 0 20px; overflow-x:auto;
-  }
-  .fchip{
-    flex-shrink:0; width:64px;
-    display:flex; flex-direction:column; align-items:center; gap:6px;
-    font-size:10.5px; color:var(--muted);
-  }
-  .fchip .ic{
-    width:48px;height:48px;border-radius:14px;
-    background:var(--surface); border:1px solid var(--line);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .fchip .ic svg{ width:20px;height:20px; color: var(--teal); }
-
-  /* ---------- histórico ---------- */
-  .hist-item{
-    margin: 0 20px 10px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 12px 14px;
-    display:flex; align-items:center; gap:12px;
-  }
-  .hist-dot{ width:8px;height:8px;border-radius:50%; flex-shrink:0; }
-  .hist-dot.ok{ background: var(--teal); }
-  .hist-dot.warn{ background: var(--amber); }
-  .hist-text{ flex:1; min-width:0; }
-  .hist-text .t{ font-size:13px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .hist-text .s{ font-size:11px; color:var(--muted); margin-top:2px; }
-  .hist-score{ font-family:'Sora'; font-weight:700; font-size:13px; }
-
-  /* ---------- banner de publicidade e navegação inferior ---------- */
-  .ad-slot{
-    height:44px; margin:8px 12px;
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:10.5px; color:var(--muted);
-  }
-  .nav-row{
-    display:flex; justify-content:space-around; padding: 8px 0;
-  }
-  .nav-item{ display:flex; flex-direction:column; align-items:center; gap:3px; color:var(--muted); font-size:10px; }
-  .nav-item.active{ color: var(--teal); }
-  .nav-item svg{ width:19px; height:19px; }
-
-  /* ---------- modal instalar iOS ---------- */
-  .ios-banner{
-    margin: 18px 20px 0;
-    background: linear-gradient(135deg, rgba(46,134,255,.12), rgba(47,224,180,.12));
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 12px 14px;
-    display:flex; align-items:center; gap:10px;
-    font-size:12px; color: var(--text);
-  }
-  .ios-banner b{ color: var(--teal); }
-
-  ::-webkit-scrollbar{ display:none; }
+  .stat-row{ display:flex; gap:16px; margin-bottom:30px; flex-wrap:wrap; }
+  .stat-card{ background:var(--ink-2); border:1px solid var(--line); border-radius:10px; padding:16px 20px; min-width:130px; }
+  .stat-card .num{ font-family:'Poppins',sans-serif; font-size:1.7rem; font-weight:700; }
+  .stat-card .lbl{ font-family:'IBM Plex Mono',monospace; font-size:.66rem; color:var(--ash); text-transform:uppercase; letter-spacing:.08em;}
+  .conf-grid{ display:flex; gap:28px; flex-wrap:wrap; }
+  .chart-box{ background:var(--ink-2); border:1px solid var(--line); border-radius:10px; padding:20px; width:280px; }
+  .chart-box h3{ font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ash); font-family:'IBM Plex Mono',monospace; margin:0 0 14px; font-weight:400;}
+  .full-ledger{ flex:1; min-width:280px; }
+  .full-ledger table{ width:100%; border-collapse:collapse; font-size:.82rem;}
+  .full-ledger th{ text-align:left; font-family:'IBM Plex Mono',monospace; font-size:.64rem; text-transform:uppercase; color:var(--ash); border-bottom:1px solid var(--line); padding:6px 8px;}
+  .full-ledger td{ padding:8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  ::-webkit-scrollbar{ width:8px; }
+  ::-webkit-scrollbar-thumb{ background:var(--line); border-radius:4px; }
 </style>
 </head>
 <body>
-
-<div class="screen">
-
-  <div class="screen-header">
-    <div class="row-inner">
-      <div class="topbar">
-        <div class="mark">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l7 3v6c0 5-3.2 8.6-7 11-3.8-2.4-7-6-7-11V5l7-3z" fill="#fff"/><path d="M8.5 12l2.4 2.4L16 9" stroke="#0A1128" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div class="shell">
+  <aside class="ledger">
+    <div class="brand">
+      <div class="mark">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="38" y2="38">
+              <stop offset="0" stop-color="#2f8fe0"/>
+              <stop offset="1" stop-color="#27d3a0"/>
+            </linearGradient>
+          </defs>
+          <circle cx="16" cy="16" r="12" fill="none" stroke="url(#g1)" stroke-width="2.5"/>
+          <path d="M16 9 L22 11.5 V16.5 C22 20 19.5 22.5 16 24 C12.5 22.5 10 20 10 16.5 V11.5 Z" fill="url(#g1)"/>
+          <path d="M13 16.3 L15.3 18.6 L19.5 13.8" stroke="#080d1a" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="24.5" y1="24.5" x2="30" y2="30" stroke="#dfe6ee" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-row">
+          <h1>BOM<span class="fr">FREY</span></h1>
+          <p class="sub">Insight</p>
         </div>
-        <div>
-          <div class="name">BOMFREY <span>Insight</span></div>
-          <div class="slogan">Veja além da informação</div>
-        </div>
+        <p class="tagline">Veja além da informação.</p>
       </div>
     </div>
-  </div>
-
-  <div class="screen-scroll">
-    <div class="app-shell">
-
-<div class="hero">
-  <div class="ring-wrap">
-    <svg viewBox="0 0 160 160">
-      <defs>
-        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#2E86FF"/>
-          <stop offset="100%" stop-color="#2FE0B4"/>
-        </linearGradient>
-      </defs>
-      <circle class="ring-bg" cx="80" cy="80" r="70" stroke-width="10" fill="none"/>
-      <circle id="ringFg" class="ring-fg" cx="80" cy="80" r="70" stroke-width="10" fill="none"/>
-    </svg>
-    <div class="ring-center">
-      <svg class="shield" viewBox="0 0 24 24" fill="none"><path d="M12 2l7 3v6c0 5-3.2 8.6-7 11-3.8-2.4-7-6-7-11V5l7-3z" fill="url(#ringGrad)"/><path d="M8.5 12l2.4 2.4L16 9" stroke="#0A1128" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div class="score" id="scoreNum">—</div>
-      <div class="score-label">confiabilidade</div>
+    <div class="ledger-head"><span>Diário de fontes</span><span id="ledgerCount">0</span></div>
+    <div class="ledger-list" id="ledgerList">
+      <div class="ledger-empty">Nenhuma fonte consultada ainda.</div>
     </div>
-  </div>
-  <h1>Antes de acreditar,<br/>analise.</h1>
-  <p>Cole um texto, link, ou compartilhe direto de outro app para ver o score de confiabilidade.</p>
-</div>
+    <label class="upload-btn" id="uploadBtn">
+      + Anexar documento ou áudio (PDF, TXT, MD, MP3, WAV, M4A, OGG)
+      <input type="file" id="fileInput" accept=".pdf,.txt,.md,.mp3,.wav,.m4a,.ogg" style="display:none">
+    </label>
+  </aside>
 
-<div class="analyze-box">
-  <textarea id="inputText" placeholder="Cole aqui o texto, link ou descreva o conteúdo recebido..."></textarea>
-  <div class="analyze-actions">
-    <div class="chip-row">
-      <div class="chip" title="Imagem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-4 4-2-2-5 5"/></svg></div>
-      <div class="chip" title="Vídeo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M21 8l-4 3 4 3z"/></svg></div>
-      <div class="chip" title="Áudio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12v0M8 9v6M12 6v12M16 9v6M20 12v0"/></svg></div>
-    </div>
-    <button class="btn-analyze" onclick="runAnalysis()">Analisar</button>
-  </div>
-</div>
-
-<div class="result" id="resultCard">
-  <div class="result-head">
-    <span class="badge alto" id="resBadge">Alta confiabilidade</span>
-    <span class="rname" id="resType">Texto analisado</span>
-  </div>
-  <div class="result-bars">
-    <div class="bar-row">Probabilidade de fake news
-      <div class="bar-track"><div class="bar-fill" id="barFake"></div></div>
-    </div>
-    <div class="bar-row">Probabilidade de geração por IA
-      <div class="bar-track"><div class="bar-fill" id="barAI"></div></div>
-    </div>
-  </div>
-  <div class="result-note" id="resNote"></div>
-</div>
-
-<div class="ios-banner">
-  🍎 <span>No iPhone: toque em <b>Compartilhar → Adicionar à Tela de Início</b> para instalar o app.</span>
-</div>
-
-<div class="section-label">Analise qualquer formato</div>
-<div class="formats">
-  <div class="fchip"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>Texto</div>
-  <div class="fchip"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1.5-1.5"/></svg></div>Link</div>
-  <div class="fchip"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-4 4-2-2-5 5"/></svg></div>Imagem</div>
-  <div class="fchip"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M21 8l-4 3 4 3z"/></svg></div>Vídeo</div>
-  <div class="fchip"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12v0M8 9v6M12 6v12M16 9v6M20 12v0"/></svg></div>Áudio</div>
-</div>
-
-<div class="section-label">Histórico recente</div>
-<div class="hist-item">
-  <div class="hist-dot ok"></div>
-  <div class="hist-text"><div class="t">Reportagem sobre eleições municipais</div><div class="s">Analisado há 2h · Texto</div></div>
-  <div class="hist-score" style="color:var(--teal)">92</div>
-</div>
-<div class="hist-item">
-  <div class="hist-dot warn"></div>
-  <div class="hist-text"><div class="t">Vídeo viral — "cura milagrosa"</div><div class="s">Analisado ontem · Vídeo</div></div>
-  <div class="hist-score" style="color:var(--amber)">34</div>
-</div>
-
-    </div><!-- /app-shell -->
-  </div><!-- /screen-scroll -->
-
-  <div class="ad-banner-row">
-    <div class="row-inner">
-      <div class="ad-slot">espaço reservado — banner publicitário</div>
-    </div>
-  </div>
-
-  <div class="bottom-nav-row">
-    <div class="row-inner">
-      <div class="nav-row">
-        <div class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Início</div>
-        <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>Histórico</div>
-        <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.5-8.5C.5 8.6 2.4 5 6 5c2 0 3.5 1.3 4 2 .5-.7 2-2 4-2 3.6 0 5.5 3.6 3.5 7.5C19 16.6 12 21 12 21z"/></svg>Favoritos</div>
-        <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.2a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.2a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.2a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.2a1.7 1.7 0 00-1.5 1z"/></svg>Ajustes</div>
+  <main class="main">
+    <section class="view active" id="view-confiabilidade">
+      <div class="files-chip-row" id="chipRow"></div>
+      <div class="conf" id="confContent">
+        <h2>Confiabilidade</h2>
+        <div class="sub">Veredito de veracidade das últimas verificações feitas pelo agente.</div>
+        <div class="conf-empty">Ainda não há verificações nesta sessão. Pergunte ou peça uma checagem logo abaixo.</div>
       </div>
-    </div>
-  </div>
-
-</div><!-- /screen -->
+      <div class="composer">
+        <textarea id="input2" placeholder="Pergunte ou peça para checar um fato..." rows="1"></textarea>
+        <button class="mic-btn" id="micBtn" title="Falar em vez de digitar">🎤</button>
+        <button class="send-btn" id="sendBtn2">Verificar</button>
+      </div>
+    </section>
+  </main>
+</div>
 
 <script>
-  // registra o service worker (funcionamento offline)
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('service-worker.js').catch(console.error);
+const state = {
+  history: [],
+  files: [],
+  ledger: [],
+  verdicts: [],   // {question, classificacao, confianca, resumo, resposta, time}
+  msgCount: 0,
+  mixChart: null,
+  verdictChart: null
+};
+
+const VERDICT_META = {
+  verdadeiro: { label:'Verdadeiro', color:'#27d3a0' },
+  falso: { label:'Falso', color:'#dd6459' },
+  impreciso: { label:'Impreciso', color:'#f2a93a' },
+  nao_verificavel: { label:'Não verificável', color:'#8b96ac' }
+};
+
+// ---------- File upload ----------
+document.getElementById('fileInput').addEventListener('change', async (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const isAudio = file.type.startsWith('audio/') || /\.(mp3|wav|m4a|ogg)$/i.test(file.name);
+  try{
+    if(isAudio){
+      // O modelo não processa áudio diretamente — fica só como referência no diário,
+      // e pedimos a transcrição ou o link para poder verificar o conteúdo.
+      addLedgerEntry('audio', file.name, 'aguardando transcrição/link');
+      syncComposers(`Verifique se este áudio é verdadeiro (${file.name}): [cole aqui a transcrição do que é dito, ou o link de onde ele está circulando]`);
+      composerConf.inputEl.focus();
+      composerConf.inputEl.dispatchEvent(new Event('input'));
+    } else if(file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')){
+      const base64 = await fileToBase64(file);
+      state.files.push({ name:file.name, block:{ inlineData:{ mimeType:'application/pdf', data: base64 } } });
+      addLedgerEntry('doc', file.name, 'anexado');
+      renderChips();
+    } else {
+      const text = await file.text();
+      state.files.push({ name:file.name, block:{ text: `[Conteúdo do documento "${file.name}"]\n${text}` } });
+      addLedgerEntry('doc', file.name, 'anexado');
+      renderChips();
+    }
+  } catch(err){
+    console.error(err);
+    alert('Não consegui ler esse arquivo.');
+  }
+  e.target.value = '';
+});
+
+function fileToBase64(file){
+  return new Promise((res, rej)=>{
+    const r = new FileReader();
+    r.onload = ()=> res(r.result.split(',')[1]);
+    r.onerror = ()=> rej(new Error('Falha ao ler arquivo'));
+    r.readAsDataURL(file);
+  });
+}
+
+function renderChips(){
+  const row = document.getElementById('chipRow');
+  row.innerHTML = '';
+  state.files.forEach(f=>{
+    const chip = document.createElement('div');
+    chip.className = 'chip';
+    chip.textContent = '📎 ' + f.name;
+    row.appendChild(chip);
+  });
+}
+
+// ---------- Ledger ----------
+function addLedgerEntry(type, title, meta){
+  const time = new Date().toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+  state.ledger.push({type, title, meta, time});
+  renderLedger();
+}
+
+function renderLedger(){
+  const list = document.getElementById('ledgerList');
+  document.getElementById('ledgerCount').textContent = state.ledger.length;
+  if(state.ledger.length === 0){
+    list.innerHTML = '<div class="ledger-empty">Nenhuma fonte consultada ainda.</div>';
+    return;
+  }
+  list.innerHTML = state.ledger.slice().reverse().map(e=>`
+    <div class="entry ${e.type}">
+      <div class="tag">${e.type === 'web' ? 'busca web' : e.type === 'audio' ? 'áudio' : 'documento'}</div>
+      <div class="title">${escapeHtml(e.title)}</div>
+      <div class="meta">${escapeHtml(e.meta)} · ${e.time}</div>
+    </div>
+  `).join('');
+}
+
+function escapeHtml(s){
+  return (s || '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ---------- Chat / Pesquisa ----------
+function setupComposer(inputId, btnId){
+  const inputEl = document.getElementById(inputId);
+  const btnEl = document.getElementById(btnId);
+  inputEl.addEventListener('input', ()=>{
+    inputEl.style.height = 'auto';
+    inputEl.style.height = Math.min(inputEl.scrollHeight, 140) + 'px';
+  });
+  inputEl.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendMessage(inputEl, btnEl); }
+  });
+  btnEl.addEventListener('click', ()=> sendMessage(inputEl, btnEl));
+  return { inputEl, btnEl };
+}
+
+const composerConf = setupComposer('input2', 'sendBtn2');
+
+// ---------- Voice input ----------
+const micBtn = document.getElementById('micBtn');
+const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition = null;
+let isRecording = false;
+
+if(SpeechRecognitionAPI){
+  recognition = new SpeechRecognitionAPI();
+  recognition.lang = 'pt-BR';
+  recognition.interimResults = false;
+  recognition.continuous = false;
+
+  recognition.onresult = (e)=>{
+    const transcript = Array.from(e.results).map(r => r[0].transcript).join(' ');
+    const current = composerConf.inputEl.value.trim();
+    composerConf.inputEl.value = current ? current + ' ' + transcript : transcript;
+    composerConf.inputEl.dispatchEvent(new Event('input'));
+  };
+  recognition.onerror = ()=>{ stopRecording(); };
+  recognition.onend = ()=>{ stopRecording(); };
+
+  micBtn.addEventListener('click', ()=>{
+    if(isRecording){ recognition.stop(); return; }
+    isRecording = true;
+    micBtn.classList.add('recording');
+    micBtn.textContent = '⏹';
+    try{ recognition.start(); } catch(e){ stopRecording(); }
+  });
+} else {
+  micBtn.addEventListener('click', ()=>{
+    alert('Seu navegador não tem suporte a reconhecimento de fala. Tente usar o Chrome.');
+  });
+}
+
+function stopRecording(){
+  isRecording = false;
+  micBtn.classList.remove('recording');
+  micBtn.textContent = '🎤';
+}
+
+function syncComposers(text){
+  composerConf.inputEl.value = text;
+}
+
+function setStatus(message){
+  const container = document.getElementById('confContent');
+  if(state.verdicts.length === 0){
+    container.innerHTML = `
+      <h2>Confiabilidade</h2>
+      <div class="sub">Veredito de veracidade das últimas verificações feitas pelo agente.</div>
+      <div class="conf-empty">${message}</div>
+    `;
+  }
+}
+
+const SYSTEM_PROMPT = `Você é o BOMFREY Insight, um agente que pesquisa na web e analisa documentos anexados para responder perguntas e checar a veracidade de afirmações, em português do Brasil.
+Se o usuário mencionar um áudio (anexado apenas como referência, já que você não processa arquivos de áudio) e fornecer uma transcrição ou um link, pesquise na web esse conteúdo específico: procure se agências de checagem de fatos já analisaram esse áudio, se a fala citada realmente foi dita por quem se atribui, e se o fato relatado é verdadeiro. Se não houver transcrição nem link suficiente para pesquisar, explique isso ao usuário e peça que ele descreva o que é dito no áudio.
+Responda a pergunta do usuário normalmente, de forma clara e completa.
+Depois, em uma linha própria, no FINAL da resposta, inclua exatamente um bloco neste formato, sem nada mais nessa linha:
+VEREDITO_JSON:{"classificacao":"verdadeiro|falso|impreciso|nao_verificavel","confianca":0-100,"resumo":"uma frase curta explicando o veredito"}
+Use "confianca" como o percentual de certeza de que a classificação está correta, com base nas fontes encontradas. Use "nao_verificavel" quando não houver fontes suficientes. Sempre inclua esse bloco, mesmo para perguntas que não pareçam ser sobre checagem de fatos — nesse caso, avalie a confiabilidade geral da informação fornecida na resposta.
+Ao classificar, avalie o fato CENTRAL da afirmação, não detalhes técnicos secundários: se a alegação principal está confirmada pelas fontes, classifique como "verdadeiro" mesmo que existam nuances de regime, forma ou detalhe (ex.: alguém "está preso" é verdadeiro tanto em prisão comum quanto em prisão domiciliar, já que ambas são formas de custódia/privação de liberdade — a diferença de regime é um detalhe complementar, não motivo para "impreciso"). Reserve "impreciso" para quando uma parte relevante da afirmação estiver de fato errada ou for enganosa quanto ao sentido geral, não apenas menos específica que o ideal.`;
+
+// URL do Worker publicado na Cloudflare
+const API_ENDPOINT = 'https://bomfrey-proxy.dev-lobbo.workers.dev';
+
+async function sendMessage(activeInput, activeBtn){
+  const text = activeInput.value.trim();
+  if(!text) return;
+  syncComposers('');
+  activeInput.style.height = 'auto';
+  composerConf.btnEl.disabled = true;
+  activeBtn.textContent = 'Verificando...';
+  state.msgCount++;
+
+  setStatus('Pesquisando e avaliando a confiabilidade…');
+
+  const pendingDocs = state.files.filter(f => !f.sent).map(f => { f.sent = true; return f.block; });
+  const userParts = [...pendingDocs, { text }];
+  state.history.push({ role:'user', parts: userParts });
+
+  try{
+    const response = await fetch(API_ENDPOINT, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({
+        systemPrompt: SYSTEM_PROMPT,
+        contents: state.history
+      })
+    });
+
+    if(response.status === 429){
+      const errData = await response.json().catch(()=>({}));
+      setStatus(`Você atingiu o limite de ${errData.limit || 5} verificações gratuitas hoje. Volte amanhã para checar mais fatos!`);
+      state.history.pop();
+      return;
+    }
+
+    const data = await response.json();
+    const candidate = data.candidates?.[0];
+    const parts = candidate?.content?.parts || [];
+
+    // Fontes usadas na busca (grounding) do Gemini
+    const chunks = candidate?.groundingMetadata?.groundingChunks || [];
+    chunks.forEach(c=>{
+      const web = c.web;
+      if(web?.title) addLedgerEntry('web', web.title, web.uri ? new URL(web.uri).hostname : 'resultado');
+    });
+
+    let replyText = parts.map(p => p.text || '').join('\n\n').trim() || 'Não obtive uma resposta.';
+
+    // Extract the verdict block
+    const match = replyText.match(/VEREDITO_JSON:\s*(\{[\s\S]*\})\s*$/);
+    if(match){
+      try{
+        const v = JSON.parse(match[1]);
+        replyText = replyText.slice(0, match.index).trim();
+        state.verdicts.push({
+          question: text,
+          classificacao: v.classificacao,
+          confianca: Math.max(0, Math.min(100, Number(v.confianca) || 0)),
+          resumo: v.resumo || '',
+          resposta: replyText,
+          time: new Date().toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})
+        });
+      } catch(e){ /* ignore malformed block */ }
+    }
+
+    if(typeof data._remaining === 'number') state.remainingToday = data._remaining;
+    state.history.push({ role:'model', parts: [{ text: replyText }] });
+  } catch(err){
+    console.error(err);
+    setStatus('Não consegui completar essa busca agora. Tente de novo em instantes.');
+  } finally {
+    composerConf.btnEl.disabled = false;
+    composerConf.btnEl.textContent = 'Verificar';
+    renderConfiabilidade();
+  }
+}
+
+// ---------- Confiabilidade ----------
+function renderConfiabilidade(){
+  const container = document.getElementById('confContent');
+  if(state.verdicts.length === 0){
+    container.innerHTML = `
+      <h2>Confiabilidade</h2>
+      <div class="sub">Veredito de veracidade das últimas verificações feitas pelo agente.</div>
+      <div class="conf-empty">Ainda não há verificações nesta sessão. Pergunte ou peça uma checagem logo abaixo.</div>
+    `;
+    return;
+  }
+
+  const latest = state.verdicts[state.verdicts.length - 1];
+  const meta = VERDICT_META[latest.classificacao] || VERDICT_META.nao_verificavel;
+  const counts = { verdadeiro:0, falso:0, impreciso:0, nao_verificavel:0 };
+  state.verdicts.forEach(v => { if(counts[v.classificacao] !== undefined) counts[v.classificacao]++; });
+
+  container.innerHTML = `
+    <h2>Confiabilidade</h2>
+    <div class="sub">Veredito de veracidade das últimas verificações feitas pelo agente.${typeof state.remainingToday === 'number' ? ` · <span style="color:var(--green)">${state.remainingToday} verificações grátis restantes hoje</span>` : ''}</div>
+
+    <div class="latest-card">
+      <div class="gauge-wrap">
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="64" fill="none" stroke="#1f2b45" stroke-width="12"/>
+          <circle cx="75" cy="75" r="64" fill="none" stroke="${meta.color}" stroke-width="12"
+            stroke-dasharray="${2*Math.PI*64}" stroke-dashoffset="${2*Math.PI*64*(1 - latest.confianca/100)}"
+            stroke-linecap="round"/>
+        </svg>
+        <div class="gauge-pct">
+          <div class="num" style="color:${meta.color}">${latest.confianca}%</div>
+          <div class="lbl">confiança</div>
+        </div>
+      </div>
+      <div class="latest-info">
+        <div class="verdict-tag" style="background:${meta.color}22; color:${meta.color}; border:1px solid ${meta.color}55;">${meta.label}</div>
+        <div class="question">Última pergunta: "${escapeHtml(latest.question)}"</div>
+        <div class="summary">${escapeHtml(latest.resumo)}</div>
+        ${latest.resposta ? `<div class="full-answer">${escapeHtml(latest.resposta)}</div>` : ''}
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card"><div class="num" style="color:${VERDICT_META.verdadeiro.color}">${counts.verdadeiro}</div><div class="lbl">Verdadeiro</div></div>
+      <div class="stat-card"><div class="num" style="color:${VERDICT_META.falso.color}">${counts.falso}</div><div class="lbl">Falso</div></div>
+      <div class="stat-card"><div class="num" style="color:${VERDICT_META.impreciso.color}">${counts.impreciso}</div><div class="lbl">Impreciso</div></div>
+      <div class="stat-card"><div class="num" style="color:${VERDICT_META.nao_verificavel.color}">${counts.nao_verificavel}</div><div class="lbl">Não verificável</div></div>
+    </div>
+
+    <div class="conf-grid">
+      <div class="chart-box">
+        <h3>Distribuição dos vereditos</h3>
+        <canvas id="verdictChart" width="240" height="200"></canvas>
+      </div>
+      <div class="full-ledger">
+        <h3 style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--ash);text-transform:uppercase;letter-spacing:.08em;font-weight:400;margin:0 0 14px;">Histórico de verificações</h3>
+        <table>
+          <thead><tr><th>Pergunta</th><th>Veredito</th><th>Confiança</th><th>Hora</th></tr></thead>
+          <tbody>
+            ${state.verdicts.slice().reverse().map(v=>{
+              const m = VERDICT_META[v.classificacao] || VERDICT_META.nao_verificavel;
+              return `<tr>
+                <td>${escapeHtml(v.question)}</td>
+                <td style="color:${m.color}">${m.label}</td>
+                <td style="font-family:'IBM Plex Mono',monospace;">${v.confianca}%</td>
+                <td style="font-family:'IBM Plex Mono',monospace;color:var(--ash);">${v.time}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+
+  const ctx = document.getElementById('verdictChart');
+  if(window.Chart){
+    if(state.verdictChart) state.verdictChart.destroy();
+    state.verdictChart = new Chart(ctx, {
+      type:'bar',
+      data:{
+        labels:['Verdadeiro','Falso','Impreciso','Não verif.'],
+        datasets:[{
+          data:[counts.verdadeiro, counts.falso, counts.impreciso, counts.nao_verificavel],
+          backgroundColor:[VERDICT_META.verdadeiro.color, VERDICT_META.falso.color, VERDICT_META.impreciso.color, VERDICT_META.nao_verificavel.color],
+          borderRadius:6
+        }]
+      },
+      options:{
+        plugins:{ legend:{ display:false } },
+        scales:{
+          x:{ ticks:{ color:'#8b96ac', font:{ family:'IBM Plex Mono', size:10 } }, grid:{ display:false } },
+          y:{ beginAtZero:true, ticks:{ color:'#8b96ac', stepSize:1 }, grid:{ color:'#1f2b45' } }
+        }
+      }
     });
   }
-
-  // textarea cresce sozinha conforme o usuário digita, até um limite (depois vira scroll interno)
-  const inputText = document.getElementById('inputText');
-  function autoGrowTextarea(){
-    inputText.style.height = 'auto';
-    inputText.style.height = inputText.scrollHeight + 'px';
-  }
-  inputText.addEventListener('input', autoGrowTextarea);
-
-  // chamada real à API do Insight Engine (motor de regras v1, rodando no PythonAnywhere)
-  const API_URL = 'https://devlobbo.pythonanywhere.com/api/v1/analyze';
-
-  async function runAnalysis(){
-    const text = document.getElementById('inputText').value.trim();
-    if(!text){ return; }
-
-    const tipo = text.startsWith('http') ? 'link' : 'texto';
-    const btn = document.querySelector('.btn-analyze');
-    const textoOriginalBtn = btn.textContent;
-    btn.textContent = 'Analisando...';
-    btn.disabled = true;
-
-    try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ conteudo: text, tipo: tipo })
-      });
-
-      if(!response.ok){ throw new Error('Erro na análise: ' + response.status); }
-      const data = await response.json();
-
-      const score = data.score;
-      document.getElementById('scoreNum').textContent = score;
-      const circumference = 440;
-      const offset = circumference - (circumference * score/100);
-      document.getElementById('ringFg').style.strokeDashoffset = offset;
-
-      const badge = document.getElementById('resBadge');
-      if(data.nivel === 'alta'){ badge.textContent='Alta confiabilidade'; badge.className='badge alto'; }
-      else if(data.nivel === 'moderada'){ badge.textContent='Confiabilidade moderada'; badge.className='badge medio'; }
-      else { badge.textContent='Baixa confiabilidade'; badge.className='badge baixa'; }
-
-      document.getElementById('resType').textContent = tipo === 'link' ? 'Link analisado' : 'Texto analisado';
-      document.getElementById('barFake').style.width = data.probabilidade_fake_news + '%';
-      document.getElementById('barAI').style.width = data.probabilidade_ia + '%';
-      document.getElementById('resNote').textContent = data.explicacao;
-      document.getElementById('resultCard').classList.add('show');
-
-    } catch (err) {
-      document.getElementById('resNote').textContent = 'Não foi possível conectar à API de análise agora. Tente novamente em instantes.';
-      document.getElementById('resultCard').classList.add('show');
-      console.error(err);
-    } finally {
-      btn.textContent = textoOriginalBtn;
-      btn.disabled = false;
-    }
-  }
+}
 </script>
-
 </body>
 </html>
