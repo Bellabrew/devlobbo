@@ -1,0 +1,27 @@
+{
+  "name": "Dev.Lobbo — Softwares Inteligentes",
+  "short_name": "Dev.Lobbo",
+  "description": "Dev.Lobbo desenvolve aplicativos modernos, rápidos e intuitivos: GestFácil, Sr. Plantão e Ponto Justificado.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#050508",
+  "theme_color": "#00CFFF",
+  "orientation": "portrait-primary",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "utilities"]
+}
