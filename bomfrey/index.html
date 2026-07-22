@@ -430,7 +430,11 @@ async function sendMessage(activeInput, activeBtn){
 
     if(response.status === 429){
       const errData = await response.json().catch(()=>({}));
-      setStatus(`Você atingiu o limite de ${errData.limit || 5} verificações gratuitas hoje. Volte amanhã para checar mais fatos!`);
+      if(errData.error === 'daily_limit_reached'){
+        setStatus(`Você atingiu o limite de ${errData.limit || 50} verificações gratuitas hoje. Volte amanhã (à meia-noite) para checar mais fatos!`);
+      } else {
+        setStatus('O serviço está temporariamente sobrecarregado (limite momentâneo do provedor). Espere um minuto e tente de novo.');
+      }
       state.history.pop();
       return;
     }
