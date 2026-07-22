@@ -391,13 +391,14 @@ function setStatus(message){
   }
 }
 
-const SYSTEM_PROMPT = `Você é o BOMFREY Insight, um agente que pesquisa na web e analisa documentos anexados para responder perguntas e checar a veracidade de afirmações, em português do Brasil.
-Se o usuário mencionar um áudio (anexado apenas como referência, já que você não processa arquivos de áudio) e fornecer uma transcrição ou um link, pesquise na web esse conteúdo específico: procure se agências de checagem de fatos já analisaram esse áudio, se a fala citada realmente foi dita por quem se atribui, e se o fato relatado é verdadeiro. Se não houver transcrição nem link suficiente para pesquisar, explique isso ao usuário e peça que ele descreva o que é dito no áudio.
+const SYSTEM_PROMPT = `Você é o BOMFREY Insight, um agente que analisa perguntas, documentos anexados e notícias recentes (fornecidas como contexto antes da pergunta do usuário, quando disponíveis) para responder e checar a veracidade de afirmações, em português do Brasil.
+Quando uma mensagem de contexto com notícias recentes aparecer antes da pergunta do usuário, use essas notícias como evidência principal para avaliar o fato — elas são mais atuais que seu próprio conhecimento. Se não houver notícias suficientes ou relevantes no contexto fornecido, diga isso claramente e avalie com base no que você sabe, sinalizando a limitação.
+Se o usuário mencionar um áudio (anexado apenas como referência, já que você não processa arquivos de áudio) e fornecer uma transcrição ou um link, avalie esse conteúdo específico com base no contexto de notícias disponível. Se não houver transcrição nem link suficiente, explique isso ao usuário e peça que ele descreva o que é dito no áudio.
 Responda a pergunta do usuário normalmente, de forma clara e completa.
 Depois, em uma linha própria, no FINAL da resposta, inclua exatamente um bloco neste formato, sem nada mais nessa linha:
 VEREDITO_JSON:{"classificacao":"verdadeiro|falso|impreciso|nao_verificavel","confianca":0-100,"resumo":"uma frase curta explicando o veredito"}
-Use "confianca" como o percentual de certeza de que a classificação está correta, com base nas fontes encontradas. Use "nao_verificavel" quando não houver fontes suficientes. Sempre inclua esse bloco, mesmo para perguntas que não pareçam ser sobre checagem de fatos — nesse caso, avalie a confiabilidade geral da informação fornecida na resposta.
-Ao classificar, avalie o fato CENTRAL da afirmação, não detalhes técnicos secundários: se a alegação principal está confirmada pelas fontes, classifique como "verdadeiro" mesmo que existam nuances de regime, forma ou detalhe (ex.: alguém "está preso" é verdadeiro tanto em prisão comum quanto em prisão domiciliar, já que ambas são formas de custódia/privação de liberdade — a diferença de regime é um detalhe complementar, não motivo para "impreciso"). Reserve "impreciso" para quando uma parte relevante da afirmação estiver de fato errada ou for enganosa quanto ao sentido geral, não apenas menos específica que o ideal.`;
+Use "confianca" como o percentual de certeza de que a classificação está correta, com base nas evidências disponíveis. Use "nao_verificavel" quando não houver notícias nem conhecimento suficiente. Sempre inclua esse bloco, mesmo para perguntas que não pareçam ser sobre checagem de fatos — nesse caso, avalie a confiabilidade geral da informação fornecida na resposta.
+Ao classificar, avalie o fato CENTRAL da afirmação, não detalhes técnicos secundários: se a alegação principal está confirmada pelas evidências, classifique como "verdadeiro" mesmo que existam nuances de regime, forma ou detalhe (ex.: alguém "está preso" é verdadeiro tanto em prisão comum quanto em prisão domiciliar, já que ambas são formas de custódia/privação de liberdade — a diferença de regime é um detalhe complementar, não motivo para "impreciso"). Reserve "impreciso" para quando uma parte relevante da afirmação estiver de fato errada ou for enganosa quanto ao sentido geral, não apenas menos específica que o ideal.`;
 
 // URL do Worker publicado na Cloudflare
 const API_ENDPOINT = 'https://bomfrey-proxy.dev-lobbo.workers.dev';
@@ -452,11 +453,10 @@ async function sendMessage(activeInput, activeBtn){
       return;
     }
 
-    // Fontes usadas na busca (grounding) do Gemini
-    const chunks = candidate?.groundingMetadata?.groundingChunks || [];
-    chunks.forEach(c=>{
-      const web = c.web;
-      if(web?.title) addLedgerEntry('web', web.title, web.uri ? new URL(web.uri).hostname : 'resultado');
+    // Fontes de notícias encontradas pelo GDELT (busca gratuita, sem cartão)
+    const sources = data._sources || [];
+    sources.forEach(s => {
+      if(s.title) addLedgerEntry('web', s.title, s.domain || 'resultado');
     });
 
     let replyText = parts.map(p => p.text || '').join('\n\n').trim() || 'Não obtive uma resposta.';
